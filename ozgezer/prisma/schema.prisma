@@ -1,0 +1,204 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  REGISTERED
+  CONTRIBUTOR
+  ADMIN
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum PlaceStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum ContributorStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum SavedPlaceType {
+  WANT_TO_GO
+  VISITED
+}
+
+model User {
+  id                  String               @id @default(cuid())
+  email               String               @unique
+  name                String?
+  image               String?
+  passwordHash        String?
+  role                UserRole             @default(REGISTERED)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  reviews             Review[]
+  uploadedPhotos      Photo[]
+  savedPlaces         SavedPlace[]
+  contributorRequests ContributorRequest[]
+  placeDrafts         PlaceDraft[]
+  createdPlaces       Place[]               @relation("CreatedPlaces")
+}
+
+model Region {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  nameUz      String
+  nameRu      String
+  nameEn      String
+  summaryUz   String?
+  summaryRu   String?
+  summaryEn   String?
+  focusUz     String?
+  focusRu     String?
+  focusEn     String?
+  samplePlaces Int     @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  places      Place[]
+  placeDrafts PlaceDraft[]
+}
+
+model Category {
+  id          String          @id @default(cuid())
+  slug        String          @unique
+  nameUz      String
+  nameRu      String
+  nameEn      String
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  placeLinks  PlaceCategory[]
+}
+
+model Place {
+  id              String          @id @default(cuid())
+  slug            String          @unique
+  status          PlaceStatus     @default(DRAFT)
+  published       Boolean         @default(false)
+  nameUz          String
+  nameRu          String
+  nameEn          String
+  descriptionUz   String
+  descriptionRu   String
+  descriptionEn   String
+  latitude        Decimal         @db.Decimal(9, 6)
+  longitude       Decimal         @db.Decimal(9, 6)
+  price           String?
+  workingHours    String?
+  phone           String?
+  website         String?
+  addressUz       String?
+  addressRu       String?
+  addressEn       String?
+  howToGetUz      String?
+  howToGetRu      String?
+  howToGetEn      String?
+  averageRating   Decimal?        @db.Decimal(3, 2)
+  reviewCount     Int             @default(0)
+  viewCount       Int             @default(0)
+  regionId        String
+  createdById     String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  region          Region          @relation(fields: [regionId], references: [id])
+  createdBy       User?           @relation("CreatedPlaces", fields: [createdById], references: [id])
+  categories      PlaceCategory[]
+  reviews         Review[]
+  photos          Photo[]
+  savedByUsers    SavedPlace[]
+}
+
+model PlaceCategory {
+  placeId         String
+  categoryId      String
+  assignedAt      DateTime @default(now())
+  place           Place    @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  category        Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@id([placeId, categoryId])
+}
+
+model Review {
+  id                String        @id @default(cuid())
+  rating            Int
+  comment           String
+  wouldRecommend    Boolean
+  status            ReviewStatus  @default(PENDING)
+  photoUrl          String?
+  userId            String
+  placeId           String
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  place             Place         @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, placeId])
+}
+
+model Photo {
+  id              String    @id @default(cuid())
+  url             String
+  altText         String?
+  sortOrder       Int       @default(0)
+  placeId         String
+  uploadedById    String?
+  createdAt       DateTime  @default(now())
+  place           Place     @relation(fields: [placeId], references: [id], onDelete: Cascade)
+  uploadedBy      User?     @relation(fields: [uploadedById], references: [id], onDelete: SetNull)
+}
+
+model SavedPlace {
+  userId          String
+  placeId         String
+  type            SavedPlaceType @default(WANT_TO_GO)
+  createdAt       DateTime       @default(now())
+  user            User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  place           Place          @relation(fields: [placeId], references: [id], onDelete: Cascade)
+
+  @@id([userId, placeId])
+}
+
+model ContributorRequest {
+  id                String             @id @default(cuid())
+  userId            String
+  fullName          String
+  motivation        String
+  regionKnowledge   String
+  status            ContributorStatus  @default(PENDING)
+  adminNote         String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  user              User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PlaceDraft {
+  id                String             @id @default(cuid())
+  contributorId     String
+  status            ContributorStatus  @default(PENDING)
+  nameUz            String
+  nameRu            String
+  nameEn            String
+  descriptionUz     String
+  descriptionRu     String
+  descriptionEn     String
+  latitude          Decimal            @db.Decimal(9, 6)
+  longitude         Decimal            @db.Decimal(9, 6)
+  regionId          String
+  moderationNote    String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  contributor       User               @relation(fields: [contributorId], references: [id], onDelete: Cascade)
+  region            Region             @relation(fields: [regionId], references: [id], onDelete: Cascade)
+}

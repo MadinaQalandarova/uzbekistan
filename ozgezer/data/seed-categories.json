@@ -1,0 +1,52 @@
+[
+  {
+    "slug": "historical",
+    "nameUz": "Tarixiy",
+    "nameRu": "Исторические",
+    "nameEn": "Historical",
+    "descriptionUz": "Madrasa, qal'a, maqbara va qadimiy markazlar.",
+    "descriptionRu": "Медресе, крепости, мавзолеи и древние центры.",
+    "descriptionEn": "Madrasas, fortresses, mausoleums, and old city centers.",
+    "stat": 58
+  },
+  {
+    "slug": "nature",
+    "nameUz": "Tabiat",
+    "nameRu": "Природа",
+    "nameEn": "Nature",
+    "descriptionUz": "Ko'llar, tog' yo'llari va manzara nuqtalari.",
+    "descriptionRu": "Озёра, горные маршруты и видовые точки.",
+    "descriptionEn": "Lakes, mountain routes, and scenic viewpoints.",
+    "stat": 34
+  },
+  {
+    "slug": "leisure",
+    "nameUz": "Dam olish",
+    "nameRu": "Отдых",
+    "nameEn": "Leisure",
+    "descriptionUz": "Oila, resort va qisqa safarlar uchun maskanlar.",
+    "descriptionRu": "Места для семьи, курортов и коротких поездок.",
+    "descriptionEn": "Places for family trips, resorts, and short escapes.",
+    "stat": 21
+  },
+  {
+    "slug": "food",
+    "nameUz": "Ovqat",
+    "nameRu": "Еда",
+    "nameEn": "Food",
+    "descriptionUz": "Mahalliy oshxona, bozor ta'mlari va gastro nuqtalar.",
+    "descriptionRu": "Локальная кухня, базарные вкусы и гастро-точки.",
+    "descriptionEn": "Local cuisine, bazaar flavors, and food stops.",
+    "stat": 17
+  },
+  {
+    "slug": "markets",
+    "nameUz": "Bozorlar",
+    "nameRu": "Базары",
+    "nameEn": "Markets",
+    "descriptionUz": "Mahalliy savdo, hunarmandchilik va shahar ritmini beruvchi joylar.",
+    "descriptionRu": "Места локальной торговли, ремёсел и городского ритма.",
+    "descriptionEn": "Places that reflect local trade, crafts, and city rhythm.",
+    "stat": 12
+  }
+]
