@@ -36,9 +36,10 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
         </div>
         <Link
           href={`/${locale}/places/${place.slug}`}
-          className="inline-flex items-center rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="group inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] bg-white/50 transition-all hover:-translate-y-0.5 hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] hover:bg-white hover:shadow-md"
         >
-          {ctaLabel}
+          <span>{ctaLabel}</span>
+          <img src="https://emojicdn.elk.sh/➡️?style=apple" alt="Go" className="h-3 w-3 drop-shadow-sm transition-transform duration-300 group-hover:translate-x-1" />
         </Link>
       </div>
     </article>

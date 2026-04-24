@@ -171,7 +171,7 @@ a {
 
 .shimmer-in {
   animation: shimmerIn 1200ms ease-out both;
-}
+}     
 
 .card-rise {
   transition:

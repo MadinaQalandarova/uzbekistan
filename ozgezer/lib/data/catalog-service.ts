@@ -1,4 +1,16 @@
 import type { CategoryRecord, PlaceRecord, RegionRecord } from "@/lib/data/catalog";
+
+export type AdminPlaceRecord = PlaceRecord & {
+  id: string;
+  status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
+  published: boolean;
+  phone: string;
+  website: string;
+  address: { uz: string; ru: string; en: string };
+  howToGet: { uz: string; ru: string; en: string };
+  reviewCount: number;
+  viewCount: number;
+};
 import {
   categories as staticCategories,
   places as staticPlaces,
@@ -269,6 +281,422 @@ export async function deleteRegion(slug: string) {
   await prisma.region.delete({
     where: { slug },
   });
+}
+
+export async function getAllPlacesAdmin(): Promise<AdminPlaceRecord[]> {
+  if (!hasDatabaseConfig()) {
+    return staticPlaces.map((place) => ({
+      ...place,
+      id: place.slug,
+      status: "PUBLISHED" as const,
+      published: true,
+      phone: "",
+      website: "",
+      address: { uz: "", ru: "", en: "" },
+      howToGet: { uz: "", ru: "", en: "" },
+      reviewCount: 0,
+      viewCount: 0,
+    }));
+  }
+
+  try {
+    const records = await prisma.place.findMany({
+      include: {
+        region: true,
+        categories: { include: { category: true } },
+      },
+      orderBy: [{ status: "asc" }, { createdAt: "desc" }],
+    });
+
+    return records.map((place) => ({
+      id: place.id,
+      slug: place.slug,
+      status: place.status as "DRAFT" | "PUBLISHED" | "ARCHIVED",
+      published: place.published,
+      regionSlug: place.region.slug,
+      regionName: {
+        uz: place.region.nameUz,
+        ru: place.region.nameRu,
+        en: place.region.nameEn,
+      },
+      categorySlugs: place.categories.map((item) => item.category.slug),
+      categoryTitles: place.categories.map((item) => ({
+        uz: item.category.nameUz,
+        ru: item.category.nameRu,
+        en: item.category.nameEn,
+      })),
+      name: { uz: place.nameUz, ru: place.nameRu, en: place.nameEn },
+      description: {
+        uz: place.descriptionUz,
+        ru: place.descriptionRu,
+        en: place.descriptionEn,
+      },
+      latitude: Number(place.latitude),
+      longitude: Number(place.longitude),
+      price: place.price ?? "",
+      workingHours: place.workingHours ?? "",
+      phone: place.phone ?? "",
+      website: place.website ?? "",
+      address: {
+        uz: place.addressUz ?? "",
+        ru: place.addressRu ?? "",
+        en: place.addressEn ?? "",
+      },
+      howToGet: {
+        uz: place.howToGetUz ?? "",
+        ru: place.howToGetRu ?? "",
+        en: place.howToGetEn ?? "",
+      },
+      averageRating: Number(place.averageRating ?? 0),
+      reviewCount: place.reviewCount,
+      viewCount: place.viewCount,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export type CreatePlaceInput = {
+  slug: string;
+  regionSlug: string;
+  categorySlugs: string[];
+  nameUz: string;
+  nameRu: string;
+  nameEn: string;
+  descriptionUz: string;
+  descriptionRu: string;
+  descriptionEn: string;
+  latitude: number;
+  longitude: number;
+  price: string;
+  workingHours: string;
+  phone: string;
+  website: string;
+  addressUz: string;
+  addressRu: string;
+  addressEn: string;
+  howToGetUz: string;
+  howToGetRu: string;
+  howToGetEn: string;
+};
+
+export async function createPlace(input: CreatePlaceInput) {
+  if (!hasDatabaseConfig()) {
+    throw new Error("DATABASE_NOT_CONFIGURED");
+  }
+
+  const region = await prisma.region.findUnique({ where: { slug: input.regionSlug } });
+  if (!region) throw new Error("REGION_NOT_FOUND");
+
+  const existing = await prisma.place.findUnique({ where: { slug: input.slug } });
+  if (existing) throw new Error("SLUG_ALREADY_EXISTS");
+
+  const categoryRecords = await prisma.category.findMany({
+    where: { slug: { in: input.categorySlugs } },
+    select: { id: true },
+  });
+
+  return prisma.place.create({
+    data: {
+      slug: input.slug,
+      status: "DRAFT",
+      published: false,
+      nameUz: input.nameUz,
+      nameRu: input.nameRu,
+      nameEn: input.nameEn,
+      descriptionUz: input.descriptionUz,
+      descriptionRu: input.descriptionRu,
+      descriptionEn: input.descriptionEn,
+      latitude: input.latitude,
+      longitude: input.longitude,
+      price: input.price || null,
+      workingHours: input.workingHours || null,
+      phone: input.phone || null,
+      website: input.website || null,
+      addressUz: input.addressUz || null,
+      addressRu: input.addressRu || null,
+      addressEn: input.addressEn || null,
+      howToGetUz: input.howToGetUz || null,
+      howToGetRu: input.howToGetRu || null,
+      howToGetEn: input.howToGetEn || null,
+      regionId: region.id,
+      categories: {
+        create: categoryRecords.map((cat) => ({ categoryId: cat.id })),
+      },
+    },
+  });
+}
+
+export type UpdatePlaceInput = Omit<CreatePlaceInput, "slug">;
+
+export async function updatePlace(slug: string, input: UpdatePlaceInput) {
+  if (!hasDatabaseConfig()) {
+    throw new Error("DATABASE_NOT_CONFIGURED");
+  }
+
+  const place = await prisma.place.findUnique({ where: { slug } });
+  if (!place) throw new Error("PLACE_NOT_FOUND");
+
+  const region = await prisma.region.findUnique({ where: { slug: input.regionSlug } });
+  if (!region) throw new Error("REGION_NOT_FOUND");
+
+  const categoryRecords = await prisma.category.findMany({
+    where: { slug: { in: input.categorySlugs } },
+    select: { id: true },
+  });
+
+  return prisma.place.update({
+    where: { slug },
+    data: {
+      nameUz: input.nameUz,
+      nameRu: input.nameRu,
+      nameEn: input.nameEn,
+      descriptionUz: input.descriptionUz,
+      descriptionRu: input.descriptionRu,
+      descriptionEn: input.descriptionEn,
+      latitude: input.latitude,
+      longitude: input.longitude,
+      price: input.price || null,
+      workingHours: input.workingHours || null,
+      phone: input.phone || null,
+      website: input.website || null,
+      addressUz: input.addressUz || null,
+      addressRu: input.addressRu || null,
+      addressEn: input.addressEn || null,
+      howToGetUz: input.howToGetUz || null,
+      howToGetRu: input.howToGetRu || null,
+      howToGetEn: input.howToGetEn || null,
+      regionId: region.id,
+      categories: {
+        deleteMany: {},
+        create: categoryRecords.map((cat) => ({ categoryId: cat.id })),
+      },
+    },
+  });
+}
+
+export async function deletePlace(slug: string) {
+  if (!hasDatabaseConfig()) {
+    throw new Error("DATABASE_NOT_CONFIGURED");
+  }
+
+  const place = await prisma.place.findUnique({
+    where: { slug },
+    include: { reviews: { select: { id: true }, take: 1 } },
+  });
+
+  if (!place) throw new Error("PLACE_NOT_FOUND");
+  if (place.reviews.length > 0) throw new Error("PLACE_HAS_REVIEWS");
+
+  await prisma.place.delete({ where: { slug } });
+}
+
+export async function publishPlace(slug: string) {
+  if (!hasDatabaseConfig()) {
+    throw new Error("DATABASE_NOT_CONFIGURED");
+  }
+
+  const place = await prisma.place.findUnique({ where: { slug } });
+  if (!place) throw new Error("PLACE_NOT_FOUND");
+
+  return prisma.place.update({
+    where: { slug },
+    data: { status: "PUBLISHED", published: true },
+  });
+}
+
+export async function unpublishPlace(slug: string) {
+  if (!hasDatabaseConfig()) {
+    throw new Error("DATABASE_NOT_CONFIGURED");
+  }
+
+  const place = await prisma.place.findUnique({ where: { slug } });
+  if (!place) throw new Error("PLACE_NOT_FOUND");
+
+  return prisma.place.update({
+    where: { slug },
+    data: { status: "DRAFT", published: false },
+  });
+}
+
+// ─── Review funksiyalar ───────────────────────────────────────────────────────
+
+export type ReviewRecord = {
+  id: string;
+  userId: string;
+  rating: number;
+  comment: string;
+  wouldRecommend: boolean;
+  userName: string | null;
+  createdAt: string;
+};
+
+export async function getPlaceReviews(placeSlug: string): Promise<ReviewRecord[]> {
+  if (!hasDatabaseConfig()) return [];
+
+  try {
+    const place = await prisma.place.findUnique({
+      where: { slug: placeSlug },
+      select: { id: true },
+    });
+    if (!place) return [];
+
+    const reviews = await prisma.review.findMany({
+      where: { placeId: place.id, status: "APPROVED" },
+      include: { user: { select: { id: true, name: true } } },
+      orderBy: { createdAt: "desc" },
+      take: 50,
+    });
+
+    return reviews.map((r) => ({
+      id: r.id,
+      userId: r.user.id,
+      rating: r.rating,
+      comment: r.comment,
+      wouldRecommend: r.wouldRecommend,
+      userName: r.user.name,
+      createdAt: r.createdAt.toISOString(),
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export async function getUserSavedPlaces(userId: string): Promise<PlaceRecord[]> {
+  if (!hasDatabaseConfig()) return [];
+
+  try {
+    const saved = await prisma.savedPlace.findMany({
+      where: { userId },
+      include: {
+        place: {
+          include: {
+            region: true,
+            categories: { include: { category: true } },
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    return saved.map(({ place }) => ({
+      slug: place.slug,
+      regionSlug: place.region.slug,
+      regionName: {
+        uz: place.region.nameUz,
+        ru: place.region.nameRu,
+        en: place.region.nameEn,
+      },
+      categorySlugs: place.categories.map((c) => c.category.slug),
+      categoryTitles: place.categories.map((c) => ({
+        uz: c.category.nameUz,
+        ru: c.category.nameRu,
+        en: c.category.nameEn,
+      })),
+      name: { uz: place.nameUz, ru: place.nameRu, en: place.nameEn },
+      description: {
+        uz: place.descriptionUz,
+        ru: place.descriptionRu,
+        en: place.descriptionEn,
+      },
+      latitude: Number(place.latitude),
+      longitude: Number(place.longitude),
+      price: place.price ?? "",
+      workingHours: place.workingHours ?? "",
+      averageRating: Number(place.averageRating ?? 0),
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export async function isPlaceSavedByUser(
+  placeSlug: string,
+  userId: string,
+): Promise<boolean> {
+  if (!hasDatabaseConfig()) return false;
+  try {
+    const place = await prisma.place.findUnique({
+      where: { slug: placeSlug },
+      select: { id: true },
+    });
+    if (!place) return false;
+    const saved = await prisma.savedPlace.findUnique({
+      where: { userId_placeId: { userId, placeId: place.id } },
+    });
+    return !!saved;
+  } catch {
+    return false;
+  }
+}
+
+// ─── Admin: Review moderatsiya ─────────────────────────────────────────────────
+
+export type AdminReviewRecord = {
+  id: string;
+  rating: number;
+  comment: string;
+  wouldRecommend: boolean;
+  status: "PENDING" | "APPROVED" | "REJECTED";
+  userName: string | null;
+  userEmail: string;
+  placeName: string;
+  placeSlug: string;
+  createdAt: string;
+};
+
+export async function getPendingReviews(): Promise<AdminReviewRecord[]> {
+  if (!hasDatabaseConfig()) return [];
+  try {
+    const reviews = await prisma.review.findMany({
+      where: { status: "PENDING" },
+      include: {
+        user: { select: { name: true, email: true } },
+        place: { select: { nameUz: true, slug: true } },
+      },
+      orderBy: { createdAt: "asc" },
+    });
+    return reviews.map((r) => ({
+      id: r.id,
+      rating: r.rating,
+      comment: r.comment,
+      wouldRecommend: r.wouldRecommend,
+      status: r.status as "PENDING",
+      userName: r.user.name,
+      userEmail: r.user.email,
+      placeName: r.place.nameUz,
+      placeSlug: r.place.slug,
+      createdAt: r.createdAt.toISOString(),
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export async function moderateReview(reviewId: string, action: "APPROVED" | "REJECTED") {
+  if (!hasDatabaseConfig()) throw new Error("DATABASE_NOT_CONFIGURED");
+
+  const review = await prisma.review.update({
+    where: { id: reviewId },
+    data: { status: action },
+    select: { placeId: true },
+  });
+
+  // Tasdiqlangandan keyin place reytingini yangilaymiz
+  if (action === "APPROVED") {
+    const stats = await prisma.review.aggregate({
+      where: { placeId: review.placeId, status: "APPROVED" },
+      _avg: { rating: true },
+      _count: { id: true },
+    });
+    await prisma.place.update({
+      where: { id: review.placeId },
+      data: {
+        averageRating: stats._avg.rating ?? 0,
+        reviewCount: stats._count.id,
+      },
+    });
+  }
 }
 
 function filterPlace(place: PlaceRecord, filters: PlaceFilters, normalizedQuery?: string) {

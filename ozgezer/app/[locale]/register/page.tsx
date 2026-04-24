@@ -5,60 +5,63 @@ import { notFound, redirect } from "next/navigation";
 import { isLocale } from "@/lib/i18n";
 import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
 
-type LoginPageProps = {
+type RegisterPageProps = {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ error?: string; next?: string }>;
+  searchParams: Promise<{ error?: string }>;
 };
 
 const t = {
   uz: {
-    title: "Kirish",
-    subtitle: "O'zGezer hisobingizga kiring",
+    title: "Ro'yxatdan o'tish",
+    subtitle: "O'zGezer da hisob yarating",
+    name: "Ism (ixtiyoriy)",
     email: "Elektron pochta",
-    password: "Parol",
-    submit: "Kirish",
-    noAccount: "Hisob yo'qmi?",
-    register: "Ro'yxatdan o'ting",
+    password: "Parol (kamida 6 ta belgi)",
+    submit: "Hisob yaratish",
+    haveAccount: "Hisobingiz bormi?",
+    login: "Kirish",
     errors: {
-      INVALID_CREDENTIALS: "Email yoki parol noto'g'ri.",
-      INVALID_INPUT: "Email va parolni to'ldiring.",
+      INVALID_INPUT: "Email va parolni to'g'ri to'ldiring (parol kamida 6 ta belgi).",
+      EMAIL_TAKEN: "Bu email allaqachon ro'yxatdan o'tgan.",
       DB_NOT_CONFIGURED: "Tizim vaqtincha ishlamayapti.",
       UNKNOWN: "Xatolik yuz berdi. Qayta urinib ko'ring.",
     },
   },
   ru: {
-    title: "Вход",
-    subtitle: "Войдите в аккаунт O'zGezer",
+    title: "Регистрация",
+    subtitle: "Создайте аккаунт в O'zGezer",
+    name: "Имя (необязательно)",
     email: "Электронная почта",
-    password: "Пароль",
-    submit: "Войти",
-    noAccount: "Нет аккаунта?",
-    register: "Зарегистрироваться",
+    password: "Пароль (минимум 6 символов)",
+    submit: "Создать аккаунт",
+    haveAccount: "Уже есть аккаунт?",
+    login: "Войти",
     errors: {
-      INVALID_CREDENTIALS: "Неверный email или пароль.",
-      INVALID_INPUT: "Заполните email и пароль.",
-      DB_NOT_CONFIGURED: "Система временно недоступна.",
+      INVALID_INPUT: "Заполните email и пароль (минимум 6 символов).",
+      EMAIL_TAKEN: "Этот email уже зарегистрирован.",
+      DB_NOT_CONFIGURED: "Сервис временно недоступен.",
       UNKNOWN: "Произошла ошибка. Попробуйте снова.",
     },
   },
   en: {
-    title: "Sign in",
-    subtitle: "Sign in to your O'zGezer account",
+    title: "Register",
+    subtitle: "Create your O'zGezer account",
+    name: "Name (optional)",
     email: "Email address",
-    password: "Password",
-    submit: "Sign in",
-    noAccount: "No account?",
-    register: "Register",
+    password: "Password (min 6 characters)",
+    submit: "Create account",
+    haveAccount: "Already have an account?",
+    login: "Sign in",
     errors: {
-      INVALID_CREDENTIALS: "Incorrect email or password.",
-      INVALID_INPUT: "Please fill in email and password.",
+      INVALID_INPUT: "Please fill in email and password (min 6 chars).",
+      EMAIL_TAKEN: "This email is already registered.",
       DB_NOT_CONFIGURED: "Service temporarily unavailable.",
       UNKNOWN: "Something went wrong. Please try again.",
     },
   },
 };
 
-export default async function LoginPage({ params, searchParams }: LoginPageProps) {
+export default async function RegisterPage({ params, searchParams }: RegisterPageProps) {
   const { locale } = await params;
   const query = await searchParams;
 
@@ -87,9 +90,20 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
           </div>
         )}
 
-        <form action="/api/auth/login" method="post" className="mt-8 space-y-5">
+        <form action="/api/auth/register" method="post" className="mt-8 space-y-5">
           <input type="hidden" name="locale" value={locale} />
-          {query.next && <input type="hidden" name="next" value={query.next} />}
+
+          <label className="block">
+            <span className="mb-2 block text-sm font-semibold text-[var(--color-ink)]">
+              {texts.name}
+            </span>
+            <input
+              type="text"
+              name="name"
+              autoComplete="name"
+              className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 text-sm outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-sky-500/10"
+            />
+          </label>
 
           <label className="block">
             <span className="mb-2 block text-sm font-semibold text-[var(--color-ink)]">
@@ -112,7 +126,8 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
               type="password"
               name="password"
               required
-              autoComplete="current-password"
+              minLength={6}
+              autoComplete="new-password"
               className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 text-sm outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-sky-500/10"
             />
           </label>
@@ -126,12 +141,12 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
         </form>
 
         <p className="mt-6 text-center text-sm text-black/60">
-          {texts.noAccount}{" "}
+          {texts.haveAccount}{" "}
           <Link
-            href={`/${locale}/register`}
+            href={`/${locale}/login`}
             className="font-semibold text-[var(--color-sky)] transition hover:underline"
           >
-            {texts.register}
+            {texts.login}
           </Link>
         </p>
       </div>

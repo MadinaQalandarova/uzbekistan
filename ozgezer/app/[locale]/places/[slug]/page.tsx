@@ -1,40 +1,92 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
 import { PlaceCard } from "@/components/place-card";
 import { PlaceMap } from "@/components/place-map";
 import { ReviewForm } from "@/components/review-form";
-import { getPlace, getRelatedPlaces } from "@/lib/data/catalog-service";
+import { ViewTracker } from "@/components/view-tracker";
+import {
+  getPlace,
+  getPlaceReviews,
+  getRelatedPlaces,
+  isPlaceSavedByUser,
+} from "@/lib/data/catalog-service";
 import { getMessages, isLocale, locales } from "@/lib/i18n";
+import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
 
 type PlaceDetailPageProps = {
   params: Promise<{ locale: string; slug: string }>;
+  searchParams: Promise<{ reviewed?: string; error?: string }>;
 };
 
-export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) {
+export default async function PlaceDetailPage({ params, searchParams }: PlaceDetailPageProps) {
   const { locale, slug } = await params;
+  const query = await searchParams;
 
-  if (!isLocale(locale)) {
-    notFound();
-  }
+  if (!isLocale(locale)) notFound();
 
   const place = await getPlace(slug);
+  if (!place) notFound();
 
-  if (!place) {
-    notFound();
-  }
+  const cookieStore = await cookies();
+  const session = readUserSession(cookieStore.get(USER_SESSION_COOKIE)?.value);
 
-  const relatedPlaces = await getRelatedPlaces(place);
+  const [relatedPlaces, reviews, isSaved] = await Promise.all([
+    getRelatedPlaces(place),
+    getPlaceReviews(slug),
+    session ? isPlaceSavedByUser(slug, session.userId) : Promise.resolve(false),
+  ]);
+
+  const alreadyReviewed = session
+    ? reviews.some((r) => r.userId === session.userId)
+    : false;
+
   const messages = getMessages(locale);
+
+  const recommendCount = reviews.filter((r) => r.wouldRecommend).length;
+  const recommendPct = reviews.length > 0 ? Math.round((recommendCount / reviews.length) * 100) : null;
 
   return (
     <section className="container-shell py-10 pb-14">
-      <Link
-        href={`/${locale}/explore`}
-        className="mb-6 inline-flex rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
-      >
-        {messages.place.backToExplore}
-      </Link>
+      <ViewTracker slug={slug} />
+      <div className="mb-6 flex items-center justify-between">
+        <Link
+          href={`/${locale}/explore`}
+          className="inline-flex rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+        >
+          {messages.place.backToExplore}
+        </Link>
+
+        {session && (
+          <form action="/api/places/save" method="post">
+            <input type="hidden" name="locale" value={locale} />
+            <input type="hidden" name="placeSlug" value={slug} />
+            <button
+              type="submit"
+              className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+                isSaved
+                  ? "border-[var(--color-gold)] bg-amber-50 text-[var(--color-gold)]"
+                  : "border-black/10 text-black/60 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+              }`}
+            >
+              {isSaved ? "★ Saqlangan" : "☆ Saqlash"}
+            </button>
+          </form>
+        )}
+      </div>
+
+      {query.reviewed && (
+        <div className="mb-6 rounded-[1.5rem] border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
+          Izohingiz qabul qilindi. Rahmat!
+        </div>
+      )}
+
+      {query.error === "ALREADY_REVIEWED" && (
+        <div className="mb-6 rounded-[1.5rem] border border-amber-200 bg-amber-50 p-4 text-sm text-amber-700">
+          Siz bu joyga allaqachon izoh qo'shgansiz.
+        </div>
+      )}
 
       <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
         <article className="section-card overflow-hidden rounded-[2rem]">
@@ -57,7 +109,6 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
                 </span>
               ))}
             </div>
-
             <div className="pt-6">
               <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]">
                 Xarita
@@ -82,24 +133,68 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
                 label={messages.place.categoryLabel}
                 value={place.categoryTitles.map((item) => item[locale]).join(", ")}
               />
-              <InfoRow label={messages.place.priceLabel} value={place.price} />
-              <InfoRow label={messages.place.hoursLabel} value={place.workingHours} />
+              {place.price && <InfoRow label={messages.place.priceLabel} value={place.price} />}
+              {place.workingHours && (
+                <InfoRow label={messages.place.hoursLabel} value={place.workingHours} />
+              )}
               <InfoRow
                 label={messages.place.ratingLabel}
-                value={`${place.averageRating.toFixed(1)} / 5`}
+                value={
+                  reviews.length > 0
+                    ? `${place.averageRating.toFixed(1)} / 5 · ${reviews.length} ta izoh`
+                    : "Hali baholanmagan"
+                }
               />
-              <InfoRow
-                label={messages.place.coordinatesLabel}
-                value={`${place.latitude}, ${place.longitude}`}
-              />
+              {recommendPct !== null && (
+                <InfoRow
+                  label="Tavsiya qiladi"
+                  value={`${recommendPct}% (${recommendCount}/${reviews.length})`}
+                />
+              )}
             </div>
           </article>
 
-          <ReviewForm locale={locale} />
+          <ReviewForm
+            locale={locale}
+            placeSlug={slug}
+            isLoggedIn={!!session}
+            alreadyReviewed={alreadyReviewed || query.error === "ALREADY_REVIEWED"}
+          />
         </div>
       </div>
 
-      {relatedPlaces.length > 0 ? (
+      {/* Real izohlar */}
+      {reviews.length > 0 && (
+        <div className="mt-10">
+          <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky)]">
+            Izohlar ({reviews.length})
+          </p>
+          <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {reviews.map((review) => (
+              <div key={review.id} className="section-card rounded-[1.5rem] p-5">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-semibold text-[var(--color-ink)]">
+                    {review.userName ?? "Anonim"}
+                  </p>
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <span key={i} className={i < review.rating ? "text-amber-400" : "text-black/15"}>
+                        ★
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <p className="mt-1 text-xs text-black/45">
+                  {review.wouldRecommend ? "✓ Tavsiya qiladi" : "✗ Tavsiya etmaydi"}
+                </p>
+                <p className="mt-3 text-sm leading-6 text-black/70">{review.comment}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {relatedPlaces.length > 0 && (
         <div className="mt-10">
           <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky)]">
             {messages.place.relatedPlaces}
@@ -115,7 +210,7 @@ export default async function PlaceDetailPage({ params }: PlaceDetailPageProps) 
             ))}
           </div>
         </div>
-      ) : null}
+      )}
     </section>
   );
 }
@@ -132,11 +227,5 @@ function InfoRow({ label, value }: { label: string; value: string }) {
 export async function generateStaticParams() {
   const { getPlaces } = await import("@/lib/data/catalog-service");
   const places = await getPlaces();
-
-  return locales.flatMap((locale) =>
-    places.map((place) => ({
-      locale,
-      slug: place.slug,
-    })),
-  );
+  return locales.flatMap((locale) => places.map((place) => ({ locale, slug: place.slug })));
 }

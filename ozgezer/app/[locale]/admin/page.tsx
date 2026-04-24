@@ -80,12 +80,26 @@ export default async function AdminPage({ params }: AdminPageProps) {
             Hozircha public katalog statik qatlamda ishlayapti. Siz ma&apos;lumot berganingiz sari
             men uni Prisma model va admin formalariga ko&apos;chiraman.
           </p>
-          <Link
-            href={`/${locale}/admin/regions`}
-            className="mt-6 inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:-translate-y-0.5"
-          >
-            Region management
-          </Link>
+          <div className="mt-6 flex flex-wrap gap-2">
+            <Link
+              href={`/${locale}/admin/regions`}
+              className="inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:-translate-y-0.5"
+            >
+              Region management
+            </Link>
+            <Link
+              href={`/${locale}/admin/places`}
+              className="inline-flex rounded-full bg-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5"
+            >
+              Place management
+            </Link>
+            <Link
+              href={`/${locale}/admin/reviews`}
+              className="inline-flex rounded-full bg-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5"
+            >
+              Review moderatsiya
+            </Link>
+          </div>
         </article>
       </div>
 

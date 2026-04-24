@@ -11,15 +11,17 @@ type SiteHeaderProps = {
     admin: string;
     openExplore: string;
   };
+  user: { name: string | null; email: string } | null;
 };
 
-export function SiteHeader({ locale, nav }: SiteHeaderProps) {
+export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-20 border-b border-black/5 bg-[rgba(246,241,229,0.82)] backdrop-blur-xl">
       <div className="container-shell flex items-center justify-between gap-4 py-4">
-        <Link href={`/${locale}`} className="flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--color-sky)] text-sm font-semibold text-white shadow-lg shadow-sky-900/20">
-            O&apos;Z
+        {/* Logo */}
+        <Link href={`/${locale}`} className="group flex items-center gap-3">
+          <div className="relative flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-sky)] to-[var(--color-teal)] shadow-lg shadow-sky-900/40 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-12">
+            <img src="https://emojicdn.elk.sh/🌍?style=apple" alt="O'zGezer Logo" className="h-7 w-7 drop-shadow-md transition-transform duration-500 group-hover:-rotate-12" />
           </div>
           <div>
             <p className="display-title text-2xl font-semibold tracking-[0.08em] text-[var(--color-ink)]">
@@ -31,22 +33,25 @@ export function SiteHeader({ locale, nav }: SiteHeaderProps) {
           </div>
         </Link>
 
+        {/* Nav */}
         <nav className="hidden items-center gap-6 text-sm text-black/70 lg:flex">
-          <Link href={`/${locale}`} className="transition hover:text-[var(--color-sky)]">
-            {nav.home}
+          <Link href={`/${locale}`} className="group flex items-center gap-1.5 transition hover:text-[var(--color-sky)]">
+            <img src="https://emojicdn.elk.sh/🏠?style=apple" alt="" className="h-4 w-4 transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-0.5" />
+            <span>{nav.home}</span>
           </Link>
-          <Link href={`/${locale}/explore`} className="transition hover:text-[var(--color-sky)]">
-            {nav.explore}
+          <Link href={`/${locale}/explore`} className="group flex items-center gap-1.5 transition hover:text-[var(--color-sky)]">
+            <img src="https://emojicdn.elk.sh/🧭?style=apple" alt="" className="h-4 w-4 transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-0.5" />
+            <span>{nav.explore}</span>
           </Link>
-          <Link href={`/${locale}/regions`} className="transition hover:text-[var(--color-sky)]">
-            {nav.regions}
-          </Link>
-          <Link href={`/${locale}/admin`} className="transition hover:text-[var(--color-sky)]">
-            {nav.admin}
+          <Link href={`/${locale}/regions`} className="group flex items-center gap-1.5 transition hover:text-[var(--color-sky)]">
+            <img src="https://emojicdn.elk.sh/📍?style=apple" alt="" className="h-4 w-4 transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-0.5" />
+            <span>{nav.regions}</span>
           </Link>
         </nav>
 
+        {/* O'ng tomon */}
         <div className="hidden items-center gap-2 md:flex">
+          {/* Til tanlash */}
           <div className="flex rounded-full border border-black/10 bg-white/75 p-1 shadow-lg shadow-slate-900/5">
             {(["uz", "ru", "en"] as const).map((value) => (
               <Link
@@ -62,20 +67,48 @@ export function SiteHeader({ locale, nav }: SiteHeaderProps) {
               </Link>
             ))}
           </div>
+
+          {/* Explore tugmasi */}
           <Link
             href={`/${locale}/explore`}
-            className="rounded-full bg-[var(--color-gold)] px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:-translate-y-0.5"
+            className="group flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-4 py-2 text-sm font-semibold text-[var(--color-ink)] shadow-md transition-all hover:-translate-y-1 hover:shadow-xl"
           >
-            {nav.openExplore}
+            <span>{nav.openExplore}</span>
+            <img src="https://emojicdn.elk.sh/✨?style=apple" alt="" className="h-4 w-4 transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12" />
           </Link>
-          <Link
-            href={`/${locale}/login`}
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--color-ink)] text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-sky)] hover:shadow-lg hover:shadow-sky-900/20"
-          >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
-          </Link>
+
+          {/* Foydalanuvchi */}
+          {user ? (
+            <div className="flex items-center gap-2">
+              <Link
+                href={`/${locale}/profile`}
+                className="flex h-10 items-center gap-2 rounded-full border border-black/10 bg-white px-3 shadow-sm transition hover:border-[var(--color-sky)]"
+              >
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-sky)] text-xs font-bold text-white">
+                  {(user.name ?? user.email)[0].toUpperCase()}
+                </span>
+                <span className="max-w-[80px] truncate text-xs font-semibold text-[var(--color-ink)]">
+                  {user.name ?? user.email.split("@")[0]}
+                </span>
+              </Link>
+              <form action="/api/auth/logout" method="post">
+                <input type="hidden" name="locale" value={locale} />
+                <button
+                  type="submit"
+                  className="h-10 rounded-full border border-black/10 bg-white px-3 text-xs font-semibold text-black/60 shadow-sm transition hover:border-red-300 hover:text-red-500"
+                >
+                  Chiqish
+                </button>
+              </form>
+            </div>
+          ) : (
+            <Link
+              href={`/${locale}/login`}
+              className="group flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-[var(--color-sky)] hover:shadow-lg"
+            >
+              <img src="https://emojicdn.elk.sh/🧑🏻‍💻?style=apple" alt="Kirish" className="h-6 w-6 transition-transform duration-300 group-hover:scale-125" />
+            </Link>
+          )}
         </div>
       </div>
     </header>

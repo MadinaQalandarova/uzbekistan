@@ -1,12 +1,27 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const { PrismaClient, PlaceStatus } = require("@prisma/client");
+const { PrismaPg } = require("@prisma/adapter-pg");
+const { Pool } = require("pg");
+const { config } = require("dotenv");
 const regionSeed = require("../data/seed-regions.json");
 const categorySeed = require("../data/seed-categories.json");
 const placeSeed = require("../data/seed-places.json");
 
-const prisma = new PrismaClient();
+config({ path: ".env.local" });
+
+const connectionString = process.env.DIRECT_URL ?? process.env.DATABASE_URL;
+
+if (!connectionString) {
+  console.error("DATABASE_URL yoki DIRECT_URL .env.local da topilmadi");
+  process.exit(1);
+}
+
+const pool = new Pool({ connectionString });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
+  console.log("Kategoriyalar yuklanmoqda...");
   for (const category of categorySeed) {
     await prisma.category.upsert({
       where: { slug: category.slug },
@@ -23,7 +38,9 @@ async function main() {
       },
     });
   }
+  console.log(`  ✓ ${categorySeed.length} ta kategoriya`);
 
+  console.log("Viloyatlar yuklanmoqda...");
   for (const region of regionSeed) {
     await prisma.region.upsert({
       where: { slug: region.slug },
@@ -54,16 +71,17 @@ async function main() {
       },
     });
   }
+  console.log(`  ✓ ${regionSeed.length} ta viloyat`);
 
+  console.log("Joylar yuklanmoqda...");
+  let placesAdded = 0;
   for (const place of placeSeed) {
     const region = await prisma.region.findUnique({
       where: { slug: place.regionSlug },
       select: { id: true },
     });
 
-    if (!region) {
-      continue;
-    }
+    if (!region) continue;
 
     await prisma.place.upsert({
       where: { slug: place.slug },
@@ -107,9 +125,7 @@ async function main() {
       select: { id: true },
     });
 
-    if (!persistedPlace) {
-      continue;
-    }
+    if (!persistedPlace) continue;
 
     for (const categorySlug of place.categorySlugs) {
       const category = await prisma.category.findUnique({
@@ -117,9 +133,7 @@ async function main() {
         select: { id: true },
       });
 
-      if (!category) {
-        continue;
-      }
+      if (!category) continue;
 
       await prisma.placeCategory.upsert({
         where: {
@@ -135,15 +149,20 @@ async function main() {
         },
       });
     }
+    placesAdded++;
   }
+  console.log(`  ✓ ${placesAdded} ta joy`);
+  console.log("\nSeed muvaffaqiyatli tugadi!");
 }
 
 main()
   .then(async () => {
     await prisma.$disconnect();
+    await pool.end();
   })
   .catch(async (error) => {
     console.error(error);
     await prisma.$disconnect();
+    await pool.end();
     process.exit(1);
   });
