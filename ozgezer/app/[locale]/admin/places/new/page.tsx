@@ -40,7 +40,7 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
           <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-teal)]">
             Admin only
           </p>
-          <h1 className="display-title mt-2 text-5xl font-semibold text-[var(--color-ink)]">
+          <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             Yangi joy qo&apos;shish
           </h1>
         </div>
@@ -191,7 +191,7 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
           <button
             type="submit"
             disabled={!canManage}
-            className="h-12 rounded-full bg-[var(--color-ink)] px-6 text-sm font-semibold text-white transition hover:bg-[var(--color-sky)] disabled:cursor-not-allowed disabled:opacity-50"
+            className="h-12 rounded-full bg-[var(--color-sky)] px-6 text-sm font-semibold text-white shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Joy qo&apos;shish (Qoralama)
           </button>

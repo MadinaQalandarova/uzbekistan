@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     return redirect(`/${locale}/register?error=INVALID_INPUT`);
   }
 
-  if (!prisma) {
+  if (!process.env.DATABASE_URL) {
     return redirect(`/${locale}/register?error=DB_NOT_CONFIGURED`);
   }
 

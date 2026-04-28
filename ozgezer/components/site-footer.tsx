@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Globe, Compass, Map } from "lucide-react";
 
 import type { Locale } from "@/lib/i18n";
 
@@ -8,30 +9,84 @@ type SiteFooterProps = {
 };
 
 export function SiteFooter({ locale, description }: SiteFooterProps) {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-black/5 bg-white/40">
-      <div className="container-shell flex flex-col gap-4 py-8 text-sm text-black/65 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="display-title text-2xl font-semibold text-[var(--color-ink)]">
-            O&apos;zGezer
-          </p>
-          <p>{description}</p>
+    <footer className="footer-surface border-t border-black/5">
+      <div className="container-shell py-10">
+        <div className="grid gap-8 md:grid-cols-[1fr_auto]">
+          {/* Brand */}
+          <div className="max-w-sm">
+            <Link href={`/${locale}`} className="group flex items-center gap-2.5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-sky)] to-[var(--color-teal)] shadow-md">
+                <Globe size={17} className="text-white" strokeWidth={1.8} />
+              </div>
+              <div>
+                <p className="display-title text-lg font-semibold tracking-[0.06em] text-[var(--color-ink)]">
+                  O&apos;zGezer
+                </p>
+                <p className="text-[9px] uppercase tracking-[0.24em] text-black/40">
+                  Travel Atlas
+                </p>
+              </div>
+            </Link>
+            <p className="mt-4 text-sm leading-7 text-black/55">{description}</p>
+          </div>
+
+          {/* Nav links */}
+          <nav className="flex flex-col gap-2">
+            <FooterLink href={`/${locale}`} icon={<Globe size={13} strokeWidth={2} />}>
+              {locale === "uz" ? "Bosh sahifa" : locale === "ru" ? "Главная" : "Home"}
+            </FooterLink>
+            <FooterLink href={`/${locale}/explore`} icon={<Compass size={13} strokeWidth={2} />}>
+              Explore
+            </FooterLink>
+            <FooterLink href={`/${locale}/regions`} icon={<Map size={13} strokeWidth={2} />}>
+              {locale === "uz" ? "Viloyatlar" : locale === "ru" ? "Регионы" : "Regions"}
+            </FooterLink>
+          </nav>
         </div>
-        <div className="flex flex-wrap gap-4">
-          <Link href={`/${locale}`} className="transition hover:text-[var(--color-sky)]">
-            Home
-          </Link>
-          <Link href={`/${locale}/explore`} className="transition hover:text-[var(--color-sky)]">
-            Explore
-          </Link>
-          <Link href={`/${locale}/regions`} className="transition hover:text-[var(--color-sky)]">
-            Regions
-          </Link>
-          <Link href={`/${locale}/admin`} className="transition hover:text-[var(--color-sky)]">
-            Admin
-          </Link>
+
+        {/* Bottom bar */}
+        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-black/6 pt-6 text-xs text-black/40 md:flex-row">
+          <p>© {year} O&apos;zGezer. Barcha huquqlar himoyalangan.</p>
+          <div className="flex gap-1">
+            {(["uz", "ru", "en"] as const).map((value) => (
+              <Link
+                key={value}
+                href={`/${value}`}
+                className={`rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] transition ${
+                  value === locale
+                    ? "bg-[var(--color-sky)] text-white"
+                    : "text-black/40 hover:text-[var(--color-sky)]"
+                }`}
+              >
+                {value.toUpperCase()}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterLink({
+  href,
+  icon,
+  children,
+}: {
+  href: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className="flex items-center gap-2 text-sm text-black/55 transition hover:text-[var(--color-sky)]"
+    >
+      <span className="text-[var(--color-sky)]/60">{icon}</span>
+      {children}
+    </Link>
   );
 }

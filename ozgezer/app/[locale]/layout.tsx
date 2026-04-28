@@ -1,11 +1,37 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { getMessages, isLocale } from "@/lib/i18n";
+import { getMessages, isLocale, type Locale } from "@/lib/i18n";
 import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+  const lang = locale as Locale;
+  const titles: Record<Locale, string> = {
+    uz: "O'zGezer — O'zbekiston sayohat atlasi",
+    ru: "O'zGezer — Атлас путешествий по Узбекистану",
+    en: "O'zGezer — Uzbekistan Travel Atlas",
+  };
+  const descs: Record<Locale, string> = {
+    uz: "O'zbekiston bo'ylab tarixiy, tabiiy va mahalliy sayohat joylarini kashf eting.",
+    ru: "Откройте для себя исторические, природные и местные достопримечательности Узбекистана.",
+    en: "Discover historical, natural, and local travel spots across Uzbekistan.",
+  };
+  return {
+    title: titles[lang],
+    description: descs[lang],
+    openGraph: { title: titles[lang], description: descs[lang], locale: lang },
+  };
+}
 
 type LocaleLayoutProps = {
   children: ReactNode;

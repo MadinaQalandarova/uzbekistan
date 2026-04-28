@@ -13,11 +13,14 @@ export async function POST(request: Request) {
   const redirect = (path: string) =>
     NextResponse.redirect(new URL(path, request.url));
 
+  const next = String(formData.get("next") ?? "").trim();
+  const afterLogin = next && next.startsWith("/") ? next : `/${locale}`;
+
   if (!email || !password) {
     return redirect(`/${locale}/login?error=INVALID_INPUT`);
   }
 
-  if (!prisma) {
+  if (!process.env.DATABASE_URL) {
     return redirect(`/${locale}/login?error=DB_NOT_CONFIGURED`);
   }
 
@@ -38,7 +41,7 @@ export async function POST(request: Request) {
       maxAge: 60 * 60 * 24 * 30,
     });
 
-    return redirect(`/${locale}`);
+    return redirect(afterLogin);
   } catch {
     return redirect(`/${locale}/login?error=UNKNOWN`);
   }

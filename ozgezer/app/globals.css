@@ -1,44 +1,70 @@
 @import "tailwindcss";
 
+/* ─── Fergana Jade — Light mode tokens ─────────────────────────────────────── */
 :root {
-  --background: #f6f1e5;
-  --foreground: #112031;
-  --color-sky: #1b6ca8;
-  --color-teal: #167c74;
-  --color-gold: #d4a63d;
-  --color-sand: #f4e7c8;
-  --color-ink: #0f172a;
-  --color-mist: #ecf4f3;
-  --color-clay: #d7c1a4;
+  --background:   #F0F7F4;
+  --foreground:   #0E1F1F;
+
+  /* Brand palette */
+  --color-sky:    #2D6B6B;   /* jade — primary action / eyebrow */
+  --color-teal:   #5B8A6E;   /* sage — secondary eyebrow */
+  --color-gold:   #F59E0B;   /* amber — accent / CTA */
+
+  /* Surface tokens */
+  --color-ink:    #0E1F1F;   /* dark text / headings */
+  --color-mist:   #E1EEEA;   /* input / chip bg */
+  --color-sand:   #D4EDE3;   /* hover tint */
+  --color-clay:   #A8D4C0;   /* muted decorative */
 }
 
+/* ─── Fergana Jade — Dark mode tokens ──────────────────────────────────────── */
+html[data-theme="dark"] {
+  --background:   #0A1A15;
+  --foreground:   #E8F4EF;
+
+  --color-sky:    #4A9E8E;   /* jade lightened for contrast */
+  --color-teal:   #7BAE8E;   /* sage lightened */
+  --color-gold:   #FBBF24;   /* amber lightened */
+
+  --color-ink:    #E8F4EF;
+  --color-mist:   #0F2920;
+  --color-sand:   #0D2218;
+  --color-clay:   #1A3D2E;
+}
+
+/* ─── Tailwind theme bridge ──────────────────────────────────────────────────── */
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: "Aptos", "Trebuchet MS", "Segoe UI", sans-serif;
-  --font-heading:
-    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --color-foreground:  var(--foreground);
+  --font-sans:    -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", system-ui, sans-serif;
+  --font-heading: "Georgia", "Palatino Linotype", "Book Antiqua", serif;
 }
 
+/* ─── Base ──────────────────────────────────────────────────────────────────── */
 * {
   box-sizing: border-box;
 }
 
 html {
   background:
-    radial-gradient(circle at top, rgba(27, 108, 168, 0.18), transparent 32%),
-    radial-gradient(
-      circle at 85% 10%,
-      rgba(212, 166, 61, 0.1),
-      transparent 24%
-    ),
-    linear-gradient(180deg, #f7f3e9 0%, #edf4f0 100%);
+    radial-gradient(circle at top,  rgba(45, 107, 107, 0.14), transparent 32%),
+    radial-gradient(circle at 85% 10%, rgba(245, 158, 11, 0.09),  transparent 24%),
+    linear-gradient(180deg, #F0F7F4 0%, #E4F2EC 100%);
+  transition: background 0.35s ease;
+}
+
+html[data-theme="dark"] {
+  background:
+    radial-gradient(circle at top,  rgba(74, 158, 142, 0.12), transparent 32%),
+    radial-gradient(circle at 85% 10%, rgba(251, 191, 36, 0.06),  transparent 24%),
+    linear-gradient(180deg, #0A1A15 0%, #0D2218 100%);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Aptos", "Trebuchet MS", "Segoe UI", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", system-ui, sans-serif;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 a {
@@ -47,70 +73,79 @@ a {
 }
 
 ::selection {
-  background: rgba(22, 124, 116, 0.18);
+  background: rgba(45, 107, 107, 0.22);
 }
 
+/* ─── Layout utilities ──────────────────────────────────────────────────────── */
 .container-shell {
   width: min(1180px, calc(100% - 32px));
   margin-inline: auto;
 }
 
+/* ─── Section card ──────────────────────────────────────────────────────────── */
 .section-card {
-  border: 1px solid rgba(17, 32, 49, 0.08);
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 18px 50px rgba(17, 32, 49, 0.08);
+  border: 1px solid rgba(45, 107, 107, 0.1);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 18px 50px rgba(14, 31, 31, 0.08);
   backdrop-filter: blur(12px);
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
+html[data-theme="dark"] .section-card {
+  border-color: rgba(74, 158, 142, 0.15);
+  background: rgba(15, 41, 32, 0.82);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* ─── Typography ────────────────────────────────────────────────────────────── */
 .display-title {
-  font-family:
-    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-family: "Georgia", "Palatino Linotype", "Book Antiqua", serif;
 }
 
+/* ─── Decorative patterns ───────────────────────────────────────────────────── */
 .mesh-panel {
   background:
-    radial-gradient(
-      circle at top left,
-      rgba(27, 108, 168, 0.2),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at bottom right,
-      rgba(212, 166, 61, 0.22),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.92),
-      rgba(236, 244, 243, 0.92)
-    );
+    radial-gradient(circle at top left,    rgba(45, 107, 107, 0.18), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(245, 158, 11, 0.18), transparent 30%),
+    linear-gradient(135deg, rgba(255,255,255,0.92), rgba(225,238,234,0.92));
+}
+
+html[data-theme="dark"] .mesh-panel {
+  background:
+    radial-gradient(circle at top left,    rgba(74, 158, 142, 0.18), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(251, 191, 36, 0.14), transparent 30%),
+    linear-gradient(135deg, rgba(15,41,32,0.92), rgba(10,26,21,0.92));
 }
 
 .uzbek-hero {
   background:
-    radial-gradient(
-      circle at top left,
-      rgba(27, 108, 168, 0.2),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 78% 22%,
-      rgba(212, 166, 61, 0.18),
-      transparent 20%
-    ),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(236, 244, 243, 0.9));
+    radial-gradient(circle at top left,  rgba(45, 107, 107, 0.18), transparent 28%),
+    radial-gradient(circle at 78% 22%,   rgba(245, 158, 11, 0.14), transparent 20%),
+    linear-gradient(135deg, rgba(255,255,255,0.94), rgba(225,238,234,0.9));
+}
+
+html[data-theme="dark"] .uzbek-hero {
+  background:
+    radial-gradient(circle at top left,  rgba(74, 158, 142, 0.18), transparent 28%),
+    radial-gradient(circle at 78% 22%,   rgba(251, 191, 36, 0.10), transparent 20%),
+    linear-gradient(135deg, rgba(15,41,32,0.94), rgba(10,26,21,0.9));
 }
 
 .national-band {
   background:
-    linear-gradient(90deg, rgba(27, 108, 168, 0.9), rgba(27, 108, 168, 0.9))
-      top/100% 22% no-repeat,
-    linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9))
-      center/100% 24% no-repeat,
-    linear-gradient(90deg, rgba(22, 124, 116, 0.9), rgba(22, 124, 116, 0.9))
-      bottom/100% 22% no-repeat;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 14px 40px rgba(17, 32, 49, 0.12);
+    linear-gradient(90deg, rgba(45,107,107,0.9),  rgba(45,107,107,0.9))  top/100%    22% no-repeat,
+    linear-gradient(90deg, rgba(255,255,255,0.85), rgba(255,255,255,0.85)) center/100% 24% no-repeat,
+    linear-gradient(90deg, rgba(91,138,110,0.9),  rgba(91,138,110,0.9))  bottom/100% 22% no-repeat;
+  border: 1px solid rgba(14, 31, 31, 0.08);
+  box-shadow: 0 14px 40px rgba(14, 31, 31, 0.12);
+}
+
+html[data-theme="dark"] .national-band {
+  background:
+    linear-gradient(90deg, rgba(74,158,142,0.85),  rgba(74,158,142,0.85))  top/100%    22% no-repeat,
+    linear-gradient(90deg, rgba(30,60,50,0.85),     rgba(30,60,50,0.85))    center/100% 24% no-repeat,
+    linear-gradient(90deg, rgba(123,174,142,0.85), rgba(123,174,142,0.85)) bottom/100% 22% no-repeat;
+  border-color: rgba(74,158,142,0.2);
 }
 
 .suzani-orb {
@@ -118,13 +153,13 @@ a {
   border-radius: 999px;
   opacity: 0.85;
   background:
-    radial-gradient(circle, rgba(255, 255, 255, 0.12) 0 24%, transparent 25%),
+    radial-gradient(circle, rgba(255,255,255,0.12) 0 24%, transparent 25%),
     conic-gradient(
       from 0deg,
-      rgba(27, 108, 168, 0.95),
-      rgba(22, 124, 116, 0.85),
-      rgba(212, 166, 61, 0.9),
-      rgba(27, 108, 168, 0.95)
+      rgba(45,  107, 107, 0.95),
+      rgba(91,  138, 110, 0.85),
+      rgba(245, 158,  11, 0.90),
+      rgba(45,  107, 107, 0.95)
     );
   mask: radial-gradient(circle, transparent 0 18%, black 20% 100%);
   filter: blur(0.2px);
@@ -132,60 +167,51 @@ a {
 
 .suzani-grid {
   background-image:
-    radial-gradient(
-      circle at center,
-      rgba(212, 166, 61, 0.18) 0 10%,
-      transparent 11%
-    ),
-    linear-gradient(rgba(27, 108, 168, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27, 108, 168, 0.06) 1px, transparent 1px);
-  background-size:
-    48px 48px,
-    24px 24px,
-    24px 24px;
+    radial-gradient(circle at center, rgba(245,158,11,0.16) 0 10%, transparent 11%),
+    linear-gradient(rgba(45,107,107,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45,107,107,0.07) 1px, transparent 1px);
+  background-size: 48px 48px, 24px 24px, 24px 24px;
+}
+
+html[data-theme="dark"] .suzani-grid {
+  background-image:
+    radial-gradient(circle at center, rgba(251,191,36,0.10) 0 10%, transparent 11%),
+    linear-gradient(rgba(74,158,142,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,158,142,0.08) 1px, transparent 1px);
+  background-size: 48px 48px, 24px 24px, 24px 24px;
 }
 
 .fine-grid {
   background-image:
-    linear-gradient(rgba(17, 32, 49, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17, 32, 49, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(14,31,31,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14,31,31,0.05) 1px, transparent 1px);
   background-size: 26px 26px;
 }
 
-.fade-up {
-  animation: fadeUp 700ms ease-out both;
+html[data-theme="dark"] .fine-grid {
+  background-image:
+    linear-gradient(rgba(232,244,239,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,244,239,0.05) 1px, transparent 1px);
+  background-size: 26px 26px;
 }
 
-.fade-up-delay {
-  animation: fadeUp 900ms ease-out both;
-}
-
-.float-gentle {
-  animation: floatGentle 6s ease-in-out infinite;
-}
-
-.float-gentle-delay {
-  animation: floatGentle 7s ease-in-out infinite;
-  animation-delay: 900ms;
-}
-
-.shimmer-in {
-  animation: shimmerIn 1200ms ease-out both;
-}     
-
+/* ─── Card interactions ─────────────────────────────────────────────────────── */
 .card-rise {
-  transition:
-    transform 240ms ease,
-    box-shadow 240ms ease,
-    border-color 240ms ease;
+  transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
 }
 
 .card-rise:hover {
   transform: translateY(-6px);
-  box-shadow: 0 22px 45px rgba(17, 32, 49, 0.12);
-  border-color: rgba(27, 108, 168, 0.24);
+  box-shadow: 0 22px 45px rgba(14, 31, 31, 0.12);
+  border-color: rgba(45, 107, 107, 0.28);
 }
 
+html[data-theme="dark"] .card-rise:hover {
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.4);
+  border-color: rgba(74, 158, 142, 0.35);
+}
+
+/* ─── Locale pill ───────────────────────────────────────────────────────────── */
 .locale-pill {
   position: relative;
   min-width: 52px;
@@ -204,37 +230,154 @@ a {
   transform: translateX(-50%);
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
+/* ─── Footer surface ────────────────────────────────────────────────────────── */
+.footer-surface {
+  background: rgba(225, 238, 234, 0.55);
+}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+html[data-theme="dark"] .footer-surface {
+  background: rgba(10, 26, 21, 0.80);
+}
+
+/* ─── Dark mode: header surface ─────────────────────────────────────────────── */
+html[data-theme="dark"] header {
+  background: rgba(10, 26, 21, 0.88) !important;
+  border-color: rgba(74, 158, 142, 0.1) !important;
+}
+
+/* ─── Dark mode: mobile drawer aside ────────────────────────────────────────── */
+html[data-theme="dark"] aside[role="dialog"] {
+  background: #0A1A15 !important;
+  box-shadow: -4px 0 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Locale pill container — ensure dark surface in dark mode */
+html[data-theme="dark"] .locale-pill-wrap {
+  background: rgba(15, 41, 32, 0.90) !important;
+  border-color: rgba(74, 158, 142, 0.15) !important;
+}
+
+/* ─── Dark mode: input / select surfaces ───────────────────────────────────── */
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  background: rgba(20, 50, 38, 0.85) !important;
+  color: var(--foreground) !important;
+  border-color: rgba(74, 158, 142, 0.25) !important;
+  color-scheme: dark;
+}
+
+/* ─── Dark mode: opacity-based text overrides ──────────────────────────────── */
+html[data-theme="dark"] [class~="text-black/70"]  { color: rgb(232 244 239 / 0.70) !important; }
+html[data-theme="dark"] [class~="text-black/65"]  { color: rgb(232 244 239 / 0.65) !important; }
+html[data-theme="dark"] [class~="text-black/60"]  { color: rgb(232 244 239 / 0.60) !important; }
+html[data-theme="dark"] [class~="text-black/55"]  { color: rgb(232 244 239 / 0.55) !important; }
+html[data-theme="dark"] [class~="text-black/50"]  { color: rgb(232 244 239 / 0.50) !important; }
+html[data-theme="dark"] [class~="text-black/45"]  { color: rgb(232 244 239 / 0.45) !important; }
+html[data-theme="dark"] [class~="text-black/40"]  { color: rgb(232 244 239 / 0.40) !important; }
+html[data-theme="dark"] [class~="text-black/35"]  { color: rgb(232 244 239 / 0.35) !important; }
+html[data-theme="dark"] [class~="text-black/30"]  { color: rgb(232 244 239 / 0.30) !important; }
+html[data-theme="dark"] [class~="text-black/25"]  { color: rgb(232 244 239 / 0.25) !important; }
+html[data-theme="dark"] [class~="text-black/15"]  { color: rgb(232 244 239 / 0.15) !important; }
+html[data-theme="dark"] [class~="text-black/8"]   { color: rgb(232 244 239 / 0.08) !important; }
+
+/* ─── Dark mode: opacity-based border overrides ────────────────────────────── */
+html[data-theme="dark"] [class~="border-black/10"] { border-color: rgb(232 244 239 / 0.10) !important; }
+html[data-theme="dark"] [class~="border-black/8"]  { border-color: rgb(232 244 239 / 0.08) !important; }
+html[data-theme="dark"] [class~="border-black/6"]  { border-color: rgb(232 244 239 / 0.06) !important; }
+html[data-theme="dark"] [class~="border-black/5"]  { border-color: rgb(232 244 239 / 0.05) !important; }
+
+/* ─── Search form surface ───────────────────────────────────────────────────── */
+html[data-theme="dark"] .search-form {
+  background: rgba(30, 60, 48, 0.95) !important;
+  border-color: rgba(74, 158, 142, 0.30) !important;
+  box-shadow: 0 0 0 1px rgba(74, 158, 142, 0.12) !important;
+}
+
+html[data-theme="dark"] .search-form input {
+  color: var(--foreground) !important;
+  background: rgba(15, 41, 32, 0.6) !important;
+  border-radius: 0.875rem;
+}
+
+html[data-theme="dark"] .search-form select {
+  background: rgba(15, 41, 32, 0.80) !important;
+  border-color: rgba(74, 158, 142, 0.25) !important;
+  color: rgb(232 244 239 / 0.75) !important;
+}
+
+/* ─── Placeholder text — dark mode (pseudoclass must be targeted separately) ── */
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: rgb(232 244 239 / 0.35) !important;
+}
+
+/* ─── Dark mode: form section-card inside explore/hero ─────────────────────── */
+html[data-theme="dark"] .filter-card {
+  background: rgba(20, 50, 38, 0.95) !important;
+  border-color: rgba(74, 158, 142, 0.20) !important;
+}
+
+/* ─── Dark mode: white / light surfaces ────────────────────────────────────── */
+html[data-theme="dark"] [class~="bg-white"]    { background-color: #0F2920 !important; }
+html[data-theme="dark"] [class~="bg-white/70"] { background-color: rgba(15,41,32,0.70) !important; }
+html[data-theme="dark"] [class~="bg-white/75"] { background-color: rgba(15,41,32,0.75) !important; }
+html[data-theme="dark"] [class~="bg-white/80"] { background-color: rgba(15,41,32,0.80) !important; }
+html[data-theme="dark"] [class~="bg-white/85"] { background-color: rgba(15,41,32,0.85) !important; }
+html[data-theme="dark"] [class~="bg-white/15"] { background-color: rgba(232,244,239,0.15) !important; }
+html[data-theme="dark"] [class~="shadow-slate-900\/5"] { box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; }
+
+/* ─── Dark mode: semantic color surfaces (alerts, badges) ───────────────────── */
+/* Amber / gold */
+html[data-theme="dark"] [class~="bg-amber-50"]  { background-color: rgba(120, 80, 0, 0.25) !important; }
+html[data-theme="dark"] [class~="bg-amber-100"] { background-color: rgba(120, 80, 0, 0.35) !important; }
+html[data-theme="dark"] [class~="border-amber-200"] { border-color: rgba(245,158,11,0.25) !important; }
+html[data-theme="dark"] [class~="text-amber-700"]   { color: #FBBF24 !important; }
+html[data-theme="dark"] [class~="text-amber-600"]   { color: rgba(251,191,36,0.85) !important; }
+
+/* Emerald / green */
+html[data-theme="dark"] [class~="bg-emerald-50"]  { background-color: rgba(5, 60, 35, 0.45) !important; }
+html[data-theme="dark"] [class~="border-emerald-200"] { border-color: rgba(52,211,153,0.20) !important; }
+html[data-theme="dark"] [class~="text-emerald-700"]   { color: #34D399 !important; }
+html[data-theme="dark"] [class~="text-emerald-600"]   { color: rgba(52,211,153,0.90) !important; }
+html[data-theme="dark"] [class~="ring-emerald-200"]   { --tw-ring-color: rgba(52,211,153,0.20) !important; }
+
+/* Red */
+html[data-theme="dark"] [class~="bg-red-50"]  { background-color: rgba(80, 10, 10, 0.40) !important; }
+html[data-theme="dark"] [class~="border-red-200"] { border-color: rgba(252,165,165,0.20) !important; }
+html[data-theme="dark"] [class~="border-red-300"] { border-color: rgba(252,165,165,0.30) !important; }
+html[data-theme="dark"] [class~="text-red-700"]   { color: #FCA5A5 !important; }
+html[data-theme="dark"] [class~="text-red-500"]   { color: #F87171 !important; }
+html[data-theme="dark"] [class~="ring-red-200"]   { --tw-ring-color: rgba(252,165,165,0.20) !important; }
+
+/* Ring overrides for badges */
+html[data-theme="dark"] [class~="ring-white\/15"]   { --tw-ring-color: rgba(232,244,239,0.15) !important; }
+html[data-theme="dark"] [class~="ring-white\/20"]   { --tw-ring-color: rgba(232,244,239,0.20) !important; }
+html[data-theme="dark"] [class~="ring-emerald-200"] { box-shadow: 0 0 0 1px rgba(52,211,153,0.20) !important; }
+html[data-theme="dark"] [class~="ring-red-200"]     { box-shadow: 0 0 0 1px rgba(252,165,165,0.20) !important; }
+html[data-theme="dark"] [class~="ring-1"]           { /* ring color already overridden per class above */ }
+
+/* ─── Animations ────────────────────────────────────────────────────────────── */
+.fade-up          { animation: fadeUp 700ms ease-out both; }
+.fade-up-delay    { animation: fadeUp 900ms ease-out both; }
+.float-gentle     { animation: floatGentle 6s ease-in-out infinite; }
+.float-gentle-delay {
+  animation: floatGentle 7s ease-in-out infinite;
+  animation-delay: 900ms;
+}
+.shimmer-in { animation: shimmerIn 1200ms ease-out both; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes floatGentle {
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-
-  50% {
-    transform: translateY(-12px) scale(1.02);
-  }
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-12px) scale(1.02); }
 }
 
 @keyframes shimmerIn {
-  from {
-    opacity: 0;
-    transform: translateY(18px) scale(0.98);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  from { opacity: 0; transform: translateY(18px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
 }

@@ -26,13 +26,13 @@ export default async function AdminLoginPage({
     <section className="container-shell py-10 pb-14">
       <div className="mx-auto max-w-2xl rounded-[2rem] border border-black/8 bg-white/80 p-8 shadow-[0_20px_60px_rgba(17,32,49,0.08)]">
         <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-teal)]">Admin only</p>
-        <h1 className="display-title mt-3 text-5xl font-semibold text-[var(--color-ink)]">
+        <h1 className="display-title mt-3 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
           {messages.admin.loginTitle}
         </h1>
         <p className="mt-4 text-sm leading-7 text-black/70">{messages.admin.loginDescription}</p>
 
         {!isConfigured || query.setup ? (
-          <div className="mt-6 rounded-[1.5rem] bg-[var(--color-sand)] p-5 text-sm leading-7 text-[var(--color-ink)]">
+          <div className="mt-6 rounded-[1.5rem] border border-amber-200/60 bg-amber-50 p-5 text-sm leading-7 text-[var(--color-ink)]">
             `.env.local` fayliga `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_SECRET` qo&apos;shing.
           </div>
         ) : null}
@@ -69,7 +69,7 @@ export default async function AdminLoginPage({
           </label>
           <button
             type="submit"
-            className="h-12 rounded-full bg-[var(--color-ink)] px-5 text-sm font-semibold text-white transition hover:bg-[var(--color-sky)]"
+            className="h-12 rounded-full bg-[var(--color-sky)] px-5 text-sm font-semibold text-white shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90"
           >
             {messages.admin.submit}
           </button>

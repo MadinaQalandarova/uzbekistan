@@ -55,7 +55,7 @@ export default async function EditPlacePage({ params, searchParams }: EditPlaceP
           <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-teal)]">
             Admin only
           </p>
-          <h1 className="display-title mt-2 text-5xl font-semibold text-[var(--color-ink)]">
+          <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             Joyni tahrirlash
           </h1>
           <p className="mt-2 text-sm text-black/55">{place.slug}</p>
@@ -213,7 +213,7 @@ export default async function EditPlacePage({ params, searchParams }: EditPlaceP
           <button
             type="submit"
             disabled={!canManage}
-            className="h-12 rounded-full bg-[var(--color-ink)] px-6 text-sm font-semibold text-white transition hover:bg-[var(--color-sky)] disabled:cursor-not-allowed disabled:opacity-50"
+            className="h-12 rounded-full bg-[var(--color-sky)] px-6 text-sm font-semibold text-white shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Saqlash
           </button>

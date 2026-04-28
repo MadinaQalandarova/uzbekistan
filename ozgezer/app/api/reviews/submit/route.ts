@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     return redirect(`/${locale}/places/${placeSlug}?error=INVALID_REVIEW`);
   }
 
-  if (!prisma) {
+  if (!process.env.DATABASE_URL) {
     return redirect(`/${locale}/places/${placeSlug}?error=DB_NOT_CONFIGURED`);
   }
 

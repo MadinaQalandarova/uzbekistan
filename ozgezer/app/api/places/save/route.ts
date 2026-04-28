@@ -8,7 +8,9 @@ export async function POST(request: Request) {
   const formData = await request.formData();
   const locale = String(formData.get("locale") ?? "uz");
   const placeSlug = String(formData.get("placeSlug") ?? "").trim();
-  const type = formData.get("type") === "VISITED" ? "VISITED" : "WANT_TO_GO";
+
+  const back = new URL(`/${locale}/places/${placeSlug}`, request.url);
+  const redirect = (url: URL) => NextResponse.redirect(url);
 
   const cookieStore = await cookies();
   const session = readUserSession(cookieStore.get(USER_SESSION_COOKIE)?.value);
@@ -17,8 +19,9 @@ export async function POST(request: Request) {
     return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
   }
 
-  if (!prisma) {
-    return NextResponse.json({ error: "DB_NOT_CONFIGURED" }, { status: 503 });
+  if (!process.env.DATABASE_URL) {
+    back.searchParams.set("error", "DB_NOT_CONFIGURED");
+    return redirect(back);
   }
 
   try {
@@ -28,7 +31,8 @@ export async function POST(request: Request) {
     });
 
     if (!place) {
-      return NextResponse.json({ error: "PLACE_NOT_FOUND" }, { status: 404 });
+      back.searchParams.set("error", "PLACE_NOT_FOUND");
+      return redirect(back);
     }
 
     const existing = await prisma.savedPlace.findUnique({
@@ -40,14 +44,15 @@ export async function POST(request: Request) {
       await prisma.savedPlace.delete({
         where: { userId_placeId: { userId: session.userId, placeId: place.id } },
       });
-      return NextResponse.json({ saved: false });
     } else {
       await prisma.savedPlace.create({
-        data: { userId: session.userId, placeId: place.id, type },
+        data: { userId: session.userId, placeId: place.id, type: "WANT_TO_GO" },
       });
-      return NextResponse.json({ saved: true, type });
     }
+
+    return redirect(back);
   } catch {
-    return NextResponse.json({ error: "UNKNOWN" }, { status: 500 });
+    back.searchParams.set("error", "UNKNOWN");
+    return redirect(back);
   }
 }

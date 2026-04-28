@@ -43,7 +43,7 @@ export default async function AdminRegionsPage({
           <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-teal)]">
             Admin only
           </p>
-          <h1 className="display-title mt-2 text-5xl font-semibold text-[var(--color-ink)]">
+          <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             Region management
           </h1>
           <p className="mt-4 max-w-3xl text-sm leading-7 text-black/70">
@@ -78,7 +78,7 @@ export default async function AdminRegionsPage({
       ) : null}
 
       {!canManage ? (
-        <div className="mb-8 rounded-[1.75rem] bg-[var(--color-sand)] p-5 text-sm leading-7 text-[var(--color-ink)]">
+        <div className="mb-8 rounded-[1.75rem] border border-amber-200/60 bg-amber-50 p-5 text-sm leading-7 text-[var(--color-ink)]">
           Region CRUD saqlanishi uchun `DATABASE_URL` va migrate/seed tayyor bo&apos;lishi kerak.
           Hozircha admin-only struktura tayyor, lekin persist qilish DB ulanmaguncha ishlamaydi.
         </div>
@@ -136,7 +136,7 @@ export default async function AdminRegionsPage({
             <button
               type="submit"
               disabled={!canManage}
-              className="h-12 rounded-full bg-[var(--color-ink)] px-5 text-sm font-semibold text-white transition hover:bg-[var(--color-sky)] disabled:cursor-not-allowed disabled:opacity-50"
+              className="h-12 rounded-full bg-[var(--color-sky)] px-5 text-sm font-semibold text-white shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
             >
               Region qo&apos;shish
             </button>

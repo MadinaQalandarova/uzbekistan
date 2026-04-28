@@ -29,7 +29,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-teal)]">
             Profil
           </p>
-          <h1 className="display-title mt-2 text-5xl font-semibold text-[var(--color-ink)]">
+          <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             {session.name ?? session.email.split("@")[0]}
           </h1>
           <p className="mt-2 text-sm text-black/55">{session.email}</p>
@@ -56,7 +56,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             <p className="text-sm text-black/50">Hali hech qanday joy saqlanmagan.</p>
             <Link
               href={`/${locale}/explore`}
-              className="mt-4 inline-flex rounded-full bg-[var(--color-ink)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--color-sky)]"
+              className="mt-4 inline-flex rounded-full bg-[var(--color-sky)] px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
             >
               Joylarni ko&apos;rish
             </Link>

@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { Star } from "lucide-react";
 
 import type { PlaceRecord } from "@/lib/data/catalog";
 import type { Locale } from "@/lib/i18n";
+import { PLACE_IMAGES, PLACE_STORIES } from "@/lib/place-stories";
 
 type PlaceCardProps = {
   locale: Locale;
@@ -10,25 +12,58 @@ type PlaceCardProps = {
 };
 
 export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
+  const imageUrl = PLACE_IMAGES[place.slug];
+  const story = PLACE_STORIES[place.slug];
+  const quote = story?.quote[locale] ?? null;
+
   return (
     <article className="section-card card-rise overflow-hidden rounded-[1.75rem]">
-      <div className="h-44 bg-[linear-gradient(135deg,rgba(27,108,168,0.92),rgba(22,124,116,0.76),rgba(212,166,61,0.6))]" />
+      {/* Banner — real rasm yoki gradient */}
+      <div className="relative h-44 overflow-hidden">
+        {imageUrl ? (
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={imageUrl}
+              alt={place.name[locale]}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+          </>
+        ) : (
+          <div className="h-full bg-[linear-gradient(135deg,rgba(45,107,107,0.9),rgba(91,138,110,0.75),rgba(245,158,11,0.55))]" />
+        )}
+      </div>
+
       <div className="space-y-3 p-5">
         <div className="flex items-center justify-between gap-4">
-          <p className="rounded-full bg-[var(--color-sand)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-ink)]">
+          <p className="rounded-full bg-[var(--color-sky)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-sky)]">
             {place.regionName[locale]}
           </p>
-          <p className="text-sm font-semibold text-[var(--color-teal)]">
-            {place.averageRating.toFixed(1)} / 5
-          </p>
+          {place.averageRating > 0 && (
+            <p className="flex items-center gap-1 text-sm font-semibold text-[var(--color-teal)]">
+              <Star size={13} strokeWidth={0} fill="#F59E0B" className="text-[#F59E0B]" />
+              {place.averageRating.toFixed(1)}
+            </p>
+          )}
         </div>
-        <h3 className="text-2xl font-semibold text-[var(--color-ink)]">{place.name[locale]}</h3>
-        <p className="text-sm leading-7 text-black/65">{place.description[locale]}</p>
-        <div className="flex flex-wrap gap-2">
-          {place.categoryTitles.map((category) => (
+        <h3 className="text-xl font-semibold leading-snug text-[var(--color-ink)]">
+          {place.name[locale]}
+        </h3>
+        {quote ? (
+          <p className="line-clamp-2 font-serif text-sm italic leading-6 text-black/55">
+            &ldquo;{quote}&rdquo;
+          </p>
+        ) : (
+          <p className="line-clamp-2 text-sm leading-6 text-black/60">
+            {place.description[locale]}
+          </p>
+        )}
+        <div className="flex flex-wrap gap-1.5">
+          {place.categoryTitles.slice(0, 2).map((category) => (
             <span
               key={`${place.slug}-${category[locale]}`}
-              className="rounded-full border border-black/8 bg-[var(--color-mist)] px-3 py-1 text-xs font-semibold text-[var(--color-ink)]"
+              className="rounded-full border border-black/8 bg-[var(--color-mist)] px-2.5 py-0.5 text-xs font-medium text-[var(--color-ink)]"
             >
               {category[locale]}
             </span>
@@ -36,10 +71,24 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
         </div>
         <Link
           href={`/${locale}/places/${place.slug}`}
-          className="group inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] bg-white/50 transition-all hover:-translate-y-0.5 hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] hover:bg-white hover:shadow-md"
+          className="group inline-flex items-center gap-2 rounded-full border border-black/10 bg-transparent px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
         >
           <span>{ctaLabel}</span>
-          <img src="https://emojicdn.elk.sh/➡️?style=apple" alt="Go" className="h-3 w-3 drop-shadow-sm transition-transform duration-300 group-hover:translate-x-1" />
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="transition-transform duration-200 group-hover:translate-x-1"
+            aria-hidden
+          >
+            <line x1="3" y1="8" x2="13" y2="8" />
+            <polyline points="9 4 13 8 9 12" />
+          </svg>
         </Link>
       </div>
     </article>

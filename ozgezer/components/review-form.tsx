@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ThumbsUp, ThumbsDown, Star, CheckCircle } from "lucide-react";
 
 type ReviewFormProps = {
   locale: string;
@@ -15,7 +16,7 @@ const texts = {
     subtitle: "Bu joyga borishni tavsiya qilasizmi?",
     yes: "Ha, tavsiya qilaman",
     no: "Yo'q, tavsiya etmayman",
-    rating: "Baho",
+    rating: "Baho bering",
     comment: "Taassurotlaringizni yozing...",
     submit: "Jo'natish",
     loginRequired: "Fikr qoldirish uchun tizimga kiring.",
@@ -32,7 +33,7 @@ const texts = {
     subtitle: "Рекомендуете ли вы это место?",
     yes: "Да, рекомендую",
     no: "Нет, не рекомендую",
-    rating: "Оценка",
+    rating: "Поставьте оценку",
     comment: "Напишите ваши впечатления...",
     submit: "Отправить",
     loginRequired: "Войдите, чтобы оставить отзыв.",
@@ -49,7 +50,7 @@ const texts = {
     subtitle: "Would you recommend this place?",
     yes: "Yes, I recommend it",
     no: "No, I don't recommend",
-    rating: "Rating",
+    rating: "Give a rating",
     comment: "Write your impressions...",
     submit: "Submit",
     loginRequired: "Sign in to leave a review.",
@@ -65,6 +66,7 @@ const texts = {
 
 export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: ReviewFormProps) {
   const [rating, setRating] = useState(0);
+  const [hovered, setHovered] = useState(0);
   const [recommend, setRecommend] = useState<boolean | null>(null);
 
   const t = texts[locale as keyof typeof texts] ?? texts.uz;
@@ -72,11 +74,11 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
   if (!isLoggedIn) {
     return (
       <div className="section-card rounded-[1.75rem] p-6">
-        <h3 className="display-title text-2xl font-semibold text-[var(--color-ink)]">{t.title}</h3>
-        <p className="mt-3 text-sm text-black/60">{t.loginRequired}</p>
+        <h3 className="display-title text-xl font-semibold text-[var(--color-ink)]">{t.title}</h3>
+        <p className="mt-3 text-sm text-black/55">{t.loginRequired}</p>
         <a
           href={`/${locale}/login?next=/places/${placeSlug}`}
-          className="mt-4 inline-flex h-11 items-center rounded-full bg-[var(--color-ink)] px-5 text-sm font-semibold text-white transition hover:bg-[var(--color-sky)]"
+          className="mt-4 inline-flex h-11 items-center rounded-full bg-[var(--color-sky)] px-5 text-sm font-semibold text-white shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90"
         >
           {t.loginBtn}
         </a>
@@ -87,35 +89,39 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
   if (alreadyReviewed) {
     return (
       <div className="section-card rounded-[1.75rem] p-6">
-        <h3 className="display-title text-2xl font-semibold text-[var(--color-ink)]">{t.title}</h3>
-        <p className="mt-3 text-sm text-[var(--color-teal)]">✓ {t.alreadyReviewed}</p>
+        <h3 className="display-title text-xl font-semibold text-[var(--color-ink)]">{t.title}</h3>
+        <div className="mt-3 flex items-center gap-2 text-sm text-[var(--color-teal)]">
+          <CheckCircle size={16} strokeWidth={2} />
+          {t.alreadyReviewed}
+        </div>
       </div>
     );
   }
 
   return (
     <div className="section-card rounded-[1.75rem] p-6">
-      <h3 className="display-title text-2xl font-semibold text-[var(--color-ink)]">{t.title}</h3>
-      <p className="mt-2 text-sm text-black/60">{t.subtitle}</p>
+      <h3 className="display-title text-xl font-semibold text-[var(--color-ink)]">{t.title}</h3>
+      <p className="mt-1.5 text-sm text-black/55">{t.subtitle}</p>
 
-      <form action="/api/reviews/submit" method="post" className="mt-6 space-y-5">
+      <form action="/api/reviews/submit" method="post" className="mt-5 space-y-4">
         <input type="hidden" name="locale" value={locale} />
         <input type="hidden" name="placeSlug" value={placeSlug} />
         <input type="hidden" name="wouldRecommend" value={String(recommend ?? true)} />
         <input type="hidden" name="rating" value={String(rating)} />
 
-        {/* Tavsiya qilasizmi */}
-        <div className="flex gap-3">
+        {/* Tavsiya tugmalari */}
+        <div className="flex gap-2">
           <button
             type="button"
             onClick={() => setRecommend(true)}
             className={`flex flex-1 items-center justify-center gap-2 rounded-[1.2rem] border py-3 text-sm font-semibold transition-all ${
               recommend === true
                 ? "border-[var(--color-teal)] bg-[var(--color-teal)] text-white shadow-md"
-                : "border-black/10 bg-[var(--color-mist)] text-black/70 hover:border-[var(--color-teal)] hover:text-[var(--color-teal)]"
+                : "border-black/10 bg-[var(--color-mist)] text-black/60 hover:border-[var(--color-teal)] hover:text-[var(--color-teal)]"
             }`}
           >
-            👍 {t.yes}
+            <ThumbsUp size={15} strokeWidth={2} />
+            {t.yes}
           </button>
           <button
             type="button"
@@ -123,33 +129,44 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
             className={`flex flex-1 items-center justify-center gap-2 rounded-[1.2rem] border py-3 text-sm font-semibold transition-all ${
               recommend === false
                 ? "border-red-500 bg-red-500 text-white shadow-md"
-                : "border-black/10 bg-[var(--color-mist)] text-black/70 hover:border-red-400 hover:text-red-500"
+                : "border-black/10 bg-[var(--color-mist)] text-black/60 hover:border-red-400 hover:text-red-500"
             }`}
           >
-            👎 {t.no}
+            <ThumbsDown size={15} strokeWidth={2} />
+            {t.no}
           </button>
         </div>
 
-        {/* Yulduzcha baho */}
+        {/* Yulduz baho */}
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-black/50">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-black/40">
             {t.rating}
           </p>
-          <div className="flex gap-2">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <button
-                key={star}
-                type="button"
-                onClick={() => setRating(star)}
-                className={`flex h-11 w-11 items-center justify-center rounded-xl border text-xl transition-all ${
-                  rating >= star
-                    ? "border-[var(--color-gold)] bg-amber-50 shadow-sm"
-                    : "border-black/10 bg-[var(--color-mist)] opacity-40 hover:opacity-80"
-                }`}
-              >
-                ⭐
-              </button>
-            ))}
+          <div className="flex gap-1.5">
+            {[1, 2, 3, 4, 5].map((star) => {
+              const filled = star <= (hovered || rating);
+              return (
+                <button
+                  key={star}
+                  type="button"
+                  onClick={() => setRating(star)}
+                  onMouseEnter={() => setHovered(star)}
+                  onMouseLeave={() => setHovered(0)}
+                  className={`flex h-11 w-11 items-center justify-center rounded-xl border transition-all ${
+                    filled
+                      ? "border-[var(--color-gold)] bg-[var(--color-gold)]/10 scale-110"
+                      : "border-black/10 bg-[var(--color-mist)] opacity-50 hover:opacity-80"
+                  }`}
+                >
+                  <Star
+                    size={18}
+                    strokeWidth={filled ? 0 : 1.5}
+                    fill={filled ? "#F59E0B" : "currentColor"}
+                    className={filled ? "" : "text-black/20"}
+                  />
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -159,13 +176,13 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
           required
           rows={4}
           placeholder={t.comment}
-          className="w-full resize-none rounded-[1.2rem] border border-black/10 bg-[var(--color-mist)] p-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)]"
+          className="w-full resize-none rounded-[1.2rem] border border-black/10 bg-[var(--color-mist)] p-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10 placeholder:text-black/35"
         />
 
         <button
           type="submit"
           disabled={rating === 0}
-          className="h-12 w-full rounded-full bg-[var(--color-ink)] text-sm font-semibold text-white transition hover:bg-[var(--color-sky)] disabled:cursor-not-allowed disabled:opacity-50"
+          className="h-12 w-full rounded-full bg-[var(--color-sky)] text-sm font-semibold text-white shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
         >
           {t.submit}
         </button>

@@ -1,12 +1,62 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import {
+  Landmark,
+  Mountain,
+  TreePine,
+  UtensilsCrossed,
+  ShoppingBag,
+  Library,
+  Star,
+  Bike,
+  Layers,
+  Building2,
+  MapPin,
+} from "lucide-react";
 
 import { PlaceCard } from "@/components/place-card";
+import { SearchForm } from "@/components/search-form";
 import { getCategories, getPlaces, getRegions } from "@/lib/data/catalog-service";
 import { getMessages, isLocale } from "@/lib/i18n";
 
+const SEARCH_EXAMPLES: Record<string, string[]> = {
+  uz: ["Registon maydoni", "Chimgan tog'i", "Ichan-Qal'a", "Amir Temur maqbarasi", "Shodlik bozori"],
+  ru: ["Площадь Регистан", "Горы Чимган", "Ичан-Кала", "Мавзолей Тамерлана", "Базар Чорсу"],
+  en: ["Registan Square", "Chimgan Mountains", "Ichon-Qala", "Tamerlane Mausoleum", "Chorsu Bazaar"],
+};
+
 type LocalePageProps = {
   params: Promise<{ locale: string }>;
+};
+
+type LucideIcon = React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }>;
+
+/** Kategoriya slug → Lucide icon komponenti */
+const CATEGORY_ICONS: Record<string, LucideIcon> = {
+  "historical":  Landmark,
+  "nature":      Mountain,
+  "leisure":     TreePine,
+  "food":        UtensilsCrossed,
+  "markets":     ShoppingBag,
+  "museums":     Library,
+  "religious":   Star,
+  "sport":       Bike,
+  "archaeology": Layers,
+  "urban":       Building2,
+};
+
+/**
+ * Har bir kategoriya uchun rasm ma'lumotlari:
+ * - photo: Unsplash URL
+ * - tint: rang qatlami (foto bir xil ko'rinsa ham farq bo'lsin)
+ */
+const CATEGORY_VISUALS: Record<string, { photo: string; tint: string }> = {
+  "markets":    { photo: "/categories/bozorlar.avif",  tint: "bg-orange-950/40" },
+  "leisure":    { photo: "/categories/dam-olish.avif", tint: "bg-emerald-950/40" },
+  "food":       { photo: "/categories/ovqat.avif",     tint: "bg-red-950/40" },
+  "nature":     { photo: "/categories/tabiat.avif",    tint: "bg-sky-950/35" },
+  "historical": { photo: "/categories/tarixiy.avif",   tint: "bg-amber-950/40" },
 };
 
 export default async function LocaleHomePage({ params }: LocalePageProps) {
@@ -26,80 +76,82 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
   return (
     <div className="py-8">
       <section className="container-shell py-4 md:py-8">
-        <div className="uzbek-hero suzani-grid relative overflow-hidden rounded-[2rem] border border-black/8 px-6 py-8 shadow-[0_30px_80px_rgba(17,32,49,0.12)] md:px-10 md:py-12">
-          <div className="suzani-orb float-gentle -left-10 top-10 h-32 w-32 md:h-44 md:w-44" />
-          <div className="suzani-orb float-gentle-delay -right-8 bottom-12 h-24 w-24 md:h-36 md:w-36" />
-          <div className="national-band shimmer-in absolute right-6 top-6 hidden h-16 w-28 rounded-[1.4rem] md:block" />
+        <div className="uzbek-hero relative overflow-hidden rounded-[2rem] border border-black/8 px-5 py-8 md:px-10 md:py-14">
 
-          <div className="fade-up grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-            <div className="space-y-6">
-              <span className="inline-flex rounded-full border border-black/10 bg-white/75 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--color-sky)]">
+          <div className="fade-up grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div className="space-y-5 md:space-y-7">
+
+              {/* Eyebrow badge */}
+              <span className="inline-flex rounded-full border border-[var(--color-sky)]/30 bg-[var(--color-sky)]/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--color-sky)] md:px-4 md:py-1.5 md:text-xs">
                 {messages.home.eyebrow}
               </span>
-              <div className="space-y-4">
-                <h1 className="display-title max-w-4xl text-5xl leading-none font-semibold text-[var(--color-ink)] md:text-7xl">
+
+              {/* H1 — mobile: text-2xl, tablet: text-4xl, desktop: text-5xl */}
+              <div className="space-y-3">
+                <h1 className="display-title text-2xl font-semibold leading-tight text-[var(--color-ink)] sm:text-3xl md:text-4xl lg:text-5xl">
                   {messages.home.title}
                   <span className="text-[var(--color-sky)]">{messages.home.titleAccent}</span>
                 </h1>
-                <p className="max-w-2xl text-base leading-8 text-black/70 md:text-lg">
+                <p className="max-w-lg text-xs leading-6 text-black/60 sm:text-sm sm:leading-7">
                   {messages.home.description}
                 </p>
               </div>
 
-              <div className="fade-up-delay flex flex-wrap gap-3 text-sm text-[var(--color-ink)]">
-                <div className="rounded-full border border-black/8 bg-white/80 px-4 py-2 shadow-sm shadow-slate-900/5">
-                  14 region
+              {/* Search form — animated typewriter + shimmer button */}
+              <SearchForm
+                locale={locale}
+                regions={regions}
+                labels={{
+                  placeholder: messages.home.searchPlaceholder,
+                  regionPlaceholder: messages.home.regionPlaceholder,
+                  searchButton: messages.home.searchButton,
+                }}
+                examples={SEARCH_EXAMPLES[locale] ?? SEARCH_EXAMPLES.uz}
+              />
+
+              {/* Mobile-only compact stats row */}
+              <div className="flex gap-3 lg:hidden">
+                <div className="flex-1 rounded-[1rem] bg-[var(--color-sky)]/10 px-3 py-2.5 text-center">
+                  <p className="text-lg font-semibold text-[var(--color-sky)]">{regions.length}</p>
+                  <p className="text-[10px] text-black/50">{messages.home.statsRegions}</p>
                 </div>
-                <div className="rounded-full border border-black/8 bg-white/80 px-4 py-2 shadow-sm shadow-slate-900/5">
-                  Admin-only control
+                <div className="flex-1 rounded-[1rem] bg-[var(--color-teal)]/10 px-3 py-2.5 text-center">
+                  <p className="text-lg font-semibold text-[var(--color-teal)]">{featuredPlaces.length}+</p>
+                  <p className="text-[10px] text-black/50">{messages.home.statsPlaces}</p>
                 </div>
-                <div className="rounded-full border border-black/8 bg-white/80 px-4 py-2 shadow-sm shadow-slate-900/5">
-                  UZ / RU / EN
+                <div className="flex-1 rounded-[1rem] bg-[var(--color-gold)]/10 px-3 py-2.5 text-center">
+                  <p className="text-lg font-semibold text-[var(--color-gold)]">{categories.length}</p>
+                  <p className="text-[10px] text-black/50">{messages.home.statsCategories}</p>
                 </div>
               </div>
-
-              <form
-                action={`/${locale}/explore`}
-                className="fade-up-delay grid gap-3 rounded-[1.75rem] bg-white/85 p-3 shadow-lg shadow-slate-900/5 md:grid-cols-[1.5fr_1fr_auto]"
-              >
-                <input
-                  type="text"
-                  name="q"
-                  placeholder={messages.home.searchPlaceholder}
-                  className="h-14 rounded-[1.2rem] border border-black/10 bg-[var(--color-mist)] px-5 text-sm outline-none transition placeholder:text-black/35 focus:border-[var(--color-sky)]"
-                />
-                <select
-                  name="region"
-                  className="h-14 rounded-[1.2rem] border border-black/10 bg-[var(--color-mist)] px-4 text-sm text-black/70 outline-none focus:border-[var(--color-sky)]"
-                >
-                  <option>{messages.home.regionPlaceholder}</option>
-                  {regions.slice(0, 8).map((region) => (
-                    <option key={region.slug} value={region.slug}>
-                      {region.name[locale]}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  type="submit"
-                  className="h-14 rounded-[1.2rem] bg-[var(--color-ink)] px-6 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-sky)]"
-                >
-                  {messages.home.searchButton}
-                </button>
-              </form>
             </div>
 
-            <div className="section-card float-gentle-delay rounded-[1.75rem] p-5">
-              <div className="rounded-[1.5rem] bg-[linear-gradient(160deg,#1b6ca8_0%,#167c74_55%,#d4a63d_100%)] p-6 text-white">
-                <p className="text-xs uppercase tracking-[0.3em] text-white/70">MVP</p>
-                <h2 className="display-title mt-3 text-3xl font-semibold">
-                  {messages.home.adminTitle}
-                </h2>
-                <div className="mt-6 space-y-3 text-sm">
-                  {messages.home.adminPoints.map((point) => (
-                    <div key={point} className="rounded-2xl bg-white/15 p-4">
-                      {point}
+            {/* Stats card — desktop only */}
+            <div className="hidden lg:block">
+              <div className="section-card rounded-[1.75rem] p-5">
+                <div className="rounded-[1.5rem] bg-[linear-gradient(160deg,#2D6B6B_0%,#5B8A6E_55%,#F59E0B_100%)] p-6 text-white">
+                  <p className="text-xs uppercase tracking-[0.3em] text-white/70">O&apos;zGezer</p>
+                  <h2 className="display-title mt-3 text-3xl font-semibold leading-snug">
+                    {messages.home.statsTitle}
+                  </h2>
+                  <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
+                    <div className="rounded-2xl bg-white/15 p-4">
+                      <p className="text-2xl font-semibold">{regions.length}</p>
+                      <p className="mt-1 text-xs text-white/70">{messages.home.statsRegions}</p>
                     </div>
-                  ))}
+                    <div className="rounded-2xl bg-white/15 p-4">
+                      <p className="text-2xl font-semibold">{featuredPlaces.length}+</p>
+                      <p className="mt-1 text-xs text-white/70">{messages.home.statsPlaces}</p>
+                    </div>
+                    <div className="rounded-2xl bg-white/15 p-4">
+                      <p className="text-2xl font-semibold">{categories.length}</p>
+                      <p className="mt-1 text-xs text-white/70">{messages.home.statsCategories}</p>
+                    </div>
+                    <div className="rounded-2xl bg-white/15 p-4">
+                      <p className="text-2xl font-semibold">3</p>
+                      <p className="mt-1 text-xs text-white/70">{messages.home.statsLanguages}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -113,36 +165,67 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
             <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-teal)]">
               {messages.home.categoriesEyebrow}
             </p>
-            <h2 className="display-title text-4xl font-semibold text-[var(--color-ink)]">
+            <h2 className="display-title text-2xl font-semibold text-[var(--color-ink)] md:text-3xl lg:text-4xl">
               {messages.home.categoriesTitle}
             </h2>
           </div>
-          <p className="hidden max-w-md text-sm leading-7 text-black/60 md:block">
-            {messages.home.categoriesDescription}
-          </p>
+          <Link
+            href={`/${locale}/explore`}
+            className="hidden shrink-0 rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] md:block"
+          >
+            {messages.home.seeAllPlaces}
+          </Link>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {categories.map((category, index) => (
-            <article
-              key={category.title[locale]}
-              className="section-card card-rise rounded-[1.5rem] p-5"
-              style={{ animationDelay: `${index * 120}ms` }}
-            >
-              <div className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-mist)] text-xl text-[var(--color-sky)]">
-                {index + 1}
-              </div>
-              <h3 className="text-xl font-semibold text-[var(--color-ink)]">
-                {category.title[locale]}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-black/65">
-                {category.description[locale]}
-              </p>
-              <p className="mt-6 text-sm font-semibold text-[var(--color-teal)]">
-                {category.stat}
-              </p>
-            </article>
-          ))}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {categories.slice(0, 5).map((category) => {
+            const Icon = CATEGORY_ICONS[category.slug] ?? MapPin;
+            const visual = CATEGORY_VISUALS[category.slug] ?? CATEGORY_VISUALS["nature"];
+
+            return (
+              <Link
+                key={category.slug}
+                href={`/${locale}/explore?category=${category.slug}`}
+                className="group relative flex min-h-[220px] flex-col overflow-hidden rounded-[1.5rem]"
+              >
+                {/* ── 1-qatlam: real rasm (blur + zoom) ── */}
+                <Image
+                  src={visual.photo}
+                  alt={category.title[locale]}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                  className="object-cover scale-110 blur-[3px] transition-transform duration-700 group-hover:scale-125"
+                />
+
+                {/* ── 2-qatlam: kategoriyaga xos rang tinti ── */}
+                <div className={`absolute inset-0 ${visual.tint}`} />
+
+                {/* ── 3-qatlam: qora gradient (matn o'qilsin) ── */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
+
+                {/* ── 4-qatlam: content ── */}
+                <div className="relative z-10 flex flex-1 flex-col justify-between p-5">
+                  {/* Icon */}
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 text-white ring-1 ring-white/20 backdrop-blur-sm transition-all duration-300 group-hover:bg-white/25 group-hover:scale-110">
+                    <Icon size={20} strokeWidth={1.75} />
+                  </div>
+
+                  {/* Matn */}
+                  <div>
+                    <h3 className="text-base font-semibold text-white">
+                      {category.title[locale]}
+                    </h3>
+                    <p className="mt-1 text-xs leading-5 text-white/70">
+                      {category.description[locale]}
+                    </p>
+                    <p className="mt-3 inline-flex items-center rounded-full bg-white/10 px-2.5 py-1 text-xs font-semibold text-white/90 ring-1 ring-white/15 backdrop-blur-sm">
+                      {category.stat} {messages.home.placesCount}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
@@ -152,10 +235,16 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
             <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky)]">
               {messages.home.featuredEyebrow}
             </p>
-            <h2 className="display-title text-4xl font-semibold text-[var(--color-ink)]">
+            <h2 className="display-title text-2xl font-semibold text-[var(--color-ink)] md:text-3xl lg:text-4xl">
               {messages.home.featuredTitle}
             </h2>
           </div>
+          <Link
+            href={`/${locale}/explore`}
+            className="hidden shrink-0 rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] md:block"
+          >
+            {messages.home.seeAllPlaces}
+          </Link>
         </div>
 
         <div className="grid gap-4 lg:grid-cols-3">
@@ -177,7 +266,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
               <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">
                 {messages.home.regionsEyebrow}
               </p>
-              <h2 className="display-title text-4xl font-semibold text-[var(--color-ink)]">
+              <h2 className="display-title text-2xl font-semibold text-[var(--color-ink)] md:text-3xl lg:text-4xl">
                 {messages.home.regionsTitle}
               </h2>
             </div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
+import { Star } from "lucide-react";
 
 import { ADMIN_SESSION_COOKIE, canUseAdminAuth, readAdminSession } from "@/lib/auth";
 import { getPendingReviews } from "@/lib/data/catalog-service";
@@ -29,7 +30,7 @@ export default async function AdminReviewsPage({ params, searchParams }: AdminRe
       <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-teal)]">Admin only</p>
-          <h1 className="display-title mt-2 text-5xl font-semibold text-[var(--color-ink)]">
+          <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             Izohlar moderatsiyasi
           </h1>
           <p className="mt-3 text-sm text-black/60">
@@ -78,9 +79,15 @@ export default async function AdminReviewsPage({ params, searchParams }: AdminRe
                     <span className="rounded-full border border-black/10 px-2 py-0.5 text-xs text-black/60">
                       {review.placeName}
                     </span>
-                    <div className="flex">
+                    <div className="flex gap-0.5">
                       {Array.from({ length: 5 }).map((_, i) => (
-                        <span key={i} className={i < review.rating ? "text-amber-400" : "text-black/15"}>★</span>
+                        <Star
+                          key={i}
+                          size={13}
+                          strokeWidth={0}
+                          fill={i < review.rating ? "#F59E0B" : "currentColor"}
+                          className={i < review.rating ? "" : "text-black/20"}
+                        />
                       ))}
                     </div>
                   </div>

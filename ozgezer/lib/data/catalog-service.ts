@@ -1,4 +1,12 @@
+import { unstable_cache } from "next/cache";
+
 import type { CategoryRecord, PlaceRecord, RegionRecord } from "@/lib/data/catalog";
+import {
+  categories as staticCategories,
+  places as staticPlaces,
+  regions as staticRegions,
+} from "@/lib/data/catalog";
+import { prisma } from "@/lib/prisma";
 
 export type AdminPlaceRecord = PlaceRecord & {
   id: string;
@@ -11,12 +19,6 @@ export type AdminPlaceRecord = PlaceRecord & {
   reviewCount: number;
   viewCount: number;
 };
-import {
-  categories as staticCategories,
-  places as staticPlaces,
-  regions as staticRegions,
-} from "@/lib/data/catalog";
-import { prisma } from "@/lib/prisma";
 
 export type PlaceFilters = {
   q?: string;
@@ -25,14 +27,14 @@ export type PlaceFilters = {
 };
 
 function hasDatabaseConfig() {
-  return Boolean(process.env.DATABASE_URL && prisma);
+  return Boolean(process.env.DATABASE_URL);
 }
 
 export function canManageCatalog() {
   return hasDatabaseConfig();
 }
 
-export async function getCategories(): Promise<CategoryRecord[]> {
+async function _getCategories(): Promise<CategoryRecord[]> {
   if (!hasDatabaseConfig()) {
     return staticCategories;
   }
@@ -61,7 +63,11 @@ export async function getCategories(): Promise<CategoryRecord[]> {
   }
 }
 
-export async function getRegions(): Promise<RegionRecord[]> {
+export const getCategories = unstable_cache(_getCategories, ["catalog-categories"], {
+  revalidate: 60,
+});
+
+async function _getRegions(): Promise<RegionRecord[]> {
   if (!hasDatabaseConfig()) {
     return staticRegions;
   }
@@ -123,12 +129,16 @@ export async function getRegions(): Promise<RegionRecord[]> {
   }
 }
 
+export const getRegions = unstable_cache(_getRegions, ["catalog-regions"], {
+  revalidate: 60,
+});
+
 export async function getRegion(slug: string): Promise<RegionRecord | null> {
   const allRegions = await getRegions();
   return allRegions.find((region) => region.slug === slug) ?? null;
 }
 
-export async function getPlaces(filters: PlaceFilters = {}): Promise<PlaceRecord[]> {
+async function _getPlaces(filters: PlaceFilters = {}): Promise<PlaceRecord[]> {
   const normalizedQuery = filters.q?.trim().toLowerCase();
 
   if (!hasDatabaseConfig()) {
@@ -209,6 +219,12 @@ export async function getPlaces(filters: PlaceFilters = {}): Promise<PlaceRecord
     return staticPlaces.filter((place) => filterPlace(place, filters, normalizedQuery));
   }
 }
+
+export const getPlaces = unstable_cache(
+  _getPlaces,
+  ["catalog-places"],
+  { revalidate: 30 },
+);
 
 export async function getPlace(slug: string): Promise<PlaceRecord | null> {
   const items = await getPlaces();

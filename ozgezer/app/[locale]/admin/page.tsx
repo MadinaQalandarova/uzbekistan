@@ -38,7 +38,7 @@ export default async function AdminPage({ params }: AdminPageProps) {
           <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-teal)]">
             Admin only
           </p>
-          <h1 className="display-title mt-2 text-5xl font-semibold text-[var(--color-ink)]">
+          <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             {messages.admin.dashboardTitle}
           </h1>
           <p className="mt-4 max-w-3xl text-sm leading-7 text-black/70">

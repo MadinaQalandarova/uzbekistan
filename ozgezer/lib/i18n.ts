@@ -37,6 +37,13 @@ type HomeMessages = {
   adminTitle: string;
   adminDescription: string;
   adminPoints: string[];
+  statsTitle: string;
+  statsRegions: string;
+  statsPlaces: string;
+  statsCategories: string;
+  statsLanguages: string;
+  seeAllPlaces: string;
+  placesCount: string;
 };
 
 type RegionsMessages = {
@@ -128,14 +135,14 @@ const messages: Record<Locale, Messages> = {
       categoriesEyebrow: "Asosiy kategoriyalar",
       categoriesTitle: "Odamlar eng ko'p nimani qidiradi?",
       categoriesDescription:
-        "MVP bosh sahifasi uchun boshlang'ich kategoriyalar hozir tayyor. Keyingi bosqichda ular explore filterlariga ulanadi.",
+        "Tarix va me'morchilikdan tortib tog' yo'llari, mahalliy bozorlar va restoranlargacha — barcha yo'nalishlar bir joyda.",
       regionsEyebrow: "Region bo'yicha izlash",
       regionsTitle: "Sayohatni viloyatdan boshlang",
       regionsDescription:
         "Har bir viloyat uchun qisqacha tavsif, asosiy yo'nalish va namunaviy joylar qo'shildi. Endi bu bo'lim real ma'lumot bilan ishlaydi.",
       featuredEyebrow: "Tanlangan joylar",
-      featuredTitle: "Bosh sahifa uchun namunaviy kartochkalar",
-      featuredButton: "Batafsil sahifa",
+      featuredTitle: "Ko'p tashrif buyurilgan joylar",
+      featuredButton: "Ko'rish",
       adminEyebrow: "Keyingi texnik qadamlar",
       adminTitle: "Kontent boshqaruvi faqat admin qo'lida bo'ladi",
       adminDescription:
@@ -146,6 +153,13 @@ const messages: Record<Locale, Messages> = {
         "Admin panelga protected kirish",
         "Place CRUD ni keyingi qadamda faqat admin uchun ochish",
       ],
+      statsTitle: "O'zbekiston sayohati raqamlarda",
+      statsRegions: "ta viloyat",
+      statsPlaces: "ta joy",
+      statsCategories: "ta kategoriya",
+      statsLanguages: "ta til",
+      seeAllPlaces: "Barcha joylar →",
+      placesCount: "ta joy",
     },
     regions: {
       title: "Viloyatlar",
@@ -224,14 +238,14 @@ const messages: Record<Locale, Messages> = {
       categoriesEyebrow: "Основные категории",
       categoriesTitle: "Что люди ищут чаще всего?",
       categoriesDescription:
-        "Стартовые категории для MVP уже готовы. На следующем этапе они будут подключены к фильтрам explore.",
+        "От исторических памятников до горных троп, местных базаров и ресторанов — все направления в одном месте.",
       regionsEyebrow: "Поиск по регионам",
       regionsTitle: "Начните маршрут с региона",
       regionsDescription:
         "Для каждого региона уже добавлены краткое описание, туристический фокус и примерные места.",
       featuredEyebrow: "Избранные места",
-      featuredTitle: "Пример карточек для главной страницы",
-      featuredButton: "Открыть подробнее",
+      featuredTitle: "Популярные места",
+      featuredButton: "Открыть",
       adminEyebrow: "Следующие технические шаги",
       adminTitle: "Управление контентом будет только у админа",
       adminDescription:
@@ -242,6 +256,13 @@ const messages: Record<Locale, Messages> = {
         "Защищенный вход в админ-панель",
         "Открытие Place CRUD только для админа",
       ],
+      statsTitle: "Узбекистан в цифрах",
+      statsRegions: "регионов",
+      statsPlaces: "мест",
+      statsCategories: "категорий",
+      statsLanguages: "языка",
+      seeAllPlaces: "Все места →",
+      placesCount: "мест",
     },
     regions: {
       title: "Регионы",
@@ -320,14 +341,14 @@ const messages: Record<Locale, Messages> = {
       categoriesEyebrow: "Core categories",
       categoriesTitle: "What are people searching for most?",
       categoriesDescription:
-        "The starting MVP categories are ready. In the next step they will be connected to explore filters.",
+        "From historic monuments to mountain trails, local bazaars and restaurants — every direction in one place.",
       regionsEyebrow: "Browse by region",
       regionsTitle: "Start your trip from a region",
       regionsDescription:
         "Each region now has a short description, travel focus, and sample places so this section is no longer empty.",
       featuredEyebrow: "Featured places",
-      featuredTitle: "Sample cards for the homepage",
-      featuredButton: "Open details",
+      featuredTitle: "Most visited places",
+      featuredButton: "View place",
       adminEyebrow: "Next technical steps",
       adminTitle: "Content management will stay admin-only",
       adminDescription:
@@ -338,6 +359,13 @@ const messages: Record<Locale, Messages> = {
         "Protected admin access",
         "Opening place CRUD for admin only",
       ],
+      statsTitle: "Uzbekistan by the numbers",
+      statsRegions: "regions",
+      statsPlaces: "places",
+      statsCategories: "categories",
+      statsLanguages: "languages",
+      seeAllPlaces: "All places →",
+      placesCount: "places",
     },
     regions: {
       title: "Regions",
