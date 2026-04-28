@@ -30,7 +30,7 @@ export function TaxiButton({ latitude, longitude, placeName }: TaxiButtonProps) 
         <p className="text-sm font-semibold text-[var(--color-ink)]">
           Yandex Go orqali borish
         </p>
-        <p className="mt-0.5 truncate text-xs text-black/50">
+        <p className="mt-0.5 truncate text-xs text-[var(--color-ink)]/50">
           {placeName} • Taxi buyurtma qilish
         </p>
       </div>

@@ -46,7 +46,7 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
         </div>
         <Link
           href={`/${locale}/admin/places`}
-          className="rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
         >
           ← Joylar ro&apos;yxati
         </Link>
@@ -76,7 +76,7 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
               <select
                 name="regionSlug"
                 required
-                className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
+                className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
               >
                 <option value="">— tanlang —</option>
                 {regions.map((region) => (
@@ -95,9 +95,9 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
                 type="text"
                 name="categorySlugs"
                 placeholder="masalan: historical,nature"
-                className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
+                className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
               />
-              <p className="mt-1 text-xs text-black/50">
+              <p className="mt-1 text-xs text-[var(--color-ink)]/50">
                 Mavjud: {categories.map((c) => c.slug).join(", ")}
               </p>
             </div>
@@ -197,7 +197,7 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
           </button>
           <Link
             href={`/${locale}/admin/places`}
-            className="h-12 rounded-full border border-black/10 px-6 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] inline-flex items-center"
+            className="h-12 rounded-full border border-[var(--color-ink)]/10 px-6 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] inline-flex items-center"
           >
             Bekor qilish
           </Link>
@@ -226,7 +226,7 @@ function TextField({
         name={name}
         placeholder={placeholder}
         required={required}
-        className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
+        className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
       />
     </label>
   );
@@ -251,7 +251,7 @@ function TextareaField({
         placeholder={placeholder}
         required={required}
         rows={3}
-        className="w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 py-3 outline-none focus:border-[var(--color-sky)] resize-none"
+        className="w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 py-3 outline-none focus:border-[var(--color-sky)] resize-none"
       />
     </label>
   );

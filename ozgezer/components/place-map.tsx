@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 const MapComponent = dynamic(() => import("./map/map"), {
   ssr: false,
   loading: () => (
-    <div className="flex h-full w-full items-center justify-center rounded-[1.75rem] border border-black/10 bg-[var(--color-mist)]">
+    <div className="flex h-full w-full items-center justify-center rounded-[1.75rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)]">
       <div className="h-6 w-6 animate-spin rounded-full border-2 border-[var(--color-sky)] border-t-transparent"></div>
     </div>
   ),

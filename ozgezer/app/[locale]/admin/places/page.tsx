@@ -50,7 +50,7 @@ export default async function AdminPlacesPage({
   const statusColor: Record<string, string> = {
     DRAFT: "text-amber-600 bg-amber-50 border-amber-200",
     PUBLISHED: "text-emerald-700 bg-emerald-50 border-emerald-200",
-    ARCHIVED: "text-black/40 bg-black/5 border-black/10",
+    ARCHIVED: "text-[var(--color-ink)]/40 bg-black/5 border-[var(--color-ink)]/10",
   };
 
   return (
@@ -63,14 +63,14 @@ export default async function AdminPlacesPage({
           <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             Place management
           </h1>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-black/70">
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--color-ink)]/70">
             Barcha joylar — qoralama, chop etilgan va arxivlangan. Yangi joy qo&apos;shish, tahrirlash, o&apos;chirish va nashr qilish shu yerda.
           </p>
         </div>
         <div className="flex gap-3">
           <Link
             href={`/${locale}/admin`}
-            className="rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+            className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
           >
             Dashboard
           </Link>
@@ -116,17 +116,17 @@ export default async function AdminPlacesPage({
       ) : null}
 
       <div className="section-card rounded-[1.75rem] overflow-hidden">
-        <div className="p-6 border-b border-black/6">
+        <div className="p-6 border-b border-[var(--color-ink)]/6">
           <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky)]">
             Joylar ro&apos;yxati
           </p>
-          <p className="mt-1 text-sm text-black/60">
+          <p className="mt-1 text-sm text-[var(--color-ink)]/60">
             Jami: <strong>{places.length}</strong> ta joy
           </p>
         </div>
 
         {places.length === 0 ? (
-          <div className="p-10 text-center text-sm text-black/50">
+          <div className="p-10 text-center text-sm text-[var(--color-ink)]/50">
             Hali hech qanday joy qo&apos;shilmagan.{" "}
             {canManage && (
               <Link href={`/${locale}/admin/places/new`} className="text-[var(--color-sky)] underline">
@@ -152,10 +152,10 @@ export default async function AdminPlacesPage({
                       {statusLabel[place.status] ?? place.status}
                     </span>
                   </div>
-                  <p className="mt-0.5 text-sm text-black/55">
+                  <p className="mt-0.5 text-sm text-[var(--color-ink)]/55">
                     {place.regionName.uz} · {place.categorySlugs.join(", ") || "—"}
                   </p>
-                  <p className="mt-0.5 text-xs text-black/40">
+                  <p className="mt-0.5 text-xs text-[var(--color-ink)]/40">
                     {place.latitude}, {place.longitude}
                   </p>
                 </div>
@@ -163,7 +163,7 @@ export default async function AdminPlacesPage({
                 <div className="flex flex-wrap gap-2">
                   <Link
                     href={`/${locale}/admin/places/${place.slug}`}
-                    className="rounded-full border border-black/10 px-3 py-1.5 text-xs font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+                    className="rounded-full border border-[var(--color-ink)]/10 px-3 py-1.5 text-xs font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
                   >
                     Tahrirlash
                   </Link>

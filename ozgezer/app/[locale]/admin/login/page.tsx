@@ -24,12 +24,12 @@ export default async function AdminLoginPage({
 
   return (
     <section className="container-shell py-10 pb-14">
-      <div className="mx-auto max-w-2xl rounded-[2rem] border border-black/8 bg-white/80 p-8 shadow-[0_20px_60px_rgba(17,32,49,0.08)]">
+      <div className="mx-auto max-w-2xl rounded-[2rem] border border-[var(--color-ink)]/8 bg-white/80 p-8 shadow-[0_20px_60px_rgba(17,32,49,0.08)]">
         <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-teal)]">Admin only</p>
         <h1 className="display-title mt-3 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
           {messages.admin.loginTitle}
         </h1>
-        <p className="mt-4 text-sm leading-7 text-black/70">{messages.admin.loginDescription}</p>
+        <p className="mt-4 text-sm leading-7 text-[var(--color-ink)]/70">{messages.admin.loginDescription}</p>
 
         {!isConfigured || query.setup ? (
           <div className="mt-6 rounded-[1.5rem] border border-amber-200/60 bg-amber-50 p-5 text-sm leading-7 text-[var(--color-ink)]">
@@ -53,7 +53,7 @@ export default async function AdminLoginPage({
               type="email"
               name="email"
               required
-              className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
+              className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
             />
           </label>
           <label className="block">
@@ -64,7 +64,7 @@ export default async function AdminLoginPage({
               type="password"
               name="password"
               required
-              className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
+              className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
             />
           </label>
           <button

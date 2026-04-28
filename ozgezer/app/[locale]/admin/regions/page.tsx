@@ -46,14 +46,14 @@ export default async function AdminRegionsPage({
           <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             Region management
           </h1>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-black/70">
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--color-ink)]/70">
             Hozircha faqat siz belgilagan 5 ta region bilan ishlayapmiz. Yangi region qo&apos;shish
             va olib tashlash huquqi faqat admin sessiyasida.
           </p>
         </div>
         <Link
           href={`/${locale}/admin`}
-          className="rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
         >
           Dashboard
         </Link>
@@ -99,7 +99,7 @@ export default async function AdminRegionsPage({
                   <p className="text-lg font-semibold text-[var(--color-ink)]">
                     {region.name[locale]}
                   </p>
-                  <p className="mt-1 text-sm text-black/60">{region.focus[locale]}</p>
+                  <p className="mt-1 text-sm text-[var(--color-ink)]/60">{region.focus[locale]}</p>
                 </div>
                 <form action="/api/admin/regions/delete" method="post">
                   <input type="hidden" name="locale" value={locale} />
@@ -164,7 +164,7 @@ function Field({
         name={name}
         required
         placeholder={placeholder}
-        className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
+        className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
       />
     </label>
   );

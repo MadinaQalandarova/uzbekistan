@@ -33,13 +33,13 @@ export default async function AdminReviewsPage({ params, searchParams }: AdminRe
           <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             Izohlar moderatsiyasi
           </h1>
-          <p className="mt-3 text-sm text-black/60">
+          <p className="mt-3 text-sm text-[var(--color-ink)]/60">
             Kutayotgan izohlar: <strong>{reviews.length}</strong> ta
           </p>
         </div>
         <Link
           href={`/${locale}/admin`}
-          className="rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
         >
           ← Dashboard
         </Link>
@@ -62,7 +62,7 @@ export default async function AdminReviewsPage({ params, searchParams }: AdminRe
       )}
 
       {reviews.length === 0 ? (
-        <div className="section-card rounded-[1.75rem] p-10 text-center text-sm text-black/50">
+        <div className="section-card rounded-[1.75rem] p-10 text-center text-sm text-[var(--color-ink)]/50">
           Kutayotgan izoh yo&apos;q. Hammasi tartibda ✓
         </div>
       ) : (
@@ -74,9 +74,9 @@ export default async function AdminReviewsPage({ params, searchParams }: AdminRe
                   <div className="flex flex-wrap items-center gap-3">
                     <p className="font-semibold text-[var(--color-ink)]">
                       {review.userName ?? "Anonim"}{" "}
-                      <span className="text-sm font-normal text-black/50">({review.userEmail})</span>
+                      <span className="text-sm font-normal text-[var(--color-ink)]/50">({review.userEmail})</span>
                     </p>
-                    <span className="rounded-full border border-black/10 px-2 py-0.5 text-xs text-black/60">
+                    <span className="rounded-full border border-[var(--color-ink)]/10 px-2 py-0.5 text-xs text-[var(--color-ink)]/60">
                       {review.placeName}
                     </span>
                     <div className="flex gap-0.5">
@@ -86,16 +86,16 @@ export default async function AdminReviewsPage({ params, searchParams }: AdminRe
                           size={13}
                           strokeWidth={0}
                           fill={i < review.rating ? "#F59E0B" : "currentColor"}
-                          className={i < review.rating ? "" : "text-black/20"}
+                          className={i < review.rating ? "" : "text-[var(--color-ink)]/20"}
                         />
                       ))}
                     </div>
                   </div>
-                  <p className="mt-1 text-xs text-black/45">
+                  <p className="mt-1 text-xs text-[var(--color-ink)]/45">
                     {review.wouldRecommend ? "✓ Tavsiya qiladi" : "✗ Tavsiya etmaydi"} ·{" "}
                     {new Date(review.createdAt).toLocaleDateString("uz-UZ")}
                   </p>
-                  <p className="mt-3 text-sm leading-6 text-black/75">{review.comment}</p>
+                  <p className="mt-3 text-sm leading-6 text-[var(--color-ink)]/75">{review.comment}</p>
                 </div>
 
                 <div className="flex gap-2 shrink-0">

@@ -17,16 +17,16 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
   const quote = story?.quote[locale] ?? null;
 
   return (
-    <article className="section-card card-rise overflow-hidden rounded-[1.75rem]">
+    <article className="section-card card-rise group flex flex-col overflow-hidden rounded-[1.75rem]">
       {/* Banner — real rasm yoki gradient */}
-      <div className="relative h-44 overflow-hidden">
+      <div className="relative h-52 overflow-hidden">
         {imageUrl ? (
           <>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageUrl}
               alt={place.name[locale]}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
           </>
@@ -35,7 +35,7 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
         )}
       </div>
 
-      <div className="space-y-3 p-5">
+      <div className="flex flex-1 flex-col space-y-3 p-5">
         <div className="flex items-center justify-between gap-4">
           <p className="rounded-full bg-[var(--color-sky)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-sky)]">
             {place.regionName[locale]}
@@ -51,11 +51,11 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
           {place.name[locale]}
         </h3>
         {quote ? (
-          <p className="line-clamp-2 font-serif text-sm italic leading-6 text-black/55">
+          <p className="line-clamp-2 font-serif text-sm italic leading-6 text-[var(--color-ink)]/55">
             &ldquo;{quote}&rdquo;
           </p>
         ) : (
-          <p className="line-clamp-2 text-sm leading-6 text-black/60">
+          <p className="line-clamp-2 text-sm leading-6 text-[var(--color-ink)]/60">
             {place.description[locale]}
           </p>
         )}
@@ -63,7 +63,7 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
           {place.categoryTitles.slice(0, 2).map((category) => (
             <span
               key={`${place.slug}-${category[locale]}`}
-              className="rounded-full border border-black/8 bg-[var(--color-mist)] px-2.5 py-0.5 text-xs font-medium text-[var(--color-ink)]"
+              className="rounded-full border border-[var(--color-ink)]/8 bg-[var(--color-mist)] px-2.5 py-0.5 text-xs font-medium text-[var(--color-ink)]"
             >
               {category[locale]}
             </span>
@@ -71,7 +71,7 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
         </div>
         <Link
           href={`/${locale}/places/${place.slug}`}
-          className="group inline-flex items-center gap-2 rounded-full border border-black/10 bg-transparent px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="mt-auto inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/10 bg-transparent px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
         >
           <span>{ctaLabel}</span>
           <svg

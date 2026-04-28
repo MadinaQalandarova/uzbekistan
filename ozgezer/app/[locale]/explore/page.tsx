@@ -64,10 +64,10 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
           {messages.nav.explore}
         </p>
         <div className="mt-2 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-          <h1 className="display-title text-4xl font-semibold text-[var(--color-ink)] md:text-5xl">
+          <h1 className="display-title text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             {messages.explore.title}
           </h1>
-          <p className="max-w-md text-sm leading-7 text-black/60">
+          <p className="max-w-md text-sm leading-7 text-[var(--color-ink)]/60">
             {messages.explore.description}
           </p>
         </div>
@@ -82,14 +82,14 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
               <Search
                 size={15}
                 strokeWidth={2}
-                className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-black/35"
+                className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-ink)]/35"
               />
               <input
                 type="text"
                 name="q"
                 defaultValue={query.q ?? ""}
                 placeholder={messages.explore.searchPlaceholder}
-                className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] pl-10 pr-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10 placeholder:text-black/35"
+                className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] pl-10 pr-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10 placeholder:text-[var(--color-ink)]/35"
               />
             </div>
 
@@ -97,7 +97,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
             <select
               name="region"
               defaultValue={query.region ?? ""}
-              className="h-12 rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] min-w-[160px]"
+              className="h-12 rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] min-w-[160px]"
             >
               <option value="">{messages.explore.allRegions}</option>
               {regions.map((region) => (
@@ -111,7 +111,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
             <select
               name="category"
               defaultValue={query.category ?? ""}
-              className="h-12 rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] min-w-[160px]"
+              className="h-12 rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] min-w-[160px]"
             >
               <option value="">{messages.explore.allCategories}</option>
               {categories.map((category) => (
@@ -165,7 +165,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
           {hasFilters && (
             <Link
               href={`/${locale}/explore`}
-              className="ml-auto flex items-center gap-1.5 rounded-full border border-black/10 px-3.5 py-1.5 text-xs font-semibold text-black/55 transition hover:border-red-300 hover:text-red-500"
+              className="ml-auto flex items-center gap-1.5 rounded-full border border-[var(--color-ink)]/10 px-3.5 py-1.5 text-xs font-semibold text-[var(--color-ink)]/55 transition hover:border-red-300 hover:text-red-500"
             >
               <X size={12} strokeWidth={2.5} />
               {messages.explore.resetFilters}
@@ -190,7 +190,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
         ) : (
           <div className="section-card flex flex-col items-center gap-4 rounded-[1.75rem] px-8 py-16 text-center">
             <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-mist)]">
-              <Search size={28} strokeWidth={1.5} className="text-black/30" />
+              <Search size={28} strokeWidth={1.5} className="text-[var(--color-ink)]/30" />
             </div>
             <div>
               <p className="font-semibold text-[var(--color-ink)]">{messages.explore.noResults}</p>

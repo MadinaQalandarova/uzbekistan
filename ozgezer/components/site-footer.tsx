@@ -12,7 +12,7 @@ export function SiteFooter({ locale, description }: SiteFooterProps) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="footer-surface border-t border-black/5">
+    <footer className="footer-surface border-t border-[var(--color-ink)]/5">
       <div className="container-shell py-10">
         <div className="grid gap-8 md:grid-cols-[1fr_auto]">
           {/* Brand */}
@@ -25,12 +25,12 @@ export function SiteFooter({ locale, description }: SiteFooterProps) {
                 <p className="display-title text-lg font-semibold tracking-[0.06em] text-[var(--color-ink)]">
                   O&apos;zGezer
                 </p>
-                <p className="text-[9px] uppercase tracking-[0.24em] text-black/40">
+                <p className="text-[9px] uppercase tracking-[0.24em] text-[var(--color-ink)]/40">
                   Travel Atlas
                 </p>
               </div>
             </Link>
-            <p className="mt-4 text-sm leading-7 text-black/55">{description}</p>
+            <p className="mt-4 text-sm leading-7 text-[var(--color-ink)]/55">{description}</p>
           </div>
 
           {/* Nav links */}
@@ -48,8 +48,8 @@ export function SiteFooter({ locale, description }: SiteFooterProps) {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-black/6 pt-6 text-xs text-black/40 md:flex-row">
-          <p>© {year} O&apos;zGezer. Barcha huquqlar himoyalangan.</p>
+        <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-[var(--color-ink)]/6 pt-6 text-xs text-[var(--color-ink)]/40 md:flex-row">
+          <p>© {year} O&apos;zGezer. {locale === "ru" ? "Все права защищены." : locale === "en" ? "All rights reserved." : "Barcha huquqlar himoyalangan."}</p>
           <div className="flex gap-1">
             {(["uz", "ru", "en"] as const).map((value) => (
               <Link
@@ -58,7 +58,7 @@ export function SiteFooter({ locale, description }: SiteFooterProps) {
                 className={`rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] transition ${
                   value === locale
                     ? "bg-[var(--color-sky)] text-white"
-                    : "text-black/40 hover:text-[var(--color-sky)]"
+                    : "text-[var(--color-ink)]/40 hover:text-[var(--color-sky)]"
                 }`}
               >
                 {value.toUpperCase()}
@@ -83,7 +83,7 @@ function FooterLink({
   return (
     <Link
       href={href}
-      className="flex items-center gap-2 text-sm text-black/55 transition hover:text-[var(--color-sky)]"
+      className="flex items-center gap-2 text-sm text-[var(--color-ink)]/55 transition hover:text-[var(--color-sky)]"
     >
       <span className="text-[var(--color-sky)]/60">{icon}</span>
       {children}

@@ -41,7 +41,7 @@ export default async function AdminPage({ params }: AdminPageProps) {
           <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             {messages.admin.dashboardTitle}
           </h1>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-black/70">
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--color-ink)]/70">
             {messages.admin.dashboardDescription}
           </p>
         </div>
@@ -49,7 +49,7 @@ export default async function AdminPage({ params }: AdminPageProps) {
           <input type="hidden" name="locale" value={locale} />
           <button
             type="submit"
-            className="rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+            className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
           >
             {messages.admin.signOut}
           </button>
@@ -61,17 +61,17 @@ export default async function AdminPage({ params }: AdminPageProps) {
           <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">
             {messages.admin.policyTitle}
           </p>
-          <p className="mt-4 text-sm leading-7 text-black/70">
+          <p className="mt-4 text-sm leading-7 text-[var(--color-ink)]/70">
             {messages.admin.policyDescription}
           </p>
           <div className="mt-6 rounded-[1.5rem] bg-[var(--color-mist)] p-5">
-            <p className="text-sm leading-7 text-black/70">
+            <p className="text-sm leading-7 text-[var(--color-ink)]/70">
               Admin session: <span className="font-semibold text-[var(--color-ink)]">{session.email}</span>
             </p>
           </div>
         </article>
 
-        <article className="rounded-[1.75rem] border border-black/8 bg-[var(--color-ink)] p-6 text-white">
+        <article className="rounded-[1.75rem] border border-[var(--color-ink)]/8 bg-[var(--color-ink)] p-6 text-white">
           <p className="text-sm uppercase tracking-[0.28em] text-white/55">Current scope</p>
           <h2 className="display-title mt-3 text-3xl font-semibold">
             Keyingi qadamda shu dashboard orqali real CRUD ulaymiz
@@ -115,7 +115,7 @@ export default async function AdminPage({ params }: AdminPageProps) {
           </div>
           <Link
             href={`/${locale}/regions`}
-            className="rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+            className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
           >
             Public ko&apos;rinishni ochish
           </Link>
@@ -125,7 +125,7 @@ export default async function AdminPage({ params }: AdminPageProps) {
           {regions.map((region) => (
             <div key={region.slug} className="rounded-[1.25rem] bg-[var(--color-mist)] p-4">
               <p className="text-lg font-semibold text-[var(--color-ink)]">{region.name[locale]}</p>
-              <p className="mt-2 text-sm leading-7 text-black/65">{region.focus[locale]}</p>
+              <p className="mt-2 text-sm leading-7 text-[var(--color-ink)]/65">{region.focus[locale]}</p>
             </div>
           ))}
         </div>

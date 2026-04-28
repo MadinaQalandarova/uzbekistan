@@ -76,7 +76,7 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
         onClick={() => setOpen(true)}
         aria-label="Menyuni ochish"
         aria-expanded={open}
-        className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-black/10 bg-white/80 text-[var(--color-ink)] shadow-sm transition hover:bg-[var(--color-mist)] lg:hidden"
+        className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-[var(--color-ink)]/10 bg-white/80 text-[var(--color-ink)] shadow-sm transition hover:bg-[var(--color-mist)] lg:hidden"
       >
         <Menu size={18} strokeWidth={2.2} />
       </button>
@@ -108,7 +108,7 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
             }`}
           >
             {/* ── Drawer header ── */}
-            <div className="flex flex-shrink-0 items-center justify-between border-b border-black/6 px-5 py-4">
+            <div className="flex flex-shrink-0 items-center justify-between border-b border-[var(--color-ink)]/6 px-5 py-4">
               <div className="flex items-center gap-2.5">
                 <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-sky)] to-[var(--color-teal)]">
                   <Globe size={15} className="text-white" strokeWidth={2} />
@@ -120,7 +120,7 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
               <button
                 onClick={close}
                 aria-label="Menyuni yopish"
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-black/10 text-black/40 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-ink)]"
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-ink)]/10 text-[var(--color-ink)]/40 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-ink)]"
               >
                 <X size={15} strokeWidth={2.5} />
               </button>
@@ -141,11 +141,11 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
                 </NavLink>
               </nav>
 
-              <div className="mx-4 border-t border-black/6" />
+              <div className="mx-4 border-t border-[var(--color-ink)]/6" />
 
               {/* Locale switcher */}
               <div className="px-5 py-4">
-                <p className="mb-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/35">
+                <p className="mb-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-ink)]/35">
                   Til / Language
                 </p>
                 <div className="flex gap-2">
@@ -157,7 +157,7 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
                       className={`flex-1 rounded-xl py-2.5 text-center text-xs font-semibold uppercase tracking-[0.18em] transition ${
                         value === locale
                           ? "bg-[var(--color-sky)] text-white shadow-sm"
-                          : "border border-black/10 text-black/50 hover:border-[var(--color-sky)]/50 hover:text-[var(--color-sky)]"
+                          : "border border-[var(--color-ink)]/10 text-[var(--color-ink)]/50 hover:border-[var(--color-sky)]/50 hover:text-[var(--color-sky)]"
                       }`}
                     >
                       {value}
@@ -168,13 +168,13 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
             </div>
 
             {/* ── Auth — pinned bottom ── */}
-            <div className="flex-shrink-0 border-t border-black/6 px-4 py-4">
+            <div className="flex-shrink-0 border-t border-[var(--color-ink)]/6 px-4 py-4">
               {user ? (
                 <div className="space-y-2">
                   <Link
                     href={`/${locale}/profile`}
                     onClick={close}
-                    className="flex items-center gap-3 rounded-[1.25rem] border border-black/8 bg-[var(--color-mist)] px-4 py-3 transition hover:border-[var(--color-sky)]/40"
+                    className="flex items-center gap-3 rounded-[1.25rem] border border-[var(--color-ink)]/8 bg-[var(--color-mist)] px-4 py-3 transition hover:border-[var(--color-sky)]/40"
                   >
                     <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-sky)]">
                       <User size={14} className="text-white" strokeWidth={2.5} />
@@ -183,14 +183,14 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
                       <p className="truncate text-sm font-semibold text-[var(--color-ink)]">
                         {user.name ?? user.email.split("@")[0]}
                       </p>
-                      <p className="truncate text-[10px] text-black/40">{user.email}</p>
+                      <p className="truncate text-[10px] text-[var(--color-ink)]/40">{user.email}</p>
                     </div>
                   </Link>
                   <form action="/api/auth/logout" method="post">
                     <input type="hidden" name="locale" value={locale} />
                     <button
                       type="submit"
-                      className="flex w-full items-center gap-2 rounded-[1.25rem] border border-black/8 px-4 py-2.5 text-sm font-semibold text-black/50 transition hover:border-red-300 hover:text-red-500"
+                      className="flex w-full items-center gap-2 rounded-[1.25rem] border border-[var(--color-ink)]/8 px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)]/50 transition hover:border-red-300 hover:text-red-500"
                     >
                       <LogOut size={13} strokeWidth={2} />
                       Chiqish
@@ -230,7 +230,7 @@ function NavLink({
     <Link
       href={href}
       onClick={onClick}
-      className="flex items-center gap-3 rounded-[1.25rem] px-4 py-3 text-sm font-medium text-black/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"
+      className="flex items-center gap-3 rounded-[1.25rem] px-4 py-3 text-sm font-medium text-[var(--color-ink)]/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"
     >
       <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]">
         {icon}

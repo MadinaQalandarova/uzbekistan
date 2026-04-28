@@ -71,7 +71,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
         <div className="flex items-center justify-between gap-4">
           <Link
             href={`/${locale}/explore`}
-            className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
           >
             <ArrowLeft size={14} strokeWidth={2.2} />
             {messages.place.backToExplore}
@@ -86,7 +86,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                 className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition ${
                   isSaved
                     ? "border-[var(--color-gold)] bg-amber-50 text-[var(--color-gold)]"
-                    : "border-black/10 text-black/60 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+                    : "border-[var(--color-ink)]/10 text-[var(--color-ink)]/60 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
                 }`}
               >
                 {isSaved ? (
@@ -123,7 +123,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
           {/* Left column: hero + map */}
           <article className="section-card overflow-hidden rounded-[2rem]">
             {/* Hero banner — rasm yoki gradient */}
-            <div className="relative min-h-[15rem] bg-[linear-gradient(140deg,#2D6B6B_0%,#5B8A6E_55%,#F59E0B_100%)]">
+            <div className="relative min-h-[22rem] bg-[linear-gradient(140deg,#2D6B6B_0%,#5B8A6E_55%,#F59E0B_100%)]">
               {imageUrl && (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -139,7 +139,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
               )}
 
-              <div className="relative flex h-full min-h-[15rem] flex-col justify-start p-6">
+              <div className="relative flex h-full min-h-[22rem] flex-col justify-start p-6">
                 {/* Kategoriya chiplari — yuqorida */}
                 <div className="flex flex-wrap gap-2">
                   {place.categoryTitles.map((category) => (
@@ -164,15 +164,15 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
               </h1>
               {story && (
                 <blockquote className="border-l-2 border-[var(--color-sky)]/40 pl-4">
-                  <p className="font-serif text-base italic leading-7 text-black/55">
+                  <p className="font-serif text-base italic leading-7 text-[var(--color-ink)]/55">
                     &ldquo;{story.quote[locale as "uz" | "ru" | "en"] ?? story.quote.uz}&rdquo;
                   </p>
                 </blockquote>
               )}
-              <p className="text-sm leading-7 text-black/65">{place.description[locale]}</p>
+              <p className="text-sm leading-7 text-[var(--color-ink)]/65">{place.description[locale]}</p>
 
-              <div className="border-t border-black/6 pt-5">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-black/40">
+              <div className="border-t border-[var(--color-ink)]/6 pt-5">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]/40">
                   Xarita
                 </p>
                 <PlaceMap
@@ -245,7 +245,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-2.5">
                     <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--color-mist)]">
-                      <User size={14} strokeWidth={2} className="text-black/40" />
+                      <User size={14} strokeWidth={2} className="text-[var(--color-ink)]/40" />
                     </div>
                     <p className="text-sm font-semibold text-[var(--color-ink)]">
                       {review.userName ?? "Anonim"}
@@ -279,7 +279,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                   )}
                 </div>
 
-                <p className="mt-3 text-sm leading-6 text-black/65">{review.comment}</p>
+                <p className="mt-3 text-sm leading-6 text-[var(--color-ink)]/65">{review.comment}</p>
               </div>
             ))}
           </div>
@@ -291,7 +291,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
         <section className="container-shell pb-10">
           <div className="section-card rounded-[2rem] overflow-hidden">
             {/* Section header */}
-            <div className="border-b border-black/6 px-6 py-5 md:px-8">
+            <div className="border-b border-[var(--color-ink)]/6 px-6 py-5 md:px-8">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
                 Batafsil ma&apos;lumot
               </p>
@@ -319,7 +319,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                             {fact.title}
                           </p>
                         </div>
-                        <p className="pl-4 text-sm leading-7 text-black/65">{fact.body}</p>
+                        <p className="pl-4 text-sm leading-7 text-[var(--color-ink)]/65">{fact.body}</p>
                       </div>
                     ))}
                   </div>
@@ -355,7 +355,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-[1.25rem] bg-[var(--color-mist)] p-4">
-      <p className="text-xs uppercase tracking-[0.24em] text-black/45">{label}</p>
+      <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-ink)]/45">{label}</p>
       <p className="mt-2 text-sm font-semibold text-[var(--color-ink)]">{value}</p>
     </div>
   );

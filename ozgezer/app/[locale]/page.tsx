@@ -76,7 +76,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
   return (
     <div className="py-8">
       <section className="container-shell py-4 md:py-8">
-        <div className="uzbek-hero relative overflow-hidden rounded-[2rem] border border-black/8 px-5 py-8 md:px-10 md:py-14">
+        <div className="uzbek-hero relative overflow-hidden rounded-[2rem] border border-[var(--color-ink)]/8 px-5 py-8 md:px-10 md:py-14">
 
           <div className="fade-up grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div className="space-y-5 md:space-y-7">
@@ -92,7 +92,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                   {messages.home.title}
                   <span className="text-[var(--color-sky)]">{messages.home.titleAccent}</span>
                 </h1>
-                <p className="max-w-lg text-xs leading-6 text-black/60 sm:text-sm sm:leading-7">
+                <p className="max-w-lg text-xs leading-6 text-[var(--color-ink)]/60 sm:text-sm sm:leading-7">
                   {messages.home.description}
                 </p>
               </div>
@@ -113,15 +113,15 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
               <div className="flex gap-3 lg:hidden">
                 <div className="flex-1 rounded-[1rem] bg-[var(--color-sky)]/10 px-3 py-2.5 text-center">
                   <p className="text-lg font-semibold text-[var(--color-sky)]">{regions.length}</p>
-                  <p className="text-[10px] text-black/50">{messages.home.statsRegions}</p>
+                  <p className="text-[10px] text-[var(--color-ink)]/50">{messages.home.statsRegions}</p>
                 </div>
                 <div className="flex-1 rounded-[1rem] bg-[var(--color-teal)]/10 px-3 py-2.5 text-center">
                   <p className="text-lg font-semibold text-[var(--color-teal)]">{featuredPlaces.length}+</p>
-                  <p className="text-[10px] text-black/50">{messages.home.statsPlaces}</p>
+                  <p className="text-[10px] text-[var(--color-ink)]/50">{messages.home.statsPlaces}</p>
                 </div>
                 <div className="flex-1 rounded-[1rem] bg-[var(--color-gold)]/10 px-3 py-2.5 text-center">
                   <p className="text-lg font-semibold text-[var(--color-gold)]">{categories.length}</p>
-                  <p className="text-[10px] text-black/50">{messages.home.statsCategories}</p>
+                  <p className="text-[10px] text-[var(--color-ink)]/50">{messages.home.statsCategories}</p>
                 </div>
               </div>
             </div>
@@ -171,7 +171,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
           </div>
           <Link
             href={`/${locale}/explore`}
-            className="hidden shrink-0 rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] md:block"
+            className="hidden shrink-0 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] md:block"
           >
             {messages.home.seeAllPlaces}
           </Link>
@@ -241,7 +241,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
           </div>
           <Link
             href={`/${locale}/explore`}
-            className="hidden shrink-0 rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] md:block"
+            className="hidden shrink-0 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] md:block"
           >
             {messages.home.seeAllPlaces}
           </Link>
@@ -270,7 +270,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                 {messages.home.regionsTitle}
               </h2>
             </div>
-            <p className="max-w-xl text-sm leading-7 text-black/60">
+            <p className="max-w-xl text-sm leading-7 text-[var(--color-ink)]/60">
               {messages.home.regionsDescription}
             </p>
           </div>
@@ -280,10 +280,10 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
               <Link
                 key={region.slug}
                 href={`/${locale}/regions/${region.slug}`}
-                className="card-rise rounded-[1.2rem] border border-black/8 bg-[var(--color-mist)] px-4 py-4 text-left"
+                className="card-rise rounded-[1.2rem] border border-[var(--color-ink)]/8 bg-[var(--color-mist)] px-4 py-4 text-left"
               >
                 <p className="text-sm font-semibold text-[var(--color-ink)]">{region.name[locale]}</p>
-                <p className="mt-2 text-xs leading-6 text-black/55">{region.focus[locale]}</p>
+                <p className="mt-2 text-xs leading-6 text-[var(--color-ink)]/55">{region.focus[locale]}</p>
               </Link>
             ))}
           </div>

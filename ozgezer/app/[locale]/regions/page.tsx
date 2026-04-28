@@ -26,7 +26,7 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
         <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">
           {messages.regions.title}
         </p>
-        <h1 className="display-title mt-2 text-4xl font-semibold text-[var(--color-ink)] md:text-5xl">
+        <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
           {messages.regions.description}
         </h1>
       </section>
@@ -61,7 +61,7 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
               </p>
 
               {/* Summary */}
-              <p className="mt-3 text-sm leading-7 text-black/65">{region.summary[locale]}</p>
+              <p className="mt-3 text-sm leading-7 text-[var(--color-ink)]/65">{region.summary[locale]}</p>
 
               {/* Highlights */}
               {region.highlights.length > 0 && (
@@ -69,7 +69,7 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
                   {region.highlights.slice(0, 2).map((highlight) => (
                     <li
                       key={highlight[locale]}
-                      className="flex items-start gap-2 text-sm leading-6 text-black/55"
+                      className="flex items-start gap-2 text-sm leading-6 text-[var(--color-ink)]/55"
                     >
                       <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--color-teal)]" />
                       {highlight[locale]}
@@ -81,7 +81,7 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
               {/* CTA */}
               <Link
                 href={`/${locale}/regions/${region.slug}`}
-                className="mt-5 inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+                className="mt-5 inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
               >
                 {messages.regions.exploreRegion}
                 <ArrowRight size={13} strokeWidth={2.2} />

@@ -58,11 +58,11 @@ export default async function EditPlacePage({ params, searchParams }: EditPlaceP
           <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             Joyni tahrirlash
           </h1>
-          <p className="mt-2 text-sm text-black/55">{place.slug}</p>
+          <p className="mt-2 text-sm text-[var(--color-ink)]/55">{place.slug}</p>
         </div>
         <Link
           href={`/${locale}/admin/places`}
-          className="rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
         >
           ← Joylar ro&apos;yxati
         </Link>
@@ -98,7 +98,7 @@ export default async function EditPlacePage({ params, searchParams }: EditPlaceP
                 name="regionSlug"
                 required
                 defaultValue={place.regionSlug}
-                className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
+                className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
               >
                 {regions.map((region) => (
                   <option key={region.slug} value={region.slug}>
@@ -117,9 +117,9 @@ export default async function EditPlacePage({ params, searchParams }: EditPlaceP
                 name="categorySlugs"
                 defaultValue={place.categorySlugs.join(", ")}
                 placeholder="masalan: historical,nature"
-                className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
+                className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
               />
-              <p className="mt-1 text-xs text-black/50">
+              <p className="mt-1 text-xs text-[var(--color-ink)]/50">
                 Mavjud: {categories.map((c) => c.slug).join(", ")}
               </p>
             </div>
@@ -219,7 +219,7 @@ export default async function EditPlacePage({ params, searchParams }: EditPlaceP
           </button>
           <Link
             href={`/${locale}/admin/places`}
-            className="h-12 rounded-full border border-black/10 px-6 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] inline-flex items-center"
+            className="h-12 rounded-full border border-[var(--color-ink)]/10 px-6 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] inline-flex items-center"
           >
             Bekor qilish
           </Link>
@@ -248,7 +248,7 @@ function TextField({
         name={name}
         defaultValue={defaultValue ?? ""}
         required={required}
-        className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
+        className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 outline-none focus:border-[var(--color-sky)]"
       />
     </label>
   );
@@ -273,7 +273,7 @@ function TextareaField({
         defaultValue={defaultValue ?? ""}
         required={required}
         rows={3}
-        className="w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 py-3 outline-none focus:border-[var(--color-sky)] resize-none"
+        className="w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 py-3 outline-none focus:border-[var(--color-sky)] resize-none"
       />
     </label>
   );

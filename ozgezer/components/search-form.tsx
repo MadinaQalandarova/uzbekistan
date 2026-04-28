@@ -70,7 +70,7 @@ export function SearchForm({ locale, regions, labels, examples }: SearchFormProp
       className={`search-form relative rounded-[1.25rem] border bg-white/85 p-2 transition-all duration-300 ${
         isFocused
           ? "border-[var(--color-sky)]/40 shadow-[0_0_0_3px_rgba(45,107,107,0.10)] ring-1 ring-[var(--color-sky)]/15"
-          : "border-black/8 shadow-sm"
+          : "border-[var(--color-ink)]/8 shadow-sm"
       }`}
     >
       {/* Mobile: input + button */}
@@ -79,7 +79,7 @@ export function SearchForm({ locale, regions, labels, examples }: SearchFormProp
           <Search
             size={14}
             strokeWidth={2}
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-black/30"
+            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-ink)]/30"
           />
           <input
             ref={inputRef}
@@ -90,7 +90,7 @@ export function SearchForm({ locale, regions, labels, examples }: SearchFormProp
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             placeholder={placeholder}
-            className="h-11 w-full rounded-[0.875rem] border-0 bg-transparent pl-8 pr-3 text-sm text-[var(--color-ink)] outline-none placeholder:text-black/35"
+            className="h-11 w-full rounded-[0.875rem] border-0 bg-transparent pl-8 pr-3 text-sm text-[var(--color-ink)] outline-none placeholder:text-[var(--color-ink)]/35"
           />
         </div>
         <button
@@ -109,7 +109,7 @@ export function SearchForm({ locale, regions, labels, examples }: SearchFormProp
           <Search
             size={15}
             strokeWidth={2}
-            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-black/30"
+            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-ink)]/30"
           />
           <input
             ref={inputRef}
@@ -120,14 +120,14 @@ export function SearchForm({ locale, regions, labels, examples }: SearchFormProp
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             placeholder={placeholder}
-            className="h-12 w-full rounded-[1rem] border-0 bg-transparent pl-10 pr-4 text-sm text-[var(--color-ink)] outline-none placeholder:text-black/35"
+            className="h-12 w-full rounded-[1rem] border-0 bg-transparent pl-10 pr-4 text-sm text-[var(--color-ink)] outline-none placeholder:text-[var(--color-ink)]/35"
           />
         </div>
 
         <div className="relative">
           <select
             name="region"
-            className="h-12 appearance-none rounded-[1rem] border border-black/8 bg-[var(--color-mist)] pl-4 pr-9 text-sm text-black/65 outline-none transition focus:border-[var(--color-sky)]"
+            className="h-12 appearance-none rounded-[1rem] border border-[var(--color-ink)]/8 bg-[var(--color-mist)] pl-4 pr-9 text-sm text-[var(--color-ink)]/65 outline-none transition focus:border-[var(--color-sky)]"
           >
             <option value="">{labels.regionPlaceholder}</option>
             {regions.map((region) => (
@@ -139,7 +139,7 @@ export function SearchForm({ locale, regions, labels, examples }: SearchFormProp
           <ChevronDown
             size={13}
             strokeWidth={2}
-            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-black/35"
+            className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-ink)]/35"
           />
         </div>
 

@@ -67,7 +67,7 @@ const texts = {
 export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: ReviewFormProps) {
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
-  const [recommend, setRecommend] = useState<boolean | null>(null);
+  const [recommend, setRecommend] = useState<boolean | null>(true);
 
   const t = texts[locale as keyof typeof texts] ?? texts.uz;
 
@@ -75,7 +75,7 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
     return (
       <div className="section-card rounded-[1.75rem] p-6">
         <h3 className="display-title text-xl font-semibold text-[var(--color-ink)]">{t.title}</h3>
-        <p className="mt-3 text-sm text-black/55">{t.loginRequired}</p>
+        <p className="mt-3 text-sm text-[var(--color-ink)]/55">{t.loginRequired}</p>
         <a
           href={`/${locale}/login?next=/places/${placeSlug}`}
           className="mt-4 inline-flex h-11 items-center rounded-full bg-[var(--color-sky)] px-5 text-sm font-semibold text-white shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90"
@@ -101,12 +101,12 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
   return (
     <div className="section-card rounded-[1.75rem] p-6">
       <h3 className="display-title text-xl font-semibold text-[var(--color-ink)]">{t.title}</h3>
-      <p className="mt-1.5 text-sm text-black/55">{t.subtitle}</p>
+      <p className="mt-1.5 text-sm text-[var(--color-ink)]/55">{t.subtitle}</p>
 
       <form action="/api/reviews/submit" method="post" className="mt-5 space-y-4">
         <input type="hidden" name="locale" value={locale} />
         <input type="hidden" name="placeSlug" value={placeSlug} />
-        <input type="hidden" name="wouldRecommend" value={String(recommend ?? true)} />
+        <input type="hidden" name="wouldRecommend" value={String(recommend === null ? true : recommend)} />
         <input type="hidden" name="rating" value={String(rating)} />
 
         {/* Tavsiya tugmalari */}
@@ -117,7 +117,7 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
             className={`flex flex-1 items-center justify-center gap-2 rounded-[1.2rem] border py-3 text-sm font-semibold transition-all ${
               recommend === true
                 ? "border-[var(--color-teal)] bg-[var(--color-teal)] text-white shadow-md"
-                : "border-black/10 bg-[var(--color-mist)] text-black/60 hover:border-[var(--color-teal)] hover:text-[var(--color-teal)]"
+                : "border-[var(--color-ink)]/10 bg-[var(--color-mist)] text-[var(--color-ink)]/60 hover:border-[var(--color-teal)] hover:text-[var(--color-teal)]"
             }`}
           >
             <ThumbsUp size={15} strokeWidth={2} />
@@ -129,7 +129,7 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
             className={`flex flex-1 items-center justify-center gap-2 rounded-[1.2rem] border py-3 text-sm font-semibold transition-all ${
               recommend === false
                 ? "border-red-500 bg-red-500 text-white shadow-md"
-                : "border-black/10 bg-[var(--color-mist)] text-black/60 hover:border-red-400 hover:text-red-500"
+                : "border-[var(--color-ink)]/10 bg-[var(--color-mist)] text-[var(--color-ink)]/60 hover:border-red-400 hover:text-red-500"
             }`}
           >
             <ThumbsDown size={15} strokeWidth={2} />
@@ -139,7 +139,7 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
 
         {/* Yulduz baho */}
         <div>
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-black/40">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]/40">
             {t.rating}
           </p>
           <div className="flex gap-1.5">
@@ -155,14 +155,14 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
                   className={`flex h-11 w-11 items-center justify-center rounded-xl border transition-all ${
                     filled
                       ? "border-[var(--color-gold)] bg-[var(--color-gold)]/10 scale-110"
-                      : "border-black/10 bg-[var(--color-mist)] opacity-50 hover:opacity-80"
+                      : "border-[var(--color-ink)]/10 bg-[var(--color-mist)] opacity-50 hover:opacity-80"
                   }`}
                 >
                   <Star
                     size={18}
                     strokeWidth={filled ? 0 : 1.5}
                     fill={filled ? "#F59E0B" : "currentColor"}
-                    className={filled ? "" : "text-black/20"}
+                    className={filled ? "" : "text-[var(--color-ink)]/20"}
                   />
                 </button>
               );
@@ -176,7 +176,7 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
           required
           rows={4}
           placeholder={t.comment}
-          className="w-full resize-none rounded-[1.2rem] border border-black/10 bg-[var(--color-mist)] p-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10 placeholder:text-black/35"
+          className="w-full resize-none rounded-[1.2rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] p-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10 placeholder:text-[var(--color-ink)]/35"
         />
 
         <button

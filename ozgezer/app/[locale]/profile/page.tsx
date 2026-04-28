@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
+import { Bookmark, LogOut, User } from "lucide-react";
 
 import { PlaceCard } from "@/components/place-card";
 import { getUserSavedPlaces } from "@/lib/data/catalog-service";
@@ -22,47 +23,87 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const messages = getMessages(locale);
   const savedPlaces = await getUserSavedPlaces(session.userId);
 
+  const displayName = session.name ?? session.email.split("@")[0];
+  const initials = displayName.slice(0, 2).toUpperCase();
+
   return (
-    <section className="container-shell py-10 pb-14">
-      <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-teal)]">
-            Profil
+    <div className="py-8">
+      {/* Profile hero */}
+      <section className="container-shell pb-6">
+        <div className="section-card rounded-[2rem] p-6 md:p-8">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-4">
+              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--color-sky)] to-[var(--color-teal)] shadow-lg shadow-[var(--color-sky)]/20">
+                <span className="display-title text-xl font-semibold text-white">{initials}</span>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-teal)]">
+                  {locale === "ru" ? "Профиль" : locale === "en" ? "Profile" : "Profil"}
+                </p>
+                <h1 className="display-title mt-0.5 text-2xl font-semibold text-[var(--color-ink)]">
+                  {displayName}
+                </h1>
+                <p className="mt-0.5 text-sm text-[var(--color-ink)]/50">{session.email}</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <div className="rounded-[1.2rem] bg-[var(--color-sky)]/10 px-4 py-3 text-center">
+                <p className="text-xl font-semibold text-[var(--color-sky)]">{savedPlaces.length}</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink)]/45">
+                  {locale === "ru" ? "Сохранено" : locale === "en" ? "Saved" : "Saqlangan"}
+                </p>
+              </div>
+              <form action="/api/auth/logout" method="post">
+                <input type="hidden" name="locale" value={locale} />
+                <button
+                  type="submit"
+                  className="flex items-center gap-2 rounded-[1.2rem] border border-[var(--color-ink)]/10 px-4 py-3 text-sm font-semibold text-[var(--color-ink)]/60 transition hover:border-red-300 hover:bg-red-50 hover:text-red-500"
+                >
+                  <LogOut size={14} strokeWidth={2} />
+                  {locale === "ru" ? "Выйти" : locale === "en" ? "Sign out" : "Chiqish"}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Saved places */}
+      <section className="container-shell pb-14">
+        <div className="mb-5 flex items-center gap-2">
+          <Bookmark size={15} strokeWidth={2} className="text-[var(--color-gold)]" />
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
+            {locale === "ru" ? "Сохранённые места" : locale === "en" ? "Saved places" : "Saqlangan joylar"}
           </p>
-          <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
-            {session.name ?? session.email.split("@")[0]}
-          </h1>
-          <p className="mt-2 text-sm text-black/55">{session.email}</p>
         </div>
 
-        <form action="/api/auth/logout" method="post">
-          <input type="hidden" name="locale" value={locale} />
-          <button
-            type="submit"
-            className="rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-black/60 transition hover:border-red-300 hover:text-red-500"
-          >
-            Chiqish
-          </button>
-        </form>
-      </div>
-
-      <div className="section-card rounded-[1.75rem] p-6">
-        <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">
-          Saqlangan joylar
-        </p>
-
         {savedPlaces.length === 0 ? (
-          <div className="mt-6 text-center py-10">
-            <p className="text-sm text-black/50">Hali hech qanday joy saqlanmagan.</p>
+          <div className="section-card flex flex-col items-center gap-4 rounded-[1.75rem] px-8 py-16 text-center">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-mist)]">
+              <User size={26} strokeWidth={1.5} className="text-[var(--color-ink)]/30" />
+            </div>
+            <div>
+              <p className="font-semibold text-[var(--color-ink)]">
+                {locale === "ru" ? "Нет сохранённых мест" : locale === "en" ? "No saved places yet" : "Hali joy saqlanmagan"}
+              </p>
+              <p className="mt-1.5 text-sm text-[var(--color-ink)]/50">
+                {locale === "ru"
+                  ? "Исследуйте и сохраняйте понравившиеся места"
+                  : locale === "en"
+                  ? "Explore and save your favourite places"
+                  : "Joylarni ko'rib, yoqqanlarini saqlang"}
+              </p>
+            </div>
             <Link
               href={`/${locale}/explore`}
-              className="mt-4 inline-flex rounded-full bg-[var(--color-sky)] px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+              className="mt-1 inline-flex rounded-full bg-[var(--color-sky)] px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
             >
-              Joylarni ko&apos;rish
+              {messages.explore.title}
             </Link>
           </div>
         ) : (
-          <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {savedPlaces.map((place) => (
               <PlaceCard
                 key={place.slug}
@@ -73,7 +114,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             ))}
           </div>
         )}
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

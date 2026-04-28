@@ -30,7 +30,7 @@ export default async function RegionDetailPage({ params }: RegionDetailPageProps
       <section className="container-shell pb-6">
         <Link
           href={`/${locale}/regions`}
-          className="inline-flex items-center gap-2 rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
         >
           <ArrowLeft size={14} strokeWidth={2.2} />
           {messages.regions.backToRegions}
@@ -39,14 +39,14 @@ export default async function RegionDetailPage({ params }: RegionDetailPageProps
 
       {/* ── Hero banner ── */}
       <section className="container-shell pb-6">
-        <div className="uzbek-hero relative overflow-hidden rounded-[2rem] border border-black/8 p-8 md:p-10">
+        <div className="uzbek-hero relative overflow-hidden rounded-[2rem] border border-[var(--color-ink)]/8 p-8 md:p-10">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
             {messages.regions.title}
           </p>
           <h1 className="display-title mt-3 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
             {region.name[locale]}
           </h1>
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-black/65">
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--color-ink)]/65">
             {region.summary[locale]}
           </p>
         </div>
@@ -65,7 +65,7 @@ export default async function RegionDetailPage({ params }: RegionDetailPageProps
             </h2>
             <ul className="mt-5 space-y-3">
               {region.highlights.map((highlight) => (
-                <li key={highlight[locale]} className="flex items-start gap-2.5 text-sm leading-7 text-black/65">
+                <li key={highlight[locale]} className="flex items-start gap-2.5 text-sm leading-7 text-[var(--color-ink)]/65">
                   <span className="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--color-teal)]" />
                   {highlight[locale]}
                 </li>
@@ -80,7 +80,7 @@ export default async function RegionDetailPage({ params }: RegionDetailPageProps
             </p>
             <div className="mt-4 grid gap-3">
               <div className="rounded-[1.25rem] bg-[var(--color-mist)] p-4">
-                <p className="text-xs uppercase tracking-[0.24em] text-black/40">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-ink)]/40">
                   {messages.regions.statsPlaces}
                 </p>
                 <p className="mt-2 text-3xl font-semibold text-[var(--color-ink)]">
@@ -88,7 +88,7 @@ export default async function RegionDetailPage({ params }: RegionDetailPageProps
                 </p>
               </div>
               <div className="rounded-[1.25rem] bg-[var(--color-mist)] p-4">
-                <p className="text-xs uppercase tracking-[0.24em] text-black/40">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-ink)]/40">
                   {messages.regions.statsFocus}
                 </p>
                 <p className="mt-2 text-base font-semibold text-[var(--color-ink)]">
@@ -118,7 +118,7 @@ export default async function RegionDetailPage({ params }: RegionDetailPageProps
                     <h3 className="text-base font-semibold text-[var(--color-ink)]">
                       {place.title[locale]}
                     </h3>
-                    <p className="mt-1 text-xs leading-5 text-black/50">{place.type[locale]}</p>
+                    <p className="mt-1 text-xs leading-5 text-[var(--color-ink)]/50">{place.type[locale]}</p>
                   </div>
                   <ArrowRight
                     size={16}

@@ -87,7 +87,7 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
           <h1 className="display-title text-3xl font-semibold text-[var(--color-ink)]">
             {texts.title}
           </h1>
-          <p className="mt-1.5 text-sm text-black/55">{texts.subtitle}</p>
+          <p className="mt-1.5 text-sm text-[var(--color-ink)]/55">{texts.subtitle}</p>
         </div>
 
         <div className="section-card rounded-[2rem] p-7">
@@ -102,7 +102,7 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
             {query.next && <input type="hidden" name="next" value={query.next} />}
 
             <label className="block">
-              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]/45">
                 {texts.email}
               </span>
               <input
@@ -110,12 +110,12 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
                 name="email"
                 required
                 autoComplete="email"
-                className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10"
+                className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10"
               />
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-black/45">
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]/45">
                 {texts.password}
               </span>
               <input
@@ -123,7 +123,7 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
                 name="password"
                 required
                 autoComplete="current-password"
-                className="h-12 w-full rounded-[1rem] border border-black/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10"
+                className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10"
               />
             </label>
 
@@ -135,7 +135,7 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
             </button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-black/55">
+          <p className="mt-6 text-center text-sm text-[var(--color-ink)]/55">
             {texts.noAccount}{" "}
             <Link
               href={`/${locale}/register`}

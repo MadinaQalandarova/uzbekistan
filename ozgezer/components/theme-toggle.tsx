@@ -70,7 +70,7 @@ export function ThemeToggle() {
   };
 
   if (!mounted) {
-    return <div className="h-9 w-9 rounded-full border border-black/10" aria-hidden />;
+    return <div className="h-9 w-9 rounded-full border border-[var(--color-ink)]/10" aria-hidden />;
   }
 
   return (
@@ -79,7 +79,7 @@ export function ThemeToggle() {
       onClick={toggle}
       aria-label={theme === "dark" ? "Kunduzgi rejim" : "Tungi rejim"}
       title={theme === "dark" ? "Kunduzgi rejim" : "Tungi rejim"}
-      className="flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white/80 text-[var(--color-ink)] shadow-sm transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+      className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-ink)]/10 bg-white/80 text-[var(--color-ink)] shadow-sm transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
     >
       {theme === "dark" ? <SunIcon /> : <MoonIcon />}
     </button>
