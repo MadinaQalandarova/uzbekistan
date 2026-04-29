@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
@@ -31,6 +32,32 @@ type PlaceDetailPageProps = {
   params: Promise<{ locale: string; slug: string }>;
   searchParams: Promise<{ reviewed?: string; error?: string }>;
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const { getPlace } = await import("@/lib/data/catalog-service");
+  const { PLACE_IMAGES } = await import("@/lib/place-stories");
+  const place = await getPlace(slug);
+  if (!place) return {};
+  const name = place.name[locale as "uz" | "ru" | "en"] ?? place.name.uz;
+  const desc = place.description[locale as "uz" | "ru" | "en"] ?? place.description.uz;
+  const image = PLACE_IMAGES[slug] ?? null;
+  return {
+    title: name,
+    description: desc,
+    openGraph: {
+      title: name,
+      description: desc,
+      type: "article",
+      ...(image ? { images: [{ url: image, width: 1200, height: 630, alt: name }] } : {}),
+    },
+    twitter: { card: "summary_large_image", title: name, description: desc, ...(image ? { images: [image] } : {}) },
+  };
+}
 
 export default async function PlaceDetailPage({ params, searchParams }: PlaceDetailPageProps) {
   const { locale, slug } = await params;

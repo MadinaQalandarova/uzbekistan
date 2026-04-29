@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
@@ -57,6 +58,8 @@ const t = {
     },
   },
 };
+
+export const metadata: Metadata = { robots: { index: false } };
 
 export default async function LoginPage({ params, searchParams }: LoginPageProps) {
   const { locale } = await params;

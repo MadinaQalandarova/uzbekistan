@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MapPin, ArrowRight } from "lucide-react";
@@ -8,6 +9,25 @@ import { getMessages, isLocale } from "@/lib/i18n";
 type RegionsPageProps = {
   params: Promise<{ locale: string }>;
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const titles: Record<string, string> = {
+    uz: "Viloyatlar | O'zGezer",
+    ru: "Регионы | O'zGezer",
+    en: "Regions | O'zGezer",
+  };
+  const descs: Record<string, string> = {
+    uz: "O'zbekistonning barcha viloyatlari va eng yaxshi sayohat yo'nalishlari.",
+    ru: "Все регионы Узбекистана и лучшие туристические направления.",
+    en: "All regions of Uzbekistan and the best travel destinations.",
+  };
+  return { title: titles[locale] ?? titles.uz, description: descs[locale] ?? descs.uz };
+}
 
 export default async function RegionsPage({ params }: RegionsPageProps) {
   const { locale } = await params;

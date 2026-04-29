@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
@@ -11,6 +12,8 @@ import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
 type ProfilePageProps = {
   params: Promise<{ locale: string }>;
 };
+
+export const metadata: Metadata = { robots: { index: false } };
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
   const { locale } = await params;

@@ -17,9 +17,13 @@ export type PlaceStory = {
 
 /** Rasm fayllari /public/places/ papkasida bo'lishi kerak */
 export const PLACE_IMAGES: Record<string, string> = {
-  "chimgan":      "/places/chimgan.jpg",
-  "ark-fortress": "/places/ark-fortress.jpg",
-  "itchan-kala":  "/places/itchan-kala.jpg",
+  "chimgan":        "/places/chimgan.jpg",
+  "ark-fortress":   "/places/ark-fortress.jpg",
+  "itchan-kala":    "/places/itchan-kala.jpg",
+  "registon":       "/places/registan.jpg",
+  "shahrisabz":     "/places/shahrisabz.jpg",
+  "aydarkul":       "/places/aydarkul.webp",
+  "nurota":         "/places/nurota.jpg",
 };
 
 export const PLACE_STORIES: Record<string, PlaceStory> = {
@@ -182,6 +186,226 @@ export const PLACE_STORIES: Record<string, PlaceStory> = {
           {
             title: "Arxitektura mo'jizasi",
             body: "Qal'a devorlarining egri-bugri ulkan hajmi va kirish darvozasining mahobati sizni o'rta asrlar jangovar filmlari atmosferasiga olib kiradi.",
+          },
+        ],
+      },
+    ],
+  },
+
+  "registon": {
+    quote: {
+      uz: "Bu yerda tarix galdan g'ishtga emas, oltindan nurga ko'chgan.",
+      ru: "Здесь история перешла не от кирпича к кирпичу, а от золота к свету.",
+      en: "Here, history did not pass from brick to brick — it passed from gold to light.",
+    },
+    heroTitle: "Sharqning vizual tashrif qog'ozi",
+    sections: [
+      {
+        emoji: "✨",
+        heading: "Hayratlanarli faktlar",
+        facts: [
+          {
+            title: "Uchlik uyg'unligi",
+            body: "Maydondagi uchta madrasa — Ulug'bek (1420), Sherdor (1636) va Tilla-Kori (1660) — bir-birini to'ldiruvchi yagona ulug'vor ansamblni tashkil etadi.",
+          },
+          {
+            title: "Sherdor siri",
+            body: "Islom me'morchiligida tirik mavjudotlarni tasvirlash taqiqlangan bo'lsa-da, Sherdor madrasasi peshtog'ida kiyikni quvlayotgan sher va quyosh tasviri tushirilgan — bu noyob va jumboqli holat.",
+          },
+          {
+            title: "Oltin bilan qoplangan",
+            body: "Tilla-Kori madrasasining nomi \"Oltin bilan bezatilgan\" degan ma'noni anglatadi. Ichki gumbaz shu qadar ko'p oltin suvi bilan qoplangan ki, devorlar ichkaridan nur sochayotgandek ko'rinadi.",
+          },
+          {
+            title: "UNESCO va dunyo merosi",
+            body: "Registon 2001-yilda UNESCO Jahon merosi ro'yxatiga kiritilgan. Har yili 1 million dan ortiq sayyoh bu maydonni ziyorat qiladi.",
+          },
+        ],
+      },
+      {
+        emoji: "🏛️",
+        heading: "Nega Registonga borish kerak?",
+        facts: [
+          {
+            title: "Moviy koshinlar jilosi",
+            body: "Quyosh nuri tong, kun va kechqurun koshinlarda har xil aks etadi. Registon ranglari kunning har soatida o'zgarib turadi — bu cheksiz fotosessiya imkoniyati.",
+          },
+          {
+            title: "Lazer-shou",
+            body: "Tunda maydonda o'tkaziladigan zamonaviy 3D-mapping shousi tarixdagi eng muhim voqealarni ko'z oldingizda jonlantiradi. Bu Markaziy Osiyodagi eng ta'sirli tungi tadbirlardan biri.",
+          },
+          {
+            title: "Akustika mo'jizasi",
+            body: "Madrasalar ichida ovoz aks-sadosining qanday ishlashini o'z quloqlaringiz bilan eshiting — me'morlar bu effektni ataylab yaratgan.",
+          },
+          {
+            title: "Samarqand gastronomi",
+            body: "Registon atrofidagi ko'chalarda Samarqand noni (dunyodagi eng mazali nonlardan deb tan olingan), mastava va shashlik — sayohat paytidagi gastronomik lazzat.",
+          },
+        ],
+      },
+    ],
+  },
+
+  "aydarkul": {
+    quote: {
+      uz: "Sahro bag'ridagi firuza dengiz — tabiat va sarguzasht uchrashgan nuqta.",
+      ru: "Бирюзовое море в объятьях пустыни — точка, где природа встречается с приключением.",
+      en: "A turquoise sea in the desert's embrace — the point where nature meets adventure.",
+    },
+    heroTitle: "Sahrodagi mo'jiza",
+    sections: [
+      {
+        emoji: "✨",
+        heading: "Qiziqarli faktlar",
+        facts: [
+          {
+            title: "Tasodifiy go'zallik",
+            body: "Aydarko'l tabiat in'omi emas — 1969-yilda yuz bergan kuchli sug'orish toshqini natijasida yuzaga kelgan. Hozirda uzunligi 250 km dan oshib, O'rta Osiyodagi eng katta ko'llardan biriga aylangan.",
+          },
+          {
+            title: "Sahro floti va flamingolar",
+            body: "Bu yerda siz qumlar orasida suzib yurgan baliqchilar qayiqlarini va ko'l bo'yida uchib yurgan pushti flamingolarni ko'rishingiz mumkin.",
+          },
+          {
+            title: "Sokinlik va yulduzlar",
+            body: "Aydarko'l atrofida yasovchi chiroqlar kamligi sababli, tunda osmon shunchalik tiniqki, Somon yo'li galaktikasini ko'z bilan aniq ko'rish mumkin.",
+          },
+          {
+            title: "Qizilqum sahrosining qo'ynida",
+            body: "Ko'l Qizilqum sahrosining markazida joylashgan bo'lib, atrofida hech qanday shahar va shovqin yo'q. Bu O'zbekistondagi eng yiroq va haqiqiy \"off-grid\" manzillaridan biri.",
+          },
+        ],
+      },
+      {
+        emoji: "🐪",
+        heading: "Nega Aydarko'lga borish kerak?",
+        facts: [
+          {
+            title: "O'tovlarda yashash",
+            body: "Sahro o'rtasidagi milliy o'tovlarda tunab, ko'chmanchi xalqlar an'anaviy hayotini his qiling. Mahalliy qo'zichoq kabob va choyxona — unutilmas tajriba.",
+          },
+          {
+            title: "Tuya sayri",
+            body: "Ko'l bo'ylab tuyada sayr qilish va sahro sunset manzarasini yuqoridan tomosha qilish — Aydarko'lda bo'lganingizning dalili.",
+          },
+          {
+            title: "Baliq ovi",
+            body: "Ko'lda karp, zander va boshqa baliqlar mo'l. Toza suvda qovurilgan baliqning ta'mi sahro shamollari ostida tamoman o'zgacha.",
+          },
+          {
+            title: "Yulduzli osmon astrofotografiyasi",
+            body: "Yorug'lik ifloslanishi deyarli yo'q. Astronomiya va astrofotografiya ixlosmandlari uchun Aydarko'l O'zbekistondagi eng ideal nuqtalardan biri.",
+          },
+        ],
+      },
+    ],
+  },
+
+  "nurota": {
+    quote: {
+      uz: "Iskandar Zulqarnayn izidan muqaddas chashma sari yo'l.",
+      ru: "По следам Искандера Зулькарнайна — к священному роднику.",
+      en: "Following the trail of Alexander the Great — toward the sacred spring.",
+    },
+    heroTitle: "Tarix va afsonalar maskani",
+    sections: [
+      {
+        emoji: "✨",
+        heading: "Qiziqarli faktlar",
+        facts: [
+          {
+            title: "Nur qal'asi va Iskandar",
+            body: "Qal'aning poydevori Iskandar Zulqarnayn (Aleksandr Makedonskiy) tomonidan miloddan avvalgi IV asrda qo'yilgan deb ishoniladi. Uning devorlari strategik jihatdan mukammal qurilgan.",
+          },
+          {
+            title: "Muqaddas Chashma va baliqlari",
+            body: "Bu buloqda minglab \"marinka\" (Schizothorax) baliqlari yashaydi. Mahalliy aholi bu baliqlarni muqaddas deb hisoblaydi va asrlar davomida ularni ovlamagan.",
+          },
+          {
+            title: "Qadimiy karezlar",
+            body: "Nurotada 2000 yil avval qurilgan yer osti suv yo'llari — karezlar — hamon saqlanib qolgan va hali ham ishlaydi. Bu o'sha davr muhandisligining eng yuqori cho'qqisi.",
+          },
+          {
+            title: "Nurota so'zanasi — UNESCO merosi",
+            body: "Nurota kashtachilik maktabi UNESCO nomoddiy madaniy meros ro'yxatiga kiritilgan. Bu yerda to'qilgan so'zanalarning naqshlari O'rta Osiyoning boshqa hech bir joyida uchramaydi.",
+          },
+        ],
+      },
+      {
+        emoji: "🕌",
+        heading: "Nega Nurotaga borish kerak?",
+        facts: [
+          {
+            title: "Ma'naviy hordiq",
+            body: "\"Chashma\" majmuasidagi shifobaxsh buloq suvi va muqaddas atmosfera — bu yerda tinchlik va xotirjamlik his qilasiz. Ko'pchilik bu joyni ziyorat niyatida keladi.",
+          },
+          {
+            title: "Arxeologik sarguzasht",
+            body: "Iskandar Zulqarnayn qal'asi xarobalariga chiqib, tepalikdan Nurota va atrofidagi manzarani tomosha qiling — tarix ko'z oldingizda jonlanadi.",
+          },
+          {
+            title: "Nurota so'zanasini ko'rish",
+            body: "Dunyoga mashhur \"Nurota so'zanasi\"ning yaratilish jarayonini bevosita ustaxonalarda kuzatish va usta kashtachilardan saboq olish imkoniyati bor.",
+          },
+          {
+            title: "Aydarko'l + Nurota",
+            body: "Nurota va Aydarko'l bir-biridan 60 km uzoqlikda — ikkalasini bir sayohatda birlashtirib, Navoiy viloyatining barcha go'zalligini kashf eting.",
+          },
+        ],
+      },
+    ],
+  },
+
+  "shahrisabz": {
+    quote: {
+      uz: "Oqsaroy — bu yerga buyuklik toshdan haykal bo'lib kelgan joy. Uning ulkan peshtoqlari tagida turib, asrlar oldingi qudratning nafasini his qilasiz.",
+      ru: "Ак-Сарай — место, где величие пришло в виде каменной скульптуры. Стоя под его огромными арками, чувствуешь дыхание могущества минувших веков.",
+      en: "Ak-Saray is where greatness arrived as a stone sculpture. Standing beneath its vast arches, you breathe in the power of centuries long past.",
+    },
+    heroTitle: "Temur qudratining me'moriy ramzi",
+    sections: [
+      {
+        emoji: "✨",
+        heading: "Eng hayratlanarli faktlar",
+        facts: [
+          {
+            title: "G'ayrioddiy balandlik",
+            body: "Oqsaroyning bosh peshtoqi o'z vaqtida 70 metrdan baland bo'lgan — taxminan 23-25 qavatli bino balandligiga teng. Hozirda saqlanib qolgan qismi 38 metr bo'lib, tepasidan butun shahar kaftdek ko'rinadi.",
+          },
+          {
+            title: "Moviy mozaika san'ati",
+            body: "Saroy devorlaridagi koshinlar va sirlangan g'ishtlar shunchalik mahorat bilan ishlangan-ki, olti asr o'tsa ham rangi o'chmagan. Devordagi girih naqshlari va arabiy xattotlik namunalari jahon me'morchiligining nodir durdonalaridir.",
+          },
+          {
+            title: "Tomdagi hovuz afsonasi",
+            body: "Afsonalarga ko'ra, saroyning tom qismida hovuz bo'lgan. Suv tog'lardan maxsus quvurlar orqali kelib, pastga sharshara bo'lib tushgan va saroy ichida doimiy salqinlikni saqlab turgan.",
+          },
+          {
+            title: "\"Oqsaroy\" nomining siri",
+            body: "\"Oq\" so'zi bu yerda rangni emas, balki \"oliy\", \"muqaddas\", \"ulug'\" degan ma'nolarni anglatadi — ya'ni bu \"Oliy Saroy\" demakdir. Qurilishi 1380-yilda boshlanib, 20 yildan ortiq davom etgan.",
+          },
+        ],
+      },
+      {
+        emoji: "🧭",
+        heading: "Nega Oqsaroyni ko'rish kerak?",
+        facts: [
+          {
+            title: "Masshtabni his qilish",
+            body: "Hatto vayron bo'lgan holatida ham bu bino insonni buyukligi bilan hayratga soladi. Uning poyida turib, o'rta asrlarda insoniyat qanday texnik imkoniyatlarga ega bo'lganiga ishonish qiyin.",
+          },
+          {
+            title: "Unikal fotosuratlar",
+            body: "Oqsaroyning ulkan arkasidan osmonning ko'rinishi har qanday fotograf uchun eng go'zal kadr. Bu surat O'zbekiston ikonografiyasining eng taniqli tasvirlaridan biriga aylangan.",
+          },
+          {
+            title: "Ko'k Gumbaz va Dor us-Siyoda",
+            body: "Ulug'bek qurilgan Ko'k Gumbaz masjidi (1435) va Temur avlodlari dafn etilgan Dor us-Siyoda maqbarasi — Oqsaroydan so'ng albatta ko'rilishi kerak bo'lgan yodgorliklar.",
+          },
+          {
+            title: "Samarqanddan 90 daqiqa",
+            body: "Shahrisabz Samarqanddan 90 km uzoqlikda. Yo'l Zarafshon tizmasining go'zal tog' manzaralari orqali o'tadi — sayohatning o'zi ham ajoyib.",
           },
         ],
       },

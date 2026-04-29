@@ -27,9 +27,29 @@ export async function generateMetadata({
     en: "Discover historical, natural, and local travel spots across Uzbekistan.",
   };
   return {
-    title: titles[lang],
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://ozgezer.vercel.app"),
+    title: { default: titles[lang], template: `%s | O'zGezer` },
     description: descs[lang],
-    openGraph: { title: titles[lang], description: descs[lang], locale: lang },
+    keywords:
+      lang === "ru"
+        ? ["Узбекистан", "туризм", "путешествия", "достопримечательности", "Самарканд", "Бухара", "Хива"]
+        : lang === "en"
+        ? ["Uzbekistan", "travel", "tourism", "places", "Samarkand", "Bukhara", "Khiva"]
+        : ["O'zbekiston", "sayohat", "turizm", "joylar", "Samarqand", "Buxoro", "Xiva"],
+    openGraph: {
+      title: titles[lang],
+      description: descs[lang],
+      locale: lang,
+      type: "website",
+      siteName: "O'zGezer",
+      images: [{ url: "/places/itchan-kala.jpg", width: 1200, height: 630, alt: "O'zGezer" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: titles[lang],
+      description: descs[lang],
+      images: ["/places/itchan-kala.jpg"],
+    },
   };
 }
 

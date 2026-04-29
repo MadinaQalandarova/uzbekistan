@@ -34,29 +34,29 @@ export function SearchForm({ locale, regions, labels, examples }: SearchFormProp
         setDisplayText((prev) => {
           const next = current.slice(0, prev.length + 1);
           if (next === current) {
-            frameRef.current = setTimeout(() => setPhase("pause"), 2800);
+            frameRef.current = setTimeout(() => setPhase("pause"), 3500);
           } else {
-            frameRef.current = setTimeout(tick, 110);
+            frameRef.current = setTimeout(tick, 160);
           }
           return next;
         });
       } else if (phase === "pause") {
-        frameRef.current = setTimeout(() => setPhase("erasing"), 1200);
+        frameRef.current = setTimeout(() => setPhase("erasing"), 1800);
       } else if (phase === "erasing") {
         setDisplayText((prev) => {
           const next = prev.slice(0, -1);
           if (next === "") {
             setExampleIndex((i) => (i + 1) % examples.length);
-            frameRef.current = setTimeout(() => setPhase("typing"), 600);
+            frameRef.current = setTimeout(() => setPhase("typing"), 900);
           } else {
-            frameRef.current = setTimeout(tick, 70);
+            frameRef.current = setTimeout(tick, 100);
           }
           return next;
         });
       }
     };
 
-    frameRef.current = setTimeout(tick, phase === "typing" ? 110 : 0);
+    frameRef.current = setTimeout(tick, phase === "typing" ? 160 : 0);
     return () => {
       if (frameRef.current) clearTimeout(frameRef.current);
     };
