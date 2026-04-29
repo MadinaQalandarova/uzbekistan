@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SwRegistrar } from "@/components/sw-registrar";
 
 export const metadata: Metadata = {
   title: {
@@ -27,6 +28,18 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  /* PWA */
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "O'zGezer",
+  },
+  formatDetection: { telephone: false },
+  icons: {
+    icon: [{ url: "/icons/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/icons/icon.svg" }],
+  },
 };
 
 export default function RootLayout({
@@ -48,7 +61,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SwRegistrar />
+        {children}
+      </body>
     </html>
   );
 }
