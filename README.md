@@ -1,4 +1,4 @@
-# O'zGezer
+cdcd# O'zGezer
 
 O'zGezer is a travel discovery platform focused on helping tourists and local residents explore places across Uzbekistan with trusted reviews, maps, and contributor-driven content.
 

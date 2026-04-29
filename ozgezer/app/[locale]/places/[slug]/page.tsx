@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { PlaceCard } from "@/components/place-card";
+import { PlaceGallery } from "@/components/place-gallery";
 import { PlaceMap } from "@/components/place-map";
 import { ReviewForm } from "@/components/review-form";
 import { TaxiButton } from "@/components/taxi-button";
@@ -25,7 +26,7 @@ import {
   isPlaceSavedByUser,
 } from "@/lib/data/catalog-service";
 import { getMessages, isLocale, locales } from "@/lib/i18n";
-import { PLACE_IMAGES, PLACE_STORIES } from "@/lib/place-stories";
+import { PLACE_IMAGES, PLACE_GALLERIES, PLACE_STORIES } from "@/lib/place-stories";
 import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
 
 type PlaceDetailPageProps = {
@@ -88,6 +89,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
 
   const story = PLACE_STORIES[slug] ?? null;
   const imageUrl = PLACE_IMAGES[slug] ?? null;
+  const galleryImages = PLACE_GALLERIES[slug] ?? (imageUrl ? [imageUrl] : []);
 
   return (
     <div className="py-8">
@@ -147,27 +149,13 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
       {/* ── Main grid ── */}
       <section className="container-shell pb-10">
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          {/* Left column: hero + map */}
+          {/* Left column: hero gallery + map */}
           <article className="section-card overflow-hidden rounded-[2rem]">
-            {/* Hero banner — rasm yoki gradient */}
-            <div className="relative min-h-[22rem] bg-[linear-gradient(140deg,#2D6B6B_0%,#5B8A6E_55%,#F59E0B_100%)]">
-              {imageUrl && (
-                <>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={imageUrl}
-                    alt={place.name[locale]}
-                    className="absolute inset-0 h-full w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/10" />
-                </>
-              )}
-              {!imageUrl && (
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-              )}
-
-              <div className="relative flex h-full min-h-[22rem] flex-col justify-start p-6">
-                {/* Kategoriya chiplari — yuqorida */}
+            {/* Hero gallery */}
+            <PlaceGallery
+              images={galleryImages}
+              alt={place.name[locale]}
+              chips={
                 <div className="flex flex-wrap gap-2">
                   {place.categoryTitles.map((category) => (
                     <span
@@ -178,8 +166,8 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                     </span>
                   ))}
                 </div>
-              </div>
-            </div>
+              }
+            />
 
             <div className="space-y-4 p-6">
               <div className="flex items-center gap-2 text-sm text-[var(--color-teal)]">

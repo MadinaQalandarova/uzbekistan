@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -18,12 +19,42 @@ import {
 import { PlaceCard } from "@/components/place-card";
 import { SearchForm } from "@/components/search-form";
 import { getCategories, getPlaces, getRegions } from "@/lib/data/catalog-service";
-import { getMessages, isLocale } from "@/lib/i18n";
+import { getMessages, isLocale, type Locale } from "@/lib/i18n";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+  const lang = locale as Locale;
+  const titles: Record<Locale, string> = {
+    uz: "Bosh sahifa — O'zbekiston sayohat atlasi",
+    ru: "Главная — Атлас путешествий по Узбекистану",
+    en: "Home — Uzbekistan Travel Atlas",
+  };
+  const descs: Record<Locale, string> = {
+    uz: "Registon, Chimgan, Ichan-Qal'a va boshqa mashhur joylarni kashf eting. O'zbekiston bo'ylab eng yaxshi sayohat yo'nalishlari.",
+    ru: "Откройте Регистан, Чимган, Ичан-Калу и другие знаковые места. Лучшие туристические направления по Узбекистану.",
+    en: "Discover Registan, Chimgan, Ichon-Qala and more iconic spots. The best travel destinations across Uzbekistan.",
+  };
+  return {
+    title: titles[lang],
+    description: descs[lang],
+    openGraph: {
+      title: titles[lang],
+      description: descs[lang],
+      type: "website",
+      images: [{ url: "/places/itchan-kala.jpg", width: 1200, height: 630, alt: "O'zGezer" }],
+    },
+  };
+}
 
 const SEARCH_EXAMPLES: Record<string, string[]> = {
-  uz: ["Registon maydoni", "Chimgan tog'i", "Ichan-Qal'a", "Amir Temur maqbarasi", "Shodlik bozori"],
-  ru: ["Площадь Регистан", "Горы Чимган", "Ичан-Кала", "Мавзолей Тамерлана", "Базар Чорсу"],
-  en: ["Registan Square", "Chimgan Mountains", "Ichon-Qala", "Tamerlane Mausoleum", "Chorsu Bazaar"],
+  uz: ["Registon maydoni", "Chimgan tog'i", "Ichan-Qal'a", "Aydarko'l", "Ark qal'asi"],
+  ru: ["Площадь Регистан", "Горы Чимган", "Ичан-Кала", "Озеро Айдаркуль", "Крепость Арк"],
+  en: ["Registan Square", "Chimgan Mountains", "Ichon-Qala", "Aydarkul Lake", "Ark Fortress"],
 };
 
 type LocalePageProps = {

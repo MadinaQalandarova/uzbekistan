@@ -26,6 +26,21 @@ export const PLACE_IMAGES: Record<string, string> = {
   "nurota":         "/places/nurota.jpg",
 };
 
+/**
+ * Har joy uchun galereya rasmlari ro'yxati.
+ * Ko'proq rasm qo'shmoqchi bo'lsangiz — massivga qo'shing:
+ * "chimgan": ["/places/chimgan.jpg", "/places/chimgan-2.jpg", ...]
+ */
+export const PLACE_GALLERIES: Record<string, string[]> = {
+  "chimgan":      ["/places/chimgan.jpg"],
+  "ark-fortress": ["/places/ark-fortress.jpg"],
+  "itchan-kala":  ["/places/itchan-kala.jpg"],
+  "registon":     ["/places/registan.jpg"],
+  "shahrisabz":   ["/places/shahrisabz.jpg"],
+  "aydarkul":     ["/places/aydarkul.webp"],
+  "nurota":       ["/places/nurota.jpg"],
+};
+
 export const PLACE_STORIES: Record<string, PlaceStory> = {
   "itchan-kala": {
     quote: {
