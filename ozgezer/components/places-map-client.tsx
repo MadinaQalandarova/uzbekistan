@@ -195,6 +195,7 @@ export default function PlacesMapClient({ places, locale }: Props) {
               <div className="flex justify-end px-4 pt-4">
                 <button
                   onClick={() => setSelected(null)}
+                  aria-label={t.close}
                   className="flex h-7 w-7 items-center justify-center rounded-full
                     bg-[var(--color-mist)] text-[var(--color-ink)]/50 transition hover:bg-[var(--color-sand)]"
                 >

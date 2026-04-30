@@ -14,6 +14,9 @@ type MobileNavProps = {
     regions: string;
     admin: string;
     openExplore: string;
+    map: string;
+    signIn: string;
+    signOut: string;
   };
   user: { name: string | null; email: string } | null;
 };
@@ -140,7 +143,7 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
                   {nav.regions}
                 </NavLink>
                 <NavLink href={`/${locale}/map`} icon={<MapPin size={15} strokeWidth={2} />} onClick={close}>
-                  {locale === "uz" ? "Xarita" : locale === "ru" ? "Карта" : "Map"}
+                  {nav.map}
                 </NavLink>
               </nav>
 
@@ -196,7 +199,7 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
                       className="flex w-full items-center gap-2 rounded-[1.25rem] border border-[var(--color-ink)]/8 px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)]/50 transition hover:border-red-300 hover:text-red-500"
                     >
                       <LogOut size={13} strokeWidth={2} />
-                      Chiqish
+                      {nav.signOut}
                     </button>
                   </form>
                 </div>
@@ -206,7 +209,7 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
                   onClick={close}
                   className="flex items-center justify-center rounded-[1.25rem] bg-[var(--color-sky)] py-3 text-sm font-semibold text-white shadow-md shadow-[var(--color-sky)]/20 transition hover:opacity-90"
                 >
-                  Kirish
+                  {nav.signIn}
                 </Link>
               )}
             </div>

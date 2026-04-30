@@ -13,6 +13,9 @@ type SiteHeaderProps = {
     regions: string;
     admin: string;
     openExplore: string;
+    map: string;
+    signIn: string;
+    signOut: string;
   };
   user: { name: string | null; email: string } | null;
 };
@@ -61,7 +64,7 @@ export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
             className="flex items-center gap-1.5 rounded-full px-4 py-2 text-sm text-[var(--color-ink)]/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"
           >
             <MapPin size={14} strokeWidth={2} />
-            {locale === "uz" ? "Xarita" : locale === "ru" ? "Карта" : "Map"}
+            {nav.map}
           </Link>
         </nav>
 
@@ -115,7 +118,7 @@ export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
                   className="flex h-9 items-center gap-1.5 rounded-full border border-[var(--color-ink)]/10 bg-white px-3 text-xs font-semibold text-[var(--color-ink)]/55 shadow-sm transition hover:border-red-300 hover:text-red-500"
                 >
                   <LogOut size={13} strokeWidth={2} />
-                  Chiqish
+                  {nav.signOut}
                 </button>
               </form>
             </div>
@@ -124,7 +127,7 @@ export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
               href={`/${locale}/login`}
               className="hidden h-9 items-center rounded-full border border-[var(--color-ink)]/10 bg-white px-4 text-xs font-semibold text-[var(--color-ink)] shadow-sm transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] lg:flex"
             >
-              Kirish
+              {nav.signIn}
             </Link>
           )}
 

@@ -29,6 +29,15 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const displayName = session.name ?? session.email.split("@")[0];
   const initials = displayName.slice(0, 2).toUpperCase();
 
+  const t = {
+    profileLabel:  { uz: "Profil",                  ru: "Профиль",                       en: "Profile"                    }[locale],
+    savedCount:    { uz: "Saqlangan",                ru: "Сохранено",                     en: "Saved"                      }[locale],
+    signOut:       { uz: "Chiqish",                  ru: "Выйти",                         en: "Sign out"                   }[locale],
+    savedPlaces:   { uz: "Saqlangan joylar",         ru: "Сохранённые места",             en: "Saved places"               }[locale],
+    noSaved:       { uz: "Hali joy saqlanmagan",     ru: "Нет сохранённых мест",          en: "No saved places yet"        }[locale],
+    noSavedDesc:   { uz: "Joylarni ko'rib, yoqqanlarini saqlang", ru: "Исследуйте и сохраняйте понравившиеся места", en: "Explore and save your favourite places" }[locale],
+  };
+
   return (
     <div className="py-8">
       {/* Profile hero */}
@@ -41,7 +50,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               </div>
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-teal)]">
-                  {locale === "ru" ? "Профиль" : locale === "en" ? "Profile" : "Profil"}
+                  {t.profileLabel}
                 </p>
                 <h1 className="display-title mt-0.5 text-2xl font-semibold text-[var(--color-ink)]">
                   {displayName}
@@ -54,7 +63,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
               <div className="rounded-[1.2rem] bg-[var(--color-sky)]/10 px-4 py-3 text-center">
                 <p className="text-xl font-semibold text-[var(--color-sky)]">{savedPlaces.length}</p>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink)]/45">
-                  {locale === "ru" ? "Сохранено" : locale === "en" ? "Saved" : "Saqlangan"}
+                  {t.savedCount}
                 </p>
               </div>
               <form action="/api/auth/logout" method="post">
@@ -64,7 +73,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
                   className="flex items-center gap-2 rounded-[1.2rem] border border-[var(--color-ink)]/10 px-4 py-3 text-sm font-semibold text-[var(--color-ink)]/60 transition hover:border-red-300 hover:bg-red-50 hover:text-red-500"
                 >
                   <LogOut size={14} strokeWidth={2} />
-                  {locale === "ru" ? "Выйти" : locale === "en" ? "Sign out" : "Chiqish"}
+                  {t.signOut}
                 </button>
               </form>
             </div>
@@ -77,7 +86,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         <div className="mb-5 flex items-center gap-2">
           <Bookmark size={15} strokeWidth={2} className="text-[var(--color-gold)]" />
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
-            {locale === "ru" ? "Сохранённые места" : locale === "en" ? "Saved places" : "Saqlangan joylar"}
+            {t.savedPlaces}
           </p>
         </div>
 
@@ -88,14 +97,10 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             </div>
             <div>
               <p className="font-semibold text-[var(--color-ink)]">
-                {locale === "ru" ? "Нет сохранённых мест" : locale === "en" ? "No saved places yet" : "Hali joy saqlanmagan"}
+                {t.noSaved}
               </p>
               <p className="mt-1.5 text-sm text-[var(--color-ink)]/50">
-                {locale === "ru"
-                  ? "Исследуйте и сохраняйте понравившиеся места"
-                  : locale === "en"
-                  ? "Explore and save your favourite places"
-                  : "Joylarni ko'rib, yoqqanlarini saqlang"}
+                {t.noSavedDesc}
               </p>
             </div>
             <Link

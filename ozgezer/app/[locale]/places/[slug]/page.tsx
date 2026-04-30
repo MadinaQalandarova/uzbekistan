@@ -91,6 +91,23 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
   const imageUrl = PLACE_IMAGES[slug] ?? null;
   const galleryImages = PLACE_GALLERIES[slug] ?? (imageUrl ? [imageUrl] : []);
 
+  /* ── Inline translations for strings not yet in i18n.ts ── */
+  const t = {
+    save:            { uz: "Saqlash",              ru: "Сохранить",         en: "Save"              }[locale],
+    saved:           { uz: "Saqlangan",             ru: "Сохранено",         en: "Saved"             }[locale],
+    reviewedToast:   { uz: "Izohingiz qabul qilindi. Rahmat!", ru: "Ваш отзыв принят. Спасибо!", en: "Your review was submitted. Thank you!" }[locale],
+    alreadyReviewed: { uz: "Siz bu joyga allaqachon izoh qo'shgansiz.", ru: "Вы уже оставили отзыв на это место.", en: "You have already reviewed this place." }[locale],
+    mapLabel:        { uz: "Xarita",               ru: "Карта",             en: "Map"               }[locale],
+    reviewsLabel:    { uz: "Izohlar",              ru: "Отзывы",            en: "Reviews"           }[locale],
+    notRated:        { uz: "Hali baholanmagan",    ru: "Пока нет оценок",   en: "Not yet rated"     }[locale],
+    reviews:         { uz: "ta izoh",              ru: "отзывов",           en: "reviews"           }[locale],
+    recommend:       { uz: "Tavsiya",              ru: "Рекомендуют",       en: "Recommend"         }[locale],
+    recommends:      { uz: "Tavsiya qiladi",       ru: "Рекомендует",       en: "Recommends"        }[locale],
+    notRecommend:    { uz: "Tavsiya etmaydi",      ru: "Не рекомендует",    en: "Doesn't recommend" }[locale],
+    anonymous:       { uz: "Anonim",               ru: "Аноним",            en: "Anonymous"         }[locale],
+    detailedInfo:    { uz: "Batafsil ma'lumot",    ru: "Подробная информация", en: "Detailed info"  }[locale],
+  };
+
   return (
     <div className="py-8">
       <ViewTracker slug={slug} />
@@ -112,6 +129,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
               <input type="hidden" name="placeSlug" value={slug} />
               <button
                 type="submit"
+                aria-label={isSaved ? t.saved : t.save}
                 className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition ${
                   isSaved
                     ? "border-[var(--color-gold)] bg-amber-50 text-[var(--color-gold)]"
@@ -123,7 +141,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                 ) : (
                   <Bookmark size={14} strokeWidth={2} />
                 )}
-                {isSaved ? "Saqlangan" : "Saqlash"}
+                {isSaved ? t.saved : t.save}
               </button>
             </form>
           )}
@@ -134,14 +152,14 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
       {query.reviewed && (
         <section className="container-shell pb-2">
           <div className="rounded-[1.5rem] border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
-            Izohingiz qabul qilindi. Rahmat!
+            {t.reviewedToast}
           </div>
         </section>
       )}
       {query.error === "ALREADY_REVIEWED" && (
         <section className="container-shell pb-2">
           <div className="rounded-[1.5rem] border border-amber-200 bg-amber-50 p-4 text-sm text-amber-700">
-            Siz bu joyga allaqachon izoh qo&apos;shgansiz.
+            {t.alreadyReviewed}
           </div>
         </section>
       )}
@@ -188,7 +206,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
 
               <div className="border-t border-[var(--color-ink)]/6 pt-5">
                 <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]/40">
-                  Xarita
+                  {t.mapLabel}
                 </p>
                 <PlaceMap
                   latitude={place.latitude}
@@ -226,13 +244,13 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                   label={messages.place.ratingLabel}
                   value={
                     reviews.length > 0
-                      ? `${place.averageRating.toFixed(1)} / 5 · ${reviews.length} ta izoh`
-                      : "Hali baholanmagan"
+                      ? `${place.averageRating.toFixed(1)} / 5 · ${reviews.length} ${t.reviews}`
+                      : t.notRated
                   }
                 />
                 {recommendPct !== null && (
                   <InfoRow
-                    label="Tavsiya"
+                    label={t.recommend!}
                     value={`${recommendPct}% (${recommendCount}/${reviews.length})`}
                   />
                 )}
@@ -253,7 +271,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
       {reviews.length > 0 && (
         <section className="container-shell pb-10">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-sky)]">
-            Izohlar ({reviews.length})
+            {t.reviewsLabel} ({reviews.length})
           </p>
           <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {reviews.map((review) => (
@@ -264,7 +282,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                       <User size={14} strokeWidth={2} className="text-[var(--color-ink)]/40" />
                     </div>
                     <p className="text-sm font-semibold text-[var(--color-ink)]">
-                      {review.userName ?? "Anonim"}
+                      {review.userName ?? t.anonymous}
                     </p>
                   </div>
                   {/* Star rating */}
@@ -285,12 +303,12 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                   {review.wouldRecommend ? (
                     <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-600 ring-1 ring-emerald-200">
                       <ThumbsUp size={10} strokeWidth={2.5} />
-                      Tavsiya qiladi
+                      {t.recommends}
                     </span>
                   ) : (
                     <span className="flex items-center gap-1 rounded-full bg-red-50 px-2.5 py-1 text-xs font-semibold text-red-500 ring-1 ring-red-200">
                       <ThumbsDown size={10} strokeWidth={2.5} />
-                      Tavsiya etmaydi
+                      {t.notRecommend}
                     </span>
                   )}
                 </div>
@@ -309,7 +327,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
             {/* Section header */}
             <div className="border-b border-[var(--color-ink)]/6 px-6 py-5 md:px-8">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
-                Batafsil ma&apos;lumot
+                {t.detailedInfo}
               </p>
               <h2 className="display-title mt-1 text-xl font-semibold text-[var(--color-ink)] md:text-2xl">
                 🏛️ {place.name[locale]}: {story.heroTitle}

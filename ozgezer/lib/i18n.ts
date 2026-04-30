@@ -10,6 +10,9 @@ type NavMessages = {
   regions: string;
   admin: string;
   openExplore: string;
+  map: string;
+  signIn: string;
+  signOut: string;
 };
 
 type FooterMessages = {
@@ -118,6 +121,9 @@ const messages: Record<Locale, Messages> = {
       regions: "Viloyatlar",
       admin: "Admin",
       openExplore: "Joylarni ko'rish",
+      map: "Xarita",
+      signIn: "Kirish",
+      signOut: "Chiqish",
     },
     footer: {
       description:
@@ -222,6 +228,9 @@ const messages: Record<Locale, Messages> = {
       regions: "Регионы",
       admin: "Админ",
       openExplore: "Смотреть места",
+      map: "Карта",
+      signIn: "Войти",
+      signOut: "Выйти",
     },
     footer: {
       description: "Платформа для поиска, сравнения и сохранения интересных мест по всему Узбекистану.",
@@ -325,6 +334,9 @@ const messages: Record<Locale, Messages> = {
       regions: "Regions",
       admin: "Admin",
       openExplore: "Browse places",
+      map: "Map",
+      signIn: "Sign in",
+      signOut: "Sign out",
     },
     footer: {
       description: "A platform for discovering, comparing, and saving interesting places across Uzbekistan.",
