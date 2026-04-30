@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Globe, Map, Compass, LogOut, User } from "lucide-react";
+import { Globe, Map, Compass, LogOut, User, MapPin } from "lucide-react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { MobileNav } from "@/components/mobile-nav";
@@ -55,6 +55,13 @@ export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
           >
             <Map size={14} strokeWidth={2} />
             {nav.regions}
+          </Link>
+          <Link
+            href={`/${locale}/map`}
+            className="flex items-center gap-1.5 rounded-full px-4 py-2 text-sm text-[var(--color-ink)]/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"
+          >
+            <MapPin size={14} strokeWidth={2} />
+            {locale === "uz" ? "Xarita" : locale === "ru" ? "Карта" : "Map"}
           </Link>
         </nav>
 

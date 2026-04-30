@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/* ─── Leaflet marker pulse animation ──────────────────────────────────────── */
+@keyframes mapPulse {
+  0%   { transform: translate(-50%, -65%) scale(0.6); opacity: 0.8; }
+  70%  { transform: translate(-50%, -65%) scale(1.4); opacity: 0; }
+  100% { transform: translate(-50%, -65%) scale(1.4); opacity: 0; }
+}
+
+/* Leaflet popup reset — biz o'z kartamizni ishlatamiz */
+.leaflet-popup { display: none !important; }
+.leaflet-container { font-family: inherit; }
+
 /* ─── Fergana Jade — Light mode tokens ─────────────────────────────────────── */
 :root {
   --background:   #F0F7F4;

@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
-import { Menu, X, Home, Compass, Map, Globe, LogOut, User } from "lucide-react";
+import { Menu, X, Home, Compass, Map, Globe, LogOut, User, MapPin } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
 
 type MobileNavProps = {
@@ -138,6 +138,9 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
                 </NavLink>
                 <NavLink href={`/${locale}/regions`} icon={<Map size={15} strokeWidth={2} />} onClick={close}>
                   {nav.regions}
+                </NavLink>
+                <NavLink href={`/${locale}/map`} icon={<MapPin size={15} strokeWidth={2} />} onClick={close}>
+                  {locale === "uz" ? "Xarita" : locale === "ru" ? "Карта" : "Map"}
                 </NavLink>
               </nav>
 
