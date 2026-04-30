@@ -198,6 +198,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
               </div>
 
               <TaxiButton
+                locale={locale}
                 latitude={place.latitude}
                 longitude={place.longitude}
                 placeName={place.name[locale]}
