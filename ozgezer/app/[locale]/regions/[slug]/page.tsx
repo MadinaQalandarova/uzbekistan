@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -8,6 +9,19 @@ import { getMessages, isLocale, locales } from "@/lib/i18n";
 type RegionDetailPageProps = {
   params: Promise<{ locale: string; slug: string }>;
 };
+
+export async function generateMetadata({ params }: RegionDetailPageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const region = await getRegion(slug);
+  if (!region || !isLocale(locale)) return {};
+  const name = region.name[locale as "uz" | "ru" | "en"] ?? region.name.uz;
+  const desc = region.summary[locale as "uz" | "ru" | "en"] ?? region.summary.uz;
+  return {
+    title: name,
+    description: desc,
+    openGraph: { title: name, description: desc, type: "article" },
+  };
+}
 
 export default async function RegionDetailPage({ params }: RegionDetailPageProps) {
   const { locale, slug } = await params;

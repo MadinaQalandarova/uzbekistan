@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Globe, Compass, Map } from "lucide-react";
+import { Globe, Compass, Map, MapPin } from "lucide-react";
 
 import type { Locale } from "@/lib/i18n";
 
@@ -8,8 +8,15 @@ type SiteFooterProps = {
   description: string;
 };
 
+const footerT: Record<Locale, { home: string; regions: string; map: string; rights: string }> = {
+  uz: { home: "Bosh sahifa", regions: "Viloyatlar", map: "Xarita", rights: "Barcha huquqlar himoyalangan." },
+  ru: { home: "Главная",     regions: "Регионы",    map: "Карта",  rights: "Все права защищены."         },
+  en: { home: "Home",        regions: "Regions",    map: "Map",    rights: "All rights reserved."        },
+};
+
 export function SiteFooter({ locale, description }: SiteFooterProps) {
   const year = new Date().getFullYear();
+  const t = footerT[locale];
 
   return (
     <footer className="footer-surface border-t border-[var(--color-ink)]/5">
@@ -36,20 +43,23 @@ export function SiteFooter({ locale, description }: SiteFooterProps) {
           {/* Nav links */}
           <nav className="flex flex-col gap-2">
             <FooterLink href={`/${locale}`} icon={<Globe size={13} strokeWidth={2} />}>
-              {locale === "uz" ? "Bosh sahifa" : locale === "ru" ? "Главная" : "Home"}
+              {t.home}
             </FooterLink>
             <FooterLink href={`/${locale}/explore`} icon={<Compass size={13} strokeWidth={2} />}>
               Explore
             </FooterLink>
             <FooterLink href={`/${locale}/regions`} icon={<Map size={13} strokeWidth={2} />}>
-              {locale === "uz" ? "Viloyatlar" : locale === "ru" ? "Регионы" : "Regions"}
+              {t.regions}
+            </FooterLink>
+            <FooterLink href={`/${locale}/map`} icon={<MapPin size={13} strokeWidth={2} />}>
+              {t.map}
             </FooterLink>
           </nav>
         </div>
 
         {/* Bottom bar */}
         <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-[var(--color-ink)]/6 pt-6 text-xs text-[var(--color-ink)]/40 md:flex-row">
-          <p>© {year} O&apos;zGezer. {locale === "ru" ? "Все права защищены." : locale === "en" ? "All rights reserved." : "Barcha huquqlar himoyalangan."}</p>
+          <p>© {year} O&apos;zGezer. {t.rights}</p>
           <div className="flex gap-1">
             {(["uz", "ru", "en"] as const).map((value) => (
               <Link
