@@ -4,6 +4,7 @@
   "description": "O'zbekiston bo'ylab tarixiy, tabiiy va mahalliy sayohat joylarini kashf eting.",
   "start_url": "/uz",
   "scope": "/",
+  "id": "https://uzbekistan-y1yg.vercel.app/uz",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#F8F7F3",

@@ -27,7 +27,7 @@ export async function generateMetadata({
     en: "Discover historical, natural, and local travel spots across Uzbekistan.",
   };
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://ozgezer.vercel.app"),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://uzbekistan-y1yg.vercel.app"),
     title: { default: titles[lang], template: `%s | O'zGezer` },
     description: descs[lang],
     keywords:
