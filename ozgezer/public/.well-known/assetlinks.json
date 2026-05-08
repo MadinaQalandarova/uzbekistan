@@ -4,7 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "uz.ozgezer.app",
-      "sha256_cert_fingerprints": ["PLACEHOLDER_WILL_BE_REPLACED_AFTER_KEYSTORE"]
+      "sha256_cert_fingerprints": ["49:35:B0:CD:0F:02:C5:CC:8A:92:6A:49:DE:30:49:83:4E:59:92:E5:2B:28:43:3E:9E:F6:FB:F9:06:EA:0F:AE"]
     }
   }
 ]
