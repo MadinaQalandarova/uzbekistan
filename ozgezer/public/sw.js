@@ -1,81 +1,70 @@
 /* O'zGezer — Service Worker v1 */
-const CACHE = "ozgezer-v1";
+const CACHE_NAME = "ozgezer-v1";
+const OFFLINE_URL = "/uz";
 
-/* Birinchi yuklanishda keshlash */
-const PRECACHE = [
-  "/",
-  "/uz",
-  "/ru",
-  "/en",
-  "/icons/icon.svg",
-  "/places/itchan-kala.jpg",
-  "/places/chimgan.jpg",
-  "/places/ark-fortress.jpg",
-  "/places/registan.jpg",
-  "/places/shahrisabz.jpg",
-  "/places/aydarkul.webp",
-  "/places/nurota.jpg",
-];
-
+/* Install: offline sahifasini cache qilamiz */
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches
-      .open(CACHE)
-      .then((cache) => cache.addAll(PRECACHE))
+      .open(CACHE_NAME)
+      .then((cache) =>
+        cache.addAll([
+          OFFLINE_URL,
+          "/manifest.webmanifest",
+          "/icons/icon-192.png",
+          "/icons/icon-512.png",
+        ])
+      )
       .then(() => self.skipWaiting())
   );
 });
 
+/* Activate: eski cache larni tozalaymiz */
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches
       .keys()
       .then((keys) =>
-        Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
+        Promise.all(
+          keys
+            .filter((key) => key !== CACHE_NAME)
+            .map((key) => caches.delete(key))
+        )
       )
       .then(() => self.clients.claim())
   );
 });
 
+/* Fetch: Network-first, offline fallback */
 self.addEventListener("fetch", (event) => {
-  const { request } = event;
-  const url = new URL(request.url);
+  /* Faqat GET so'rovlari */
+  if (event.request.method !== "GET") return;
 
-  /* API so'rovlari va POST — har doim network */
-  if (request.method !== "GET" || url.pathname.startsWith("/api/")) return;
+  /* Chrome extensions va non-http URLlarni o'tkazib yuboramiz */
+  if (!event.request.url.startsWith("http")) return;
 
-  /* Rasmlar uchun — Cache First (tezkor) */
-  if (
-    url.pathname.startsWith("/places/") ||
-    url.pathname.startsWith("/categories/") ||
-    url.pathname.startsWith("/icons/")
-  ) {
-    event.respondWith(
-      caches.match(request).then(
-        (cached) =>
-          cached ||
-          fetch(request).then((res) => {
-            if (res.ok) {
-              const clone = res.clone();
-              caches.open(CACHE).then((c) => c.put(request, clone));
-            }
-            return res;
-          })
-      )
-    );
+  /* API so'rovlari uchun network-only */
+  if (event.request.url.includes("/api/")) {
     return;
   }
 
-  /* Sahifalar uchun — Network First, offline fallback */
   event.respondWith(
-    fetch(request)
-      .then((res) => {
-        if (res.ok) {
-          const clone = res.clone();
-          caches.open(CACHE).then((c) => c.put(request, clone));
+    fetch(event.request)
+      .then((response) => {
+        /* Muvaffaqiyatli javobni cache ga saqlaymiz */
+        if (response && response.status === 200 && response.type === "basic") {
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
         }
-        return res;
+        return response;
       })
-      .catch(() => caches.match(request))
+      .catch(() =>
+        /* Network yo'q — cache dan olamiz, bo'lmasa offline sahifa */
+        caches.match(event.request).then(
+          (cached) => cached || caches.match(OFFLINE_URL)
+        )
+      )
   );
 });
