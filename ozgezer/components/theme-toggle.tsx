@@ -1,6 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
+
+type Theme = "light" | "dark";
+
+const THEME_STORAGE_KEY = "ozgezer-theme";
+const SYSTEM_DARK_QUERY = "(prefers-color-scheme: dark)";
+
+/* ── Tashqi tema manbasi (localStorage + tizim sozlamasi) ───────────────── */
+
+const themeListeners = new Set<() => void>();
+
+function readTheme(): Theme {
+  const stored = localStorage.getItem(THEME_STORAGE_KEY);
+  if (stored === "light" || stored === "dark") return stored;
+  return window.matchMedia(SYSTEM_DARK_QUERY).matches ? "dark" : "light";
+}
+
+function subscribeToTheme(onStoreChange: () => void) {
+  themeListeners.add(onStoreChange);
+  const media = window.matchMedia(SYSTEM_DARK_QUERY);
+  media.addEventListener("change", onStoreChange);
+  window.addEventListener("storage", onStoreChange);
+  return () => {
+    themeListeners.delete(onStoreChange);
+    media.removeEventListener("change", onStoreChange);
+    window.removeEventListener("storage", onStoreChange);
+  };
+}
+
+function applyTheme(theme: Theme) {
+  localStorage.setItem(THEME_STORAGE_KEY, theme);
+  document.documentElement.dataset.theme = theme;
+  themeListeners.forEach((listener) => listener());
+}
 
 function SunIcon() {
   return (
@@ -49,29 +82,27 @@ function MoonIcon() {
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [mounted, setMounted] = useState(false);
+  /* Server render: null → placeholder (hydration mismatch oldini oladi) */
+  const theme = useSyncExternalStore<Theme | null>(
+    subscribeToTheme,
+    readTheme,
+    () => null
+  );
 
+  /* <html data-theme> ni joriy mavzu bilan sinxronlash */
   useEffect(() => {
-    const saved = localStorage.getItem("ozgezer-theme") as "light" | "dark" | null;
-    const preferred =
-      saved ??
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    setTheme(preferred);
-    document.documentElement.dataset.theme = preferred;
-    setMounted(true);
-  }, []);
+    if (theme) {
+      document.documentElement.dataset.theme = theme;
+    }
+  }, [theme]);
 
-  const toggle = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem("ozgezer-theme", next);
-  };
-
-  if (!mounted) {
+  if (!theme) {
     return <div className="h-9 w-9 rounded-full border border-[var(--color-ink)]/10" aria-hidden />;
   }
+
+  const toggle = () => {
+    applyTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
     <button
