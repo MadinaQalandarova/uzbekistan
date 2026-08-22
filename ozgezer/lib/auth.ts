@@ -21,6 +21,20 @@ function signValue(value: string, secret: string) {
   return createHmac("sha256", secret).update(value).digest("hex");
 }
 
+/* Timing-safe satr solishtirish — uzunlik orqali ma'lumot sizishining oldini oladi */
+function safeEqual(a: string, b: string): boolean {
+  const bufA = Buffer.from(a, "utf8");
+  const bufB = Buffer.from(b, "utf8");
+
+  if (bufA.length !== bufB.length) {
+    // Uzunlik farqi bo'lsa ham solishtirish vaqtini "yon diramiz"
+    timingSafeEqual(bufA, bufA);
+    return false;
+  }
+
+  return timingSafeEqual(bufA, bufB);
+}
+
 export function canUseAdminAuth() {
   const config = getAdminConfig();
   return Boolean(config.email && config.password && config.secret);
@@ -46,7 +60,15 @@ export function createAdminSession(email: string) {
 
 export function verifyAdminCredentials(email: string, password: string) {
   const config = getAdminConfig();
-  return email === config.email && password === config.password;
+
+  if (!config.email || !config.password) {
+    return false;
+  }
+
+  const emailMatches = safeEqual(email, config.email);
+  const passwordMatches = safeEqual(password, config.password);
+
+  return emailMatches && passwordMatches;
 }
 
 export function readAdminSession(sessionValue?: string | null): AdminSessionPayload | null {
