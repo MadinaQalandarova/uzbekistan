@@ -47,7 +47,7 @@ export default async function AdminReviewsPage({ params, searchParams }: AdminRe
 
       {query.approved && (
         <div className="mb-6 rounded-[1.5rem] border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
-          Izoh tasdiqlandi va reytingga qo'shildi.
+          Izoh tasdiqlandi va reytingga qo&apos;shildi.
         </div>
       )}
       {query.rejected && (
