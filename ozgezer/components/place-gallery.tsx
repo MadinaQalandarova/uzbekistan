@@ -54,7 +54,11 @@ export function PlaceGallery({ images, alt, chips }: PlaceGalleryProps) {
     const dy = e.changedTouches[0].clientY - touchStartY.current;
     /* Faqat gorizontal swipe — scroll bilan aralashmasin */
     if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-      dx < 0 ? next() : prev();
+      if (dx < 0) {
+        next();
+      } else {
+        prev();
+      }
     }
     touchStartX.current = null;
     touchStartY.current = null;
