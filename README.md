@@ -1,4 +1,4 @@
-cdcd# O'zGezer
+# O'zGezer
 
 O'zGezer is a travel discovery platform focused on helping tourists and local residents explore places across Uzbekistan with trusted reviews, maps, and contributor-driven content.
 
@@ -12,7 +12,7 @@ This repository currently contains the Phase 0 foundation:
 
 ## Current Phase
 
-Phase 0 is treated as complete when the documents in [`docs/phase-0`](C:\Users\User\Desktop\YashinOzbekiston\docs\phase-0) are locked and the initial setup checklist in [`docs/phase-1-readiness.md`](C:\Users\User\Desktop\YashinOzbekiston\docs\phase-1-readiness.md) is ready to execute.
+Phase 0 is treated as complete when the documents in [`docs/phase-0`](docs/phase-0) are locked and the initial setup checklist in [`docs/phase-1-readiness.md`](docs/phase-1-readiness.md) is ready to execute.
 
 ## Phase 1 Build Order
 
