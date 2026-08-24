@@ -5,6 +5,13 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { Menu, X, Home, Compass, Map, Globe, LogOut, User, MapPin } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
+import { LocaleSwitcher } from "@/components/locale-switcher";
+
+const t: Record<Locale, { openMenu: string; closeMenu: string; navMenu: string }> = {
+  uz: { openMenu: "Menyuni ochish", closeMenu: "Menyuni yopish", navMenu: "Navigatsiya menyusi" },
+  ru: { openMenu: "Открыть меню", closeMenu: "Закрыть меню", navMenu: "Меню навигации" },
+  en: { openMenu: "Open menu", closeMenu: "Close menu", navMenu: "Navigation menu" },
+};
 
 type MobileNavProps = {
   locale: Locale;
@@ -77,7 +84,7 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
       {/* ── Hamburger button — only on mobile ── */}
       <button
         onClick={() => setOpen(true)}
-        aria-label="Menyuni ochish"
+        aria-label={t[locale].openMenu}
         aria-expanded={open}
         className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-[var(--color-ink)]/10 bg-white/80 text-[var(--color-ink)] shadow-sm transition hover:bg-[var(--color-mist)] lg:hidden"
       >
@@ -105,7 +112,7 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
           <aside
             role="dialog"
             aria-modal="true"
-            aria-label="Navigatsiya menyusi"
+            aria-label={t[locale].navMenu}
             className={`fixed right-0 top-0 z-[9999] flex h-full w-[290px] flex-col bg-[var(--background)] shadow-2xl transition-transform duration-300 ease-out will-change-transform ${
               open ? "translate-x-0" : "translate-x-full"
             }`}
@@ -122,7 +129,7 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
               </div>
               <button
                 onClick={close}
-                aria-label="Menyuni yopish"
+                aria-label={t[locale].closeMenu}
                 className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-ink)]/10 text-[var(--color-ink)]/40 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-ink)]"
               >
                 <X size={15} strokeWidth={2.5} />
@@ -149,27 +156,12 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
 
               <div className="mx-4 border-t border-[var(--color-ink)]/6" />
 
-              {/* Locale switcher */}
+              {/* Locale switcher — joriy sahifani saqlaydi */}
               <div className="px-5 py-4">
                 <p className="mb-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-ink)]/35">
-                  Til / Language
+                  Til / Язык / Language
                 </p>
-                <div className="flex gap-2">
-                  {(["uz", "ru", "en"] as const).map((value) => (
-                    <Link
-                      key={value}
-                      href={`/${value}`}
-                      onClick={close}
-                      className={`flex-1 rounded-xl py-2.5 text-center text-xs font-semibold uppercase tracking-[0.18em] transition ${
-                        value === locale
-                          ? "bg-[var(--color-sky)] text-white shadow-sm"
-                          : "border border-[var(--color-ink)]/10 text-[var(--color-ink)]/50 hover:border-[var(--color-sky)]/50 hover:text-[var(--color-sky)]"
-                      }`}
-                    >
-                      {value}
-                    </Link>
-                  ))}
-                </div>
+                <LocaleSwitcher locale={locale} variant="grid" onNavigate={close} />
               </div>
             </div>
 

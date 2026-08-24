@@ -3,6 +3,7 @@ import { Globe, Map, Compass, LogOut, User, MapPin } from "lucide-react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { MobileNav } from "@/components/mobile-nav";
+import { LocaleSwitcher } from "@/components/locale-switcher";
 import type { Locale } from "@/lib/i18n";
 
 type SiteHeaderProps = {
@@ -71,21 +72,9 @@ export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
         {/* ── Right side ── */}
         <div className="flex items-center gap-2">
 
-          {/* Locale switcher — desktop only */}
-          <div className="locale-pill-wrap hidden items-center rounded-full border border-[var(--color-ink)]/10 bg-white/70 p-0.5 lg:flex">
-            {(["uz", "ru", "en"] as const).map((value) => (
-              <Link
-                key={value}
-                href={`/${value}`}
-                className={`locale-pill rounded-full px-3 py-1.5 text-xs font-semibold tracking-[0.18em] uppercase transition ${
-                  value === locale
-                    ? "locale-pill-active bg-[var(--color-sky)] text-white"
-                    : "text-[var(--color-ink)]/55 hover:text-[var(--color-sky)]"
-                }`}
-              >
-                {value.toUpperCase()}
-              </Link>
-            ))}
+          {/* Locale switcher — desktop only (joriy sahifani saqlaydi) */}
+          <div className="hidden lg:block">
+            <LocaleSwitcher locale={locale} />
           </div>
 
           {/* Explore CTA — desktop only */}
@@ -132,7 +121,7 @@ export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
           )}
 
           {/* Theme toggle — always visible */}
-          <ThemeToggle />
+          <ThemeToggle locale={locale} />
 
           {/* Hamburger — hidden on lg+ (MobileNav itself renders lg:hidden) */}
           <MobileNav locale={locale} nav={nav} user={user} />

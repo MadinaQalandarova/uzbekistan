@@ -173,6 +173,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
             <PlaceGallery
               images={galleryImages}
               alt={place.name[locale]}
+              locale={locale}
               chips={
                 <div className="flex flex-wrap gap-2">
                   {place.categoryTitles.map((category) => (

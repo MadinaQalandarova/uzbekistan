@@ -117,7 +117,7 @@ const messages: Record<Locale, Messages> = {
   uz: {
     nav: {
       home: "Bosh sahifa",
-      explore: "Explore",
+      explore: "Kashfiyot",
       regions: "Viloyatlar",
       admin: "Admin",
       openExplore: "Joylarni ko'rish",
@@ -198,7 +198,7 @@ const messages: Record<Locale, Messages> = {
       title: "Joylarni izlash",
       description: "Region, kategoriya va kalit so'z orqali katalog bo'ylab qidiring.",
       searchPlaceholder: "Joy nomi yoki tavsifdan qidiring...",
-      searchButton: "Filterlash",
+      searchButton: "Filtrlash",
       allRegions: "Barcha viloyatlar",
       allCategories: "Barcha kategoriyalar",
       noResults: "Tanlangan filterlarga mos joy topilmadi.",
@@ -209,7 +209,7 @@ const messages: Record<Locale, Messages> = {
       filterCategory: "Kategoriya",
     },
     place: {
-      backToExplore: "Explore sahifasiga qaytish",
+      backToExplore: "Qidiruv sahifasiga qaytish",
       aboutPlace: "Joy haqida",
       practicalInfo: "Amaliy ma'lumot",
       categoryLabel: "Kategoriya",
@@ -224,7 +224,7 @@ const messages: Record<Locale, Messages> = {
   ru: {
     nav: {
       home: "Главная",
-      explore: "Explore",
+      explore: "Обзор",
       regions: "Регионы",
       admin: "Админ",
       openExplore: "Смотреть места",
@@ -315,7 +315,7 @@ const messages: Record<Locale, Messages> = {
       filterCategory: "Категория",
     },
     place: {
-      backToExplore: "Назад к explore",
+      backToExplore: "Назад к поиску",
       aboutPlace: "О месте",
       practicalInfo: "Практическая информация",
       categoryLabel: "Категория",

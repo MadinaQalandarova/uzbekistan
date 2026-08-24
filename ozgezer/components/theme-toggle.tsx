@@ -2,10 +2,18 @@
 
 import { useEffect, useSyncExternalStore } from "react";
 
+import type { Locale } from "@/lib/i18n";
+
 type Theme = "light" | "dark";
 
 const THEME_STORAGE_KEY = "ozgezer-theme";
 const SYSTEM_DARK_QUERY = "(prefers-color-scheme: dark)";
+
+const labels: Record<Locale, { light: string; dark: string }> = {
+  uz: { light: "Kunduzgi rejim", dark: "Tungi rejim" },
+  ru: { light: "Дневной режим", dark: "Ночной режим" },
+  en: { light: "Light mode", dark: "Dark mode" },
+};
 
 /* ── Tashqi tema manbasi (localStorage + tizim sozlamasi) ───────────────── */
 
@@ -81,7 +89,7 @@ function MoonIcon() {
   );
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ locale = "uz" }: { locale?: Locale }) {
   /* Server render: null → placeholder (hydration mismatch oldini oladi) */
   const theme = useSyncExternalStore<Theme | null>(
     subscribeToTheme,
@@ -104,12 +112,14 @@ export function ThemeToggle() {
     applyTheme(theme === "dark" ? "light" : "dark");
   };
 
+  const label = labels[locale][theme];
+
   return (
     <button
       type="button"
       onClick={toggle}
-      aria-label={theme === "dark" ? "Kunduzgi rejim" : "Tungi rejim"}
-      title={theme === "dark" ? "Kunduzgi rejim" : "Tungi rejim"}
+      aria-label={label}
+      title={label}
       className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-ink)]/10 bg-white/80 text-[var(--color-ink)] shadow-sm transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
     >
       {theme === "dark" ? <SunIcon /> : <MoonIcon />}

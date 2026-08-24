@@ -3,14 +3,24 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+import type { Locale } from "@/lib/i18n";
+
+const labels: Record<Locale, { gallery: string; prev: string; next: string; image: string }> = {
+  uz: { gallery: "Rasm galereyasi", prev: "Oldingi rasm", next: "Keyingi rasm", image: "Rasm" },
+  ru: { gallery: "Галерея изображений", prev: "Предыдущее фото", next: "Следующее фото", image: "Фото" },
+  en: { gallery: "Image gallery", prev: "Previous image", next: "Next image", image: "Image" },
+};
+
 type PlaceGalleryProps = {
   images: string[];
   alt: string;
   /** Kategoriya chip-lari (hero ustiga chiqadi) */
   chips?: React.ReactNode;
+  locale?: Locale;
 };
 
-export function PlaceGallery({ images, alt, chips }: PlaceGalleryProps) {
+export function PlaceGallery({ images, alt, chips, locale = "uz" }: PlaceGalleryProps) {
+  const t = labels[locale];
   const [current, setCurrent] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const touchStartX = useRef<number | null>(null);
@@ -69,7 +79,7 @@ export function PlaceGallery({ images, alt, chips }: PlaceGalleryProps) {
       className="relative min-h-[22rem] overflow-hidden bg-[linear-gradient(140deg,#2D6B6B_0%,#5B8A6E_55%,#F59E0B_100%)]"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
-      aria-label="Rasm galereyasi"
+      aria-label={t.gallery}
     >
       {/* ── Slides ── */}
       {images.map((src, i) => (
@@ -109,14 +119,14 @@ export function PlaceGallery({ images, alt, chips }: PlaceGalleryProps) {
           <button
             onClick={prev}
             className="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-black/30 text-white backdrop-blur-sm transition hover:bg-black/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            aria-label="Oldingi rasm"
+            aria-label={t.prev}
           >
             <ChevronLeft size={18} strokeWidth={2.2} />
           </button>
           <button
             onClick={next}
             className="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-black/30 text-white backdrop-blur-sm transition hover:bg-black/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            aria-label="Keyingi rasm"
+            aria-label={t.next}
           >
             <ChevronRight size={18} strokeWidth={2.2} />
           </button>
@@ -135,7 +145,7 @@ export function PlaceGallery({ images, alt, chips }: PlaceGalleryProps) {
                   ? "w-5 bg-white"
                   : "w-1.5 bg-white/45 hover:bg-white/70"
               }`}
-              aria-label={`Rasm ${i + 1}`}
+              aria-label={`${t.image} ${i + 1}`}
               aria-current={i === current}
             />
           ))}
