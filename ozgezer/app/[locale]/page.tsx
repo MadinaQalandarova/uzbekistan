@@ -88,6 +88,7 @@ const CATEGORY_VISUALS: Record<string, { photo: string; tint: string }> = {
   "food":       { photo: "/categories/ovqat.avif",     tint: "bg-red-950/40" },
   "nature":     { photo: "/categories/tabiat.avif",    tint: "bg-sky-950/35" },
   "historical": { photo: "/categories/tarixiy.avif",   tint: "bg-amber-950/40" },
+  "museums":    { photo: "/categories/tarixiy.avif",   tint: "bg-violet-950/45" },
 };
 
 export default async function LocaleHomePage({ params }: LocalePageProps) {

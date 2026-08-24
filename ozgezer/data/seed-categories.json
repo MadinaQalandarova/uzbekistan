@@ -48,5 +48,15 @@
     "descriptionRu": "Места локальной торговли, ремёсел и городского ритма.",
     "descriptionEn": "Places that reflect local trade, crafts, and city rhythm.",
     "stat": 12
+  },
+  {
+    "slug": "museums",
+    "nameUz": "Muzeylar",
+    "nameRu": "Музеи",
+    "nameEn": "Museums",
+    "descriptionUz": "San'at galereyalari, o'lkashunoslik va noyob kolleksiyalar uylari.",
+    "descriptionRu": "Художественные галереи, краеведческие и уникальные коллекции.",
+    "descriptionEn": "Art galleries, regional heritage, and unique collections.",
+    "stat": 9
   }
 ]
