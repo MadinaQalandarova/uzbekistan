@@ -28,8 +28,16 @@ export async function generateMetadata({
 
 type ExplorePageProps = {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ q?: string; region?: string; category?: string }>;
+  /* Next.js takroriy parametrlarni massiv qilib beradi — masalan ?q=a&q=b */
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
+
+/* Parametrni xavfsiz satrga aylantirish — massiv bo'lsa birinchi qiymat olinadi */
+function readParam(value: string | string[] | undefined): string | undefined {
+  const raw = Array.isArray(value) ? value.at(0) : value;
+  const trimmed = raw?.trim();
+  return trimmed || undefined;
+}
 
 export default async function ExplorePage({ params, searchParams }: ExplorePageProps) {
   const { locale } = await params;
@@ -40,9 +48,9 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
   }
 
   const filters: PlaceFilters = {
-    q: query.q,
-    region: query.region,
-    category: query.category,
+    q: readParam(query.q),
+    region: readParam(query.region),
+    category: readParam(query.category),
   };
 
   const messages = getMessages(locale);
@@ -52,9 +60,9 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
     getCategories(),
   ]);
 
-  const activeRegion = regions.find((r) => r.slug === query.region);
-  const activeCategory = categories.find((c) => c.slug === query.category);
-  const hasFilters = !!(query.q || query.region || query.category);
+  const activeRegion = regions.find((r) => r.slug === filters.region);
+  const activeCategory = categories.find((c) => c.slug === filters.category);
+  const hasFilters = !!(filters.q || filters.region || filters.category);
 
   return (
     <div className="py-8">
@@ -87,7 +95,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
               <input
                 type="text"
                 name="q"
-                defaultValue={query.q ?? ""}
+                defaultValue={filters.q ?? ""}
                 placeholder={messages.explore.searchPlaceholder}
                 className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] pl-10 pr-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10 placeholder:text-[var(--color-ink)]/35"
               />
@@ -142,22 +150,22 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
           </span>
 
           {/* Active filter chips */}
-          {query.q && (
+          {filters.q && (
             <ActiveChip
-              label={`"${query.q}"`}
-              href={buildResetUrl(locale, query, "q")}
+              label={`"${filters.q}"`}
+              href={buildResetUrl(locale, filters, "q")}
             />
           )}
           {activeRegion && (
             <ActiveChip
               label={activeRegion.name[locale]}
-              href={buildResetUrl(locale, query, "region")}
+              href={buildResetUrl(locale, filters, "region")}
             />
           )}
           {activeCategory && (
             <ActiveChip
               label={activeCategory.title[locale]}
-              href={buildResetUrl(locale, query, "category")}
+              href={buildResetUrl(locale, filters, "category")}
             />
           )}
 
@@ -224,13 +232,13 @@ function ActiveChip({ label, href }: { label: string; href: string }) {
 
 function buildResetUrl(
   locale: string,
-  query: { q?: string; region?: string; category?: string },
+  filters: { q?: string; region?: string; category?: string },
   remove: "q" | "region" | "category"
 ): string {
   const params = new URLSearchParams();
-  if (query.q && remove !== "q") params.set("q", query.q);
-  if (query.region && remove !== "region") params.set("region", query.region);
-  if (query.category && remove !== "category") params.set("category", query.category);
+  if (filters.q && remove !== "q") params.set("q", filters.q);
+  if (filters.region && remove !== "region") params.set("region", filters.region);
+  if (filters.category && remove !== "category") params.set("category", filters.category);
   const qs = params.toString();
   return `/${locale}/explore${qs ? `?${qs}` : ""}`;
 }

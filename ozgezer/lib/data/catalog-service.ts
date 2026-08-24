@@ -159,6 +159,24 @@ async function _getPlaces(filters: PlaceFilters = {}): Promise<PlaceRecord[]> {
                 { descriptionUz: { contains: normalizedQuery, mode: "insensitive" } },
                 { descriptionRu: { contains: normalizedQuery, mode: "insensitive" } },
                 { descriptionEn: { contains: normalizedQuery, mode: "insensitive" } },
+                /* Viloyat nomlari bo'yicha qidiruv */
+                { region: { nameUz: { contains: normalizedQuery, mode: "insensitive" } } },
+                { region: { nameRu: { contains: normalizedQuery, mode: "insensitive" } } },
+                { region: { nameEn: { contains: normalizedQuery, mode: "insensitive" } } },
+                /* Kategoriya nomlari bo'yicha qidiruv */
+                {
+                  categories: {
+                    some: {
+                      category: {
+                        OR: [
+                          { nameUz: { contains: normalizedQuery, mode: "insensitive" } },
+                          { nameRu: { contains: normalizedQuery, mode: "insensitive" } },
+                          { nameEn: { contains: normalizedQuery, mode: "insensitive" } },
+                        ],
+                      },
+                    },
+                  },
+                },
               ],
             }
           : {}),
@@ -719,14 +737,25 @@ function filterPlace(place: PlaceRecord, filters: PlaceFilters, normalizedQuery?
   const matchesRegion = !filters.region || place.regionSlug === filters.region;
   const matchesCategory =
     !filters.category || place.categorySlugs.includes(filters.category);
+
+  /* Viloyat yoki kategoriya nomi ham qidiruvda ishtirok etadi —
+     masalan "Xiva" yoki "bozor" so'zlari joy topib beradi */
+  const haystacks: string[] = [
+    place.name.uz,
+    place.name.ru,
+    place.name.en,
+    place.description.uz,
+    place.description.ru,
+    place.description.en,
+    place.regionName.uz,
+    place.regionName.ru,
+    place.regionName.en,
+    ...place.categoryTitles.flatMap((title) => [title.uz, title.ru, title.en]),
+  ];
+
   const matchesQuery =
     !normalizedQuery ||
-    place.name.uz.toLowerCase().includes(normalizedQuery) ||
-    place.name.ru.toLowerCase().includes(normalizedQuery) ||
-    place.name.en.toLowerCase().includes(normalizedQuery) ||
-    place.description.uz.toLowerCase().includes(normalizedQuery) ||
-    place.description.ru.toLowerCase().includes(normalizedQuery) ||
-    place.description.en.toLowerCase().includes(normalizedQuery);
+    haystacks.some((text) => text.toLowerCase().includes(normalizedQuery));
 
   return matchesRegion && matchesCategory && matchesQuery;
 }
