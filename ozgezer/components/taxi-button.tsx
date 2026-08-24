@@ -17,8 +17,16 @@ const labels: Record<Locale, { taxi: string; maps: string; sub: string }> = {
 };
 
 export function TaxiButton({ latitude, longitude, placeName, locale }: TaxiButtonProps) {
-  /* Yandex Go — to'g'ri deeplink (ilovaga yoki veb ga ochadi) */
-  const yandexLink = `yandextaxi://route?end-lat=${latitude}&end-lon=${longitude}&lang=${locale}`;
+  /* Yandex Go rasmiy AppMetrica universal havolasi:
+     - ilova o'rnatilgan bo'lsa → Yandex Go ilovasi (marshrut oldindan to'ldirilgan)
+     - ilova yo'q bo'lsa → Yandex Go veb-sayti (tracking_id: 25395763362139037)
+     Manba: https://yandex.com/support/taxi-distr/en/api/deeplinks */
+  const yandexLink =
+    `https://3.redirect.appmetrica.yandex.com/route` +
+    `?end-lat=${latitude}&end-lon=${longitude}` +
+    `&tariffClass=econom&ref=ozgezer` +
+    `&appmetrica_tracking_id=25395763362139037&lang=${locale}`;
+
   /* Google Maps — har doim ishlaydi */
   const googleLink = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
 
@@ -26,11 +34,9 @@ export function TaxiButton({ latitude, longitude, placeName, locale }: TaxiButto
 
   return (
     <div className="grid grid-cols-2 gap-3">
-      {/* Yandex Go */}
+      {/* Yandex Go — Yandex tavsiyasiga ko'ra target="_blank" ishlatilmaydi */}
       <a
         href={yandexLink}
-        target="_blank"
-        rel="noopener noreferrer"
         aria-label={`${t.taxi}: ${placeName}`}
         className="group flex flex-col items-center gap-2 rounded-[1.25rem] border border-amber-200 bg-amber-50 px-4 py-4 text-center transition-all hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:bg-amber-100 hover:shadow-lg hover:shadow-amber-900/10"
       >
