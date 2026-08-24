@@ -24,6 +24,18 @@ export const PLACE_IMAGES: Record<string, string> = {
   "shahrisabz":     "/places/shahrisabz.jpg",
   "aydarkul":       "/places/aydarkul.webp",
   "nurota":         "/places/nurota.jpg",
+  "shohi-zinda":          "/places/shohi-zinda.jpg",
+  "bibi-xonim":           "/places/bibi-xonim.jpg",
+  "ulugbek-rasadxonasi":  "/places/ulugbek-rasadxonasi.jpg",
+  "minorai-kalon":        "/places/minorai-kalon.jpg",
+  "labihovuz":            "/places/labihovuz.jpg",
+  "sitorai-mohi-xosa":    "/places/sitorai-mohi-xosa.jpg",
+  "kalta-minor":          "/places/kalta-minor.jpg",
+  "islomxoja-minorasi":   "/places/islomxoja-minorasi.jpg",
+  "tosh-hovli":           "/places/tosh-hovli.jpg",
+  "chorvoq":              "/places/chorvoq.jpg",
+  "amirsoy":              "/places/amirsoy.jpg",
+  "chorsu-bozori":        "/places/chorsu-bozori.jpg",
 };
 
 /**
@@ -39,6 +51,18 @@ export const PLACE_GALLERIES: Record<string, string[]> = {
   "shahrisabz":   ["/places/shahrisabz.jpg"],
   "aydarkul":     ["/places/aydarkul.webp"],
   "nurota":       ["/places/nurota.jpg"],
+  "shohi-zinda":          ["/places/shohi-zinda.jpg"],
+  "bibi-xonim":           ["/places/bibi-xonim.jpg"],
+  "ulugbek-rasadxonasi":  ["/places/ulugbek-rasadxonasi.jpg"],
+  "minorai-kalon":        ["/places/minorai-kalon.jpg"],
+  "labihovuz":            ["/places/labihovuz.jpg"],
+  "sitorai-mohi-xosa":    ["/places/sitorai-mohi-xosa.jpg"],
+  "kalta-minor":          ["/places/kalta-minor.jpg"],
+  "islomxoja-minorasi":   ["/places/islomxoja-minorasi.jpg"],
+  "tosh-hovli":           ["/places/tosh-hovli.jpg"],
+  "chorvoq":              ["/places/chorvoq.jpg"],
+  "amirsoy":              ["/places/amirsoy.jpg"],
+  "chorsu-bozori":        ["/places/chorsu-bozori.jpg"],
 };
 
 export const PLACE_STORIES: Record<string, PlaceStory> = {
@@ -421,6 +445,171 @@ export const PLACE_STORIES: Record<string, PlaceStory> = {
           {
             title: "Samarqanddan 90 daqiqa",
             body: "Shahrisabz Samarqanddan 90 km uzoqlikda. Yo'l Zarafshon tizmasining go'zal tog' manzaralari orqali o'tadi — sayohatning o'zi ham ajoyib.",
+          },
+        ],
+      },
+    ],
+  },
+
+  "shohi-zinda": {
+    quote: {
+      uz: "Shohi Zinda — bu ko'chalar ichidagi eng muhtasham ko'cha. Har bir peshtoq orqasida asr yotadi, har bir koshin nur sochadi.",
+      ru: "Шахи Зинда — самая величественная из улиц. За каждым порталом — век, каждая плитка излучает свет.",
+      en: "Shahi Zinda is the most majestic of streets. Behind every portal lies a century; every tile radiates light.",
+    },
+    heroTitle: "Maqbaralar ko'chasi",
+    sections: [
+      {
+        emoji: "✨",
+        heading: "Hayratlanarli faktlar",
+        facts: [
+          {
+            title: "\"Tirik shoh\" nomi",
+            body: "Majmua nomi \"Tirik shoh\" degan ma'noni anglatadi — bu yerda Payg'ambar amakivachchasi Qusam ibn Abbos dafn etilgan deb ishoniladi. Ziyoratgoh 1000 yildan ortiq vaqt davomida Islomning Markaziy Osiyodagi eng muqaddas maskanlaridan biri bo'lib kelgan.",
+          },
+          {
+            title: "11 asrlik qatlam",
+            body: "Eng qadimiy inshootlar XI–XII asrlarga tegishli, eng yoshlari esa XIX asrda qurilgan. Ko'cha bo'ylab yurganingizda siz asrlar kesimini zina bo'ylab ko'tarilib chiqqandek o'tasiz.",
+          },
+          {
+            title: "Koshin mo'jizasi",
+            body: "XIV–XV asrlar maqbaralaridagi sirlangan terrakota va moviy koshin naqshlari dunyoda tengsiz hisoblanadi. Shamseddin Kulol maqbarasi peshtog'i ko'pincha Sharq me'morchiligining cho'qqisi deb ataladi.",
+          },
+          {
+            title: "40 zinapoyali marosim",
+            body: "Majmuaga kirish uchun 36–40 ta zinapoyadan ko'tarilish kerak. Eski rivoyatlarga ko'ra, ziyoratchi zinapoyalarni sanab ko'tarilsa va tepada duo qilsa — tilagi qabul bo'ladi.",
+          },
+        ],
+      },
+      {
+        emoji: "🕌",
+        heading: "Nega Shohi Zindaga borish kerak?",
+        facts: [
+          {
+            title: "Fotograflarning jannati",
+            body: "Ertalabki quyosh nuri tor ko'cha devorlariga tushganda koshinlar oltin-moviy rangga kiradi. Bu O'zbekistondagi eng fotogen manzarlardan biri.",
+          },
+          {
+            title: "Registondan 10 daqiqa",
+            body: "Shohi Zinda Registon maydonidan piyoda yoki taksida bir necha daqiqada boriladigan masofada joylashgan — Samarqandga kelganingizda ikkalasini bir kunda ko'rishingiz mumkin.",
+          },
+          {
+            title: "Jonli ziyorat an'anasi",
+            body: "Bu muzey emas — bugun ham minglab odamlar ziyorat qiladi. Dua qilayotgan oilalar, non uzatayotgan cholalar — jonli madaniy tajriba.",
+          },
+          {
+            title: "Ulug'bek davri yodgorligi",
+            body: "Majmuada Temuriy hukmdor ayollari — Tuman Oqa, Shodi Mulk Oqa maqbaralari joylashgan. Bu ayollar nomi bilan atalgan noyob me'moriy ansambl.",
+          },
+        ],
+      },
+    ],
+  },
+
+  "minorai-kalon": {
+    quote: {
+      uz: "Minora shunchaki g'isht emas — u Buxoro osmoniga mixlangan tarixdir. Qaraganingizda asrlar sizga qaraydi.",
+      ru: "Минарет — это не просто кирпич, это история, вбитая в небо Бухары. Когда вы смотрите на него, века смотрят на вас.",
+      en: "The minaret is not mere brick — it is history nailed into Bukhara's sky. As you look at it, centuries look back.",
+    },
+    heroTitle: "Buxoroning buyuk minorasi",
+    sections: [
+      {
+        emoji: "✨",
+        heading: "Hayratlanarli faktlar",
+        facts: [
+          {
+            title: "900 yillik gigant",
+            body: "Minorai Kalon 1127-yilda Arslonxon buyrug'i bilan qurilgan. Balandligi 46 metr bo'lib, 900 yildan beri zilzilarga qaramay tik turibdi — poydevoriga qazilgan maxsus cho'yan tayanchlar buning siridir.",
+          },
+          {
+            title: "\"O'lik minora\" afsonasi",
+            body: "XIX asrgacha mahkumlarni minoradan tashlashgan — shuning uchun u \"O'lik minora\" (G'or-i Kalon) deb atalgan. Bugun bu dahshatli tarix faqat rivoyatlarda qolgan.",
+          },
+          {
+            title: "Naqshlarsiz go'zallik",
+            body: "Minora deyarli bezaksiz — uning go'zalligi g'isht terish mahoratida: 10 xil naqshli g'isht halqalari quyosh nufizida o'zgarib turadi. Ustiga \"Al-Mulk\" (Mulukning) imzosi bosilgan.",
+          },
+          {
+            title: "Miri Arab madrasasi",
+            body: "Yonidagi Miri Arab madrasasi (1535) bugungacha faol diniy o'quv yurti bo'lib ishlaydi — O'zbekistondagi kam sonli madrasalardan biri.",
+          },
+        ],
+      },
+      {
+        emoji: "🧭",
+        heading: "Nega Minorai Kalonga borish kerak?",
+        facts: [
+          {
+            title: "Kalon masjidi saloni",
+            body: "Masjid ichki hovlisida 288 ta ustunli galereya mavjud. Juma kunlari minglab namozxonlar bilan birga haqiqiy sharqiy marosimni his qilasiz.",
+          },
+          {
+            title: "Kechki yorug'lik shousi",
+            body: "Tunda minora va majmua maxsus yoritiladi — Buxoroning eng mashhur tungi fotosessiya nuqtasi.",
+          },
+          {
+            title: "Barcha yo'llar shu yerdan",
+            body: "Minorai Kalon eski shahar markazida joylashgan — Ark, Labihovuz va bozorlar hammasi piyoda masofada. Marshrutingizni shu yerda boshlash eng qulay.",
+          },
+          {
+            title: "Akustika siri",
+            body: "Minora tepasidagi muazzin balandi butun shahar bo'ylab eshitar edi — me'morlar ovozni pastga yog'diruvchi maxsus shakl yaratgan.",
+          },
+        ],
+      },
+    ],
+  },
+
+  "chorvoq": {
+    quote: {
+      uz: "Chorvoq — tog'lar bag'idagi dengiz. Suvning firuza rangini birinchi ko'rganingizda, bu O'zbekiston ekaniga ishonchingiz kelmaydi.",
+      ru: "Чарвак — море в объятиях гор. Увидев бирюзовый цвет воды впервые, вы не поверите, что это Узбекистан.",
+      en: "Charvak is a sea cradled by mountains. At first sight of its turquoise water you won't believe it's Uzbekistan.",
+    },
+    heroTitle: "Tog'lar qurshovidagi dengiz",
+    sections: [
+      {
+        emoji: "✨",
+        heading: "Qiziqarli faktlar",
+        facts: [
+          {
+            title: "Suniy, lekin tabiiy go'zal",
+            body: "Chorvoq suv ombori 1972-yilda Chirchiq daryosida qurilgan to'g'on natijasida hosil bo'lgan. Suv hajmi 2 km³ dan ortiq — bu Toshkent viloyatining eng katta suv havzasi.",
+          },
+          {
+            title: "To'rt qishloq o'rnida",
+            body: "Suv ostida qadimgi Chorvoq shaharchasi qolgan — nomi \"chor ravoq\" (to'rt yo'l chorrahasi) dan kelgan. Buyuk Ipak yo'li karvonlari aynan shu chorrahada to'xtagan.",
+          },
+          {
+            title: "Yozgi poytaxt",
+            body: "Iyulda suv harorati 24–26 darajagacha yetadi. Toshkentliklar uchun Chorvoq — shahar jaziramasi qochadigan asosiy maskan, dam olish kunlarida plyajlar to'la bo'ladi.",
+          },
+          {
+            title: "Paraplanda uchish",
+            body: "Chorvoq atrofidagi tog'lar paraplanerlar uchun Markaziy Osiyodagi eng yaxshi nuqtalardan biri. Xalqaro musobaqalar ham shu yerda o'tkaziladi.",
+          },
+        ],
+      },
+      {
+        emoji: "🏖️",
+        heading: "Nega Chorvoqqa borish kerak?",
+        facts: [
+          {
+            title: "Har qanday dam olish",
+            body: "Plyaj kurortlari, kater sayrlari, jet-ski, baliq ovlash yoki shunchaki qirg'oqdagi choyxona — har kim o'ziga mos dam olish turini topadi.",
+          },
+          {
+            title: "Ovqat manzarasi bilan",
+            body: "Qirg'oq bo'yidagi restoranlarda yangi baliq kabob, somsa va milliy taomlar — suv va tog' manzarasi ostida nonushta alohida ta'm beradi.",
+          },
+          {
+            title: "Chimyon bilan birlashtiring",
+            body: "Chorvoq Chimgan va Beldersoy yo'lda — bir kunda tog' kanatiga chiqib, keyin suvga sho'ng'ishingiz mumkin. Ideal kunlik marshrut.",
+          },
+          {
+            title: "Toshkentdan 90 daqiqa",
+            body: "Toshkentdan avtomobil bilan taxminan 1,5 soat. Yo'l bo'ylab Kamchiq vodiysi manzaralari ochilib boradi — safar o'zi ham sarguzasht.",
           },
         ],
       },
