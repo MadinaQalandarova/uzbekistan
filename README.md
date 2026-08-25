@@ -22,7 +22,7 @@ Phase 0 is treated as complete when the documents in [`docs/phase-0`](docs/phase
 4. Seed regions, categories, and starter places
 5. Build the shared layout and navigation
 
-## Planned Stack
+## Planned Stack😈 
 
 - Next.js 14 App Router
 - TypeScript
