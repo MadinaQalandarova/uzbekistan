@@ -10,7 +10,7 @@ This repository currently contains the Phase 0 foundation:
 - initial Prisma data model draft
 - Phase 1 implementation readiness checklist
 
-## Current Phase
+## Current Phase⚡ 
 
 Phase 0 is treated as complete when the documents in [`docs/phase-0`](docs/phase-0) are locked and the initial setup checklist in [`docs/phase-1-readiness.md`](docs/phase-1-readiness.md) is ready to execute.
 
