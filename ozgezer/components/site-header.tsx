@@ -4,6 +4,7 @@ import { Globe, Map, Compass, LogOut, User, MapPin } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { MobileNav } from "@/components/mobile-nav";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { GradientSearch } from "@/components/gradient-search";
 import type { Locale } from "@/lib/i18n";
 
 type SiteHeaderProps = {
@@ -71,6 +72,10 @@ export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
 
         {/* ── Right side ── */}
         <div className="flex items-center gap-2">
+          {/* Gradient expanding search — desktop only, Mini-Search-System */}
+          <div className="hidden lg:flex">
+            <GradientSearch locale={locale} />
+          </div>
 
           {/* Locale switcher — desktop only (joriy sahifani saqlaydi) */}
           <div className="hidden lg:block">
