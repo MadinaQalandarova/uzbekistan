@@ -141,19 +141,23 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                 examples={SEARCH_EXAMPLES[locale] ?? SEARCH_EXAMPLES.uz}
               />
 
-              {/* Mobile-only compact stats row */}
-              <div className="flex gap-3 lg:hidden">
-                <div className="flex-1 rounded-[1rem] bg-[var(--color-sky)]/10 px-3 py-2.5 text-center">
-                  <p className="text-lg font-semibold text-[var(--color-sky)]">{regions.length}</p>
-                  <p className="text-[10px] text-[var(--color-ink)]/50">{messages.home.statsRegions}</p>
+              {/* Mobile-only compact stats row — 4 ustun (desktop bilan mos) */}
+              <div className="grid grid-cols-4 gap-2 lg:hidden">
+                <div className="rounded-[1rem] bg-[var(--color-sky)]/10 px-2 py-2.5 text-center">
+                  <p className="text-base font-semibold text-[var(--color-sky)]">{regions.length}</p>
+                  <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsRegions}</p>
                 </div>
-                <div className="flex-1 rounded-[1rem] bg-[var(--color-teal)]/10 px-3 py-2.5 text-center">
-                  <p className="text-lg font-semibold text-[var(--color-teal)]">{featuredPlaces.length}+</p>
-                  <p className="text-[10px] text-[var(--color-ink)]/50">{messages.home.statsPlaces}</p>
+                <div className="rounded-[1rem] bg-[var(--color-teal)]/10 px-2 py-2.5 text-center">
+                  <p className="text-base font-semibold text-[var(--color-teal)]">{featuredPlaces.length}</p>
+                  <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsPlaces}</p>
                 </div>
-                <div className="flex-1 rounded-[1rem] bg-[var(--color-gold)]/10 px-3 py-2.5 text-center">
-                  <p className="text-lg font-semibold text-[var(--color-gold)]">{categories.length}</p>
-                  <p className="text-[10px] text-[var(--color-ink)]/50">{messages.home.statsCategories}</p>
+                <div className="rounded-[1rem] bg-[var(--color-gold)]/10 px-2 py-2.5 text-center">
+                  <p className="text-base font-semibold text-[var(--color-gold)]">{categories.length}</p>
+                  <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsCategories}</p>
+                </div>
+                <div className="rounded-[1rem] bg-[var(--color-ink)]/5 px-2 py-2.5 text-center">
+                  <p className="text-base font-semibold text-[var(--color-ink)]">3</p>
+                  <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsLanguages}</p>
                 </div>
               </div>
             </div>
@@ -172,7 +176,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                       <p className="mt-1 text-xs text-white/70">{messages.home.statsRegions}</p>
                     </div>
                     <div className="rounded-2xl bg-white/15 p-4">
-                      <p className="text-2xl font-semibold">{featuredPlaces.length}+</p>
+                      <p className="text-2xl font-semibold">{featuredPlaces.length}</p>
                       <p className="mt-1 text-xs text-white/70">{messages.home.statsPlaces}</p>
                     </div>
                     <div className="rounded-2xl bg-white/15 p-4">
@@ -209,8 +213,8 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
           </Link>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {categories.slice(0, 5).map((category) => {
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+          {categories.map((category) => {
             const Icon = CATEGORY_ICONS[category.slug] ?? MapPin;
             const visual = CATEGORY_VISUALS[category.slug] ?? CATEGORY_VISUALS["nature"];
 

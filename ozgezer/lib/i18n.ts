@@ -160,7 +160,7 @@ const messages: Record<Locale, Messages> = {
         "Place CRUD ni keyingi qadamda faqat admin uchun ochish",
       ],
       statsTitle: "O'zbekiston sayohati raqamlarda",
-      statsRegions: "ta viloyat",
+      statsRegions: "ta hudud",
       statsPlaces: "ta joy",
       statsCategories: "ta kategoriya",
       statsLanguages: "ta til",
