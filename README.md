@@ -27,7 +27,7 @@ Phase 0 is treated as complete when the documents in [`docs/phase-0`](docs/phase
 - Next.js 14 App Router
 - TypeScript
 - Tailwind CSS
-- shadcn/ui
+- Shadcn/UI
 - Prisma + PostgreSQL
 - NextAuth
 - next-intl
