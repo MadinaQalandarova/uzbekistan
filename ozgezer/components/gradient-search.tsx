@@ -8,6 +8,7 @@ import "./gradient-search.css";
 type GradientSearchProps = {
   locale: Locale;
   placeholder?: string;
+  onNavigate?: () => void;
 };
 
 const placeholders: Record<Locale, string> = {
@@ -16,14 +17,30 @@ const placeholders: Record<Locale, string> = {
   en: "Search...",
 };
 
-export function GradientSearch({ locale, placeholder }: GradientSearchProps) {
+export function GradientSearch({ locale, placeholder, onNavigate }: GradientSearchProps) {
   const [value, setValue] = useState("");
   const hasValue = value.trim().length > 0;
   const hint = placeholder ?? placeholders[locale] ?? placeholders.uz;
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Bo'sh qidiruv — toza /explore ga olib boradi (?q= siz)
+    if (!value.trim()) {
+      e.preventDefault();
+      window.location.href = `/${locale}/explore`;
+    } else {
+      onNavigate?.();
+    }
+  };
+
   return (
     <div className={`gs-wrapper ${hasValue ? "gs-has-value" : ""}`}>
-      <form action={`/${locale}/explore`} method="GET" className="gs-box" role="search">
+      <form
+        action={`/${locale}/explore`}
+        method="GET"
+        className="gs-box"
+        role="search"
+        onSubmit={handleSubmit}
+      >
         <input
           type="text"
           name="q"
