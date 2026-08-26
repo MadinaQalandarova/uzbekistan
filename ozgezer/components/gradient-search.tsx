@@ -9,6 +9,7 @@ type GradientSearchProps = {
   locale: Locale;
   placeholder?: string;
   onNavigate?: () => void;
+  variant?: "compact" | "hero";
 };
 
 const placeholders: Record<Locale, string> = {
@@ -17,10 +18,11 @@ const placeholders: Record<Locale, string> = {
   en: "Search...",
 };
 
-export function GradientSearch({ locale, placeholder, onNavigate }: GradientSearchProps) {
+export function GradientSearch({ locale, placeholder, onNavigate, variant = "compact" }: GradientSearchProps) {
   const [value, setValue] = useState("");
   const hasValue = value.trim().length > 0;
   const hint = placeholder ?? placeholders[locale] ?? placeholders.uz;
+  const variantClass = variant === "hero" ? "gs-wrapper--hero" : "";
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // Bo'sh qidiruv — toza /explore ga olib boradi (?q= siz)
@@ -33,7 +35,7 @@ export function GradientSearch({ locale, placeholder, onNavigate }: GradientSear
   };
 
   return (
-    <div className={`gs-wrapper ${hasValue ? "gs-has-value" : ""}`}>
+    <div className={`gs-wrapper ${variantClass} ${hasValue ? "gs-has-value" : ""}`}>
       <form
         action={`/${locale}/explore`}
         method="GET"

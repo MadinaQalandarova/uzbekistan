@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Menu, X, Home, Compass, Map, Globe, LogOut, User, MapPin } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
 import { LocaleSwitcher } from "@/components/locale-switcher";
-import { GradientSearch } from "@/components/gradient-search";
 
 const t: Record<Locale, { openMenu: string; closeMenu: string; navMenu: string }> = {
   uz: { openMenu: "Menyuni ochish", closeMenu: "Menyuni yopish", navMenu: "Navigatsiya menyusi" },
@@ -156,11 +155,6 @@ export function MobileNav({ locale, nav, user }: MobileNavProps) {
               </nav>
 
               <div className="mx-4 border-t border-[var(--color-ink)]/6" />
-
-              {/* Quick search — Mini-Search-System */}
-              <div className="px-5 py-3">
-                <GradientSearch locale={locale} onNavigate={close} />
-              </div>
 
               {/* Locale switcher — joriy sahifani saqlaydi */}
               <div className="px-5 py-4">

@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 import { PlaceCard } from "@/components/place-card";
-import { SearchForm } from "@/components/search-form";
+import { GradientSearch } from "@/components/gradient-search";
 import { getCategories, getPlaces, getRegions } from "@/lib/data/catalog-service";
 import { getMessages, isLocale, type Locale } from "@/lib/i18n";
 
@@ -51,11 +51,7 @@ export async function generateMetadata({
   };
 }
 
-const SEARCH_EXAMPLES: Record<string, string[]> = {
-  uz: ["Registon maydoni", "Chimgan tog'i", "Ichan-Qal'a", "Aydarko'l", "Ark qal'asi"],
-  ru: ["Площадь Регистан", "Горы Чимган", "Ичан-Кала", "Озеро Айдаркуль", "Крепость Арк"],
-  en: ["Registan Square", "Chimgan Mountains", "Ichon-Qala", "Aydarkul Lake", "Ark Fortress"],
-};
+
 
 type LocalePageProps = {
   params: Promise<{ locale: string }>;
@@ -129,16 +125,11 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                 </p>
               </div>
 
-              {/* Search form — animated typewriter + shimmer button */}
-              <SearchForm
+              {/* Gradient expanding search — Mini-Search-System, bitta qidiruv */}
+              <GradientSearch
                 locale={locale}
-                regions={regions}
-                labels={{
-                  placeholder: messages.home.searchPlaceholder,
-                  regionPlaceholder: messages.home.regionPlaceholder,
-                  searchButton: messages.home.searchButton,
-                }}
-                examples={SEARCH_EXAMPLES[locale] ?? SEARCH_EXAMPLES.uz}
+                variant="hero"
+                placeholder={messages.home.searchPlaceholder}
               />
 
               {/* Mobile-only compact stats row — 4 ustun (desktop bilan mos) */}

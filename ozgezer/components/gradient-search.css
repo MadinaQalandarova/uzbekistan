@@ -115,10 +115,31 @@
   color: #94a3b8;
 }
 
+/* ── Hero varianti — doim keng, bitta qidiruv ── */
+.gs-wrapper--hero {
+  width: 100%;
+  max-width: 520px;
+}
+.gs-wrapper--hero .gs-box {
+  height: 50px;
+}
+.gs-wrapper--hero .gs-btn {
+  width: 50px;
+  height: 50px;
+}
+.gs-wrapper--hero .gs-input {
+  opacity: 1;
+  padding: 0 54px 0 22px;
+  font-size: 15px;
+}
+
 /* Kichik ekranlarda kengayish cheklovi */
 @media (max-width: 1024px) {
   .gs-wrapper:hover,
   .gs-wrapper:focus-within {
     width: 220px;
+  }
+  .gs-wrapper--hero {
+    max-width: 100%;
   }
 }
