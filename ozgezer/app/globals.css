@@ -129,10 +129,26 @@ html[data-theme="dark"] .mesh-panel {
 }
 
 .uzbek-hero {
+  position: relative;
+  overflow: hidden;
   background:
     radial-gradient(circle at top left,  rgba(45, 107, 107, 0.18), transparent 28%),
     radial-gradient(circle at 78% 22%,   rgba(245, 158, 11, 0.14), transparent 20%),
     linear-gradient(135deg, rgba(255,255,255,0.94), rgba(225,238,234,0.9));
+}
+/* Milliy ikat / suzani yengil naqshi — hero ustiga */
+.uzbek-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image:
+    radial-gradient(circle at 12px 12px, rgba(206,17,38,0.9) 1.2px, transparent 1.4px),
+    radial-gradient(circle at 36px 36px, rgba(0,153,204,0.85) 1.1px, transparent 1.3px),
+    linear-gradient(45deg, transparent 48%, rgba(30,181,58,0.07) 50%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(245,158,11,0.07) 50%, transparent 52%);
+  background-size: 48px 48px, 48px 48px, 24px 24px, 24px 24px;
 }
 
 html[data-theme="dark"] .uzbek-hero {
@@ -140,6 +156,28 @@ html[data-theme="dark"] .uzbek-hero {
     radial-gradient(circle at top left,  rgba(74, 158, 142, 0.18), transparent 28%),
     radial-gradient(circle at 78% 22%,   rgba(251, 191, 36, 0.10), transparent 20%),
     linear-gradient(135deg, rgba(15,41,32,0.94), rgba(10,26,21,0.9));
+}
+html[data-theme="dark"] .uzbek-hero::after {
+  opacity: 0.08;
+}
+
+/* Header milliy bayroq chizig‘i — ko‘k/oq/yashil + qizil hoshiya */
+header {
+  position: sticky;
+}
+header::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    #0099CC 0% 25%,
+    #FFFFFF 25% 50%,
+    #1EB53A 50% 75%,
+    #CE1126 75% 82%,
+    #0099CC 82% 100%);
+  opacity: 0.95;
+  pointer-events: none;
 }
 
 .national-band {
