@@ -205,7 +205,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-          {categories.map((category) => {
+          {categories.map((category, i) => {
             const Icon = CATEGORY_ICONS[category.slug] ?? MapPin;
             const visual = CATEGORY_VISUALS[category.slug] ?? CATEGORY_VISUALS["nature"];
 
@@ -213,7 +213,8 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
               <Link
                 key={category.slug}
                 href={`/${locale}/explore?category=${category.slug}`}
-                className="group relative flex min-h-[220px] flex-col overflow-hidden rounded-[1.5rem]"
+                style={{ animationDelay: `${i * 75}ms` }}
+                className="milliy-card group relative flex min-h-[220px] flex-col overflow-hidden rounded-[1.5rem]"
               >
                 {/* ── 1-qatlam: real rasm (blur + zoom) ── */}
                 <Image
@@ -275,13 +276,14 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {featuredPlaces.map((place) => (
-            <PlaceCard
-              key={place.slug}
-              locale={locale}
-              place={place}
-              ctaLabel={messages.home.featuredButton}
-            />
+          {featuredPlaces.map((place, i) => (
+            <div key={place.slug} className="milliy-card" style={{ animationDelay: `${i * 70}ms` }}>
+              <PlaceCard
+                locale={locale}
+                place={place}
+                ctaLabel={messages.home.featuredButton}
+              />
+            </div>
           ))}
         </div>
       </section>
@@ -303,11 +305,12 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
           </div>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {regions.slice(0, 12).map((region) => (
+            {regions.slice(0, 12).map((region, i) => (
               <Link
                 key={region.slug}
                 href={`/${locale}/regions/${region.slug}`}
-                className="card-rise rounded-[1.2rem] border border-[var(--color-ink)]/8 bg-[var(--color-mist)] px-4 py-4 text-left"
+                style={{ animationDelay: `${i * 55}ms` }}
+                className="milliy-card card-rise rounded-[1.2rem] border border-[var(--color-ink)]/8 bg-[var(--color-mist)] px-4 py-4 text-left"
               >
                 <p className="text-sm font-semibold text-[var(--color-ink)]">{region.name[locale]}</p>
                 <p className="mt-2 text-xs leading-6 text-[var(--color-ink)]/55">{region.focus[locale]}</p>
