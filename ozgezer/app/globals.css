@@ -161,25 +161,6 @@ html[data-theme="dark"] .uzbek-hero::after {
   opacity: 0.08;
 }
 
-/* Header milliy bayroq chizig‘i — ko‘k/oq/yashil + qizil hoshiya */
-header {
-  position: sticky;
-}
-header::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: linear-gradient(90deg,
-    #0099CC 0% 25%,
-    #FFFFFF 25% 50%,
-    #1EB53A 50% 75%,
-    #CE1126 75% 82%,
-    #0099CC 82% 100%);
-  opacity: 0.95;
-  pointer-events: none;
-}
-
 .national-band {
   background:
     linear-gradient(90deg, rgba(45,107,107,0.9),  rgba(45,107,107,0.9))  top/100%    22% no-repeat,
