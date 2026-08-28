@@ -7,7 +7,6 @@ import type { Locale } from "@/lib/i18n";
 type Theme = "light" | "dark";
 
 const THEME_STORAGE_KEY = "ozgezer-theme";
-const SYSTEM_DARK_QUERY = "(prefers-color-scheme: dark)";
 
 const labels: Record<Locale, { light: string; dark: string }> = {
   uz: { light: "Kunduzgi rejim", dark: "Tungi rejim" },
