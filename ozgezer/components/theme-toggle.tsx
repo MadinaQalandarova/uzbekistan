@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useSyncExternalStore } from "react";
+import { useState, useEffect } from "react";
 
 import type { Locale } from "@/lib/i18n";
 
@@ -14,34 +14,6 @@ const labels: Record<Locale, { light: string; dark: string }> = {
   ru: { light: "Дневной режим", dark: "Ночной режим" },
   en: { light: "Light mode", dark: "Dark mode" },
 };
-
-/* ── Tashqi tema manbasi (localStorage + tizim sozlamasi) ───────────────── */
-
-const themeListeners = new Set<() => void>();
-
-function readTheme(): Theme {
-  const stored = localStorage.getItem(THEME_STORAGE_KEY);
-  if (stored === "light" || stored === "dark") return stored;
-  return window.matchMedia(SYSTEM_DARK_QUERY).matches ? "dark" : "light";
-}
-
-function subscribeToTheme(onStoreChange: () => void) {
-  themeListeners.add(onStoreChange);
-  const media = window.matchMedia(SYSTEM_DARK_QUERY);
-  media.addEventListener("change", onStoreChange);
-  window.addEventListener("storage", onStoreChange);
-  return () => {
-    themeListeners.delete(onStoreChange);
-    media.removeEventListener("change", onStoreChange);
-    window.removeEventListener("storage", onStoreChange);
-  };
-}
-
-function applyTheme(theme: Theme) {
-  localStorage.setItem(THEME_STORAGE_KEY, theme);
-  document.documentElement.dataset.theme = theme;
-  themeListeners.forEach((listener) => listener());
-}
 
 function SunIcon() {
   return (
@@ -90,26 +62,52 @@ function MoonIcon() {
 }
 
 export function ThemeToggle({ locale = "uz" }: { locale?: Locale }) {
-  /* Server render: null → placeholder (hydration mismatch oldini oladi) */
-  const theme = useSyncExternalStore<Theme | null>(
-    subscribeToTheme,
-    readTheme,
-    () => null
-  );
-
-  /* <html data-theme> ni joriy mavzu bilan sinxronlash */
-  useEffect(() => {
-    if (theme) {
-      document.documentElement.dataset.theme = theme;
+  // Inline script allaqachon data-theme ni o'rnatgan — shu qiymatni o'qiymiz (tez, placeholder siz)
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof document !== "undefined") {
+      const ds = document.documentElement.dataset.theme as Theme | undefined;
+      if (ds === "light" || ds === "dark") return ds;
     }
-  }, [theme]);
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
+      if (stored === "light" || stored === "dark") return stored;
+      return window.matchMedia(SYSTEM_DARK_QUERY).matches ? "dark" : "light";
+    }
+    return "light";
+  });
 
-  if (!theme) {
-    return <div className="h-9 w-9 rounded-full border border-[var(--color-ink)]/10" aria-hidden />;
-  }
+  // Tizim afzalligi yoki boshqa tab o'zgarishlarini tinglash — lekin tezlik uchun faqat kerak bo'lganda
+  useEffect(() => {
+    // Boshqa tabda tema o'zgarsa
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === THEME_STORAGE_KEY && (e.newValue === "light" || e.newValue === "dark")) {
+        document.documentElement.dataset.theme = e.newValue;
+        setTheme(e.newValue);
+      }
+    };
+    // Tizim mavzusi o'zgarsa — faqat foydalanuvchi qo'lda tanlamagan bo'lsa
+    const media = window.matchMedia(SYSTEM_DARK_QUERY);
+    const onMedia = () => {
+      if (!localStorage.getItem(THEME_STORAGE_KEY)) {
+        const next: Theme = media.matches ? "dark" : "light";
+        document.documentElement.dataset.theme = next;
+        setTheme(next);
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    media.addEventListener("change", onMedia);
+    return () => {
+      window.removeEventListener("storage", onStorage);
+      media.removeEventListener("change", onMedia);
+    };
+  }, []);
 
   const toggle = () => {
-    applyTheme(theme === "dark" ? "light" : "dark");
+    const next: Theme = theme === "dark" ? "light" : "dark";
+    // Darhol DOM ni yangilash — 0ms kechikish
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem(THEME_STORAGE_KEY, next);
+    setTheme(next);
   };
 
   const label = labels[locale][theme];
