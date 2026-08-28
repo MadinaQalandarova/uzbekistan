@@ -12,19 +12,26 @@ type UserSessionPayload = {
 
 const DEV_FALLBACK_SECRET = "fallback-dev-secret-change-in-prod";
 
-function getSecret(): string {
-  const secret = process.env.ADMIN_SECRET;
+function getUserSecret(): string {
+  // USER_SECRET alohida — ADMIN_SECRET bilan bir xil bo'lmasligi kerak
+  const secret = process.env.USER_SECRET || process.env.ADMIN_SECRET;
 
   if (!secret) {
-    // Prodaksiyada maxfiy kalitsiz sessiya imzolanmaydi —
-    // aks holda hammaga ma'lum kalit bilan qalbaki sessiya yaratish mumkin.
     if (process.env.NODE_ENV === "production") {
-      throw new Error("ADMIN_SECRET is required in production");
+      throw new Error("USER_SECRET or ADMIN_SECRET is required in production");
     }
     return DEV_FALLBACK_SECRET;
   }
 
   return secret;
+}
+
+function getSecret(): string {
+  return getUserSecret();
+}
+
+export function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254;
 }
 
 // ─── Parol xeshlash ───────────────────────────────────────────────────────────
