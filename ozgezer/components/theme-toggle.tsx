@@ -62,7 +62,7 @@ function MoonIcon() {
 }
 
 export function ThemeToggle({ locale = "uz" }: { locale?: Locale }) {
-  // Inline script allaqachon data-theme ni o'rnatgan — shu qiymatni o'qiymiz (tez, placeholder siz)
+  // Inline script allaqachon data-theme ni o'rnatgan — shu qiymatni o'qiymiz (tez, placeholder siz) — default tungi
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof document !== "undefined") {
       const ds = document.documentElement.dataset.theme as Theme | undefined;
@@ -71,35 +71,21 @@ export function ThemeToggle({ locale = "uz" }: { locale?: Locale }) {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
       if (stored === "light" || stored === "dark") return stored;
-      return window.matchMedia(SYSTEM_DARK_QUERY).matches ? "dark" : "light";
+      return "dark";
     }
-    return "light";
+    return "dark";
   });
 
-  // Tizim afzalligi yoki boshqa tab o'zgarishlarini tinglash — lekin tezlik uchun faqat kerak bo'lganda
+  // Faqat boshqa tabda tema o'zgarsa tinglash — tizim avtomatik almashinmaydi (default tungi)
   useEffect(() => {
-    // Boshqa tabda tema o'zgarsa
     const onStorage = (e: StorageEvent) => {
       if (e.key === THEME_STORAGE_KEY && (e.newValue === "light" || e.newValue === "dark")) {
         document.documentElement.dataset.theme = e.newValue;
         setTheme(e.newValue);
       }
     };
-    // Tizim mavzusi o'zgarsa — faqat foydalanuvchi qo'lda tanlamagan bo'lsa
-    const media = window.matchMedia(SYSTEM_DARK_QUERY);
-    const onMedia = () => {
-      if (!localStorage.getItem(THEME_STORAGE_KEY)) {
-        const next: Theme = media.matches ? "dark" : "light";
-        document.documentElement.dataset.theme = next;
-        setTheme(next);
-      }
-    };
     window.addEventListener("storage", onStorage);
-    media.addEventListener("change", onMedia);
-    return () => {
-      window.removeEventListener("storage", onStorage);
-      media.removeEventListener("change", onMedia);
-    };
+    return () => window.removeEventListener("storage", onStorage);
   }, []);
 
   const toggle = () => {
