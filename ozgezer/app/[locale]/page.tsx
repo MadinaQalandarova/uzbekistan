@@ -222,7 +222,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                     <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsCategories}</p>
                   </div>
                   <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-ink)]/15 hover:bg-[var(--color-sand)] hover:shadow-sm">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-ink)] text-white shadow-sm">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#0E1F1F] text-white shadow-sm">
                       <Globe size={14} strokeWidth={2} />
                     </div>
                     <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">3</p>
