@@ -200,28 +200,28 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                   {messages.home.statsTitle}
                 </h2>
                 <div className="mt-5 grid grid-cols-2 gap-3">
-                  <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-sky)]/20 hover:bg-white hover:shadow-sm">
+                  <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-sky)]/20 hover:bg-[var(--color-sand)] hover:shadow-sm">
                     <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-sky)] text-white shadow-sm">
                       <MapPin size={14} strokeWidth={2} />
                     </div>
                     <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">{regions.length}</p>
                     <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsRegions}</p>
                   </div>
-                  <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-teal)]/20 hover:bg-white hover:shadow-sm">
+                  <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-teal)]/20 hover:bg-[var(--color-sand)] hover:shadow-sm">
                     <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-teal)] text-white shadow-sm">
                       <Compass size={14} strokeWidth={2} />
                     </div>
                     <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">{featuredPlaces.length}</p>
                     <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsPlaces}</p>
                   </div>
-                  <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-gold)]/20 hover:bg-white hover:shadow-sm">
+                  <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-gold)]/20 hover:bg-[var(--color-sand)] hover:shadow-sm">
                     <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-gold)] text-white shadow-sm">
                       <Layers size={14} strokeWidth={2} />
                     </div>
                     <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">{categories.length}</p>
                     <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsCategories}</p>
                   </div>
-                  <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-ink)]/15 hover:bg-white hover:shadow-sm">
+                  <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-ink)]/15 hover:bg-[var(--color-sand)] hover:shadow-sm">
                     <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-ink)] text-white shadow-sm">
                       <Globe size={14} strokeWidth={2} />
                     </div>
