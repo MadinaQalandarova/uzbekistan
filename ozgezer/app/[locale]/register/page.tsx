@@ -24,6 +24,7 @@ const t = {
     errors: {
       INVALID_INPUT: "Email va parolni to'g'ri to'ldiring (parol kamida 6 ta belgi).",
       EMAIL_TAKEN: "Bu email allaqachon ro'yxatdan o'tgan.",
+      RATE_LIMITED: "Juda ko'p urinish. 1 soatdan so'ng urinib ko'ring.",
       DB_NOT_CONFIGURED: "Tizim vaqtincha ishlamayapti.",
       UNKNOWN: "Xatolik yuz berdi. Qayta urinib ko'ring.",
     },
@@ -40,6 +41,7 @@ const t = {
     errors: {
       INVALID_INPUT: "Заполните email и пароль (минимум 6 символов).",
       EMAIL_TAKEN: "Этот email уже зарегистрирован.",
+      RATE_LIMITED: "Слишком много попыток. Попробуйте через час.",
       DB_NOT_CONFIGURED: "Сервис временно недоступен.",
       UNKNOWN: "Произошла ошибка. Попробуйте снова.",
     },
@@ -56,6 +58,7 @@ const t = {
     errors: {
       INVALID_INPUT: "Please fill in email and password (min 6 chars).",
       EMAIL_TAKEN: "This email is already registered.",
+      RATE_LIMITED: "Too many attempts. Try again in an hour.",
       DB_NOT_CONFIGURED: "Service temporarily unavailable.",
       UNKNOWN: "Something went wrong. Please try again.",
     },

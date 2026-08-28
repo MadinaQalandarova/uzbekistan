@@ -11,7 +11,9 @@ export function proxy(request: NextRequest) {
     pathname.startsWith("/api") ||
     pathname.includes(".")
   ) {
-    return NextResponse.next();
+    const res = NextResponse.next();
+    res.headers.set("X-Content-Type-Options", "nosniff");
+    return res;
   }
 
   if (pathname === "/") {
@@ -26,7 +28,11 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL(`/uz${pathname}`, request.url));
   }
 
-  return NextResponse.next();
+  const res = NextResponse.next();
+  res.headers.set("X-Frame-Options", "SAMEORIGIN");
+  res.headers.set("X-Content-Type-Options", "nosniff");
+  res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  return res;
 }
 
 export const config = {

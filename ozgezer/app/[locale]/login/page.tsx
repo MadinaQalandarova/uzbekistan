@@ -23,6 +23,7 @@ const t = {
     errors: {
       INVALID_CREDENTIALS: "Email yoki parol noto'g'ri.",
       INVALID_INPUT: "Email va parolni to'ldiring.",
+      RATE_LIMITED: "Juda ko'p urinish. 15 daqiqadan so'ng urinib ko'ring.",
       DB_NOT_CONFIGURED: "Tizim vaqtincha ishlamayapti.",
       UNKNOWN: "Xatolik yuz berdi. Qayta urinib ko'ring.",
     },
@@ -38,6 +39,7 @@ const t = {
     errors: {
       INVALID_CREDENTIALS: "Неверный email или пароль.",
       INVALID_INPUT: "Заполните email и пароль.",
+      RATE_LIMITED: "Слишком много попыток. Попробуйте через 15 минут.",
       DB_NOT_CONFIGURED: "Система временно недоступна.",
       UNKNOWN: "Произошла ошибка. Попробуйте снова.",
     },
@@ -53,6 +55,7 @@ const t = {
     errors: {
       INVALID_CREDENTIALS: "Incorrect email or password.",
       INVALID_INPUT: "Please fill in email and password.",
+      RATE_LIMITED: "Too many attempts. Try again in 15 minutes.",
       DB_NOT_CONFIGURED: "Service temporarily unavailable.",
       UNKNOWN: "Something went wrong. Please try again.",
     },
