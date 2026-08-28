@@ -108,9 +108,9 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
     <div className="py-8">
       <section className="container-shell py-4 md:py-8">
         <div className="uzbek-hero relative overflow-hidden rounded-[2.5rem] border border-[var(--color-ink)]/8 px-5 py-8 md:px-10 md:py-12">
-          {/* Dekorativ suzani orb — milliy naqsh */}
-          <div className="suzani-orb pointer-events-none absolute -right-12 -top-12 h-56 w-56 opacity-[0.07] md:h-72 md:w-72" aria-hidden />
-          <div className="suzani-orb pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 opacity-[0.05] md:h-80 md:w-80" style={{ animationDelay: "1.2s" }} aria-hidden />
+          {/* Milliy girih burchak naqshi — nozik, suzani o'rniga */}
+          <div className="pointer-events-none absolute right-0 top-0 h-28 w-28 opacity-[0.09] md:h-36 md:w-36" aria-hidden style={{ backgroundImage: `repeating-linear-gradient(45deg, rgba(45,107,107,0.18) 0 1px, transparent 1px 12px), repeating-linear-gradient(-45deg, rgba(245,158,11,0.14) 0 1px, transparent 1px 12px), radial-gradient(circle at center, rgba(206,17,38,0.08) 1.5px, transparent 1.7px)`, backgroundSize: "24px 24px, 24px 24px, 24px 24px" }} />
+          <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-24 opacity-[0.07] md:h-32 md:w-32" aria-hidden style={{ backgroundImage: `repeating-linear-gradient(45deg, rgba(45,107,107,0.14) 0 1px, transparent 1px 10px), repeating-linear-gradient(-45deg, rgba(245,158,11,0.12) 0 1px, transparent 1px 10px)`, backgroundSize: "20px 20px, 20px 20px" }} />
 
           <div className="fade-up relative grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div className="space-y-6 md:space-y-7">
