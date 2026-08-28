@@ -16,6 +16,7 @@ import {
   MapPin,
   Globe,
   Compass,
+  Search,
 } from "lucide-react";
 
 import { PlaceCard } from "@/components/place-card";
@@ -136,12 +137,34 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                 </div>
               </div>
 
-              {/* Gradient expanding search — Mini-Search-System, bitta qidiruv */}
-              <GradientSearch
-                locale={locale}
-                variant="hero"
-                placeholder={messages.home.searchPlaceholder}
-              />
+              {/* Hero search — glass premium container */}
+              <div className="rounded-[1.75rem] border border-[var(--color-ink)]/5 bg-white/75 p-3 shadow-[0_8px_28px_rgba(14,31,31,0.06)] backdrop-blur-md">
+                <p className="mb-2 flex items-center gap-1.5 px-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-ink)]/35">
+                  <Search size={11} strokeWidth={2.2} />
+                  Tezkor qidiruv
+                </p>
+                <GradientSearch
+                  locale={locale}
+                  variant="hero"
+                  placeholder={messages.home.searchPlaceholder}
+                />
+                <div className="mt-3 flex flex-wrap items-center gap-1.5 px-1">
+                  <span className="text-xs font-medium text-[var(--color-ink)]/35">Mashhur:</span>
+                  {[
+                    { label: "Registon", q: "Registon" },
+                    { label: "Chimgan", q: "Chimgan" },
+                    { label: "Xiva", q: "Xiva" },
+                  ].map((tag) => (
+                    <Link
+                      key={tag.q}
+                      href={`/${locale}/explore?q=${encodeURIComponent(tag.q)}`}
+                      className="rounded-full bg-[var(--color-mist)] px-3 py-1 text-xs font-medium text-[var(--color-ink)]/60 transition hover:bg-[var(--color-sky)] hover:text-white"
+                    >
+                      {tag.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
 
               {/* Mobile-only compact stats row — 4 ustun (desktop bilan mos) */}
               <div className="grid grid-cols-4 gap-2 lg:hidden">
