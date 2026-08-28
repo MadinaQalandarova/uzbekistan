@@ -101,6 +101,28 @@
   color: #F59E0B;
 }
 
+/* ── Tugma milliy animatsiyasi — hoverda yaltiroq + puls ── */
+.gs-btn {
+  overflow: hidden;
+}
+.gs-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent);
+  transform: translateX(-110%);
+  transition: transform 0.55s ease;
+  pointer-events: none;
+}
+.gs-wrapper:hover .gs-btn::after,
+.gs-wrapper:focus-within .gs-btn::after {
+  transform: translateX(110%);
+}
+.gs-wrapper--hero .gs-btn:active {
+  transform: scale(0.92) rotate(90deg);
+}
+
 /* Dark mode — ichki blok moslashuvi */
 [data-theme="dark"] .gs-box {
   background-color: #1e293b;
