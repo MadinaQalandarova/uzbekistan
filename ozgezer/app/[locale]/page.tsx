@@ -104,25 +104,34 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
   return (
     <div className="py-8">
       <section className="container-shell py-4 md:py-8">
-        <div className="uzbek-hero relative overflow-hidden rounded-[2rem] border border-[var(--color-ink)]/8 px-5 py-8 md:px-10 md:py-14">
+        <div className="uzbek-hero relative overflow-hidden rounded-[2.5rem] border border-[var(--color-ink)]/8 px-5 py-8 md:px-10 md:py-12">
+          {/* Dekorativ suzani orb — milliy naqsh */}
+          <div className="suzani-orb pointer-events-none absolute -right-12 -top-12 h-56 w-56 opacity-[0.07] md:h-72 md:w-72" aria-hidden />
+          <div className="suzani-orb pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 opacity-[0.05] md:h-80 md:w-80" style={{ animationDelay: "1.2s" }} aria-hidden />
 
-          <div className="fade-up grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-            <div className="space-y-5 md:space-y-7">
+          <div className="fade-up relative grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+            <div className="space-y-6 md:space-y-7">
 
-              {/* Eyebrow badge */}
-              <span className="inline-flex rounded-full border border-[var(--color-sky)]/30 bg-[var(--color-sky)]/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--color-sky)] md:px-4 md:py-1.5 md:text-xs">
+              {/* Eyebrow — milliy nuqta bilan */}
+              <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-sky)] px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-white shadow-sm md:px-4 md:text-xs">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
                 {messages.home.eyebrow}
               </span>
 
-              {/* H1 — mobile: text-2xl, tablet: text-4xl, desktop: text-5xl */}
-              <div className="space-y-3">
-                <h1 className="display-title text-2xl font-semibold leading-tight text-[var(--color-ink)] sm:text-3xl md:text-4xl lg:text-5xl">
+              {/* H1 — gradient accent bilan */}
+              <div className="space-y-4">
+                <h1 className="display-title text-[1.7rem] font-semibold leading-[1.15] text-[var(--color-ink)] sm:text-3xl md:text-4xl lg:text-[2.85rem]">
                   {messages.home.title}
-                  <span className="text-[var(--color-sky)]">{messages.home.titleAccent}</span>
+                  <span className="bg-gradient-to-r from-[var(--color-sky)] to-[var(--color-gold)] bg-clip-text text-transparent">
+                    {messages.home.titleAccent}
+                  </span>
                 </h1>
-                <p className="max-w-lg text-xs leading-6 text-[var(--color-ink)]/60 sm:text-sm sm:leading-7">
-                  {messages.home.description}
-                </p>
+                <div className="flex gap-3">
+                  <div className="mt-1 h-10 w-[3px] flex-shrink-0 rounded-full bg-gradient-to-b from-[var(--color-sky)] to-[var(--color-gold)]" aria-hidden />
+                  <p className="max-w-lg text-sm leading-7 text-[var(--color-ink)]/65">
+                    {messages.home.description}
+                  </p>
+                </div>
               </div>
 
               {/* Gradient expanding search — Mini-Search-System, bitta qidiruv */}
