@@ -1,22 +1,31 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+import { isLocale } from "@/lib/i18n";
 import { prisma } from "@/lib/prisma";
-import { verifyPassword, createUserSession, USER_SESSION_COOKIE } from "@/lib/user-auth";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { verifyPassword, createUserSession, USER_SESSION_COOKIE, isValidEmail } from "@/lib/user-auth";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const locale = String(formData.get("locale") ?? "uz");
+  const rawLocale = String(formData.get("locale") ?? "uz");
+  const locale = isLocale(rawLocale) ? rawLocale : "uz";
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   const password = String(formData.get("password") ?? "");
 
   const redirect = (path: string) =>
     NextResponse.redirect(new URL(path, request.url));
 
-  const next = String(formData.get("next") ?? "").trim();
-  const afterLogin = next && next.startsWith("/") ? next : `/${locale}`;
+  // Brute-force himoyasi: 5 ta urinish / 15 daqiqa / IP
+  if (!checkRateLimit(`login:${getClientIp(request)}`, 5, 15 * 60 * 1000)) {
+    return redirect(`/${locale}/login?error=RATE_LIMITED`);
+  }
 
-  if (!email || !password) {
+  const rawNext = String(formData.get("next") ?? "").trim();
+  const safeNext = rawNext.startsWith("/") && !rawNext.startsWith("//") && !rawNext.includes("\\");
+  const afterLogin = safeNext ? rawNext : `/${locale}`;
+
+  if (!email || !password || !isValidEmail(email)) {
     return redirect(`/${locale}/login?error=INVALID_INPUT`);
   }
 

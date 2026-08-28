@@ -1,12 +1,15 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+import { isLocale } from "@/lib/i18n";
 import { prisma } from "@/lib/prisma";
-import { hashPassword, createUserSession, USER_SESSION_COOKIE } from "@/lib/user-auth";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { hashPassword, createUserSession, USER_SESSION_COOKIE, isValidEmail } from "@/lib/user-auth";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const locale = String(formData.get("locale") ?? "uz");
+  const rawLocale = String(formData.get("locale") ?? "uz");
+  const locale = isLocale(rawLocale) ? rawLocale : "uz";
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   const password = String(formData.get("password") ?? "");
@@ -14,7 +17,11 @@ export async function POST(request: Request) {
   const redirect = (path: string) =>
     NextResponse.redirect(new URL(path, request.url));
 
-  if (!email || !password || password.length < 6) {
+  if (!checkRateLimit(`register:${getClientIp(request)}`, 3, 60 * 60 * 1000)) {
+    return redirect(`/${locale}/register?error=RATE_LIMITED`);
+  }
+
+  if (!email || !password || password.length < 6 || !isValidEmail(email)) {
     return redirect(`/${locale}/register?error=INVALID_INPUT`);
   }
 
