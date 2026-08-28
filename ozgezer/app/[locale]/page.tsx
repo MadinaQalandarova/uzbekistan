@@ -14,6 +14,8 @@ import {
   Layers,
   Building2,
   MapPin,
+  Globe,
+  Compass,
 } from "lucide-react";
 
 import { PlaceCard } from "@/components/place-card";
@@ -162,31 +164,46 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
               </div>
             </div>
 
-            {/* Stats card — desktop only */}
+            {/* Stats card — desktop only — glass premium */}
             <div className="hidden lg:block">
-              <div className="section-card rounded-[1.75rem] p-5">
-                <div className="rounded-[1.5rem] bg-[linear-gradient(160deg,#2D6B6B_0%,#5B8A6E_55%,#F59E0B_100%)] p-6 text-white">
-                  <p className="text-xs uppercase tracking-[0.3em] text-white/70">O&apos;zGezer</p>
-                  <h2 className="display-title mt-3 text-3xl font-semibold leading-snug">
-                    {messages.home.statsTitle}
-                  </h2>
-                  <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
-                    <div className="rounded-2xl bg-white/15 p-4">
-                      <p className="text-2xl font-semibold">{regions.length}</p>
-                      <p className="mt-1 text-xs text-white/70">{messages.home.statsRegions}</p>
+              <div className="relative overflow-hidden rounded-[2rem] border border-[var(--color-ink)]/5 bg-white/80 p-6 shadow-[0_16px_40px_rgba(14,31,31,0.08)] backdrop-blur-xl">
+                <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-gradient-to-br from-[var(--color-sky)]/12 to-[var(--color-gold)]/14 blur-2xl" aria-hidden />
+                <div className="pointer-events-none absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-gradient-to-tr from-[var(--color-teal)]/10 to-transparent blur-2xl" aria-hidden />
+                <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[var(--color-sky)]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-gold)]" />
+                  O&apos;zGezer
+                </p>
+                <h2 className="display-title mt-2 text-2xl font-semibold leading-tight text-[var(--color-ink)]">
+                  {messages.home.statsTitle}
+                </h2>
+                <div className="mt-5 grid grid-cols-2 gap-3">
+                  <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-sky)]/20 hover:bg-white hover:shadow-sm">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-sky)] text-white shadow-sm">
+                      <MapPin size={14} strokeWidth={2} />
                     </div>
-                    <div className="rounded-2xl bg-white/15 p-4">
-                      <p className="text-2xl font-semibold">{featuredPlaces.length}</p>
-                      <p className="mt-1 text-xs text-white/70">{messages.home.statsPlaces}</p>
+                    <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">{regions.length}</p>
+                    <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsRegions}</p>
+                  </div>
+                  <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-teal)]/20 hover:bg-white hover:shadow-sm">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-teal)] text-white shadow-sm">
+                      <Compass size={14} strokeWidth={2} />
                     </div>
-                    <div className="rounded-2xl bg-white/15 p-4">
-                      <p className="text-2xl font-semibold">{categories.length}</p>
-                      <p className="mt-1 text-xs text-white/70">{messages.home.statsCategories}</p>
+                    <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">{featuredPlaces.length}</p>
+                    <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsPlaces}</p>
+                  </div>
+                  <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-gold)]/20 hover:bg-white hover:shadow-sm">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-gold)] text-white shadow-sm">
+                      <Layers size={14} strokeWidth={2} />
                     </div>
-                    <div className="rounded-2xl bg-white/15 p-4">
-                      <p className="text-2xl font-semibold">3</p>
-                      <p className="mt-1 text-xs text-white/70">{messages.home.statsLanguages}</p>
+                    <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">{categories.length}</p>
+                    <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsCategories}</p>
+                  </div>
+                  <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-ink)]/15 hover:bg-white hover:shadow-sm">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-ink)] text-white shadow-sm">
+                      <Globe size={14} strokeWidth={2} />
                     </div>
+                    <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">3</p>
+                    <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsLanguages}</p>
                   </div>
                 </div>
               </div>
