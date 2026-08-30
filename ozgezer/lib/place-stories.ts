@@ -39,24 +39,18 @@ export const PLACE_IMAGES: Record<string, string> = {
   "moynoq":               "/places/moynoq.jpg",
   "savitskiy-muzeyi":     "/places/savitskiy-muzeyi.jpg",
 
-  "andijon-muzeyi":       "/places/andijon-muzeyi.jpg",
-  "chust":                "/places/chust.jpg",
   "pandigon":             "/places/pandigon.jpg",
   "zomin-milliy-bogi":    "/places/zomin-milliy-bogi.jpg",
   "shirin-suv-ombori":    "/places/shirin-suv-ombori.jpg",
-  "fayoztepa":            "/places/fayoztepa.jpg",
   "boysun-toglari":       "/places/boysun-toglari.jpg",
   "gulkam-soylari":       "/places/gulkam-soylari.jpg",
   "yapon-bogi":           "/places/yapon-bogi.jpg",
   "toshkent-teleminorasi":"/places/toshkent-teleminorasi.jpg",
   "siyob-bozori":         "/places/siyob-bozori.jpg",
-  "konigil-qogoz-fabrikasi": "/places/konigil-qogoz-fabrikasi.jpg",
   "chor-minor":           "/places/chor-minor.jpg",
   "ismoil-somoniy":       "/places/ismoil-somoniy.jpg",
   "sayot-koli":           "/places/sayot-koli.jpg",
-  "qarshi-koprik":        "/places/qarshi-koprik.jpg",
   "miraki":               "/places/miraki.jpg",
-  "sarmishsoy":           "/places/sarmishsoy.jpg",
 };
 
 /**
@@ -87,24 +81,18 @@ export const PLACE_GALLERIES: Record<string, string[]> = {
   "moynoq":               ["/places/moynoq.jpg"],
   "savitskiy-muzeyi":     ["/places/savitskiy-muzeyi.jpg"],
 
-  "andijon-muzeyi":       ["/places/andijon-muzeyi.jpg"],
-  "chust":                ["/places/chust.jpg"],
   "pandigon":             ["/places/pandigon.jpg"],
   "zomin-milliy-bogi":    ["/places/zomin-milliy-bogi.jpg"],
   "shirin-suv-ombori":    ["/places/shirin-suv-ombori.jpg"],
-  "fayoztepa":            ["/places/fayoztepa.jpg"],
   "boysun-toglari":       ["/places/boysun-toglari.jpg"],
   "gulkam-soylari":       ["/places/gulkam-soylari.jpg"],
   "yapon-bogi":           ["/places/yapon-bogi.jpg"],
   "toshkent-teleminorasi":["/places/toshkent-teleminorasi.jpg"],
   "siyob-bozori":         ["/places/siyob-bozori.jpg"],
-  "konigil-qogoz-fabrikasi": ["/places/konigil-qogoz-fabrikasi.jpg"],
   "chor-minor":           ["/places/chor-minor.jpg"],
   "ismoil-somoniy":       ["/places/ismoil-somoniy.jpg"],
   "sayot-koli":           ["/places/sayot-koli.jpg"],
-  "qarshi-koprik":        ["/places/qarshi-koprik.jpg"],
   "miraki":               ["/places/miraki.jpg"],
-  "sarmishsoy":           ["/places/sarmishsoy.jpg"],
 };
 
 export const PLACE_STORIES: Record<string, PlaceStory> = {

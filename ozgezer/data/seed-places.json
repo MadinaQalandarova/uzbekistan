@@ -386,42 +386,6 @@
     "averageRating": 4.8
   },
   {
-    "slug": "andijon-muzeyi",
-    "regionSlug": "andijon",
-    "categorySlugs": [
-      "museums"
-    ],
-    "nameUz": "Andijon viloyat tarix muzeyi",
-    "nameRu": "Андижанский областной исторический музей",
-    "nameEn": "Andijan Regional History Museum",
-    "descriptionUz": "Farg'ona vodiysining arxeologiya, etnografiya va Bobur davri kolleksiyalari.",
-    "descriptionRu": "Коллекции археологии, этнографии и эпохи Бабура Ферганской долины.",
-    "descriptionEn": "Archaeology, ethnography, and Babur-era collections from the Fergana Valley.",
-    "latitude": 40.782,
-    "longitude": 72.34,
-    "price": "Pullik",
-    "workingHours": "09:00 - 17:00",
-    "averageRating": 4.4
-  },
-  {
-    "slug": "chust",
-    "regionSlug": "namangan",
-    "categorySlugs": [
-      "markets"
-    ],
-    "nameUz": "Chust pichoq va do'ppi markazi",
-    "nameRu": "Чустский центр ножей и тюбетеек",
-    "nameEn": "Chust Knives & Skullcap Center",
-    "descriptionUz": "Mashhur Chust pichoqlari va O'rta Osiyoning eng mashhur do'ppilari tayyorlanadigan hunarmandlar shahri.",
-    "descriptionRu": "Город ремесленников, где делают знаменитые чустские ножи и самые известные тюбетейки региона.",
-    "descriptionEn": "A craftsman town famous across Central Asia for its knives and iconic embroidered skullcaps.",
-    "latitude": 40.9694,
-    "longitude": 71.235,
-    "price": "Bepul",
-    "workingHours": "08:00 - 18:00",
-    "averageRating": 4.6
-  },
-  {
     "slug": "pandigon",
     "regionSlug": "namangan",
     "categorySlugs": [
@@ -477,24 +441,6 @@
     "price": "Bepul",
     "workingHours": "Kun bo'yi",
     "averageRating": 4.5
-  },
-  {
-    "slug": "fayoztepa",
-    "regionSlug": "surkhandarya",
-    "categorySlugs": [
-      "historical"
-    ],
-    "nameUz": "Fayoztepa buddist ibodatxonasi",
-    "nameRu": "Буддийский храм Фаяз-Тепа",
-    "nameEn": "Fayaztepa Buddhist Temple",
-    "descriptionUz": "Qadimgi Termizdagi II–III asrlarga oid buddist monastiri — Buddaning O'zbekiston izlari.",
-    "descriptionRu": "Буддийский монастырь II–III веков в Старом Термезе — следы Будды в Узбекистане.",
-    "descriptionEn": "A 2nd–3rd century Buddhist monastery in Old Termez — traces of Buddha in Uzbekistan.",
-    "latitude": 37.2256,
-    "longitude": 67.2208,
-    "price": "Pullik",
-    "workingHours": "08:00 - 19:00",
-    "averageRating": 4.6
   },
   {
     "slug": "boysun-toglari",
@@ -590,25 +536,6 @@
     "averageRating": 4.6
   },
   {
-    "slug": "konigil-qogoz-fabrikasi",
-    "regionSlug": "samarkand",
-    "categorySlugs": [
-      "markets",
-      "historical"
-    ],
-    "nameUz": "Konigil qog'oz fabrikasi",
-    "nameRu": "Бумажная фабрика Канигиль",
-    "nameEn": "Konigil Paper Mill",
-    "descriptionUz": "Samarqand qog'ozi (X asr texnologiyasi) qo'lda tayyorlanadigan ustaxona — daryo bo'yidagi hunarmandchilik maskani.",
-    "descriptionRu": "Мастерская ручного изготовления самаркандской бумаги по технологии X века, у берега канала.",
-    "descriptionEn": "A workshop making authentic Samarkand paper with 10th-century techniques, by the canal side.",
-    "latitude": 39.6972,
-    "longitude": 66.9514,
-    "price": "Pullik",
-    "workingHours": "09:00 - 18:00",
-    "averageRating": 4.7
-  },
-  {
     "slug": "chor-minor",
     "regionSlug": "bukhara",
     "categorySlugs": [
@@ -664,24 +591,6 @@
     "averageRating": 4.6
   },
   {
-    "slug": "qarshi-koprik",
-    "regionSlug": "kashkadarya",
-    "categorySlugs": [
-      "historical"
-    ],
-    "nameUz": "Qarshi ko'prigi",
-    "nameRu": "Каршинский мост",
-    "nameEn": "Karshi Bridge",
-    "descriptionUz": "Qashqadaryo ustidagi XVI asrga oid g'ishtin ko'prik — Ipak yo'lining tirik yodgorligi.",
-    "descriptionRu": "Кирпичный мост XVI века через Кашкадарью — живое наследие Шёлкового пути.",
-    "descriptionEn": "A 16th-century brick bridge over the Kashkadarya river — living Silk Road heritage.",
-    "latitude": 38.8586,
-    "longitude": 65.7903,
-    "price": "Bepul",
-    "workingHours": "Kun bo'yi",
-    "averageRating": 4.5
-  },
-  {
     "slug": "miraki",
     "regionSlug": "kashkadarya",
     "categorySlugs": [
@@ -699,24 +608,5 @@
     "price": "Bepul/Pullik",
     "workingHours": "Kun bo'yi",
     "averageRating": 4.6
-  },
-  {
-    "slug": "sarmishsoy",
-    "regionSlug": "navoiy",
-    "categorySlugs": [
-      "historical",
-      "nature"
-    ],
-    "nameUz": "Sarmishsoy petrogliflari",
-    "nameRu": "Петроглифы Сармансай",
-    "nameEn": "Sarmishsay Petroglyphs",
-    "descriptionUz": "10 000 dan ortiq qoyatosh rasmlari — ochiq osmon ostidagi ulkan galereya va UNESCO merosi nomzodi.",
-    "descriptionRu": "Более 10 000 наскальных рисунков — огромная галерея под открытым небом, кандидат ЮНЕСКО.",
-    "descriptionEn": "Over 10,000 rock carvings — a vast open-air gallery and UNESCO tentative site.",
-    "latitude": 40.0906,
-    "longitude": 65.2903,
-    "price": "Bepul",
-    "workingHours": "Kun bo'yi",
-    "averageRating": 4.8
   }
 ]

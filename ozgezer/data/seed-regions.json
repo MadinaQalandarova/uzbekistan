@@ -26,7 +26,7 @@
     "focusUz": "Ipak yo'li va me'morchilik",
     "focusRu": "Шёлковый путь и архитектура",
     "focusEn": "Silk Road and architecture",
-    "samplePlaces": 6,
+    "samplePlaces": 5,
     "featuredPlaceTitleUz": "Registon maydoni",
     "featuredPlaceTitleRu": "Площадь Регистан",
     "featuredPlaceTitleEn": "Registan Square"
@@ -74,7 +74,7 @@
     "focusUz": "Tarix va Temur merosi",
     "focusRu": "История и наследие Тимура",
     "focusEn": "History and Timur's legacy",
-    "samplePlaces": 3,
+    "samplePlaces": 2,
     "featuredPlaceTitleUz": "Shahrisabz",
     "featuredPlaceTitleRu": "Шахрисабз",
     "featuredPlaceTitleEn": "Shahrisabz"
@@ -90,7 +90,7 @@
     "focusUz": "Sahro va qadimiy tarix",
     "focusRu": "Пустыня и древняя история",
     "focusEn": "Desert and ancient history",
-    "samplePlaces": 3,
+    "samplePlaces": 2,
     "featuredPlaceTitleUz": "Aydarko'l",
     "featuredPlaceTitleRu": "Озеро Айдаркуль",
     "featuredPlaceTitleEn": "Aydarkul Lake"
@@ -138,7 +138,7 @@
     "focusUz": "Bobur merosi va vodiy madaniyati",
     "focusRu": "Наследие Бабура и культура долины",
     "focusEn": "Babur's legacy and valley culture",
-    "samplePlaces": 1,
+    "samplePlaces": 0,
     "featuredPlaceTitleUz": "Andijon muzeyi",
     "featuredPlaceTitleRu": "Сад Бабура",
     "featuredPlaceTitleEn": "Babur Garden"
@@ -154,7 +154,7 @@
     "focusUz": "Xalq hunarmandchiligi",
     "focusRu": "Народные промыслы",
     "focusEn": "Folk crafts",
-    "samplePlaces": 2,
+    "samplePlaces": 1,
     "featuredPlaceTitleUz": "Chust",
     "featuredPlaceTitleRu": "Чуст",
     "featuredPlaceTitleEn": "Chust"
@@ -202,7 +202,7 @@
     "focusUz": "Qadimiy dinlar va tog' manzaralari",
     "focusRu": "Древние религии и горные пейзажи",
     "focusEn": "Ancient religions and mountain scenery",
-    "samplePlaces": 2,
+    "samplePlaces": 1,
     "featuredPlaceTitleUz": "Boysun tog'lari",
     "featuredPlaceTitleRu": "Горы Байсун",
     "featuredPlaceTitleEn": "Boysun Mountains"
