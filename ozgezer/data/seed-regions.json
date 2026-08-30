@@ -106,7 +106,7 @@
     "focusUz": "Orol tarixi va san'at",
     "focusRu": "История Арала и искусство",
     "focusEn": "Aral history and art",
-    "samplePlaces": 3,
+    "samplePlaces": 2,
     "featuredPlaceTitleUz": "Mo'ynoq",
     "featuredPlaceTitleRu": "Муйнак",
     "featuredPlaceTitleEn": "Moynaq"
@@ -122,7 +122,7 @@
     "focusUz": "Hunarmandchilik va hunar ustaxonalari",
     "focusRu": "Ремёсла и мастерские",
     "focusEn": "Crafts and workshops",
-    "samplePlaces": 3,
+    "samplePlaces": 0,
     "featuredPlaceTitleUz": "Xudoyorxon o'qigohi",
     "featuredPlaceTitleRu": "Дворец Худояр-хана",
     "featuredPlaceTitleEn": "Khudayar Khan Palace"
@@ -138,8 +138,8 @@
     "focusUz": "Bobur merosi va vodiy madaniyati",
     "focusRu": "Наследие Бабура и культура долины",
     "focusEn": "Babur's legacy and valley culture",
-    "samplePlaces": 2,
-    "featuredPlaceTitleUz": "Bobur bog'i",
+    "samplePlaces": 1,
+    "featuredPlaceTitleUz": "Andijon muzeyi",
     "featuredPlaceTitleRu": "Сад Бабура",
     "featuredPlaceTitleEn": "Babur Garden"
   },

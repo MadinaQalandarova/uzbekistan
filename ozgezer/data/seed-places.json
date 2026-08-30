@@ -2,7 +2,9 @@
   {
     "slug": "registon",
     "regionSlug": "samarkand",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Registon maydoni",
     "nameRu": "Площадь Регистан",
     "nameEn": "Registan Square",
@@ -18,7 +20,10 @@
   {
     "slug": "chimgan",
     "regionSlug": "tashkent",
-    "categorySlugs": ["nature", "leisure"],
+    "categorySlugs": [
+      "nature",
+      "leisure"
+    ],
     "nameUz": "Chimgan",
     "nameRu": "Чимган",
     "nameEn": "Chimgan",
@@ -34,7 +39,9 @@
   {
     "slug": "ark-fortress",
     "regionSlug": "bukhara",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Ark qal'asi",
     "nameRu": "Крепость Арк",
     "nameEn": "Ark Fortress",
@@ -50,7 +57,9 @@
   {
     "slug": "itchan-kala",
     "regionSlug": "khorezm",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Ichan-Qal'a",
     "nameRu": "Ичан-Кала",
     "nameEn": "Itchan Kala",
@@ -66,7 +75,9 @@
   {
     "slug": "shahrisabz",
     "regionSlug": "kashkadarya",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Shahrisabz",
     "nameRu": "Шахрисабз",
     "nameEn": "Shahrisabz",
@@ -82,7 +93,10 @@
   {
     "slug": "aydarkul",
     "regionSlug": "navoiy",
-    "categorySlugs": ["nature", "leisure"],
+    "categorySlugs": [
+      "nature",
+      "leisure"
+    ],
     "nameUz": "Aydarko'l",
     "nameRu": "Озеро Айдаркуль",
     "nameEn": "Aydarkul Lake",
@@ -98,7 +112,10 @@
   {
     "slug": "nurota",
     "regionSlug": "navoiy",
-    "categorySlugs": ["historical", "nature"],
+    "categorySlugs": [
+      "historical",
+      "nature"
+    ],
     "nameUz": "Nurota",
     "nameRu": "Нурата",
     "nameEn": "Nurota",
@@ -114,7 +131,9 @@
   {
     "slug": "shohi-zinda",
     "regionSlug": "samarkand",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Shohi Zinda majmuasi",
     "nameRu": "Комплекс Шахи Зинда",
     "nameEn": "Shahi Zinda Complex",
@@ -130,7 +149,9 @@
   {
     "slug": "bibi-xonim",
     "regionSlug": "samarkand",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Bibi-Xonim masjidi",
     "nameRu": "Мечеть Биби-Ханым",
     "nameEn": "Bibi-Khanym Mosque",
@@ -146,7 +167,9 @@
   {
     "slug": "ulugbek-rasadxonasi",
     "regionSlug": "samarkand",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Ulug'bek rasadxonasi",
     "nameRu": "Обсерватория Улугбека",
     "nameEn": "Ulugh Beg Observatory",
@@ -162,7 +185,9 @@
   {
     "slug": "minorai-kalon",
     "regionSlug": "bukhara",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Minorai Kalon majmuasi",
     "nameRu": "Комплекс Минари Калян",
     "nameEn": "Kalyan Minaret Complex",
@@ -178,7 +203,10 @@
   {
     "slug": "labihovuz",
     "regionSlug": "bukhara",
-    "categorySlugs": ["markets", "historical"],
+    "categorySlugs": [
+      "markets",
+      "historical"
+    ],
     "nameUz": "Labihovuz ansambli",
     "nameRu": "Ансамбль Ляби-Хауз",
     "nameEn": "Lyab-i Hauz Ensemble",
@@ -194,7 +222,9 @@
   {
     "slug": "sitorai-mohi-xosa",
     "regionSlug": "bukhara",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Sitorai Mohi Xosa saroyi",
     "nameRu": "Дворец Ситораи Мохи-Хоса",
     "nameEn": "Sitorai Mokhi-Khosa Palace",
@@ -210,7 +240,9 @@
   {
     "slug": "kalta-minor",
     "regionSlug": "khorezm",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Kalta Minor minorasi",
     "nameRu": "Минарет Кальта-Минор",
     "nameEn": "Kalta Minor Minaret",
@@ -226,7 +258,9 @@
   {
     "slug": "islomxoja-minorasi",
     "regionSlug": "khorezm",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Islomxo'ja minorasi",
     "nameRu": "Минарет Ислам-Ходжи",
     "nameEn": "Islam Khoja Minaret",
@@ -242,7 +276,9 @@
   {
     "slug": "tosh-hovli",
     "regionSlug": "khorezm",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Tosh Hovli saroyi",
     "nameRu": "Дворец Таш-Хаули",
     "nameEn": "Tach Khauli Palace",
@@ -258,7 +294,10 @@
   {
     "slug": "chorvoq",
     "regionSlug": "tashkent",
-    "categorySlugs": ["nature", "leisure"],
+    "categorySlugs": [
+      "nature",
+      "leisure"
+    ],
     "nameUz": "Chorvoq suv ombori",
     "nameRu": "Чарвакское водохранилище",
     "nameEn": "Charvak Reservoir",
@@ -274,7 +313,10 @@
   {
     "slug": "amirsoy",
     "regionSlug": "tashkent",
-    "categorySlugs": ["nature", "leisure"],
+    "categorySlugs": [
+      "nature",
+      "leisure"
+    ],
     "nameUz": "Amirsoy tog'-chang'i kurorti",
     "nameRu": "Горно-лыжный курорт Амирсой",
     "nameEn": "Amirsoy Mountain Resort",
@@ -290,7 +332,10 @@
   {
     "slug": "chorsu-bozori",
     "regionSlug": "tashkent",
-    "categorySlugs": ["markets", "food"],
+    "categorySlugs": [
+      "markets",
+      "food"
+    ],
     "nameUz": "Chorsu bozori",
     "nameRu": "Базар Чорсу",
     "nameEn": "Chorsu Bazaar",
@@ -306,7 +351,10 @@
   {
     "slug": "moynoq",
     "regionSlug": "karakalpakstan",
-    "categorySlugs": ["nature", "leisure"],
+    "categorySlugs": [
+      "nature",
+      "leisure"
+    ],
     "nameUz": "Mo'ynoq kemalar qabristoni",
     "nameRu": "Кладбище кораблей в Муйнаке",
     "nameEn": "Moynaq Ship Graveyard",
@@ -322,7 +370,9 @@
   {
     "slug": "savitskiy-muzeyi",
     "regionSlug": "karakalpakstan",
-    "categorySlugs": ["museums"],
+    "categorySlugs": [
+      "museums"
+    ],
     "nameUz": "Savitskiy nomidagi san'at muzeyi",
     "nameRu": "Музей искусств имени Савицкого",
     "nameEn": "Savitsky Museum of Art",
@@ -336,89 +386,11 @@
     "averageRating": 4.8
   },
   {
-    "slug": "mizdaxkan",
-    "regionSlug": "karakalpakstan",
-    "categorySlugs": ["historical"],
-    "nameUz": "Mizdaxkan majmuasi",
-    "nameRu": "Комплекс Миздахкан",
-    "nameEn": "Mizdahkan Complex",
-    "descriptionUz": "Amudaryo etaklaridagi qadimiy shahar va nekropol — «Jahon uzumi» silindrli maqbarasi bilan mashhur.",
-    "descriptionRu": "Древний город и некрополь в пойме Амударьи, известный цилиндрическим мавзолеем.",
-    "descriptionEn": "An ancient city and necropolis on the Amu Darya floodplain, known for its cylindrical mausoleum.",
-    "latitude": 42.7167,
-    "longitude": 59.5833,
-    "price": "Bepul",
-    "workingHours": "Kun bo'yi",
-    "averageRating": 4.6
-  },
-  {
-    "slug": "xudoyorxon-oqigohi",
-    "regionSlug": "fergana",
-    "categorySlugs": ["historical"],
-    "nameUz": "Xudoyorxon o'qigohi",
-    "nameRu": "Дворец Худояр-хана",
-    "nameEn": "Khudayar Khan Palace",
-    "descriptionUz": "Qo'qon xonlarining hashamatli so'nggi saroyi — 119 xonali «Farg'ona toji».",
-    "descriptionRu": "Роскошный последний дворец кокандских ханов — «корона Ферганы» со 119 комнатами.",
-    "descriptionEn": "The lavish last palace of the Kokand khans — the \"Crown of Fergana\" with 119 rooms.",
-    "latitude": 40.5242,
-    "longitude": 70.9397,
-    "price": "Pullik",
-    "workingHours": "09:00 - 18:00",
-    "averageRating": 4.6
-  },
-  {
-    "slug": "margilon-atlas",
-    "regionSlug": "fergana",
-    "categorySlugs": ["markets"],
-    "nameUz": "Marg'ilon «Yodgorlik» atlas fabrikasi",
-    "nameRu": "Шёлковая фабрика «Ёдгорлик» в Маргилане",
-    "nameEn": "Yodgorlik Silk Factory, Margilan",
-    "descriptionUz": "Atlas va adras matolarini qadimiy usulda to'qish jarayonini boshdan kechirib, ustaxona do'konidan xotira olib ketasiz.",
-    "descriptionRu": "Увидьте ручное производство атласа и адраса по древней технологии и заберите сувенир из мастерской.",
-    "descriptionEn": "Watch handwoven ikat silk made the ancient way and take home a piece from the workshop.",
-    "latitude": 40.4744,
-    "longitude": 71.1564,
-    "price": "Pullik",
-    "workingHours": "09:00 - 18:00",
-    "averageRating": 4.8
-  },
-  {
-    "slug": "rishton-kulolchilik",
-    "regionSlug": "fergana",
-    "categorySlugs": ["markets"],
-    "nameUz": "Rishton kulolchilik markazi",
-    "nameRu": "Керамический центр Риштана",
-    "nameEn": "Rishton Ceramics Center",
-    "descriptionUz": "1000 yillik firuza sirli kulolchilik maktabi — ustalar uyida charxpalak va pechlarni ko'rasiz.",
-    "descriptionRu": "Тысячелетняя школа бирюзовой керамики — в домах мастеров увидите гончарный круг и печи.",
-    "descriptionEn": "A thousand-year-old school of turquoise-glazed pottery — visit master homes to see wheels and kilns.",
-    "latitude": 40.3711,
-    "longitude": 71.0436,
-    "price": "Bepul/Pullik",
-    "workingHours": "09:00 - 18:00",
-    "averageRating": 4.7
-  },
-  {
-    "slug": "bobur-bogi",
-    "regionSlug": "andijon",
-    "categorySlugs": ["historical", "nature"],
-    "nameUz": "Bobur davri memorial bog'i",
-    "nameRu": "Мемориальный парк Бабура",
-    "nameEn": "Babur Memorial Garden",
-    "descriptionUz": "Andijon tepaligidagi Bobur sharafiga barpo etilgan bog' — vodiy panoramasi va tinch maskan.",
-    "descriptionRu": "Сад памяти Бабура на холме над Андижаном — панорама долины и тихий уголок.",
-    "descriptionEn": "A garden honoring Babur on a hill above Andijan — valley panoramas and quiet corners.",
-    "latitude": 40.7772,
-    "longitude": 72.3506,
-    "price": "Bepul/Pullik",
-    "workingHours": "08:00 - 21:00",
-    "averageRating": 4.7
-  },
-  {
     "slug": "andijon-muzeyi",
     "regionSlug": "andijon",
-    "categorySlugs": ["museums"],
+    "categorySlugs": [
+      "museums"
+    ],
     "nameUz": "Andijon viloyat tarix muzeyi",
     "nameRu": "Андижанский областной исторический музей",
     "nameEn": "Andijan Regional History Museum",
@@ -434,7 +406,9 @@
   {
     "slug": "chust",
     "regionSlug": "namangan",
-    "categorySlugs": ["markets"],
+    "categorySlugs": [
+      "markets"
+    ],
     "nameUz": "Chust pichoq va do'ppi markazi",
     "nameRu": "Чустский центр ножей и тюбетеек",
     "nameEn": "Chust Knives & Skullcap Center",
@@ -450,7 +424,10 @@
   {
     "slug": "pandigon",
     "regionSlug": "namangan",
-    "categorySlugs": ["nature", "leisure"],
+    "categorySlugs": [
+      "nature",
+      "leisure"
+    ],
     "nameUz": "Pandigon suv ombori",
     "nameRu": "Пандиганское водохранилище",
     "nameEn": "Pandigon Reservoir",
@@ -466,7 +443,10 @@
   {
     "slug": "zomin-milliy-bogi",
     "regionSlug": "jizzakh",
-    "categorySlugs": ["nature", "leisure"],
+    "categorySlugs": [
+      "nature",
+      "leisure"
+    ],
     "nameUz": "Zomin milliy bog'i",
     "nameRu": "Национальный парк Заамин",
     "nameEn": "Zaamin National Park",
@@ -482,7 +462,10 @@
   {
     "slug": "shirin-suv-ombori",
     "regionSlug": "syrdarya",
-    "categorySlugs": ["nature", "leisure"],
+    "categorySlugs": [
+      "nature",
+      "leisure"
+    ],
     "nameUz": "Shirin suv ombori",
     "nameRu": "Ширинское водохранилище",
     "nameEn": "Shirin Reservoir",
@@ -498,7 +481,9 @@
   {
     "slug": "fayoztepa",
     "regionSlug": "surkhandarya",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Fayoztepa buddist ibodatxonasi",
     "nameRu": "Буддийский храм Фаяз-Тепа",
     "nameEn": "Fayaztepa Buddhist Temple",
@@ -514,7 +499,10 @@
   {
     "slug": "boysun-toglari",
     "regionSlug": "surkhandarya",
-    "categorySlugs": ["nature", "leisure"],
+    "categorySlugs": [
+      "nature",
+      "leisure"
+    ],
     "nameUz": "Boysun tog'lari",
     "nameRu": "Горы Байсун",
     "nameEn": "Boysun Mountains",
@@ -530,7 +518,9 @@
   {
     "slug": "gulkam-soylari",
     "regionSlug": "tashkent",
-    "categorySlugs": ["nature"],
+    "categorySlugs": [
+      "nature"
+    ],
     "nameUz": "Gulkam soylari va kanyonlari",
     "nameRu": "Ущелье Гулькам",
     "nameEn": "Gulkam Canyons",
@@ -546,7 +536,10 @@
   {
     "slug": "yapon-bogi",
     "regionSlug": "tashkent",
-    "categorySlugs": ["nature", "leisure"],
+    "categorySlugs": [
+      "nature",
+      "leisure"
+    ],
     "nameUz": "Yapon bog'i",
     "nameRu": "Японский сад",
     "nameEn": "Japanese Garden",
@@ -562,7 +555,9 @@
   {
     "slug": "toshkent-teleminorasi",
     "regionSlug": "tashkent",
-    "categorySlugs": ["leisure"],
+    "categorySlugs": [
+      "leisure"
+    ],
     "nameUz": "Toshkent teleminorasi",
     "nameRu": "Ташкентская телебашня",
     "nameEn": "Tashkent TV Tower",
@@ -578,7 +573,10 @@
   {
     "slug": "siyob-bozori",
     "regionSlug": "samarkand",
-    "categorySlugs": ["markets", "food"],
+    "categorySlugs": [
+      "markets",
+      "food"
+    ],
     "nameUz": "Siyob bozori",
     "nameRu": "Сиабский базар",
     "nameEn": "Siyob Bazaar",
@@ -594,7 +592,10 @@
   {
     "slug": "konigil-qogoz-fabrikasi",
     "regionSlug": "samarkand",
-    "categorySlugs": ["markets", "historical"],
+    "categorySlugs": [
+      "markets",
+      "historical"
+    ],
     "nameUz": "Konigil qog'oz fabrikasi",
     "nameRu": "Бумажная фабрика Канигиль",
     "nameEn": "Konigil Paper Mill",
@@ -610,7 +611,9 @@
   {
     "slug": "chor-minor",
     "regionSlug": "bukhara",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Chor Minor",
     "nameRu": "Чор-Минор",
     "nameEn": "Chor Minor",
@@ -626,7 +629,9 @@
   {
     "slug": "ismoil-somoniy",
     "regionSlug": "bukhara",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Ismoil Somoniy maqbarasi",
     "nameRu": "Мавзолей Исмаила Самани",
     "nameEn": "Ismail Samani Mausoleum",
@@ -642,7 +647,10 @@
   {
     "slug": "sayot-koli",
     "regionSlug": "khorezm",
-    "categorySlugs": ["nature", "leisure"],
+    "categorySlugs": [
+      "nature",
+      "leisure"
+    ],
     "nameUz": "Sayot ko'li",
     "nameRu": "Озеро Сайот",
     "nameEn": "Sayot Lake",
@@ -658,7 +666,9 @@
   {
     "slug": "qarshi-koprik",
     "regionSlug": "kashkadarya",
-    "categorySlugs": ["historical"],
+    "categorySlugs": [
+      "historical"
+    ],
     "nameUz": "Qarshi ko'prigi",
     "nameRu": "Каршинский мост",
     "nameEn": "Karshi Bridge",
@@ -674,7 +684,10 @@
   {
     "slug": "miraki",
     "regionSlug": "kashkadarya",
-    "categorySlugs": ["nature", "leisure"],
+    "categorySlugs": [
+      "nature",
+      "leisure"
+    ],
     "nameUz": "Miraki tog'-o'rmon zonasi",
     "nameRu": "Горная зона Мираки",
     "nameEn": "Miraki Mountain Area",
@@ -690,7 +703,10 @@
   {
     "slug": "sarmishsoy",
     "regionSlug": "navoiy",
-    "categorySlugs": ["historical", "nature"],
+    "categorySlugs": [
+      "historical",
+      "nature"
+    ],
     "nameUz": "Sarmishsoy petrogliflari",
     "nameRu": "Петроглифы Сармансай",
     "nameEn": "Sarmishsay Petroglyphs",
