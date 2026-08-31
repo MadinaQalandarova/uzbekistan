@@ -424,25 +424,6 @@
     "averageRating": 4.8
   },
   {
-    "slug": "shirin-suv-ombori",
-    "regionSlug": "syrdarya",
-    "categorySlugs": [
-      "nature",
-      "leisure"
-    ],
-    "nameUz": "Shirin suv ombori",
-    "nameRu": "Ширинское водохранилище",
-    "nameEn": "Shirin Reservoir",
-    "descriptionUz": "Mirzacho'ldagi katta suv havzasi — baliqchilar va lager hayoti ixlosmandlarining sevimli maskani.",
-    "descriptionRu": "Большой водоём Мирзачуля — любимое место рыбаков и любителей лагерного отдыха.",
-    "descriptionEn": "A large Mirzachol water body — a favorite spot for anglers and camping enthusiasts.",
-    "latitude": 40.15,
-    "longitude": 68.8,
-    "price": "Bepul",
-    "workingHours": "Kun bo'yi",
-    "averageRating": 4.5
-  },
-  {
     "slug": "boysun-toglari",
     "regionSlug": "surkhandarya",
     "categorySlugs": [
@@ -499,43 +480,6 @@
     "averageRating": 4.7
   },
   {
-    "slug": "toshkent-teleminorasi",
-    "regionSlug": "tashkent",
-    "categorySlugs": [
-      "leisure"
-    ],
-    "nameUz": "Toshkent teleminorasi",
-    "nameRu": "Ташкентская телебашня",
-    "nameEn": "Tashkent TV Tower",
-    "descriptionUz": "375 metrli minora kuzatuv maydonchasidan butun shahar va tog'lar kaftdek ko'rinadi.",
-    "descriptionRu": "Со смотровой площадки 375-метровой башни весь город и горы как на ладони.",
-    "descriptionEn": "From the observation deck of this 375-meter tower the whole city and mountains lie at your feet.",
-    "latitude": 41.3256,
-    "longitude": 69.2894,
-    "price": "Pullik",
-    "workingHours": "10:00 - 21:00",
-    "averageRating": 4.6
-  },
-  {
-    "slug": "siyob-bozori",
-    "regionSlug": "samarkand",
-    "categorySlugs": [
-      "markets",
-      "food"
-    ],
-    "nameUz": "Siyob bozori",
-    "nameRu": "Сиабский базар",
-    "nameEn": "Siyob Bazaar",
-    "descriptionUz": "Registon yonidagi ming yillik bozor — Samarqand noni, quruq meva va ta'mga boy sharqiy savdo.",
-    "descriptionRu": "Тысячелетний базар у Регистана — самаркандские лепёшки, сухофрукты и восточная торговля.",
-    "descriptionEn": "A millennium-old bazaar beside Registan — Samarkand bread, dried fruits, and eastern trading life.",
-    "latitude": 39.6622,
-    "longitude": 66.9786,
-    "price": "Bepul",
-    "workingHours": "06:00 - 20:00",
-    "averageRating": 4.6
-  },
-  {
     "slug": "chor-minor",
     "regionSlug": "bukhara",
     "categorySlugs": [
@@ -570,25 +514,6 @@
     "price": "Bepul",
     "workingHours": "Kun bo'yi",
     "averageRating": 4.9
-  },
-  {
-    "slug": "sayot-koli",
-    "regionSlug": "khorezm",
-    "categorySlugs": [
-      "nature",
-      "leisure"
-    ],
-    "nameUz": "Sayot ko'li",
-    "nameRu": "Озеро Сайот",
-    "nameEn": "Sayot Lake",
-    "descriptionUz": "Xiva yonidagi baliqchi ko'li — tong mistikasi, qamishzorlar va qushlar dunyosi.",
-    "descriptionRu": "Рыбачье озеро рядом с Хивой — утренние туманы, камыши и мир птиц.",
-    "descriptionEn": "A fisherman's lake near Khiva — morning mist, reed beds, and rich birdlife.",
-    "latitude": 41.33,
-    "longitude": 60.42,
-    "price": "Bepul/Pullik",
-    "workingHours": "Kun bo'yi",
-    "averageRating": 4.6
   },
   {
     "slug": "miraki",

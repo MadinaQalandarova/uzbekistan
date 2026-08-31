@@ -41,15 +41,11 @@ export const PLACE_IMAGES: Record<string, string> = {
 
   "pandigon":             "/places/pandigon.jpg",
   "zomin-milliy-bogi":    "/places/zomin-milliy-bogi.jpg",
-  "shirin-suv-ombori":    "/places/shirin-suv-ombori.jpg",
   "boysun-toglari":       "/places/boysun-toglari.jpg",
   "gulkam-soylari":       "/places/gulkam-soylari.jpg",
   "yapon-bogi":           "/places/yapon-bogi.jpg",
-  "toshkent-teleminorasi":"/places/toshkent-teleminorasi.jpg",
-  "siyob-bozori":         "/places/siyob-bozori.jpg",
   "chor-minor":           "/places/chor-minor.jpg",
   "ismoil-somoniy":       "/places/ismoil-somoniy.jpg",
-  "sayot-koli":           "/places/sayot-koli.jpg",
   "miraki":               "/places/miraki.webp",
 };
 
@@ -83,15 +79,11 @@ export const PLACE_GALLERIES: Record<string, string[]> = {
 
   "pandigon":             ["/places/pandigon.jpg"],
   "zomin-milliy-bogi":    ["/places/zomin-milliy-bogi.jpg"],
-  "shirin-suv-ombori":    ["/places/shirin-suv-ombori.jpg"],
   "boysun-toglari":       ["/places/boysun-toglari.jpg"],
   "gulkam-soylari":       ["/places/gulkam-soylari.jpg"],
   "yapon-bogi":           ["/places/yapon-bogi.jpg"],
-  "toshkent-teleminorasi":["/places/toshkent-teleminorasi.jpg"],
-  "siyob-bozori":         ["/places/siyob-bozori.jpg"],
   "chor-minor":           ["/places/chor-minor.jpg"],
   "ismoil-somoniy":       ["/places/ismoil-somoniy.jpg"],
-  "sayot-koli":           ["/places/sayot-koli.jpg"],
   "miraki":               ["/places/miraki.webp"],
 };
 
