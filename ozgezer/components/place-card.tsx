@@ -47,15 +47,15 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
             </p>
           )}
         </div>
-        <h3 className="text-xl font-semibold leading-snug text-[var(--color-ink)]">
+        <h3 className="line-clamp-2 min-h-[56px] text-xl font-semibold leading-snug text-[var(--color-ink)]">
           {place.name[locale]}
         </h3>
         {quote ? (
-          <p className="line-clamp-2 font-serif text-sm italic leading-6 text-[var(--color-ink)]/55">
+          <p className="line-clamp-2 min-h-[48px] font-serif text-sm italic leading-6 text-[var(--color-ink)]/55">
             &ldquo;{quote}&rdquo;
           </p>
         ) : (
-          <p className="line-clamp-2 text-sm leading-6 text-[var(--color-ink)]/60">
+          <p className="line-clamp-2 min-h-[48px] text-sm leading-6 text-[var(--color-ink)]/60">
             {place.description[locale]}
           </p>
         )}
