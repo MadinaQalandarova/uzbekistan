@@ -17,7 +17,7 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
   const quote = story?.quote[locale] ?? null;
 
   return (
-    <article className="section-card card-rise group flex flex-col overflow-hidden rounded-[1.75rem]">
+    <article className="section-card card-rise group flex h-full flex-col overflow-hidden rounded-[1.75rem]">
       {/* Banner — real rasm yoki gradient */}
       <div className="relative h-52 overflow-hidden">
         {imageUrl ? (
