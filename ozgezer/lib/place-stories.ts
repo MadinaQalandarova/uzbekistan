@@ -50,7 +50,7 @@ export const PLACE_IMAGES: Record<string, string> = {
   "chor-minor":           "/places/chor-minor.jpg",
   "ismoil-somoniy":       "/places/ismoil-somoniy.jpg",
   "sayot-koli":           "/places/sayot-koli.jpg",
-  "miraki":               "/places/miraki.jpg",
+  "miraki":               "/places/miraki.webp",
 };
 
 /**
@@ -92,7 +92,7 @@ export const PLACE_GALLERIES: Record<string, string[]> = {
   "chor-minor":           ["/places/chor-minor.jpg"],
   "ismoil-somoniy":       ["/places/ismoil-somoniy.jpg"],
   "sayot-koli":           ["/places/sayot-koli.jpg"],
-  "miraki":               ["/places/miraki.jpg"],
+  "miraki":               ["/places/miraki.webp"],
 };
 
 export const PLACE_STORIES: Record<string, PlaceStory> = {
