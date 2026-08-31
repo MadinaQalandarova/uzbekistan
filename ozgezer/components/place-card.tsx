@@ -59,7 +59,7 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
             {place.description[locale]}
           </p>
         )}
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex min-h-[26px] flex-wrap content-start gap-1.5">
           {place.categoryTitles.slice(0, 2).map((category) => (
             <span
               key={`${place.slug}-${category[locale]}`}
@@ -71,7 +71,7 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
         </div>
         <Link
           href={`/${locale}/places/${place.slug}`}
-          className="mt-auto inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/10 bg-transparent px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="mt-auto inline-flex shrink-0 items-center gap-2 rounded-full border border-[var(--color-ink)]/10 bg-transparent px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
         >
           <span>{ctaLabel}</span>
           <svg
