@@ -132,7 +132,7 @@ const messages: Record<Locale, Messages> = {
     home: {
       eyebrow: "O'zbekiston bo'ylab kashfiyot",
       title: "Qaysi viloyatga borsangiz ham,",
-      titleAccent: " arzigulik joyni ",
+      titleAccent: " betakror joyni ",
       description:
         "O'zGezer turistlar va mahalliy sayohatchilar uchun haqiqiy izohlar, reytinglar va xarita asosida joylarni topishga yordam beradi.",
       searchPlaceholder: "Masalan: Registon, Chimgan, Ichan-Qal'a...",
