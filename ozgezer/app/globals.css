@@ -376,25 +376,6 @@ html[data-theme="dark"] [class~="border-black/8"]  { border-color: rgb(232 244 2
 html[data-theme="dark"] [class~="border-black/6"]  { border-color: rgb(232 244 239 / 0.06) !important; }
 html[data-theme="dark"] [class~="border-black/5"]  { border-color: rgb(232 244 239 / 0.05) !important; }
 
-/* ─── Search form surface ───────────────────────────────────────────────────── */
-html[data-theme="dark"] .search-form {
-  background: rgba(30, 60, 48, 0.95) !important;
-  border-color: rgba(74, 158, 142, 0.30) !important;
-  box-shadow: 0 0 0 1px rgba(74, 158, 142, 0.12) !important;
-}
-
-html[data-theme="dark"] .search-form input {
-  color: var(--foreground) !important;
-  background: rgba(15, 41, 32, 0.6) !important;
-  border-radius: 0.875rem;
-}
-
-html[data-theme="dark"] .search-form select {
-  background: rgba(15, 41, 32, 0.80) !important;
-  border-color: rgba(74, 158, 142, 0.25) !important;
-  color: rgb(232 244 239 / 0.75) !important;
-}
-
 /* ─── Placeholder text — dark mode (pseudoclass must be targeted separately) ── */
 html[data-theme="dark"] input::placeholder,
 html[data-theme="dark"] textarea::placeholder {

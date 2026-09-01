@@ -14,7 +14,6 @@ type SiteHeaderProps = {
     home: string;
     explore: string;
     regions: string;
-    admin: string;
     randomPlace: string;
     map: string;
     signIn: string;

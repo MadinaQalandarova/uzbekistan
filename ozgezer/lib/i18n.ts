@@ -8,7 +8,6 @@ type NavMessages = {
   home: string;
   explore: string;
   regions: string;
-  admin: string;
   randomPlace: string;
   map: string;
   signIn: string;
@@ -25,21 +24,14 @@ type HomeMessages = {
   titleAccent: string;
   description: string;
   searchPlaceholder: string;
-  regionPlaceholder: string;
-  searchButton: string;
   categoriesEyebrow: string;
   categoriesTitle: string;
-  categoriesDescription: string;
   regionsEyebrow: string;
   regionsTitle: string;
   regionsDescription: string;
   featuredEyebrow: string;
   featuredTitle: string;
   featuredButton: string;
-  adminEyebrow: string;
-  adminTitle: string;
-  adminDescription: string;
-  adminPoints: string[];
   statsTitle: string;
   statsRegions: string;
   statsPlaces: string;
@@ -86,8 +78,6 @@ type ExploreMessages = {
   resetFilters: string;
   resultCount: string;
   openDetails: string;
-  filterRegion: string;
-  filterCategory: string;
 };
 
 type PlaceMessages = {
@@ -119,7 +109,6 @@ const messages: Record<Locale, Messages> = {
       home: "Bosh sahifa",
       explore: "Kashfiyot",
       regions: "Viloyatlar",
-      admin: "Admin",
       randomPlace: "Tasodifiy joy",
       map: "Xarita",
       signIn: "Kirish",
@@ -136,12 +125,8 @@ const messages: Record<Locale, Messages> = {
       description:
         "O'zGezer turistlar va mahalliy sayohatchilar uchun haqiqiy izohlar, reytinglar va xarita asosida joylarni topishga yordam beradi.",
       searchPlaceholder: "Masalan: Registon, Chimgan, Ichan-Qal'a...",
-      regionPlaceholder: "Viloyat tanlang",
-      searchButton: "Qidirish",
       categoriesEyebrow: "Asosiy kategoriyalar",
       categoriesTitle: "Odamlar eng ko'p nimani qidiradi?",
-      categoriesDescription:
-        "Tarix va me'morchilikdan tortib tog' yo'llari, mahalliy bozorlar va restoranlargacha — barcha yo'nalishlar bir joyda.",
       regionsEyebrow: "Region bo'yicha izlash",
       regionsTitle: "Sayohatni viloyatdan boshlang",
       regionsDescription:
@@ -149,16 +134,6 @@ const messages: Record<Locale, Messages> = {
       featuredEyebrow: "Tanlangan joylar",
       featuredTitle: "Ko'p tashrif buyurilgan joylar",
       featuredButton: "Ko'rish",
-      adminEyebrow: "Keyingi texnik qadamlar",
-      adminTitle: "Kontent boshqaruvi faqat admin qo'lida bo'ladi",
-      adminDescription:
-        "Public foydalanuvchilar joylarni ko'radi. Qo'shish, tahrirlash va o'chirish huquqi esa faqat admin sessiyasi orqali beriladi.",
-      adminPoints: [
-        "Prisma va PostgreSQL ulanishi",
-        "14 viloyat va kategoriyalarni seed qilish",
-        "Admin panelga protected kirish",
-        "Place CRUD ni keyingi qadamda faqat admin uchun ochish",
-      ],
       statsTitle: "O'zbekiston sayohati raqamlarda",
       statsRegions: "ta hudud",
       statsPlaces: "ta joy",
@@ -205,8 +180,6 @@ const messages: Record<Locale, Messages> = {
       resetFilters: "Filterni tozalash",
       resultCount: "ta natija",
       openDetails: "Batafsil ko'rish",
-      filterRegion: "Viloyat",
-      filterCategory: "Kategoriya",
     },
     place: {
       backToExplore: "Qidiruv sahifasiga qaytish",
@@ -226,7 +199,6 @@ const messages: Record<Locale, Messages> = {
       home: "Главная",
       explore: "Обзор",
       regions: "Регионы",
-      admin: "Админ",
       randomPlace: "Случайное место",
       map: "Карта",
       signIn: "Войти",
@@ -242,12 +214,8 @@ const messages: Record<Locale, Messages> = {
       description:
         "O'zGezer помогает туристам и местным жителям находить места по отзывам, рейтингам и карте.",
       searchPlaceholder: "Например: Регистан, Чимган, Ичан-Кала...",
-      regionPlaceholder: "Выберите регион",
-      searchButton: "Искать",
       categoriesEyebrow: "Основные категории",
       categoriesTitle: "Что люди ищут чаще всего?",
-      categoriesDescription:
-        "От исторических памятников до горных троп, местных базаров и ресторанов — все направления в одном месте.",
       regionsEyebrow: "Поиск по регионам",
       regionsTitle: "Начните маршрут с региона",
       regionsDescription:
@@ -255,16 +223,6 @@ const messages: Record<Locale, Messages> = {
       featuredEyebrow: "Избранные места",
       featuredTitle: "Популярные места",
       featuredButton: "Открыть",
-      adminEyebrow: "Следующие технические шаги",
-      adminTitle: "Управление контентом будет только у админа",
-      adminDescription:
-        "Обычные пользователи могут только смотреть каталог. Право добавления, редактирования и удаления будет доступно только через админ-сессию.",
-      adminPoints: [
-        "Подключение Prisma и PostgreSQL",
-        "Сидирование 14 регионов и категорий",
-        "Защищенный вход в админ-панель",
-        "Открытие Place CRUD только для админа",
-      ],
       statsTitle: "Узбекистан в цифрах",
       statsRegions: "регионов",
       statsPlaces: "мест",
@@ -311,8 +269,6 @@ const messages: Record<Locale, Messages> = {
       resetFilters: "Сбросить фильтры",
       resultCount: "результатов",
       openDetails: "Открыть подробнее",
-      filterRegion: "Регион",
-      filterCategory: "Категория",
     },
     place: {
       backToExplore: "Назад к поиску",
@@ -332,7 +288,6 @@ const messages: Record<Locale, Messages> = {
       home: "Home",
       explore: "Explore",
       regions: "Regions",
-      admin: "Admin",
       randomPlace: "Random place",
       map: "Map",
       signIn: "Sign in",
@@ -348,12 +303,8 @@ const messages: Record<Locale, Messages> = {
       description:
         "O'zGezer helps tourists and locals discover places through trusted reviews, ratings, and map-first browsing.",
       searchPlaceholder: "For example: Registan, Chimgan, Ichan-Kala...",
-      regionPlaceholder: "Choose a region",
-      searchButton: "Search",
       categoriesEyebrow: "Core categories",
       categoriesTitle: "What are people searching for most?",
-      categoriesDescription:
-        "From historic monuments to mountain trails, local bazaars and restaurants — every direction in one place.",
       regionsEyebrow: "Browse by region",
       regionsTitle: "Start your trip from a region",
       regionsDescription:
@@ -361,16 +312,6 @@ const messages: Record<Locale, Messages> = {
       featuredEyebrow: "Featured places",
       featuredTitle: "Most visited places",
       featuredButton: "View place",
-      adminEyebrow: "Next technical steps",
-      adminTitle: "Content management will stay admin-only",
-      adminDescription:
-        "Public users can browse the catalog. Adding, editing, and deleting data will only be available through an admin session.",
-      adminPoints: [
-        "Prisma and PostgreSQL integration",
-        "Seeding 14 regions and categories",
-        "Protected admin access",
-        "Opening place CRUD for admin only",
-      ],
       statsTitle: "Uzbekistan by the numbers",
       statsRegions: "regions",
       statsPlaces: "places",
@@ -416,8 +357,6 @@ const messages: Record<Locale, Messages> = {
       resetFilters: "Reset filters",
       resultCount: "results",
       openDetails: "Open details",
-      filterRegion: "Region",
-      filterCategory: "Category",
     },
     place: {
       backToExplore: "Back to explore",
