@@ -98,11 +98,16 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
   }
 
   const messages = getMessages(locale);
-  const [categories, regions, featuredPlaces] = await Promise.all([
+  const [categories, regions, allPlaces] = await Promise.all([
     getCategories(),
     getRegions(),
     getPlaces(),
   ]);
+
+  /* Bosh sahifa Explore ning takrori bo'lmasin — faqat top joylar tanlanadi */
+  const featuredPlaces = [...allPlaces]
+    .sort((a, b) => b.averageRating - a.averageRating)
+    .slice(0, 8);
 
   return (
     <div className="py-8">
@@ -173,7 +178,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                   <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsRegions}</p>
                 </div>
                 <div className="rounded-[1rem] bg-[var(--color-teal)]/10 px-2 py-2.5 text-center">
-                  <p className="text-base font-semibold text-[var(--color-teal)]">{featuredPlaces.length}</p>
+                  <p className="text-base font-semibold text-[var(--color-teal)]">{allPlaces.length}</p>
                   <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsPlaces}</p>
                 </div>
                 <div className="rounded-[1rem] bg-[var(--color-gold)]/10 px-2 py-2.5 text-center">
@@ -211,7 +216,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                     <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-teal)] text-white shadow-sm">
                       <Compass size={14} strokeWidth={2} />
                     </div>
-                    <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">{featuredPlaces.length}</p>
+                    <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">{allPlaces.length}</p>
                     <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsPlaces}</p>
                   </div>
                   <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-gold)]/20 hover:bg-[var(--color-sand)] hover:shadow-sm">
