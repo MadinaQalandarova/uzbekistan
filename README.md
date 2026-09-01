@@ -1,16 +1,17 @@
 # O'zGezer
 
-O'zGezer — O'zbekiston bo'ylab sayohat joylarini kashf etish platformasi. 44 ta maskan, 13 ta hudud, 6 ta kategoriya, 3 til (uz/ru/en), sharhlar, reytinglar va xarita bilan.
+O'zGezer — O'zbekiston bo'ylab sayohat joylarini kashf etish platformasi. 29 ta maskan, 13 ta hudud, 6 ta kategoriya, 3 til (uz/ru/en), sharhlar, reytinglar va xarita bilan.
 
 Live: https://uzbekistan-y1yg.vercel.app
 
 ## Xususiyatlar
 
-- Katalog: 44 ta joy (tarixiy, tabiat, dam olish, ovqat, bozorlar, muzeylar) — 13 ta hudud bo'ylab
+- Katalog: 29 ta joy (tarixiy, tabiat, dam olish, ovqat, bozorlar, muzeylar) — 13 ta hudud bo'ylab
 - Qidiruv: matn, viloyat va kategoriya bo'yicha filtrlash (viloyat/kategoriya nomi ham qidiriladi)
 - Xarita: Leaflet + Yandex Go / Google Maps yo'nalishlari
 - Tungi rejim: standart — tungi, tez almashinuv (0.12s), localStorage da saqlanadi
 - PWA: manifest, service worker, offline qo'llab-quvvatlash
+- Tasodifiy joy: navbar CTA sizni kutilmagan maskanga olib boradi
 
 ## Texnologiyalar
 
@@ -27,7 +28,7 @@ npm install
 cp .env.example .env.local  # DATABASE_URL, DIRECT_URL, ADMIN_SECRET va boshqalar
 npx prisma generate
 npx prisma migrate dev       # yoki prisma db push
-npm run prisma:seed          # 44 joy + 13 hudud + 6 kategoriya
+npm run prisma:seed          # 29 joy + 13 hudud + 6 kategoriya
 npm run dev                  # http://localhost:3000
 ```
 
