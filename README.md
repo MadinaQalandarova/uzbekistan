@@ -13,7 +13,7 @@ Live: https://uzbekistan-y1yg.vercel.app
 - PWA: manifest, service worker, offline qo'llab-quvvatlash
 - Tasodifiy joy: navbar CTA sizni kutilmagan maskanga olib boradi
 
-## Texnologiyalar
+## Texnologiyalar(Tools)
 
 - Next.js 16 App Router, TypeScript, Tailwind CSS 4
 - Prisma 7 + PostgreSQL (Supabase) + @prisma/adapter-pg
