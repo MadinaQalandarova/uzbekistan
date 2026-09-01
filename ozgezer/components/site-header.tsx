@@ -4,6 +4,8 @@ import { Globe, Map, Compass, LogOut, User, MapPin } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { MobileNav } from "@/components/mobile-nav";
 import { LocaleSwitcher } from "@/components/locale-switcher";
+import { RandomPlaceButton } from "@/components/random-place-button";
+import { getPlaces } from "@/lib/data/catalog-service";
 import type { Locale } from "@/lib/i18n";
 
 type SiteHeaderProps = {
@@ -13,7 +15,7 @@ type SiteHeaderProps = {
     explore: string;
     regions: string;
     admin: string;
-    openExplore: string;
+    randomPlace: string;
     map: string;
     signIn: string;
     signOut: string;
@@ -21,7 +23,8 @@ type SiteHeaderProps = {
   user: { name: string | null; email: string } | null;
 };
 
-export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
+export async function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
+  const placeSlugs = (await getPlaces()).map((place) => place.slug);
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--color-ink)]/5 bg-[rgba(240,247,244,0.88)] backdrop-blur-xl transition-colors duration-300">
       <div className="container-shell flex items-center justify-between py-3">
@@ -76,14 +79,8 @@ export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
             <LocaleSwitcher locale={locale} />
           </div>
 
-          {/* Explore CTA — desktop only */}
-          <Link
-            href={`/${locale}/explore`}
-            className="hidden items-center gap-2 rounded-full bg-[var(--color-gold)] px-4 py-2 text-sm font-semibold text-[var(--color-ink)] shadow-sm transition hover:opacity-90 lg:flex"
-          >
-            {nav.openExplore}
-            <ArrowRight size={14} />
-          </Link>
+          {/* Random place — desktop only (Explore CTA o'rniga) */}
+          <RandomPlaceButton locale={locale} slugs={placeSlugs} label={nav.randomPlace} />
 
           {/* User auth — desktop only */}
           {user ? (
@@ -127,24 +124,5 @@ export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
         </div>
       </div>
     </header>
-  );
-}
-
-function ArrowRight({ size = 16 }: { size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 16 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <line x1="3" y1="8" x2="13" y2="8" />
-      <polyline points="9 4 13 8 9 12" />
-    </svg>
   );
 }

@@ -9,7 +9,7 @@ type NavMessages = {
   explore: string;
   regions: string;
   admin: string;
-  openExplore: string;
+  randomPlace: string;
   map: string;
   signIn: string;
   signOut: string;
@@ -120,7 +120,7 @@ const messages: Record<Locale, Messages> = {
       explore: "Kashfiyot",
       regions: "Viloyatlar",
       admin: "Admin",
-      openExplore: "Joylarni ko'rish",
+      randomPlace: "Tasodifiy joy",
       map: "Xarita",
       signIn: "Kirish",
       signOut: "Chiqish",
@@ -227,7 +227,7 @@ const messages: Record<Locale, Messages> = {
       explore: "Обзор",
       regions: "Регионы",
       admin: "Админ",
-      openExplore: "Смотреть места",
+      randomPlace: "Случайное место",
       map: "Карта",
       signIn: "Войти",
       signOut: "Выйти",
@@ -333,7 +333,7 @@ const messages: Record<Locale, Messages> = {
       explore: "Explore",
       regions: "Regions",
       admin: "Admin",
-      openExplore: "Browse places",
+      randomPlace: "Random place",
       map: "Map",
       signIn: "Sign in",
       signOut: "Sign out",

@@ -20,7 +20,7 @@ type MobileNavProps = {
     explore: string;
     regions: string;
     admin: string;
-    openExplore: string;
+    randomPlace: string;
     map: string;
     signIn: string;
     signOut: string;
