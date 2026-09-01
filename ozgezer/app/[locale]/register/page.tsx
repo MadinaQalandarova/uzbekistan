@@ -93,7 +93,7 @@ export default async function RegisterPage({ params, searchParams }: RegisterPag
     : null;
 
   return (
-    <div className="flex min-h-[80vh] items-center justify-center p-4">
+    <div className="flex justify-center px-4 py-10">
       <div className="w-full max-w-md">
         <AuthBrand title={texts.title} subtitle={texts.subtitle} />
 
