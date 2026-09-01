@@ -11,8 +11,8 @@ export function AuthBrand({
   logo?: ReactNode;
 }) {
   return (
-    <div className="mb-8 text-center">
-      <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--color-sky)] to-[var(--color-teal)] shadow-lg shadow-[var(--color-sky)]/20">
+    <div className="mb-6 text-center">
+      <div className="mx-auto mb-3.5 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[var(--color-sky)] to-[var(--color-teal)] shadow-lg shadow-[var(--color-sky)]/20 ring-1 ring-white/10">
         {logo ?? (
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="10" />
@@ -21,8 +21,8 @@ export function AuthBrand({
           </svg>
         )}
       </div>
-      <h1 className="display-title text-3xl font-semibold text-[var(--color-ink)]">{title}</h1>
-      <p className="mt-1.5 text-sm text-[var(--color-ink)]/55">{subtitle}</p>
+      <h1 className="display-title text-[1.7rem] font-semibold leading-tight text-[var(--color-ink)] sm:text-3xl">{title}</h1>
+      <p className="mt-1.5 text-sm leading-6 text-[var(--color-ink)]/55">{subtitle}</p>
     </div>
   );
 }
@@ -31,13 +31,13 @@ export function AuthBrand({
 export function AuthError({ message }: { message: string | null }) {
   if (!message) return null;
   return (
-    <div className="mb-5 rounded-[1.2rem] border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+    <div className="mb-5 rounded-[1rem] border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium leading-6 text-red-700 shadow-sm">
       {message}
     </div>
   );
 }
 
-/* Field + input — placeholder bilan */
+/* Field + input — placeholder bilan, dark/light kontrast tuzatildi */
 export function AuthField({
   label,
   type = "text",
@@ -57,7 +57,7 @@ export function AuthField({
 }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]/45">
+      <span className="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]/50">
         {label}
       </span>
       <input
@@ -67,7 +67,7 @@ export function AuthField({
         minLength={minLength}
         autoComplete={autoComplete}
         placeholder={placeholder}
-        className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-[var(--color-ink)]/30 focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10"
+        className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-white px-4 text-sm text-[var(--color-ink)] shadow-sm outline-none transition placeholder:text-[var(--color-ink)]/30 focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/12"
       />
     </label>
   );
