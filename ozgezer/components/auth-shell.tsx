@@ -37,7 +37,7 @@ export function AuthError({ message }: { message: string | null }) {
   );
 }
 
-/* Field + input — bir xil styling login/register uchun */
+/* Field + input — placeholder bilan */
 export function AuthField({
   label,
   type = "text",
@@ -45,6 +45,7 @@ export function AuthField({
   required,
   minLength,
   autoComplete,
+  placeholder,
 }: {
   label: string;
   type?: string;
@@ -52,6 +53,7 @@ export function AuthField({
   required?: boolean;
   minLength?: number;
   autoComplete?: string;
+  placeholder?: string;
 }) {
   return (
     <label className="block">
@@ -64,7 +66,8 @@ export function AuthField({
         required={required}
         minLength={minLength}
         autoComplete={autoComplete}
-        className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10"
+        placeholder={placeholder}
+        className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition placeholder:text-[var(--color-ink)]/30 focus:border-[var(--color-sky)] focus:ring-2 focus:ring-[var(--color-sky)]/10"
       />
     </label>
   );

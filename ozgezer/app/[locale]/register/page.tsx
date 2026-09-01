@@ -17,8 +17,11 @@ const t = {
     title: "Ro'yxatdan o'tish",
     subtitle: "O'zGezer da hisob yarating",
     name: "Ism (ixtiyoriy)",
+    namePlaceholder: "Ali Valiyev",
     email: "Elektron pochta",
+    emailPlaceholder: "ali@example.com",
     password: "Parol (kamida 6 ta belgi)",
+    passwordPlaceholder: "••••••••",
     submit: "Hisob yaratish",
     haveAccount: "Hisobingiz bormi?",
     login: "Kirish",
@@ -34,8 +37,11 @@ const t = {
     title: "Регистрация",
     subtitle: "Создайте аккаунт в O'zGezer",
     name: "Имя (необязательно)",
+    namePlaceholder: "Али Валиев",
     email: "Электронная почта",
+    emailPlaceholder: "ali@example.com",
     password: "Пароль (минимум 6 символов)",
+    passwordPlaceholder: "••••••••",
     submit: "Создать аккаунт",
     haveAccount: "Уже есть аккаунт?",
     login: "Войти",
@@ -51,8 +57,11 @@ const t = {
     title: "Register",
     subtitle: "Create your O'zGezer account",
     name: "Name (optional)",
+    namePlaceholder: "Ali Valiyev",
     email: "Email address",
+    emailPlaceholder: "ali@example.com",
     password: "Password (min 6 characters)",
+    passwordPlaceholder: "••••••••",
     submit: "Create account",
     haveAccount: "Already have an account?",
     login: "Sign in",
@@ -94,8 +103,8 @@ export default async function RegisterPage({ params, searchParams }: RegisterPag
           <form action="/api/auth/register" method="post" className="space-y-4">
             <input type="hidden" name="locale" value={locale} />
 
-            <AuthField label={texts.name} name="name" autoComplete="name" />
-            <AuthField label={texts.email} type="email" name="email" required autoComplete="email" />
+            <AuthField label={texts.name} name="name" autoComplete="name" placeholder={texts.namePlaceholder} />
+            <AuthField label={texts.email} type="email" name="email" required autoComplete="email" placeholder={texts.emailPlaceholder} />
             <AuthField
               label={texts.password}
               type="password"
@@ -103,6 +112,7 @@ export default async function RegisterPage({ params, searchParams }: RegisterPag
               required
               minLength={6}
               autoComplete="new-password"
+              placeholder={texts.passwordPlaceholder}
             />
 
             <AuthSubmit label={texts.submit} />

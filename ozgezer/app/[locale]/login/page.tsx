@@ -17,7 +17,9 @@ const t = {
     title: "Kirish",
     subtitle: "O'zGezer hisobingizga kiring",
     email: "Elektron pochta",
+    emailPlaceholder: "ali@example.com",
     password: "Parol",
+    passwordPlaceholder: "••••••••",
     submit: "Kirish",
     noAccount: "Hisob yo'qmi?",
     register: "Ro'yxatdan o'ting",
@@ -33,7 +35,9 @@ const t = {
     title: "Вход",
     subtitle: "Войдите в аккаунт O'zGezer",
     email: "Электронная почта",
+    emailPlaceholder: "ali@example.com",
     password: "Пароль",
+    passwordPlaceholder: "••••••••",
     submit: "Войти",
     noAccount: "Нет аккаунта?",
     register: "Зарегистрироваться",
@@ -49,7 +53,9 @@ const t = {
     title: "Sign in",
     subtitle: "Sign in to your O'zGezer account",
     email: "Email address",
+    emailPlaceholder: "ali@example.com",
     password: "Password",
+    passwordPlaceholder: "••••••••",
     submit: "Sign in",
     noAccount: "No account?",
     register: "Register",
@@ -92,13 +98,14 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
             <input type="hidden" name="locale" value={locale} />
             {query.next && <input type="hidden" name="next" value={query.next} />}
 
-            <AuthField label={texts.email} type="email" name="email" required autoComplete="email" />
+            <AuthField label={texts.email} type="email" name="email" required autoComplete="email" placeholder={texts.emailPlaceholder} />
             <AuthField
               label={texts.password}
               type="password"
               name="password"
               required
               autoComplete="current-password"
+              placeholder={texts.passwordPlaceholder}
             />
 
             <AuthSubmit label={texts.submit} />
