@@ -4,7 +4,7 @@ O'zGezer — O'zbekiston bo'ylab sayohat joylarini kashf etish platformasi. 29 t
 
 Live: https://uzbekistan-y1yg.vercel.app
 
-## Xususiyatlar
+## Xususiyatlari
 
 - Katalog: 29 ta joy (tarixiy, tabiat, dam olish, ovqat, bozorlar, muzeylar) — 13 ta hudud bo'ylab
 - Qidiruv: matn, viloyat va kategoriya bo'yicha filtrlash (viloyat/kategoriya nomi ham qidiriladi)
