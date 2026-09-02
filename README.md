@@ -1,10 +1,10 @@
 # O'zGezer
 
-O'zGezer — bu O'zbekiston bo'ylab sayohat joylarini kashf etish platformasi. 29 ta maskan, 13 ta hudud, 6 ta kategoriya, 3 til (uz/ru/en), sharhlar, reytinglar va xarita bilan mukammal platforma.
+O'zGezer🌐 — bu O'zbekiston bo'ylab sayohat joylarini kashf etish platformasi. 29 ta maskan, 13 ta hudud, 6 ta kategoriya, 3 til (uz/ru/en), sharhlar, reytinglar va xarita bilan mukammal platforma.
 
 Live: https://uzbekistan-y1yg.vercel.app
 
-## Xususiyatlari
+## Xususiyatlari⚡ 
 
 - Katalogda: 29 ta joy (tarixiy, tabiat, dam olish, ovqat, bozorlar, muzeylar) — 13 ta hudud bo'ylab
 - Qidiruv tizimi : matn, viloyat va kategoriya bo'yicha filtrlash (viloyat/kategoriya nomi ham qidiriladi)
