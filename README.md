@@ -6,10 +6,10 @@ Live: https://uzbekistan-y1yg.vercel.app
 
 ## Xususiyatlari
 
-- Katalog: 29 ta joy (tarixiy, tabiat, dam olish, ovqat, bozorlar, muzeylar) — 13 ta hudud bo'ylab
+- Katalogda: 29 ta joy (tarixiy, tabiat, dam olish, ovqat, bozorlar, muzeylar) — 13 ta hudud bo'ylab
 - Qidiruv tizimi : matn, viloyat va kategoriya bo'yicha filtrlash (viloyat/kategoriya nomi ham qidiriladi)
 - Xarita: Leaflet + Yandex Go / Google Maps yo'nalishlari
-- Tungi rejim: standart — tungi, tez almashinuv (0.12s), localStorage da saqlanadi
+- Tungi rejim: standart qulay — tungi, tez almashinuv (0.12s), localStorage da saqlanadi
 - PWA: manifest, service worker, offline qo'llab-quvvatlash
 - Tasodifiy joy: navbar CTA sizni kutilmagan maskanga olib boradi
 
