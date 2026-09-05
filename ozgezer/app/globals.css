@@ -62,7 +62,7 @@ html {
     radial-gradient(circle at top,  rgba(45, 107, 107, 0.14), transparent 32%),
     radial-gradient(circle at 85% 10%, rgba(245, 158, 11, 0.09),  transparent 24%),
     linear-gradient(180deg, #F0F7F4 0%, #E4F2EC 100%);
-  transition: background 0.12s ease;
+  /* background transition olib tashlandi — tundan kunga o'tishda qotishni keltirib chiqardi */
 }
 html[data-theme="dark"] {
   color-scheme: dark;
