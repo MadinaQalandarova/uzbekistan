@@ -38,7 +38,7 @@ export function LiquidNavbar({ locale, nav, user, randomSlug }: Props) {
     if (!navEl || !pill) return;
     const active = navEl.querySelector<HTMLElement>(".nav-btn.active");
     if (!active) return;
-    pill.style.transition = smooth ? "transform .5s cubic-bezier(.34,1.2,.64,1), width .5s cubic-bezier(.34,1.2,.64,1)" : "none";
+    pill.style.transition = smooth ? "transform .32s ease, width .32s ease" : "none";
     pill.style.width = `${active.offsetWidth}px`;
     pill.style.transform = `translateX(${active.offsetLeft}px)`;
   }, []);
@@ -66,15 +66,21 @@ export function LiquidNavbar({ locale, nav, user, randomSlug }: Props) {
     requestAnimationFrame(() => requestAnimationFrame(() => { html.style.transition = ""; }));
   };
 
+  const rafRef = useRef<number | null>(null);
   const onMouseMove = (e: React.MouseEvent) => {
-    const navEl = navRef.current;
-    const glare = glareRef.current;
-    if (!navEl || !glare) return;
-    const rect = navEl.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    glare.style.setProperty("--mx", `${x}%`);
-    glare.style.setProperty("--my", `${y}%`);
+    if (rafRef.current) return;
+    const clientX = e.clientX; const clientY = e.clientY;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      const navEl = navRef.current;
+      const glare = glareRef.current;
+      if (!navEl || !glare) return;
+      const rect = navEl.getBoundingClientRect();
+      const x = ((clientX - rect.left) / rect.width) * 100;
+      const y = ((clientY - rect.top) / rect.height) * 100;
+      glare.style.setProperty("--mx", `${x}%`);
+      glare.style.setProperty("--my", `${y}%`);
+    });
   };
 
   const homeHref = `/${locale}`;
