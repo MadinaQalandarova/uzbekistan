@@ -1,0 +1,117 @@
+/* Apple Liquid Navbar — ozgezer adapted */
+.liquid-navbar {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  box-shadow: 0 10px 40px rgba(14, 31, 31, 0.14);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  overflow: hidden;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+html[data-theme="dark"] .liquid-navbar {
+  background: rgba(18, 30, 26, 0.52);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 44px rgba(0, 0, 0, 0.42);
+}
+
+.liquid-navbar .nav-btn {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(14, 31, 31, 0.55);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+  text-decoration: none;
+}
+
+html[data-theme="dark"] .liquid-navbar .nav-btn {
+  color: rgba(232, 244, 239, 0.62);
+}
+
+.liquid-navbar .nav-btn.active {
+  color: var(--color-ink);
+}
+
+.liquid-navbar .nav-btn span {
+  transition: max-width 0.35s ease, opacity 0.25s ease, margin 0.35s ease;
+}
+
+.liquid-navbar .nav-btn:not(.active) span {
+  max-width: 0;
+  opacity: 0;
+  margin: 0;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.liquid-navbar .nav-btn.active span {
+  max-width: 90px;
+  opacity: 1;
+}
+
+.liquid-navbar .active-pill {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 0;
+  width: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  z-index: 1;
+  transition: transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), background 0.3s ease;
+}
+
+html[data-theme="dark"] .liquid-navbar .active-pill {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.liquid-navbar .glare {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(120px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.32), transparent 70%);
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.liquid-navbar:hover .glare {
+  opacity: 1;
+}
+
+.liquid-navbar .theme-toggle .icon-moon { display: none; }
+.liquid-navbar .theme-toggle .icon-sun { display: block; }
+html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-sun { display: none; }
+html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-moon { display: block; }
+
+@media (max-width: 420px) {
+  .liquid-navbar { bottom: 18px; padding: 5px; gap: 2px; }
+  .liquid-navbar .nav-btn { padding: 9px 11px; font-size: 12px; }
+}
+
+/* content not hidden behind navbar */
+body { padding-bottom: 92px; }
+@media (max-width: 420px) { body { padding-bottom: 84px; } }

@@ -1,11 +1,9 @@
 import Link from "next/link";
-import { Globe, Map, Compass, LogOut, User, MapPin } from "lucide-react";
+import { Globe, LogOut, User } from "lucide-react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { MobileNav } from "@/components/mobile-nav";
 import { LocaleSwitcher } from "@/components/locale-switcher";
-import { RandomPlaceButton } from "@/components/random-place-button";
-import { getPlaces } from "@/lib/data/catalog-service";
 import type { Locale } from "@/lib/i18n";
 
 type SiteHeaderProps = {
@@ -22,8 +20,7 @@ type SiteHeaderProps = {
   user: { name: string | null; email: string } | null;
 };
 
-export async function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
-  const placeSlugs = (await getPlaces()).map((place) => place.slug);
+export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--color-ink)]/5 bg-[rgba(240,247,244,0.88)] backdrop-blur-xl transition-colors duration-300">
       <div className="container-shell flex items-center justify-between py-3">
@@ -40,46 +37,12 @@ export async function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
           </div>
         </Link>
 
-        {/* ── Desktop nav — lg+ only ── */}
-        <nav className="hidden items-center gap-1 lg:flex">
-          <Link
-            href={`/${locale}`}
-            className="rounded-full px-4 py-2 text-sm text-[var(--color-ink)]/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"
-          >
-            {nav.home}
-          </Link>
-          <Link
-            href={`/${locale}/explore`}
-            className="flex items-center gap-1.5 rounded-full px-4 py-2 text-sm text-[var(--color-ink)]/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"
-          >
-            <Compass size={14} strokeWidth={2} />
-            {nav.explore}
-          </Link>
-          <Link
-            href={`/${locale}/regions`}
-            className="flex items-center gap-1.5 rounded-full px-4 py-2 text-sm text-[var(--color-ink)]/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"
-          >
-            <Map size={14} strokeWidth={2} />
-            {nav.regions}
-          </Link>
-          <Link
-            href={`/${locale}/map`}
-            className="flex items-center gap-1.5 rounded-full px-4 py-2 text-sm text-[var(--color-ink)]/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"
-          >
-            <MapPin size={14} strokeWidth={2} />
-            {nav.map}
-          </Link>
-        </nav>
-
         {/* ── Right side ── */}
         <div className="flex items-center gap-2">
-          {/* Locale switcher — desktop only (joriy sahifani saqlaydi) */}
+          {/* Locale switcher — desktop only (bottom nav handles main nav) */}
           <div className="hidden lg:block">
             <LocaleSwitcher locale={locale} />
           </div>
-
-          {/* Random place — desktop only (Explore CTA o'rniga) */}
-          <RandomPlaceButton locale={locale} slugs={placeSlugs} label={nav.randomPlace} />
 
           {/* User auth — desktop only */}
           {user ? (
@@ -115,10 +78,12 @@ export async function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
             </Link>
           )}
 
-          {/* Theme toggle — always visible */}
-          <ThemeToggle locale={locale} />
+          {/* Theme toggle — desktop only, bottom nav has its own */}
+          <div className="hidden lg:block">
+            <ThemeToggle locale={locale} />
+          </div>
 
-          {/* Hamburger — hidden on lg+ (MobileNav itself renders lg:hidden) */}
+          {/* Hamburger — mobile only */}
           <MobileNav locale={locale} nav={nav} user={user} />
         </div>
       </div>
