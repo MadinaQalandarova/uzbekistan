@@ -1,7 +1,7 @@
 /* Apple Liquid Navbar — ozgezer adapted */
 .liquid-navbar {
   position: fixed;
-  bottom: 28px;
+  top: 72px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 40;
@@ -108,10 +108,10 @@ html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-sun { display: none; 
 html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-moon { display: block; }
 
 @media (max-width: 420px) {
-  .liquid-navbar { bottom: 18px; padding: 5px; gap: 2px; }
+  .liquid-navbar { top: 64px; padding: 5px; gap: 2px; }
   .liquid-navbar .nav-btn { padding: 9px 11px; font-size: 12px; }
 }
 
-/* content not hidden behind navbar */
-body { padding-bottom: 92px; }
-@media (max-width: 420px) { body { padding-bottom: 84px; } }
+/* header + navbar uchun joy - hero ustma-ust tushmasin */
+body { padding-bottom: 0; }
+main { padding-top: 8px; }
