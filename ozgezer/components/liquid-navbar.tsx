@@ -39,7 +39,7 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
     if (!navEl || !pill) return;
     const active = navEl.querySelector<HTMLElement>(".nav-btn.active");
     if (!active) return;
-    pill.style.transition = smooth ? "transform .32s ease, width .32s ease" : "none";
+    pill.style.transition = smooth ? "transform .5s cubic-bezier(.34,1.2,.64,1), width .5s cubic-bezier(.34,1.2,.64,1)" : "none";
     pill.style.width = `${active.offsetWidth}px`;
     pill.style.transform = `translateX(${active.offsetLeft}px)`;
   }, []);
