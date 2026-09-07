@@ -111,6 +111,40 @@ html[data-theme="dark"] .liquid-navbar .active-pill {
   opacity: 1;
 }
 
+.liquid-navbar .nav-locale {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.18);
+  z-index: 2;
+}
+html[data-theme="dark"] .liquid-navbar .nav-locale { background: rgba(255,255,255,0.06); }
+.liquid-navbar .locale-mini {
+  padding: 6px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.liquid-navbar .locale-mini.active {
+  background: rgba(255,255,255,0.9);
+  color: #1a1a1a;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+}
+html[data-theme="dark"] .liquid-navbar .locale-mini.active { background: rgba(255,255,255,0.88); color: #0f0f0f; }
+.liquid-navbar .nav-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(0,0,0,0.08);
+  margin: 0 2px;
+  z-index: 2;
+}
+html[data-theme="dark"] .liquid-navbar .nav-sep { background: rgba(255,255,255,0.1); }
+
 .liquid-navbar .theme-toggle .icon-moon { display: none; }
 .liquid-navbar .theme-toggle .icon-sun { display: block; }
 html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-sun { display: none; }

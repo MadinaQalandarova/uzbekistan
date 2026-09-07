@@ -91,10 +91,23 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
   const profileHref = user ? `/${locale}/profile` : `/${locale}/login`;
   const randomHref = randomSlug ? `/${locale}/places/${randomSlug}` : exploreHref;
 
+  // locale switch — keep current path
+  const localeHref = (l: Locale) => {
+    const withoutLocale = pathname?.replace(/^\/(uz|ru|en)/, "") || "";
+    return `/${l}${withoutLocale || ""}`;
+  };
+
   return (
     <nav ref={navRef} className={`liquid-navbar ${variant === "header" ? "liquid-navbar--header" : ""}`} onMouseMove={onMouseMove}>
       <div ref={glareRef} className="glare" />
       <div ref={pillRef} className="active-pill" />
+
+      <div className="nav-locale">
+        {(["uz", "ru", "en"] as const).map((l) => (
+          <Link key={l} href={localeHref(l)} className={`locale-mini ${l === locale ? "active" : ""}`}>{l.toUpperCase()}</Link>
+        ))}
+      </div>
+      <div className="nav-sep" />
 
       <Link href={homeHref} className={`nav-btn ${isActive(homeHref) ? "active" : ""}`}>
         <Home size={18} strokeWidth={2} />
