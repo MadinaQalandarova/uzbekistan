@@ -97,38 +97,38 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
       <div ref={pillRef} className="active-pill" />
 
       <Link href={homeHref} className={`nav-btn ${isActive(homeHref) ? "active" : ""}`}>
-        <Home size={16} strokeWidth={2} />
+        <Home size={18} strokeWidth={2} />
         <span>{nav.home}</span>
       </Link>
 
       <Link href={exploreHref} className={`nav-btn ${isActive(exploreHref) && !isActive(regionsHref) && !isActive(mapHref) ? "active" : ""}`}>
-        <Compass size={16} strokeWidth={2} />
+        <Compass size={18} strokeWidth={2} />
         <span>{nav.explore}</span>
       </Link>
 
       <Link href={regionsHref} className={`nav-btn ${isActive(regionsHref) ? "active" : ""}`}>
-        <Map size={16} strokeWidth={2} />
+        <Map size={18} strokeWidth={2} />
         <span>{nav.regions}</span>
       </Link>
 
       <Link href={mapHref} className={`nav-btn ${isActive(mapHref) ? "active" : ""}`}>
-        <MapPin size={16} strokeWidth={2} />
+        <MapPin size={18} strokeWidth={2} />
         <span>{nav.map}</span>
       </Link>
 
       <Link href={randomHref} className="nav-btn" aria-label={nav.randomPlace}>
-        <Shuffle size={15} strokeWidth={2} />
+        <Shuffle size={18} strokeWidth={2} />
         <span>{nav.randomPlace}</span>
       </Link>
 
       <Link href={profileHref} className={`nav-btn ${isActive(profileHref) ? "active" : ""}`}>
-        <User size={16} strokeWidth={2} />
+        <User size={18} strokeWidth={2} />
         <span>{user ? (user.name ?? user.email.split("@")[0]) : nav.signIn}</span>
       </Link>
 
       <button type="button" onClick={toggleTheme} className="nav-btn theme-toggle" aria-label="Temani almashtirish">
-        <svg className="icon-sun" xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
-        <svg className="icon-moon" xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
+        <svg className="icon-sun" xmlns="http://www.w3.org/2000/svg" width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
+        <svg className="icon-moon" xmlns="http://www.w3.org/2000/svg" width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
       </button>
     </nav>
   );
