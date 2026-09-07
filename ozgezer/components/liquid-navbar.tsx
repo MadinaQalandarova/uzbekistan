@@ -19,9 +19,10 @@ type Props = {
   };
   user: { name: string | null; email: string } | null;
   randomSlug?: string | null;
+  variant?: "fixed" | "header";
 };
 
-export function LiquidNavbar({ locale, nav, user, randomSlug }: Props) {
+export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" }: Props) {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
   const pillRef = useRef<HTMLDivElement>(null);
@@ -91,7 +92,7 @@ export function LiquidNavbar({ locale, nav, user, randomSlug }: Props) {
   const randomHref = randomSlug ? `/${locale}/places/${randomSlug}` : exploreHref;
 
   return (
-    <nav ref={navRef} className="liquid-navbar" onMouseMove={onMouseMove}>
+    <nav ref={navRef} className={`liquid-navbar ${variant === "header" ? "liquid-navbar--header" : ""}`} onMouseMove={onMouseMove}>
       <div ref={glareRef} className="glare" />
       <div ref={pillRef} className="active-pill" />
 

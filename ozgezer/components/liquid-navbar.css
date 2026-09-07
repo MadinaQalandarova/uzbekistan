@@ -19,6 +19,15 @@
   transition: background 0.4s ease, border-color 0.4s ease;
 }
 
+.liquid-navbar--header {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  bottom: auto !important;
+  z-index: 1 !important;
+}
+
 html[data-theme="dark"] .liquid-navbar {
   background: rgba(18, 30, 26, 0.72);
   border-color: rgba(255, 255, 255, 0.12);
@@ -107,8 +116,10 @@ html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-sun { display: none; 
 html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-moon { display: block; }
 
 @media (max-width: 420px) {
-  .liquid-navbar { top: 64px; padding: 5px; gap: 2px; }
-  .liquid-navbar .nav-btn { padding: 9px 11px; font-size: 12px; }
+  .liquid-navbar { top: 58px; padding: 5px; gap: 2px; max-width: calc(100% - 16px); }
+  .liquid-navbar .nav-btn { padding: 9px 10px; font-size: 12px; }
+  .liquid-navbar .nav-btn span { display: none; }
+  .liquid-navbar .nav-btn.active span { display: inline-block; }
 }
 
 /* header + navbar uchun joy - hero ustma-ust tushmasin */
