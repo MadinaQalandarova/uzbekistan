@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Globe } from "lucide-react";
 
-import { MobileNav } from "@/components/mobile-nav";
 import { LiquidNavbar } from "@/components/liquid-navbar";
 import { getPlaces } from "@/lib/data/catalog-service";
 import type { Locale } from "@/lib/i18n";
@@ -39,12 +38,9 @@ export async function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
           </div>
         </Link>
 
-        {/* ── Right side — liquid navbar is the main nav (top) ── */}
-        <div className="hidden items-center gap-2 lg:flex">
+        {/* ── Right side — liquid navbar is the main nav (all sizes) ── */}
+        <div className="flex items-center gap-2">
           <LiquidNavbar locale={locale} nav={nav} user={user} randomSlug={randomSlug} variant="header" />
-        </div>
-        <div className="flex items-center gap-2 lg:hidden">
-          <MobileNav locale={locale} nav={nav} user={user} />
         </div>
       </div>
     </header>
