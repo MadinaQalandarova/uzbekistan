@@ -7,6 +7,8 @@ import { Home, Compass, Map, MapPin, Shuffle, User, Globe } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
 import "./liquid-navbar.css";
 
+// Icons 18px stroke 2 — First-Navbar navbar.html exact spec
+
 type Props = {
   locale: Locale;
   nav: {
