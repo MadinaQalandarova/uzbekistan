@@ -23,8 +23,8 @@ export async function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
   const places = await getPlaces();
   const randomSlug = places.length ? places[Math.floor(Math.random() * places.length)]!.slug : null;
   return (
-    <header className="sticky top-4 z-40 flex justify-center px-4 pointer-events-none">
-      <div className="pointer-events-auto">
+    <header className="sticky top-3 z-40 flex justify-center px-4 py-2 pointer-events-none">
+      <div className="pointer-events-auto w-full flex justify-center">
 
         {/* ── Logo ── */}
         <Link href={`/${locale}`} className="group flex flex-shrink-0 items-center gap-2">
