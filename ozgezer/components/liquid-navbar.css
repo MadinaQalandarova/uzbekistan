@@ -184,6 +184,6 @@ html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-moon { display: block
   .liquid-navbar .nav-btn.active span { display: inline-block; }
 }
 
-/* header + navbar uchun joy - hero ustma-ust tushmasin */
+/* header liquid is main — no body padding, hero not overlapped */
 body { padding-bottom: 0; }
-main { padding-top: 8px; }
+main { padding-top: 4px; }
