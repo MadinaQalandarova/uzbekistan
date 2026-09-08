@@ -23,8 +23,8 @@ export async function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
   const places = await getPlaces();
   const randomSlug = places.length ? places[Math.floor(Math.random() * places.length)]!.slug : null;
   return (
-    <header className="sticky top-0 z-30 border-b border-[var(--color-ink)]/5 bg-[rgba(240,247,244,0.92)] backdrop-blur-xl">
-      <div className="container-shell flex items-center justify-between gap-4 py-2.5">
+    <header className="sticky top-4 z-40 flex justify-center px-4 pointer-events-none">
+      <div className="pointer-events-auto">
 
         {/* ── Logo ── */}
         <Link href={`/${locale}`} className="group flex flex-shrink-0 items-center gap-2">
@@ -38,10 +38,7 @@ export async function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
           </div>
         </Link>
 
-        {/* ── Right side — liquid navbar is the main nav (all sizes) ── */}
-        <div className="flex items-center gap-2">
-          <LiquidNavbar locale={locale} nav={nav} user={user} randomSlug={randomSlug} variant="header" />
-        </div>
+        <LiquidNavbar locale={locale} nav={nav} user={user} randomSlug={randomSlug} variant="header" />
       </div>
     </header>
   );
