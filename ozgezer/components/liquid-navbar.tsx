@@ -71,6 +71,7 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
 
   const rafRef = useRef<number | null>(null);
   const onMouseMove = (e: React.MouseEvent) => {
+    // rAF throttled — First-Navbar glare without freeze
     if (rafRef.current) return;
     const clientX = e.clientX; const clientY = e.clientY;
     rafRef.current = requestAnimationFrame(() => {
