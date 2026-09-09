@@ -11,12 +11,14 @@
   padding: 7px 12px;
   width: fit-content;
   max-width: calc(100vw - 24px);
-  background: rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 999px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  box-shadow: 0 8px 24px rgba(14, 31, 31, 0.12);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  will-change: transform;
+  contain: layout paint;
   overflow: hidden;
   transition: background 0.4s ease, border-color 0.4s ease;
 }
@@ -59,9 +61,9 @@
 }
 
 html[data-theme="dark"] .liquid-navbar {
-  background: rgba(20, 14, 24, 0.35);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  background: rgba(20, 14, 24, 0.48);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
 }
 
 .liquid-navbar .nav-btn {
@@ -115,11 +117,11 @@ html[data-theme="dark"] .liquid-navbar .nav-btn {
   left: 0;
   width: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.55);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.6);
   z-index: 1;
-  /* spring as First-Navbar script.js */
-  transition: transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), background 0.4s ease;
+  will-change: transform, width;
+  transition: transform 0.34s cubic-bezier(0.33, 1.05, 0.65, 1), width 0.34s cubic-bezier(0.33, 1.05, 0.65, 1);
 }
 
 html[data-theme="dark"] .liquid-navbar .active-pill {
