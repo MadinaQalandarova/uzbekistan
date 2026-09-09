@@ -183,11 +183,18 @@ html[data-theme="dark"] .liquid-navbar .nav-sep { background: rgba(255,255,255,0
 html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-sun { display: none; }
 html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-moon { display: block; }
 
-@media (max-width: 420px) {
-  .liquid-navbar { top: 58px; padding: 5px; gap: 2px; max-width: calc(100% - 16px); }
-  .liquid-navbar .nav-btn { padding: 9px 10px; font-size: 12px; }
+@media (max-width: 640px) {
+  .liquid-navbar { top: 58px; padding: 5px; gap: 2px; max-width: calc(100vw - 12px); overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+  .liquid-navbar::-webkit-scrollbar { display: none; }
+  .liquid-navbar .nav-btn { padding: 9px 10px; font-size: 12px; flex-shrink: 0; }
   .liquid-navbar .nav-btn span { display: none; }
   .liquid-navbar .nav-btn.active span { display: inline-block; }
+  .liquid-navbar .nav-locale { flex-shrink: 0; }
+  .liquid-navbar .nav-logo span:last-child { display: none; }
+}
+@media (max-width: 420px) {
+  .liquid-navbar { gap: 1px; padding: 4px; }
+  .liquid-navbar .nav-btn { padding: 8px 9px; }
 }
 
 /* header liquid is main — no body padding, hero not overlapped */
