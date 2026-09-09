@@ -41,9 +41,12 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
     if (!navEl || !pill) return;
     const active = navEl.querySelector<HTMLElement>(".nav-btn.active");
     if (!active) return;
-    pill.style.transition = smooth ? "transform .5s cubic-bezier(.34,1.2,.64,1), width .5s cubic-bezier(.34,1.2,.64,1)" : "none";
-    pill.style.width = `${active.offsetWidth}px`;
-    pill.style.transform = `translateX(${active.offsetLeft}px)`;
+    const navRect = navEl.getBoundingClientRect();
+    const btnRect = active.getBoundingClientRect();
+    const left = btnRect.left - navRect.left;
+    pill.style.transition = smooth ? "transform .35s cubic-bezier(.32,1,.68,1), width .35s cubic-bezier(.32,1,.68,1)" : "none";
+    pill.style.width = `${btnRect.width}px`;
+    pill.style.transform = `translateX(${left}px)`;
   }, []);
 
   useEffect(() => {
