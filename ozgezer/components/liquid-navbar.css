@@ -30,8 +30,9 @@
   transform: none !important;
   bottom: auto !important;
   z-index: 1 !important;
-  width: fit-content;
+  width: min(1180px, calc(100% - 32px));
   max-width: calc(100vw - 24px);
+  justify-content: space-between;
 }
 
 .nav-logo {
