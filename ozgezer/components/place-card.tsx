@@ -26,6 +26,8 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
             <img
               src={imageUrl}
               alt={place.name[locale]}
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />

@@ -96,6 +96,7 @@ export function PlaceGallery({ images, alt, chips, locale = "uz" }: PlaceGallery
             alt={`${alt} ${i + 1}`}
             className="h-full w-full object-cover"
             loading={i === 0 ? "eager" : "lazy"}
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
         </div>
