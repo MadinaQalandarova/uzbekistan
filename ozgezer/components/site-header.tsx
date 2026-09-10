@@ -1,5 +1,5 @@
 import { LiquidNavbar } from "@/components/liquid-navbar";
-import { getPlaces } from "@/lib/data/catalog-service";
+import { places as staticPlaces } from "@/lib/data/catalog";
 import type { Locale } from "@/lib/i18n";
 
 type SiteHeaderProps = {
@@ -16,9 +16,8 @@ type SiteHeaderProps = {
   user: { name: string | null; email: string } | null;
 };
 
-export async function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
-  const places = await getPlaces();
-  const randomSlug = places.length ? places[Math.floor(Math.random() * places.length)]!.slug : null;
+export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
+  const randomSlug = staticPlaces.length ? staticPlaces[Math.floor(Math.random() * staticPlaces.length)]!.slug : null;
   return (
     <header className="sticky top-0 z-40 flex justify-center px-4 pt-4 pb-2 pointer-events-none">
       <div className="pointer-events-auto">

@@ -44,9 +44,12 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
     const navRect = navEl.getBoundingClientRect();
     const btnRect = active.getBoundingClientRect();
     const left = btnRect.left - navRect.left;
-    pill.style.transition = smooth ? "transform .35s cubic-bezier(.32,1,.68,1), width .35s cubic-bezier(.32,1,.68,1)" : "none";
-    pill.style.width = `${btnRect.width}px`;
-    pill.style.transform = `translateX(${left}px)`;
+    // rAF to avoid layout thrash on click
+    requestAnimationFrame(() => {
+      pill.style.transition = smooth ? "transform .28s cubic-bezier(0.32,1,.68,1), width .28s cubic-bezier(0.32,1,.68,1)" : "none";
+      pill.style.width = `${btnRect.width}px`;
+      pill.style.transform = `translateX(${left}px)`;
+    });
   }, []);
 
   useEffect(() => {
