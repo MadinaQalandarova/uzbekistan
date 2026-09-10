@@ -20,7 +20,7 @@ export async function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
   const places = await getPlaces();
   const randomSlug = places.length ? places[Math.floor(Math.random() * places.length)]!.slug : null;
   return (
-    <header className="sticky top-4 z-40 flex justify-center px-4 pointer-events-none">
+    <header className="sticky top-0 z-40 flex justify-center px-4 pt-4 pb-2 pointer-events-none">
       <div className="pointer-events-auto">
         <LiquidNavbar locale={locale} nav={nav} user={user} randomSlug={randomSlug} variant="header" />
       </div>
