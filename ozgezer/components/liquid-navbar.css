@@ -30,7 +30,7 @@
   transform: none !important;
   bottom: auto !important;
   z-index: 1 !important;
-  width: min(1180px, calc(100% - 32px));
+  width: min(1180px, calc(100vw - 32px));
   max-width: calc(100vw - 24px);
   justify-content: space-between;
 }
