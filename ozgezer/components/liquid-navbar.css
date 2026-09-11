@@ -87,11 +87,16 @@ html[data-theme="dark"] .liquid-navbar {
 }
 
 .liquid-navbar .nav-btn:hover {
-  transform: scale(1.04);
+  transform: scale(1.035);
 }
 
 .liquid-navbar .nav-btn:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
+}
+
+.liquid-navbar .nav-btn:hover .nav-logo-icon,
+.liquid-navbar .nav-btn:hover svg {
+  transition: transform 0.18s ease;
 }
 
 html[data-theme="dark"] .liquid-navbar .nav-btn {
