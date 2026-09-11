@@ -11,12 +11,12 @@
   padding: 7px 12px;
   width: fit-content;
   max-width: calc(100vw - 24px);
-  background: rgba(240, 247, 244, 0.82);
-  border: 1px solid rgba(45, 107, 107, 0.14);
+  background: rgba(248, 250, 249, 0.92);
+  border: 1px solid rgba(45, 107, 107, 0.18);
   border-radius: 999px;
-  box-shadow: 0 8px 28px rgba(14, 31, 31, 0.1);
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 4px 20px rgba(14, 31, 31, 0.06);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
   will-change: transform;
   contain: layout paint;
   overflow: hidden;
@@ -62,9 +62,9 @@
 }
 
 html[data-theme="dark"] .liquid-navbar {
-  background: rgba(10, 26, 21, 0.78);
-  border-color: rgba(74, 158, 142, 0.18);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.42);
+  background: rgba(14, 32, 24, 0.88);
+  border-color: rgba(74, 158, 142, 0.14);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.32);
 }
 
 .liquid-navbar .nav-btn {
