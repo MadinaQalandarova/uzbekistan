@@ -185,7 +185,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
       {/* ── Place cards ── */}
       <section className="container-shell pb-14">
         {places.length > 0 ? (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" style={{ contentVisibility: "auto", containIntrinsicSize: "0 600px" } as React.CSSProperties}>
             {places.map((place) => (
               <PlaceCard
                 key={place.slug}
