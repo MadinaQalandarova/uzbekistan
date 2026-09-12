@@ -17,6 +17,7 @@ type SiteHeaderProps = {
 };
 
 export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
+  // eslint-disable-next-line react-hooks/purity -- random for Tasodifiy joy, serverda har requestda yangi
   const randomSlug = staticPlaces.length ? staticPlaces[Math.floor(Math.random() * staticPlaces.length)]!.slug : null;
   return (
     <header className="sticky top-0 z-40 flex justify-center px-4 py-3 pointer-events-none backdrop-blur-sm">

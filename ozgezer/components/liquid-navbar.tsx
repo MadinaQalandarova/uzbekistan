@@ -59,8 +59,8 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
   }, [updatePill, pathname]);
 
   useEffect(() => {
-    // pillni active o'zgarganda surish
-    const t = setTimeout(() => updatePill(true), 30);
+    // pillni active o'zgarganda surish — span yoyilgach o'lchaymiz
+    const t = setTimeout(() => updatePill(true), 120);
     return () => clearTimeout(t);
   }, [pathname, updatePill]);
 
@@ -145,6 +145,13 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
         <User size={19} strokeWidth={2.1} />
         <span>{user ? (user.name ?? user.email.split("@")[0]) : nav.signIn}</span>
       </Link>
+
+      <div className="nav-sep" />
+      <div className="nav-locale">
+        {(["uz", "ru", "en"] as const).map((l) => (
+          <Link key={l} href={localeHref(l)} className={`locale-mini ${l === locale ? "active" : ""}`}>{l.toUpperCase()}</Link>
+        ))}
+      </div>
 
       <button type="button" onClick={toggleTheme} className="nav-btn theme-toggle" aria-label="Temani almashtirish">
         <svg className="icon-sun" xmlns="http://www.w3.org/2000/svg" width={19} height={19} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
