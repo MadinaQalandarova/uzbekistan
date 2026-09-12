@@ -276,6 +276,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                   alt={category.title[locale]}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 20vw"
+                  fetchPriority="low"
                   className="object-cover scale-110 blur-[3px] transition-transform duration-700 group-hover:scale-125"
                 />
 
