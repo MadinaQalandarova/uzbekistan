@@ -1,4 +1,4 @@
-/* Apple Liquid Navbar — ozgezer adapted */
+﻿/* Apple Liquid Navbar вЂ” ozgezer adapted */
 .liquid-navbar {
   position: fixed;
   top: 72px;
@@ -104,10 +104,15 @@ html[data-theme="dark"] .liquid-navbar .nav-btn {
 }
 
 .liquid-navbar .nav-btn.active {
+  background: #ffffff;
   color: #0E1F1F;
+  box-shadow: 0 2px 8px rgba(14, 31, 31, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(45, 107, 107, 0.06);
 }
 html[data-theme="dark"] .liquid-navbar .nav-btn.active {
+  background: #ffffff;
   color: #0E1F1F;
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .liquid-navbar .nav-btn span {
@@ -128,41 +133,7 @@ html[data-theme="dark"] .liquid-navbar .nav-btn.active {
   transition: max-width 0.32s cubic-bezier(0.32,1,.68,1) 0.05s, opacity 0.2s ease 0.05s;
 }
 
-.liquid-navbar .active-pill {
-  position: absolute;
-  top: 5px;
-  bottom: 5px;
-  left: 0;
-  width: 0;
-  border-radius: 999px;
-  background: #ffffff;
-  border: 1px solid rgba(45, 107, 107, 0.06);
-  box-shadow: 0 2px 8px rgba(14, 31, 31, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.95);
-  z-index: 1;
-  will-change: transform, width;
-  transition: transform 0.3s cubic-bezier(0.32, 1, 0.68, 1), width 0.3s cubic-bezier(0.32, 1, 0.68, 1);
-}
-
-html[data-theme="dark"] .liquid-navbar .active-pill {
-  background: #ffffff;
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95);
-}
-
-.liquid-navbar .glare {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(120px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.35), transparent 70%);
-  mix-blend-mode: overlay;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.liquid-navbar:hover .glare {
-  opacity: 1;
-}
+/* active is now pure CSS on .nav-btn.active - no JS pill/glare, as fast as old navbar */
 
 .liquid-navbar .nav-locale {
   display: flex;
@@ -217,6 +188,6 @@ html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-moon { display: block
   .liquid-navbar .nav-btn { padding: 8px 9px; }
 }
 
-/* header liquid is main — no body padding, hero not overlapped */
+/* header liquid is main вЂ” no body padding, hero not overlapped */
 body { padding-bottom: 0; }
 main { padding-top: 4px; }

@@ -2,12 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useCallback } from "react";
 import { Home, Compass, Map, MapPin, Shuffle, User, Globe } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
 import "./liquid-navbar.css";
-
-// Icons 18px stroke 2 — First-Navbar navbar.html exact spec
 
 type Props = {
   locale: Locale;
@@ -26,70 +23,17 @@ type Props = {
 
 export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" }: Props) {
   const pathname = usePathname();
-  const navRef = useRef<HTMLElement>(null);
-  const pillRef = useRef<HTMLDivElement>(null);
-  const glareRef = useRef<HTMLDivElement>(null);
 
-  const isActive = useCallback((href: string) => {
+  const isActive = (href: string) => {
     if (href === `/${locale}`) return pathname === `/${locale}` || pathname === `/${locale}/`;
-    return pathname?.startsWith(href);
-  }, [pathname, locale]);
-
-  const updatePill = useCallback((smooth = true) => {
-    const navEl = navRef.current;
-    const pill = pillRef.current;
-    if (!navEl || !pill) return;
-    const active = navEl.querySelector<HTMLElement>(".nav-btn.active");
-    if (!active) return;
-    const navRect = navEl.getBoundingClientRect();
-    const btnRect = active.getBoundingClientRect();
-    const left = btnRect.left - navRect.left;
-    requestAnimationFrame(() => {
-      pill.style.transition = smooth ? "transform .26s cubic-bezier(0.32,1,.68,1), width .26s cubic-bezier(0.32,1,.68,1)" : "none";
-      pill.style.width = `${btnRect.width}px`;
-      pill.style.transform = `translate3d(${left}px,0,0)`;
-    });
-  }, []);
-
-  useEffect(() => {
-    const t = setTimeout(() => updatePill(false), 60);
-    const onResize = () => updatePill(false);
-    window.addEventListener("resize", onResize);
-    return () => { clearTimeout(t); window.removeEventListener("resize", onResize); };
-  }, [updatePill, pathname]);
-
-  useEffect(() => {
-    // pillni active o'zgarganda surish — span yoyilgach o'lchaymiz (80px 0.32s)
-    const t = setTimeout(() => updatePill(true), 180);
-    return () => clearTimeout(t);
-  }, [pathname, updatePill]);
+    return pathname?.startsWith(href) ?? false;
+  };
 
   const toggleTheme = () => {
     const html = document.documentElement;
-    const isDark = html.dataset.theme === "dark";
-    const next = isDark ? "light" : "dark";
-    html.style.transition = "none";
+    const next = html.dataset.theme === "dark" ? "light" : "dark";
     html.dataset.theme = next;
     localStorage.setItem("ozgezer-theme", next);
-    requestAnimationFrame(() => requestAnimationFrame(() => { html.style.transition = ""; }));
-  };
-
-  const rafRef = useRef<number | null>(null);
-  const onMouseMove = (e: React.MouseEvent) => {
-    // rAF throttled — First-Navbar glare without freeze
-    if (rafRef.current) return;
-    const clientX = e.clientX; const clientY = e.clientY;
-    rafRef.current = requestAnimationFrame(() => {
-      rafRef.current = null;
-      const navEl = navRef.current;
-      const glare = glareRef.current;
-      if (!navEl || !glare) return;
-      const rect = navEl.getBoundingClientRect();
-      const x = ((clientX - rect.left) / rect.width) * 100;
-      const y = ((clientY - rect.top) / rect.height) * 100;
-      glare.style.setProperty("--mx", `${x}%`);
-      glare.style.setProperty("--my", `${y}%`);
-    });
   };
 
   const homeHref = `/${locale}`;
@@ -98,18 +42,13 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
   const mapHref = `/${locale}/map`;
   const profileHref = user ? `/${locale}/profile` : `/${locale}/login`;
   const randomHref = randomSlug ? `/${locale}/places/${randomSlug}` : exploreHref;
-
-  // locale switch — keep current path
   const localeHref = (l: Locale) => {
     const withoutLocale = pathname?.replace(/^\/(uz|ru|en)/, "") || "";
     return `/${l}${withoutLocale || ""}`;
   };
 
   return (
-    <nav ref={navRef} className={`liquid-navbar ${variant === "header" ? "liquid-navbar--header" : ""}`} onMouseMove={onMouseMove}>
-      <div ref={glareRef} className="glare" />
-      <div ref={pillRef} className="active-pill" />
-
+    <nav className={`liquid-navbar ${variant === "header" ? "liquid-navbar--header" : ""}`}>
       <Link href={homeHref} className="nav-logo">
         <span className="nav-logo-icon"><Globe size={17} strokeWidth={2.1} /></span>
         <span>O&apos;zGezer</span>
