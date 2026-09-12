@@ -125,6 +125,7 @@ html[data-theme="dark"] .liquid-navbar .nav-btn.active {
 .liquid-navbar .nav-btn.active span {
   max-width: 80px;
   opacity: 1;
+  transition: max-width 0.32s cubic-bezier(0.32,1,.68,1) 0.05s, opacity 0.2s ease 0.05s;
 }
 
 .liquid-navbar .active-pill {

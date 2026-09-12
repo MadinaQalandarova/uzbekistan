@@ -59,8 +59,8 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
   }, [updatePill, pathname]);
 
   useEffect(() => {
-    // pillni active o'zgarganda surish — span yoyilgach o'lchaymiz
-    const t = setTimeout(() => updatePill(true), 120);
+    // pillni active o'zgarganda surish — span yoyilgach o'lchaymiz (80px 0.32s)
+    const t = setTimeout(() => updatePill(true), 180);
     return () => clearTimeout(t);
   }, [pathname, updatePill]);
 
