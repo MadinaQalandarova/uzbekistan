@@ -83,19 +83,19 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
         <span>{nav.randomPlace}</span>
       </Link>
 
-      <Link href={profileHref} className={`nav-btn ${isActive(profileHref) ? "active" : ""} hidden lg:flex`}>
+      <Link href={profileHref} className={`nav-btn nav-hide-mobile ${isActive(profileHref) ? "active" : ""}`}>
         <User size={19} strokeWidth={2.1} />
         <span>{user ? (user.name ?? user.email.split("@")[0]) : nav.signIn}</span>
       </Link>
 
-      <div className="nav-sep hidden lg:block" />
-      <div className="nav-locale hidden lg:flex">
+      <div className="nav-sep nav-hide-mobile" />
+      <div className="nav-locale nav-hide-mobile">
         {(["uz", "ru", "en"] as const).map((l) => (
           <Link key={l} href={localeHref(l)} className={`locale-mini ${l === locale ? "active" : ""}`}>{l.toUpperCase()}</Link>
         ))}
       </div>
 
-      <button type="button" onClick={toggleTheme} className="nav-btn theme-toggle hidden lg:flex" aria-label="Temani almashtirish">
+      <button type="button" onClick={toggleTheme} className="nav-btn theme-toggle nav-hide-mobile" aria-label="Temani almashtirish">
         <svg className="icon-sun" xmlns="http://www.w3.org/2000/svg" width={19} height={19} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
         <svg className="icon-moon" xmlns="http://www.w3.org/2000/svg" width={19} height={19} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
       </button>
