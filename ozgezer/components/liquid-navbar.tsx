@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Compass, Map, MapPin, Shuffle, User, Globe, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { Home, Compass, Map, MapPin, Shuffle, User, Globe, Menu, X, LogOut } from "lucide-react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import { createPortal } from "react-dom";
 import type { Locale } from "@/lib/i18n";
 import "./liquid-navbar.css";
 
@@ -25,6 +26,49 @@ type Props = {
 export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" }: Props) {
   const pathname = usePathname();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const scrollRef = useRef(0);
+
+  useEffect(() => { setMounted(true); }, []);
+  const close = useCallback(() => setDrawerOpen(false), []);
+
+  // Scroll lock iOS-safe
+  useEffect(() => {
+    if (!mounted) return;
+    if (drawerOpen) {
+      scrollRef.current = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollRef.current}px`;
+      document.body.style.width = "100%";
+      document.body.style.overflowY = "scroll";
+    } else {
+      const y = scrollRef.current;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.overflowY = "";
+      if (y) window.scrollTo(0, y);
+    }
+    return () => {
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.overflowY = "";
+    };
+  }, [drawerOpen, mounted]);
+
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") close(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [drawerOpen, close]);
+
+  useEffect(() => {
+    const onResize = () => { if (window.innerWidth >= 1024) close(); };
+    window.addEventListener("resize", onResize, { passive: true });
+    return () => window.removeEventListener("resize", onResize);
+  }, [close]);
 
   const isActive = (href: string) => {
     if (href === `/${locale}`) return pathname === `/${locale}` || pathname === `/${locale}/`;
@@ -34,8 +78,10 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
   const toggleTheme = () => {
     const html = document.documentElement;
     const next = html.dataset.theme === "dark" ? "light" : "dark";
+    html.style.transition = "none";
     html.dataset.theme = next;
     localStorage.setItem("ozgezer-theme", next);
+    requestAnimationFrame(() => requestAnimationFrame(() => { html.style.transition = ""; }));
   };
 
   const homeHref = `/${locale}`;
@@ -106,34 +152,90 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
       <Menu size={18} strokeWidth={2} />
     </button>
 
-    {drawerOpen && (
-      <div className="fixed inset-0 z-50 flex justify-end bg-black/30 backdrop-blur-sm lg:hidden" onClick={() => setDrawerOpen(false)}>
-        <div className="flex h-full w-[280px] flex-col bg-[var(--background)] p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
-          <div className="flex items-center justify-between">
-            <span className="font-semibold text-[var(--color-ink)]">Menyu</span>
-            <button onClick={() => setDrawerOpen(false)} className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-ink)]/10">
-              <X size={16} strokeWidth={2} />
-            </button>
-          </div>
-          <div className="mt-6 flex flex-col gap-4">
-            <div className="flex gap-2">
-              {(["uz", "ru", "en"] as const).map((l) => (
-                <Link key={l} href={localeHref(l)} onClick={() => setDrawerOpen(false)} className={`flex-1 rounded-full px-3 py-2 text-center text-sm font-semibold ${l === locale ? "bg-[var(--color-sky)] text-white" : "bg-[var(--color-mist)] text-[var(--color-ink)]"}`}>{l.toUpperCase()}</Link>
-              ))}
+    {/* ── Drawer portal — full nav + Kirish + locale + theme ── */}
+    {mounted && createPortal(
+      <>
+        <div
+          aria-hidden
+          onClick={close}
+          style={{ touchAction: "none" }}
+          className={`fixed inset-0 z-[9998] bg-black/55 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${drawerOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+        />
+        <aside
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menyu"
+          className={`fixed right-0 top-0 z-[9999] flex h-full w-[300px] max-w-[86vw] flex-col bg-[var(--background)] shadow-2xl transition-transform duration-300 ease-out will-change-transform lg:hidden ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
+        >
+          <div className="flex flex-shrink-0 items-center justify-between border-b border-[var(--color-ink)]/6 px-5 py-4">
+            <div className="flex items-center gap-2.5">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-sky)] to-[var(--color-teal)]">
+                <Globe size={15} className="text-white" strokeWidth={2} />
+              </div>
+              <span className="text-base font-semibold tracking-[0.04em] text-[var(--color-ink)]">O&apos;zGezer</span>
             </div>
-            <Link href={profileHref} onClick={() => setDrawerOpen(false)} className="flex items-center gap-2 rounded-full bg-[var(--color-mist)] px-4 py-3 text-sm font-semibold text-[var(--color-ink)]">
-              <User size={16} strokeWidth={2} />
-              {user ? (user.name ?? user.email.split("@")[0]) : nav.signIn}
-            </Link>
-            <button onClick={() => { toggleTheme(); setDrawerOpen(false); }} className="flex items-center gap-2 rounded-full border border-[var(--color-ink)]/10 px-4 py-3 text-sm font-semibold text-[var(--color-ink)]">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-ink)]/10">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /></svg>
-              </span>
-              {nav.signIn === "Kirish" ? "Tungi rejim" : "Theme"}
+            <button onClick={close} aria-label="Yopish" className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-ink)]/10 text-[var(--color-ink)]/40 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-ink)]">
+              <X size={15} strokeWidth={2.5} />
             </button>
           </div>
-        </div>
-      </div>
+
+          <div className="flex flex-1 flex-col overflow-y-auto overscroll-contain">
+            <nav className="flex flex-col gap-1 px-3 py-4">
+              <Link href={homeHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(homeHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><Home size={15} strokeWidth={2} /></span>{nav.home}
+              </Link>
+              <Link href={exploreHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(exploreHref) && !isActive(regionsHref) && !isActive(mapHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><Compass size={15} strokeWidth={2} /></span>{nav.explore}
+              </Link>
+              <Link href={regionsHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(regionsHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><Map size={15} strokeWidth={2} /></span>{nav.regions}
+              </Link>
+              <Link href={mapHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(mapHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><MapPin size={15} strokeWidth={2} /></span>{nav.map}
+              </Link>
+              <Link href={randomHref} onClick={close} className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-[var(--color-ink)]/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]">
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><Shuffle size={15} strokeWidth={2} /></span>{nav.randomPlace}
+              </Link>
+            </nav>
+
+            <div className="mx-4 border-t border-[var(--color-ink)]/6" />
+
+            <div className="px-5 py-4">
+              <p className="mb-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-ink)]/35">Til / Язык / Language</p>
+              <div className="flex gap-2">
+                {(["uz", "ru", "en"] as const).map((l) => (
+                  <Link key={l} href={localeHref(l)} onClick={close} className={`flex-1 rounded-xl py-2.5 text-center text-xs font-semibold uppercase tracking-[0.18em] transition ${l === locale ? "bg-[var(--color-sky)] text-white shadow-sm" : "border border-[var(--color-ink)]/10 text-[var(--color-ink)]/50 hover:border-[var(--color-sky)]/50 hover:text-[var(--color-sky)]"}`}>{l}</Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="px-5 pb-4">
+              <p className="mb-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-ink)]/35">{locale === "ru" ? "Тема" : locale === "en" ? "Theme" : "Mavzu"}</p>
+              <button onClick={() => { toggleTheme(); close(); }} className="flex w-full items-center gap-3 rounded-2xl border border-[var(--color-ink)]/10 px-4 py-3 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)]/30 hover:text-[var(--color-sky)]">
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /></svg>
+                </span>
+                {locale === "uz" ? "Tungi rejim" : locale === "ru" ? "Ночной режим" : "Dark mode"}
+              </button>
+            </div>
+          </div>
+
+          <div className="flex-shrink-0 border-t border-[var(--color-ink)]/6 px-4 py-4">
+            {user ? (
+              <div className="space-y-2">
+                <Link href={`/${locale}/profile`} onClick={close} className="flex items-center gap-3 rounded-2xl border border-[var(--color-ink)]/8 bg-[var(--color-mist)] px-4 py-3 transition hover:border-[var(--color-sky)]/40">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-sky)]"><User size={14} className="text-white" strokeWidth={2.5} /></span>
+                  <div className="min-w-0"><p className="truncate text-sm font-semibold text-[var(--color-ink)]">{user.name ?? user.email.split("@")[0]}</p><p className="truncate text-[10px] text-[var(--color-ink)]/40">{user.email}</p></div>
+                </Link>
+                <form action="/api/auth/logout" method="post"><input type="hidden" name="locale" value={locale} /><button type="submit" className="flex w-full items-center gap-2 rounded-2xl border border-[var(--color-ink)]/8 px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)]/50 transition hover:border-red-300 hover:text-red-500"><LogOut size={13} strokeWidth={2} />{nav.signOut}</button></form>
+              </div>
+            ) : (
+              <Link href={`/${locale}/login`} onClick={close} className="flex items-center justify-center rounded-2xl bg-[var(--color-sky)] py-3 text-sm font-semibold text-white shadow-md shadow-[var(--color-sky)]/20 transition hover:opacity-90">{nav.signIn}</Link>
+            )}
+          </div>
+        </aside>
+      </>,
+      document.body
     )}
     </>
   );
