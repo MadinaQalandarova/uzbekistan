@@ -191,6 +191,11 @@ html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-moon { display: block
 /* Phone: hide Kirish / locale / theme from navbar pill — only in hamburger drawer */
 @media (max-width: 1023px) {
   .liquid-navbar .nav-hide-mobile { display: none !important; }
+  .liquid-navbar--header { width: calc(100vw - 72px); max-width: calc(100vw - 72px); justify-content: flex-start; }
+}
+
+@media (max-width: 640px) {
+  .liquid-navbar--header { width: calc(100vw - 68px); max-width: calc(100vw - 68px); }
 }
 
 /* header liquid is main — no body padding, hero not overlapped */

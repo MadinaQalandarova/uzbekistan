@@ -21,7 +21,7 @@ export function SiteHeader({ locale, nav, user }: SiteHeaderProps) {
   const randomSlug = staticPlaces.length ? staticPlaces[Math.floor(Math.random() * staticPlaces.length)]!.slug : null;
   return (
     <header className="sticky top-0 z-40 flex justify-center px-4 py-3 pointer-events-none backdrop-blur-sm">
-      <div className="pointer-events-auto w-full flex justify-center">
+      <div className="pointer-events-auto flex w-full max-w-full items-center justify-center gap-0">
         <LiquidNavbar locale={locale} nav={nav} user={user} randomSlug={randomSlug} variant="header" />
       </div>
     </header>
