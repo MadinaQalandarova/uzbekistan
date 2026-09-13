@@ -17,6 +17,7 @@ type Props = {
     map: string;
     randomPlace: string;
     signIn: string;
+    signOut: string;
   };
   user: { name: string | null; email: string } | null;
   randomSlug?: string | null;
@@ -29,6 +30,7 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
   const [mounted, setMounted] = useState(false);
   const scrollRef = useRef(0);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time portal mount
   useEffect(() => { setMounted(true); }, []);
   const close = useCallback(() => setDrawerOpen(false), []);
 
