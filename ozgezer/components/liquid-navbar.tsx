@@ -148,8 +148,8 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
 
     </nav>
     {/* Hamburger — alohida, faqat telefonda */}
-    <button type="button" onClick={() => setDrawerOpen(true)} className="lg:hidden ml-2 flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(255,255,255,0.78)] border border-white/20 shadow-md backdrop-blur-md" aria-label="Menyu">
-      <Menu size={18} strokeWidth={2} />
+    <button type="button" onClick={() => setDrawerOpen(true)} className="lg:hidden ml-2 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--color-ink)]/10 bg-white/90 text-[var(--color-ink)] shadow-md backdrop-blur-md transition hover:bg-white dark:border-white/15 dark:bg-[rgba(14,32,24,0.92)] dark:text-white" aria-label="Menyu">
+      <Menu size={18} strokeWidth={2.2} />
     </button>
 
     {/* ── Drawer portal — full nav + Kirish + locale + theme ── */}
