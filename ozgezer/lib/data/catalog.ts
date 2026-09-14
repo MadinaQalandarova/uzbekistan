@@ -130,21 +130,7 @@ export const regions: RegionRecord[] = regionSeed.map((region) => {
               en: "Key stop",
             },
           }))
-        : [
-            {
-              slug: `${region.slug}-featured`,
-              title: {
-                uz: region.featuredPlaceTitleUz,
-                ru: region.featuredPlaceTitleRu,
-                en: region.featuredPlaceTitleEn,
-              },
-              type: {
-                uz: "Asosiy nuqta",
-                ru: "Ключевая точка",
-                en: "Key stop",
-              },
-            },
-          ],
+        : [],
     highlights: [
       {
         uz: `${region.nameUz} uchun kontent qatlamida tarix, tabiat va mahalliy tajriba aralashtirildi.`,

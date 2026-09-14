@@ -76,7 +76,7 @@ export function PlaceGallery({ images, alt, chips, locale = "uz" }: PlaceGallery
 
   return (
     <div
-      className="relative min-h-[22rem] overflow-hidden bg-[linear-gradient(140deg,#2D6B6B_0%,#5B8A6E_55%,#F59E0B_100%)]"
+      className="relative min-h-[18rem] overflow-hidden bg-[linear-gradient(140deg,#2D6B6B_0%,#5B8A6E_55%,#F59E0B_100%)] sm:min-h-[22rem]"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
       aria-label={t.gallery}
@@ -96,6 +96,7 @@ export function PlaceGallery({ images, alt, chips, locale = "uz" }: PlaceGallery
             alt={`${alt} ${i + 1}`}
             className="h-full w-full object-cover"
             loading={i === 0 ? "eager" : "lazy"}
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
         </div>
@@ -108,7 +109,7 @@ export function PlaceGallery({ images, alt, chips, locale = "uz" }: PlaceGallery
 
       {/* ── Chips — yuqori chap ── */}
       {chips && (
-        <div className="relative flex h-full min-h-[22rem] flex-col justify-start p-6">
+        <div className="relative flex h-full min-h-[18rem] flex-col justify-start p-4 sm:min-h-[22rem] sm:p-6">
           {chips}
         </div>
       )}

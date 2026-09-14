@@ -165,8 +165,8 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
       )}
 
       {/* ── Main grid ── */}
-      <section className="container-shell pb-10">
-        <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+      <section className="container-shell pb-6 sm:pb-10">
+        <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           {/* Left column: hero gallery + map */}
           <article className="section-card overflow-hidden rounded-[2rem]">
             {/* Hero gallery */}
@@ -331,7 +331,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                 {t.detailedInfo}
               </p>
               <h2 className="display-title mt-1 text-xl font-semibold text-[var(--color-ink)] md:text-2xl">
-                🏛️ {place.name[locale]}: {story.heroTitle}
+                🏛️ {place.name[locale]}: {story.heroTitle[locale]}
               </h2>
             </div>
 
@@ -391,7 +391,7 @@ function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-[1.25rem] bg-[var(--color-mist)] p-4">
       <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-ink)]/45">{label}</p>
-      <p className="mt-2 text-sm font-semibold text-[var(--color-ink)]">{value}</p>
+      <p className="mt-2 break-words text-sm font-semibold text-[var(--color-ink)]">{value}</p>
     </div>
   );
 }

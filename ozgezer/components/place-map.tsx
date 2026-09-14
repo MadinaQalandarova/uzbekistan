@@ -19,7 +19,7 @@ type PlaceMapProps = {
 
 export function PlaceMap({ latitude, longitude, placeName }: PlaceMapProps) {
   return (
-    <div className="h-72 w-full overflow-hidden rounded-[1.75rem] shadow-sm shadow-slate-900/5">
+    <div className="h-64 w-full overflow-hidden rounded-[1.25rem] shadow-sm shadow-slate-900/5 sm:h-72 sm:rounded-[1.75rem]">
       <MapComponent latitude={latitude} longitude={longitude} placeName={placeName} />
     </div>
   );

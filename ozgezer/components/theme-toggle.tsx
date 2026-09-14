@@ -89,10 +89,18 @@ export function ThemeToggle({ locale = "uz" }: { locale?: Locale }) {
 
   const toggle = () => {
     const next: Theme = theme === "dark" ? "light" : "dark";
-    // Darhol DOM ni yangilash — 0ms kechikish
-    document.documentElement.dataset.theme = next;
+    // Og'ir background gradient transitionni vaqtincha o'chirish — qotishni oldini oladi
+    const html = document.documentElement;
+    html.style.transition = "none";
+    html.dataset.theme = next;
     localStorage.setItem(THEME_STORAGE_KEY, next);
     setTheme(next);
+    // Keyingi frame da transitionni qaytarish
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        html.style.transition = "";
+      });
+    });
   };
 
   const label = labels[locale][theme];

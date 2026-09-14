@@ -6,6 +6,7 @@ import { Search, SlidersHorizontal, X } from "lucide-react";
 import { PlaceCard } from "@/components/place-card";
 import {
   getCategories,
+  getFilteredPlaces,
   getPlaces,
   getRegions,
   type PlaceFilters,
@@ -55,7 +56,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
 
   const messages = getMessages(locale);
   const [places, regions, categories] = await Promise.all([
-    getPlaces(filters),
+    getFilteredPlaces(filters),
     getRegions(),
     getCategories(),
   ]);
@@ -82,8 +83,8 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
       </section>
 
       {/* ── Filter bar ── */}
-      <section className="container-shell py-6">
-        <form className="filter-card section-card rounded-[1.75rem] p-4">
+      <section className="container-shell py-4 sm:py-6">
+        <form className="filter-card section-card rounded-[1.25rem] p-3 sm:rounded-[1.75rem] sm:p-4">
           <div className="grid gap-3 md:grid-cols-[1fr_auto_auto_auto]">
             {/* Search input */}
             <div className="relative">
@@ -105,7 +106,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
             <select
               name="region"
               defaultValue={query.region ?? ""}
-              className="h-12 rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] min-w-[160px]"
+              className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] md:min-w-[160px] md:w-auto"
             >
               <option value="">{messages.explore.allRegions}</option>
               {regions.map((region) => (
@@ -119,7 +120,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
             <select
               name="category"
               defaultValue={query.category ?? ""}
-              className="h-12 rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] min-w-[160px]"
+              className="h-12 w-full rounded-[1rem] border border-[var(--color-ink)]/10 bg-[var(--color-mist)] px-4 text-sm text-[var(--color-ink)] outline-none transition focus:border-[var(--color-sky)] md:min-w-[160px] md:w-auto"
             >
               <option value="">{messages.explore.allCategories}</option>
               {categories.map((category) => (
@@ -132,7 +133,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
             {/* Submit */}
             <button
               type="submit"
-              className="flex h-12 items-center gap-2 rounded-[1rem] bg-[var(--color-sky)] px-6 text-sm font-semibold text-white transition hover:opacity-90"
+              className="flex h-12 w-full items-center justify-center gap-2 rounded-[1rem] bg-[var(--color-sky)] px-6 text-sm font-semibold text-white transition hover:opacity-90 md:w-auto"
             >
               <SlidersHorizontal size={14} strokeWidth={2.2} />
               {messages.explore.searchButton}
@@ -185,7 +186,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
       {/* ── Place cards ── */}
       <section className="container-shell pb-14">
         {places.length > 0 ? (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" style={{ contentVisibility: "auto", containIntrinsicSize: "0 600px" } as React.CSSProperties}>
             {places.map((place) => (
               <PlaceCard
                 key={place.slug}

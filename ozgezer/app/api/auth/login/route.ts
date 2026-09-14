@@ -51,7 +51,8 @@ export async function POST(request: Request) {
     });
 
     return redirect(afterLogin);
-  } catch {
+  } catch (err) {
+    console.error("login error:", err);
     return redirect(`/${locale}/login?error=UNKNOWN`);
   }
 }

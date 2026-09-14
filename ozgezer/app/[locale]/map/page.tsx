@@ -50,7 +50,7 @@ export default async function MapPage({ params }: MapPageProps) {
   const h = headings[locale as Locale];
 
   return (
-    <div className="flex h-[calc(100vh-64px)] flex-col">
+    <div className="flex h-[calc(100dvh-56px)] flex-col md:h-[calc(100vh-64px)]">
       {/* ── Header strip ── */}
       <div className="container-shell flex items-center justify-between py-3">
         <div className="flex items-center gap-2.5">

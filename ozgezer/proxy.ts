@@ -13,6 +13,10 @@ export function proxy(request: NextRequest) {
   ) {
     const res = NextResponse.next();
     res.headers.set("X-Content-Type-Options", "nosniff");
+    res.headers.set(
+      "Strict-Transport-Security",
+      "max-age=63072000; includeSubDomains; preload",
+    );
     return res;
   }
 
@@ -32,6 +36,14 @@ export function proxy(request: NextRequest) {
   res.headers.set("X-Frame-Options", "SAMEORIGIN");
   res.headers.set("X-Content-Type-Options", "nosniff");
   res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.headers.set(
+    "Strict-Transport-Security",
+    "max-age=63072000; includeSubDomains; preload",
+  );
+  res.headers.set(
+    "Permissions-Policy",
+    "camera=(), microphone=(), geolocation=(self), interest-cohort=()",
+  );
   return res;
 }
 

@@ -54,7 +54,8 @@ export async function POST(request: Request) {
     });
 
     return redirect(`/${locale}`);
-  } catch {
+  } catch (err) {
+    console.error("register error:", err);
     return redirect(`/${locale}/register?error=UNKNOWN`);
   }
 }

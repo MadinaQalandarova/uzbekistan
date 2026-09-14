@@ -65,6 +65,11 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem('ozgezer-theme')||'dark';document.documentElement.dataset.theme=t;var m=location.pathname.match(/^\\/(uz|ru|en)\\b/);if(m)document.documentElement.lang=m[1];}catch(e){}})();`,
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.addEventListener('error',function(e){if(e.message&&e.message.includes("Cannot read properties of undefined (reading 'startTime')"))e.preventDefault()});`,
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col">
         <SwRegistrar />

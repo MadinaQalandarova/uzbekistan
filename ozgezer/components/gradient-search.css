@@ -166,7 +166,7 @@
 @media (max-width: 1024px) {
   .gs-wrapper:hover,
   .gs-wrapper:focus-within {
-    width: 220px;
+    width: min(220px, calc(100vw - 32px));
   }
   .gs-wrapper--hero,
   .gs-wrapper--hero:hover,
@@ -174,4 +174,12 @@
     width: 100%;
     max-width: 100%;
   }
+}
+@media (max-width: 380px) {
+  .gs-wrapper:hover,
+  .gs-wrapper:focus-within {
+    width: min(200px, calc(100vw - 24px));
+  }
+  .gs-wrapper--hero .gs-box { height: 46px; }
+  .gs-wrapper--hero .gs-btn { width: 46px; height: 46px; }
 }

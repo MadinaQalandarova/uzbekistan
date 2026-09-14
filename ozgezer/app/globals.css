@@ -58,11 +58,12 @@ html[data-theme="dark"] {
 
 html {
   color-scheme: light;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top,  rgba(45, 107, 107, 0.14), transparent 32%),
     radial-gradient(circle at 85% 10%, rgba(245, 158, 11, 0.09),  transparent 24%),
     linear-gradient(180deg, #F0F7F4 0%, #E4F2EC 100%);
-  transition: background 0.12s ease;
+  /* background transition olib tashlandi — tundan kunga o'tishda qotishni keltirib chiqardi */
 }
 html[data-theme="dark"] {
   color-scheme: dark;
@@ -77,6 +78,7 @@ body {
   color: var(--foreground);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", system-ui, sans-serif;
   transition: background-color 0.12s ease, color 0.12s ease;
+  overflow-x: hidden;
 }
 
 a {
@@ -92,6 +94,9 @@ a {
 .container-shell {
   width: min(1180px, calc(100% - 32px));
   margin-inline: auto;
+}
+@media (max-width: 380px) {
+  .container-shell { width: min(1180px, calc(100% - 20px)); }
 }
 
 /* ─── Section card ──────────────────────────────────────────────────────────── */
@@ -229,6 +234,10 @@ html[data-theme="dark"] .fine-grid {
   background-size: 26px 26px;
 }
 
+/* ─── Mobile touch: no horizontal scroll bleed ──────────────────────────────── */
+@media (max-width: 640px) {
+  .card-rise:hover { transform: none; }
+}
 /* ─── Card interactions ─────────────────────────────────────────────────────── */
 .card-rise {
   transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;

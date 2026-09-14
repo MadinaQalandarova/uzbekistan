@@ -5,6 +5,7 @@ import { notFound, redirect } from "next/navigation";
 import { Bookmark, LogOut, User } from "lucide-react";
 
 import { PlaceCard } from "@/components/place-card";
+import { DeleteAccountForm } from "@/components/delete-account-form";
 import { getUserSavedPlaces } from "@/lib/data/catalog-service";
 import { getMessages, isLocale } from "@/lib/i18n";
 import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
@@ -36,6 +37,13 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
     savedPlaces:   { uz: "Saqlangan joylar",         ru: "Сохранённые места",             en: "Saved places"               }[locale],
     noSaved:       { uz: "Hali joy saqlanmagan",     ru: "Нет сохранённых мест",          en: "No saved places yet"        }[locale],
     noSavedDesc:   { uz: "Joylarni ko'rib, yoqqanlarini saqlang", ru: "Исследуйте и сохраняйте понравившиеся места", en: "Explore and save your favourite places" }[locale],
+    deleteTitle:       { uz: "Hisobni o'chirish", ru: "Удалить аккаунт", en: "Delete account" }[locale],
+    deleteDesc:        { uz: "Hisob o'chirilgach, barcha saqlangan joylar va ma'lumotlar o'chadi. Bu amalni ortga qaytarib bo'lmaydi.", ru: "После удаления все сохранённые места и данные будут удалены. Это действие необратимо.", en: "After deletion all saved places and data will be removed. This cannot be undone." }[locale],
+    deleteButton:      { uz: "Hisobni o'chirish", ru: "Удалить аккаунт", en: "Delete account" }[locale],
+    deleteConfirmTitle:{ uz: "Ishonchingiz komilmi?", ru: "Вы уверены?", en: "Are you sure?" }[locale],
+    deleteConfirmDesc: { uz: "Hisobingiz butunlay o'chiriladi va tizimdan chiqasiz.", ru: "Ваш аккаунт будет полностью удалён и вы выйдете из системы.", en: "Your account will be permanently deleted and you will be logged out." }[locale],
+    cancel:            { uz: "Bekor qilish", ru: "Отмена", en: "Cancel" }[locale],
+    confirm:           { uz: "Ha, o'chirish", ru: "Да, удалить", en: "Yes, delete" }[locale],
   };
 
   return (
@@ -122,6 +130,22 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             ))}
           </div>
         )}
+      </section>
+
+      {/* Danger zone — hisobni o'chirish */}
+      <section className="container-shell pb-14">
+        <DeleteAccountForm
+          locale={locale}
+          labels={{
+            title: t.deleteTitle,
+            description: t.deleteDesc,
+            button: t.deleteButton,
+            confirmTitle: t.deleteConfirmTitle,
+            confirmDescription: t.deleteConfirmDesc,
+            cancel: t.cancel,
+            confirm: t.confirm,
+          }}
+        />
       </section>
     </div>
   );

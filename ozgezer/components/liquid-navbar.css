@@ -1,0 +1,222 @@
+﻿/* Apple Liquid Navbar вЂ” ozgezer adapted */
+.liquid-navbar {
+  position: fixed;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  width: fit-content;
+  max-width: calc(100vw - 24px);
+  background: rgba(248, 250, 249, 0.92);
+  border: 1px solid rgba(45, 107, 107, 0.18);
+  border-radius: 999px;
+  box-shadow: 0 4px 20px rgba(14, 31, 31, 0.06);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  will-change: transform;
+  contain: layout paint;
+  overflow: hidden;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.liquid-navbar--header {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  bottom: auto !important;
+  z-index: 1 !important;
+  width: min(1180px, calc(100vw - 32px));
+  max-width: calc(100vw - 24px);
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 14px 6px 6px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--text-active);
+  text-decoration: none;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.nav-logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-sky), var(--color-teal));
+  color: white;
+  flex-shrink: 0;
+}
+
+html[data-theme="dark"] .liquid-navbar {
+  background: rgba(14, 32, 24, 0.88);
+  border-color: rgba(74, 158, 142, 0.14);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.32);
+}
+
+.liquid-navbar .nav-btn {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 18px;
+  border: none;
+  background: transparent;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(14, 31, 31, 0.55);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.liquid-navbar .nav-btn:hover {
+  transform: scale(1.035);
+}
+
+.liquid-navbar .nav-btn:active {
+  transform: scale(0.97);
+}
+
+.liquid-navbar .nav-btn:hover .nav-logo-icon,
+.liquid-navbar .nav-btn:hover svg {
+  transition: transform 0.18s ease;
+}
+
+html[data-theme="dark"] .liquid-navbar .nav-btn {
+  color: rgba(232, 244, 239, 0.62);
+}
+
+.liquid-navbar .nav-btn.active {
+  background: #ffffff;
+  color: #0E1F1F;
+  box-shadow: 0 2px 8px rgba(14, 31, 31, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(45, 107, 107, 0.06);
+}
+html[data-theme="dark"] .liquid-navbar .nav-btn.active {
+  background: #ffffff;
+  color: #0E1F1F;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.liquid-navbar .nav-btn span {
+  transition: max-width 0.35s ease, opacity 0.25s ease, margin 0.35s ease;
+}
+
+.liquid-navbar .nav-btn:not(.active) span {
+  max-width: 0;
+  opacity: 0;
+  margin: 0;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.liquid-navbar .nav-btn.active span {
+  max-width: 80px;
+  opacity: 1;
+  transition: max-width 0.32s cubic-bezier(0.32,1,.68,1) 0.05s, opacity 0.2s ease 0.05s;
+}
+
+/* active is now pure CSS on .nav-btn.active - no JS pill/glare, as fast as old navbar */
+
+.liquid-navbar .nav-locale {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.18);
+  z-index: 2;
+}
+html[data-theme="dark"] .liquid-navbar .nav-locale { background: rgba(255,255,255,0.06); }
+.liquid-navbar .locale-mini {
+  padding: 6px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.liquid-navbar .locale-mini.active {
+  background: rgba(255,255,255,0.9);
+  color: #1a1a1a;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+}
+html[data-theme="dark"] .liquid-navbar .locale-mini.active { background: rgba(255,255,255,0.88); color: #0f0f0f; }
+.liquid-navbar .nav-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(0,0,0,0.08);
+  margin: 0 2px;
+  z-index: 2;
+}
+html[data-theme="dark"] .liquid-navbar .nav-sep { background: rgba(255,255,255,0.1); }
+
+.liquid-navbar .theme-toggle .icon-moon { display: none; }
+.liquid-navbar .theme-toggle .icon-sun { display: block; }
+html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-sun { display: none; }
+html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-moon { display: block; }
+
+/* Phone: hide Kirish / locale / theme from navbar pill — only in hamburger drawer */
+@media (max-width: 1023px) {
+  .liquid-navbar .nav-hide-mobile { display: none !important; }
+  .liquid-navbar--header {
+    width: calc(100vw - 72px);
+    max-width: calc(100vw - 72px);
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    gap: 4px;
+    padding: 5px 6px;
+  }
+  .liquid-navbar--header::-webkit-scrollbar { display: none; }
+  .liquid-navbar--header .nav-btn { flex-shrink: 0; }
+  .liquid-navbar--header .nav-logo { flex-shrink: 0; padding: 4px 8px 4px 4px; }
+  .liquid-navbar--header .nav-btn.active span { max-width: 62px; }
+}
+
+@media (max-width: 640px) {
+  .liquid-navbar { top: 58px; padding: 4px 5px; gap: 3px; max-width: calc(100vw - 12px); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; }
+  .liquid-navbar::-webkit-scrollbar { display: none; }
+  .liquid-navbar .nav-btn { padding: 7px 9px; font-size: 12px; flex-shrink: 0; gap: 6px; }
+  .liquid-navbar .nav-btn span { display: none; }
+  .liquid-navbar .nav-btn.active span { display: inline-block; max-width: 62px; font-size: 12px; }
+  .liquid-navbar .nav-locale { flex-shrink: 0; }
+  .liquid-navbar .nav-logo span:last-child { display: none; }
+  .liquid-navbar .nav-logo { padding: 4px; gap: 0; }
+  .liquid-navbar--header { width: calc(100vw - 60px); max-width: calc(100vw - 60px); gap: 3px; padding: 4px 5px; }
+  .liquid-navbar--header .nav-btn { padding: 7px 9px; }
+}
+
+@media (max-width: 380px) {
+  .liquid-navbar { gap: 2px; padding: 3px 4px; }
+  .liquid-navbar .nav-btn { padding: 6px 7px; }
+  .liquid-navbar .nav-logo-icon { width: 24px; height: 24px; }
+  .liquid-navbar--header { width: calc(100vw - 52px); max-width: calc(100vw - 52px); gap: 2px; padding: 3px 4px; }
+  .liquid-navbar--header .nav-btn { padding: 6px 7px; }
+  .liquid-navbar--header .nav-btn svg { width: 16px; height: 16px; }
+}
+
+/* header liquid is main — no body padding, hero not overlapped */
+body { padding-bottom: 0; }
+main { padding-top: 4px; }

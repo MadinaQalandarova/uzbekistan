@@ -35,33 +35,41 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-/* Fetch: Network-first, offline fallback */
+/* Fetch: Network-first, offline fallback — faqat static assets cache qilinadi */
 self.addEventListener("fetch", (event) => {
-  /* Faqat GET so'rovlari */
   if (event.request.method !== "GET") return;
-
-  /* Chrome extensions va non-http URLlarni o'tkazib yuboramiz */
   if (!event.request.url.startsWith("http")) return;
+  if (event.request.url.includes("/api/")) return;
 
-  /* API so'rovlari uchun network-only */
-  if (event.request.url.includes("/api/")) {
-    return;
-  }
+  const url = new URL(event.request.url);
+  const isStaticAsset =
+    url.pathname.startsWith("/icons/") ||
+    url.pathname.startsWith("/images/") ||
+    url.pathname.endsWith(".js") ||
+    url.pathname.endsWith(".css") ||
+    url.pathname.endsWith(".woff2") ||
+    url.pathname.endsWith(".woff") ||
+    url.pathname.endsWith(".png") ||
+    url.pathname.endsWith(".jpg") ||
+    url.pathname.endsWith(".jpeg") ||
+    url.pathname.endsWith(".svg") ||
+    url.pathname.endsWith(".webp");
 
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        /* Muvaffaqiyatli javobni cache ga saqlaymiz */
         if (response && response.status === 200 && response.type === "basic") {
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
-          });
+          /* Faqat static assets ni cache qilamiz */
+          if (isStaticAsset) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
+          }
         }
         return response;
       })
       .catch(() =>
-        /* Network yo'q — cache dan olamiz, bo'lmasa offline sahifa */
         caches.match(event.request).then(
           (cached) => cached || caches.match(OFFLINE_URL)
         )
