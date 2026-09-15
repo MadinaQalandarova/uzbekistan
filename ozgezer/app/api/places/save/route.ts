@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
 
 export async function POST(request: Request) {
@@ -17,6 +18,13 @@ export async function POST(request: Request) {
 
   if (!session) {
     return NextResponse.redirect(new URL(`/${locale}/login`, request.url));
+  }
+
+  // Rate limit: 20 ta saqlash / soat / foydalanuvchi
+  const saveKey = `save:${session.userId}`;
+  if (!checkRateLimit(saveKey, 20, 60 * 60 * 1000)) {
+    back.searchParams.set("error", "RATE_LIMITED");
+    return redirect(back);
   }
 
   if (!process.env.DATABASE_URL) {
