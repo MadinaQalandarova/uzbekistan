@@ -14,11 +14,15 @@ const DEV_FALLBACK_SECRET = "fallback-dev-secret-change-in-prod";
 
 function getUserSecret(): string {
   // USER_SECRET alohida — ADMIN_SECRET bilan bir xil bo'lmasligi kerak
-  const secret = process.env.USER_SECRET || process.env.ADMIN_SECRET;
+  const secret = process.env.USER_SECRET;
 
   if (!secret) {
+    // Fallback: dev muhitida ADMIN_SECRET ishlatilishi mumkin
+    const adminSecret = process.env.ADMIN_SECRET;
+    if (adminSecret) return adminSecret;
+
     if (process.env.NODE_ENV === "production") {
-      throw new Error("USER_SECRET or ADMIN_SECRET is required in production");
+      throw new Error("USER_SECRET is required in production");
     }
     return DEV_FALLBACK_SECRET;
   }
