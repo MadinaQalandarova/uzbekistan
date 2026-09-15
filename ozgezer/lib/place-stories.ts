@@ -11,7 +11,7 @@ export type PlaceSection = {
 
 export type PlaceStory = {
   quote: { uz: string; ru: string; en: string };
-  heroTitle: string;
+  heroTitle: { uz: string; ru: string; en: string };
   sections: PlaceSection[];
 };
 
@@ -94,7 +94,11 @@ export const PLACE_STORIES: Record<string, PlaceStory> = {
       ru: "Ичан-Кала — это не чтение книги истории, а жизнь внутри неё. Здесь в каждом кирпиче звучит эхо веков.",
       en: "Ichan Kala is not reading a history book — it is living inside one. Here, every brick carries the echo of centuries.",
     },
-    heroTitle: "Ochiq osmon ostidagi ertak",
+    heroTitle: {
+      uz: "Ochiq osmon ostidagi ertak",
+      ru: "Сказка под открытым небом",
+      en: "A fairy tale under the open sky",
+    },
     sections: [
       {
         emoji: "✨",
@@ -149,7 +153,11 @@ export const PLACE_STORIES: Record<string, PlaceStory> = {
       ru: "Устали от шума Ташкента? Чимган дарит вашим лёгким чистый воздух, а глазам — бесконечность. Взгляните с вершин и почувствуйте, насколько огромен мир!",
       en: "Tired of Tashkent's noise? Chimgan gifts your lungs clean air and your eyes — infinity. Look from the peaks and feel how vast the world truly is!",
     },
-    heroTitle: "Moviy osmon va cho'qqilar saltanati",
+    heroTitle: {
+      uz: "Moviy osmon va cho'qqilar saltanati",
+      ru: "Голубое небо и царство вершин",
+      en: "Blue skies and the kingdom of peaks",
+    },
     sections: [
       {
         emoji: "✨",
@@ -204,7 +212,11 @@ export const PLACE_STORIES: Record<string, PlaceStory> = {
       ru: "Пульс сердца Бухары бьётся в крепости Арк. Здесь каждый камень говорит о силе правителей и мудрости учёных. Поднимитесь в Арк и почувствуйте себя на вершине истории!",
       en: "The heartbeat of Bukhara pulses in Ark Fortress. Here every stone speaks of rulers' power and scholars' wisdom. Climb the Ark and stand at history's highest peak!",
     },
-    heroTitle: "Buxoroning «Shahri ichidagi shahar»",
+    heroTitle: {
+      uz: "Buxoroning «Shahri ichidagi shahar»",
+      ru: "Бухара — «Город внутри города»",
+      en: "Bukhara — \"The city within a city\"",
+    },
     sections: [
       {
         emoji: "✨",
@@ -259,7 +271,11 @@ export const PLACE_STORIES: Record<string, PlaceStory> = {
       ru: "Здесь история перешла не от кирпича к кирпичу, а от золота к свету.",
       en: "Here, history did not pass from brick to brick — it passed from gold to light.",
     },
-    heroTitle: "Sharqning vizual tashrif qog'ozi",
+    heroTitle: {
+      uz: "Sharqning vizual tashrif qog'ozi",
+      ru: "Визитная карточка Востока",
+      en: "The visual postcard of the East",
+    },
     sections: [
       {
         emoji: "✨",
@@ -314,7 +330,11 @@ export const PLACE_STORIES: Record<string, PlaceStory> = {
       ru: "Бирюзовое море в объятьях пустыни — точка, где природа встречается с приключением.",
       en: "A turquoise sea in the desert's embrace — the point where nature meets adventure.",
     },
-    heroTitle: "Sahrodagi mo'jiza",
+    heroTitle: {
+      uz: "Sahrodagi mo'jiza",
+      ru: "Чудо в пустыне",
+      en: "A miracle in the desert",
+    },
     sections: [
       {
         emoji: "✨",
@@ -369,7 +389,11 @@ export const PLACE_STORIES: Record<string, PlaceStory> = {
       ru: "По следам Искандера Зулькарнайна — к священному роднику.",
       en: "Following the trail of Alexander the Great — toward the sacred spring.",
     },
-    heroTitle: "Tarix va afsonalar maskani",
+    heroTitle: {
+      uz: "Tarix va afsonalar maskani",
+      ru: "Святилище истории и легенд",
+      en: "A sanctuary of history and legends",
+    },
     sections: [
       {
         emoji: "✨",
@@ -424,7 +448,11 @@ export const PLACE_STORIES: Record<string, PlaceStory> = {
       ru: "Ак-Сарай — место, где величие пришло в виде каменной скульптуры. Стоя под его огромными арками, чувствуешь дыхание могущества минувших веков.",
       en: "Ak-Saray is where greatness arrived as a stone sculpture. Standing beneath its vast arches, you breathe in the power of centuries long past.",
     },
-    heroTitle: "Temur qudratining me'moriy ramzi",
+    heroTitle: {
+      uz: "Temur qudratining me'moriy ramzi",
+      ru: "Архитектурный символ могущества Тимура",
+      en: "The architectural symbol of Timur's power",
+    },
     sections: [
       {
         emoji: "✨",
@@ -479,7 +507,11 @@ export const PLACE_STORIES: Record<string, PlaceStory> = {
       ru: "Шахи Зинда — самая величественная из улиц. За каждым порталом — век, каждая плитка излучает свет.",
       en: "Shahi Zinda is the most majestic of streets. Behind every portal lies a century; every tile radiates light.",
     },
-    heroTitle: "Maqbaralar ko'chasi",
+    heroTitle: {
+      uz: "Maqbaralar ko'chasi",
+      ru: "Улица мавзолеев",
+      en: "Street of mausoleums",
+    },
     sections: [
       {
         emoji: "✨",
@@ -534,7 +566,11 @@ export const PLACE_STORIES: Record<string, PlaceStory> = {
       ru: "Минарет — это не просто кирпич, это история, вбитая в небо Бухары. Когда вы смотрите на него, века смотрят на вас.",
       en: "The minaret is not mere brick — it is history nailed into Bukhara's sky. As you look at it, centuries look back.",
     },
-    heroTitle: "Buxoroning buyuk minorasi",
+    heroTitle: {
+      uz: "Buxoroning buyuk minorasi",
+      ru: "Великий минарет Бухары",
+      en: "The great minaret of Bukhara",
+    },
     sections: [
       {
         emoji: "✨",
@@ -589,7 +625,11 @@ export const PLACE_STORIES: Record<string, PlaceStory> = {
       ru: "Чарвак — море в объятиях гор. Увидев бирюзовый цвет воды впервые, вы не поверите, что это Узбекистан.",
       en: "Charvak is a sea cradled by mountains. At first sight of its turquoise water you won't believe it's Uzbekistan.",
     },
-    heroTitle: "Tog'lar qurshovidagi dengiz",
+    heroTitle: {
+      uz: "Tog'lar qurshovidagi dengiz",
+      ru: "Море в окружении гор",
+      en: "A sea surrounded by mountains",
+    },
     sections: [
       {
         emoji: "✨",

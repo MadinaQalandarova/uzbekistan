@@ -331,7 +331,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                 {t.detailedInfo}
               </p>
               <h2 className="display-title mt-1 text-xl font-semibold text-[var(--color-ink)] md:text-2xl">
-                🏛️ {place.name[locale]}: {story.heroTitle}
+                🏛️ {place.name[locale]}: {story.heroTitle[locale]}
               </h2>
             </div>
 
