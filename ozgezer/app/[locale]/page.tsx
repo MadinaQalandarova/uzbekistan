@@ -110,9 +110,9 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
     .slice(0, 8);
 
   return (
-    <div className="py-8">
-      <section className="container-shell py-4 md:py-8">
-        <div className="uzbek-hero relative overflow-hidden rounded-[2.5rem] border border-[var(--color-ink)]/8 px-5 py-8 md:px-10 md:py-12">
+    <div className="py-4 sm:py-8">
+      <section className="container-shell py-3 sm:py-4 md:py-8">
+        <div className="uzbek-hero relative overflow-hidden rounded-[1.5rem] border border-[var(--color-ink)]/8 px-4 py-6 sm:rounded-[2rem] sm:px-5 sm:py-8 md:rounded-[2.5rem] md:px-10 md:py-12">
           {/* Milliy girih burchak naqshi — nozik, suzani o'rniga */}
           <div className="pointer-events-none absolute right-0 top-0 h-28 w-28 opacity-[0.09] md:h-36 md:w-36" aria-hidden style={{ backgroundImage: `repeating-linear-gradient(45deg, rgba(45,107,107,0.18) 0 1px, transparent 1px 12px), repeating-linear-gradient(-45deg, rgba(245,158,11,0.14) 0 1px, transparent 1px 12px), radial-gradient(circle at center, rgba(206,17,38,0.08) 1.5px, transparent 1.7px)`, backgroundSize: "24px 24px, 24px 24px, 24px 24px" }} />
           <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-24 opacity-[0.07] md:h-32 md:w-32" aria-hidden style={{ backgroundImage: `repeating-linear-gradient(45deg, rgba(45,107,107,0.14) 0 1px, transparent 1px 10px), repeating-linear-gradient(-45deg, rgba(245,158,11,0.12) 0 1px, transparent 1px 10px)`, backgroundSize: "20px 20px, 20px 20px" }} />

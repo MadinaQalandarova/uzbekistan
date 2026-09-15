@@ -165,8 +165,8 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
       )}
 
       {/* ── Main grid ── */}
-      <section className="container-shell pb-10">
-        <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+      <section className="container-shell pb-6 sm:pb-10">
+        <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           {/* Left column: hero gallery + map */}
           <article className="section-card overflow-hidden rounded-[2rem]">
             {/* Hero gallery */}
