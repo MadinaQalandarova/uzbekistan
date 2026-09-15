@@ -240,9 +240,14 @@ async function _getPlaces(filters: PlaceFilters = {}): Promise<PlaceRecord[]> {
 
 export const getPlaces = unstable_cache(
   _getPlaces,
-  ["catalog-places"],
+  ["catalog-places-all"],
   { revalidate: 30 },
 );
+
+/* Filtrlangan so'rovlar uchun — cache'siz, har doim yangi */
+export async function getFilteredPlaces(filters: PlaceFilters): Promise<PlaceRecord[]> {
+  return _getPlaces(filters);
+}
 
 export async function getPlace(slug: string): Promise<PlaceRecord | null> {
   const items = await getPlaces();
@@ -250,7 +255,7 @@ export async function getPlace(slug: string): Promise<PlaceRecord | null> {
 }
 
 export async function getRelatedPlaces(place: PlaceRecord): Promise<PlaceRecord[]> {
-  const items = await getPlaces({
+  const items = await getFilteredPlaces({
     region: place.regionSlug,
   });
 

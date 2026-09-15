@@ -78,8 +78,8 @@ export default async function RegionDetailPage({ params }: RegionDetailPageProps
               {region.focus[locale]}
             </h2>
             <ul className="mt-5 space-y-3">
-              {region.highlights.map((highlight) => (
-                <li key={highlight[locale]} className="flex items-start gap-2.5 text-sm leading-7 text-[var(--color-ink)]/65">
+              {region.highlights.map((highlight, i) => (
+                <li key={`${region.slug}-hl-${i}`} className="flex items-start gap-2.5 text-sm leading-7 text-[var(--color-ink)]/65">
                   <span className="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--color-teal)]" />
                   {highlight[locale]}
                 </li>

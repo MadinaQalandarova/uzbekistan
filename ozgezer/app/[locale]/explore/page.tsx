@@ -6,6 +6,7 @@ import { Search, SlidersHorizontal, X } from "lucide-react";
 import { PlaceCard } from "@/components/place-card";
 import {
   getCategories,
+  getFilteredPlaces,
   getPlaces,
   getRegions,
   type PlaceFilters,
@@ -55,7 +56,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
 
   const messages = getMessages(locale);
   const [places, regions, categories] = await Promise.all([
-    getPlaces(filters),
+    getFilteredPlaces(filters),
     getRegions(),
     getCategories(),
   ]);
