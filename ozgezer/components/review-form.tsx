@@ -142,7 +142,7 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]/40">
             {t.rating}
           </p>
-          <div className="flex gap-1.5">
+          <div className="flex gap-1 sm:gap-1.5">
             {[1, 2, 3, 4, 5].map((star) => {
               const filled = star <= (hovered || rating);
               return (
@@ -152,7 +152,7 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
                   onClick={() => setRating(star)}
                   onMouseEnter={() => setHovered(star)}
                   onMouseLeave={() => setHovered(0)}
-                  className={`flex h-11 w-11 items-center justify-center rounded-xl border transition-all ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-xl border transition-all sm:h-11 sm:w-11 ${
                     filled
                       ? "border-[var(--color-gold)] bg-[var(--color-gold)]/10 scale-110"
                       : "border-[var(--color-ink)]/10 bg-[var(--color-mist)] opacity-50 hover:opacity-80"

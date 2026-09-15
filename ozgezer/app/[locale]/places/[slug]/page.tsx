@@ -391,7 +391,7 @@ function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-[1.25rem] bg-[var(--color-mist)] p-4">
       <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-ink)]/45">{label}</p>
-      <p className="mt-2 text-sm font-semibold text-[var(--color-ink)]">{value}</p>
+      <p className="mt-2 break-words text-sm font-semibold text-[var(--color-ink)]">{value}</p>
     </div>
   );
 }

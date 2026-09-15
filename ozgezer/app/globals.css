@@ -234,6 +234,10 @@ html[data-theme="dark"] .fine-grid {
   background-size: 26px 26px;
 }
 
+/* ─── Mobile touch: no horizontal scroll bleed ──────────────────────────────── */
+@media (max-width: 640px) {
+  .card-rise:hover { transform: none; }
+}
 /* ─── Card interactions ─────────────────────────────────────────────────────── */
 .card-rise {
   transition: transform 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
