@@ -174,28 +174,47 @@ html[data-theme="dark"] .liquid-navbar .nav-sep { background: rgba(255,255,255,0
 html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-sun { display: none; }
 html[data-theme="dark"] .liquid-navbar .theme-toggle .icon-moon { display: block; }
 
-@media (max-width: 640px) {
-  .liquid-navbar { top: 58px; padding: 5px; gap: 2px; max-width: calc(100vw - 12px); overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
-  .liquid-navbar::-webkit-scrollbar { display: none; }
-  .liquid-navbar .nav-btn { padding: 9px 10px; font-size: 12px; flex-shrink: 0; }
-  .liquid-navbar .nav-btn span { display: none; }
-  .liquid-navbar .nav-btn.active span { display: inline-block; }
-  .liquid-navbar .nav-locale { flex-shrink: 0; }
-  .liquid-navbar .nav-logo span:last-child { display: none; }
-}
-@media (max-width: 420px) {
-  .liquid-navbar { gap: 1px; padding: 4px; }
-  .liquid-navbar .nav-btn { padding: 8px 9px; }
-}
-
 /* Phone: hide Kirish / locale / theme from navbar pill — only in hamburger drawer */
 @media (max-width: 1023px) {
   .liquid-navbar .nav-hide-mobile { display: none !important; }
-  .liquid-navbar--header { width: calc(100vw - 72px); max-width: calc(100vw - 72px); justify-content: flex-start; }
+  .liquid-navbar--header {
+    width: calc(100vw - 72px);
+    max-width: calc(100vw - 72px);
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    gap: 4px;
+    padding: 5px 6px;
+  }
+  .liquid-navbar--header::-webkit-scrollbar { display: none; }
+  .liquid-navbar--header .nav-btn { flex-shrink: 0; }
+  .liquid-navbar--header .nav-logo { flex-shrink: 0; padding: 4px 8px 4px 4px; }
+  .liquid-navbar--header .nav-btn.active span { max-width: 62px; }
 }
 
 @media (max-width: 640px) {
-  .liquid-navbar--header { width: calc(100vw - 68px); max-width: calc(100vw - 68px); }
+  .liquid-navbar { top: 58px; padding: 4px 5px; gap: 3px; max-width: calc(100vw - 12px); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; }
+  .liquid-navbar::-webkit-scrollbar { display: none; }
+  .liquid-navbar .nav-btn { padding: 7px 9px; font-size: 12px; flex-shrink: 0; gap: 6px; }
+  .liquid-navbar .nav-btn span { display: none; }
+  .liquid-navbar .nav-btn.active span { display: inline-block; max-width: 62px; font-size: 12px; }
+  .liquid-navbar .nav-locale { flex-shrink: 0; }
+  .liquid-navbar .nav-logo span:last-child { display: none; }
+  .liquid-navbar .nav-logo { padding: 4px; gap: 0; }
+  .liquid-navbar--header { width: calc(100vw - 60px); max-width: calc(100vw - 60px); gap: 3px; padding: 4px 5px; }
+  .liquid-navbar--header .nav-btn { padding: 7px 9px; }
+}
+
+@media (max-width: 380px) {
+  .liquid-navbar { gap: 2px; padding: 3px 4px; }
+  .liquid-navbar .nav-btn { padding: 6px 7px; }
+  .liquid-navbar .nav-logo-icon { width: 24px; height: 24px; }
+  .liquid-navbar--header { width: calc(100vw - 52px); max-width: calc(100vw - 52px); gap: 2px; padding: 3px 4px; }
+  .liquid-navbar--header .nav-btn { padding: 6px 7px; }
+  .liquid-navbar--header .nav-btn svg { width: 16px; height: 16px; }
 }
 
 /* header liquid is main — no body padding, hero not overlapped */
