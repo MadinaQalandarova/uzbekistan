@@ -52,7 +52,8 @@ export function verifyPassword(password: string, stored: string): boolean {
   try {
     const inputHash = scryptSync(password, salt, 64).toString("hex");
     return timingSafeEqual(Buffer.from(hash, "hex"), Buffer.from(inputHash, "hex"));
-  } catch {
+  } catch (err) {
+    console.error("[auth] verifyUserPassword error:", err);
     return false;
   }
 }

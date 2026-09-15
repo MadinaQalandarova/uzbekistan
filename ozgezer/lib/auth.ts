@@ -103,7 +103,8 @@ export function readAdminSession(sessionValue?: string | null): AdminSessionPayl
     }
 
     return payload;
-  } catch {
+  } catch (err) {
+    console.error("[auth] verifyAdminSession error:", err);
     return null;
   }
 }
