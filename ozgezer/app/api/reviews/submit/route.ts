@@ -62,30 +62,15 @@ export async function POST(request: Request) {
       return redirect(`/${locale}/places/${placeSlug}?error=ALREADY_REVIEWED`);
     }
 
-    // Izoh qo'sh (avtomatik tasdiqlash)
+    // Izoh qo'sh — moderatsiya uchun PENDING
     await prisma.review.create({
       data: {
         rating,
-        comment,
+        comment: comment.replace(/<[^>]*>/g, ""), // HTML teglarni tozalash
         wouldRecommend,
-        status: "APPROVED",
+        status: "PENDING",
         userId: session.userId,
         placeId: place.id,
-      },
-    });
-
-    // O'rtacha reyting va izohlar sonini yangilash
-    const stats = await prisma.review.aggregate({
-      where: { placeId: place.id, status: "APPROVED" },
-      _avg: { rating: true },
-      _count: { id: true },
-    });
-
-    await prisma.place.update({
-      where: { id: place.id },
-      data: {
-        averageRating: stats._avg.rating ?? 0,
-        reviewCount: stats._count.id,
       },
     });
 
