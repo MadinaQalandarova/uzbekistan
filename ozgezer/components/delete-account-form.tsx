@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Trash2 } from "lucide-react";
 
 type Props = {
@@ -18,6 +18,20 @@ type Props = {
 
 export function DeleteAccountForm({ locale, labels }: Props) {
   const [open, setOpen] = useState(false);
+  const cancelRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  const close = useCallback(() => setOpen(false), []);
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+    };
+    document.addEventListener("keydown", handler);
+    cancelRef.current?.focus();
+    return () => document.removeEventListener("keydown", handler);
+  }, [open, close]);
 
   return (
     <>
@@ -35,14 +49,21 @@ export function DeleteAccountForm({ locale, labels }: Props) {
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="delete-dialog-title"
+          ref={dialogRef}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm"
+        >
           <div className="w-full max-w-sm rounded-[1.5rem] bg-white p-6 shadow-2xl">
-            <h4 className="text-base font-semibold text-[var(--color-ink)]">{labels.confirmTitle}</h4>
+            <h4 id="delete-dialog-title" className="text-base font-semibold text-[var(--color-ink)]">{labels.confirmTitle}</h4>
             <p className="mt-2 text-sm leading-6 text-[var(--color-ink)]/60">{labels.confirmDescription}</p>
             <div className="mt-6 flex gap-3">
               <button
                 type="button"
-                onClick={() => setOpen(false)}
+                ref={cancelRef}
+                onClick={close}
                 className="flex-1 rounded-full border border-[var(--color-ink)]/10 px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)] transition hover:bg-[var(--color-mist)]"
               >
                 {labels.cancel}
