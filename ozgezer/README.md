@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# O'zGezer
 
-## Getting Started O'zGezer
+O'zGezer — O'zbekiston bo'ylab sayohat joylarini kashf etish platformasi. 29+ maskan, 13 ta hudud, 6 ta kategoriya, 3 til (uz/ru/en), sharhlar, reytinglar va interaktiv xarita bilan.
 
-First, run the development server::
+Live: https://uzbekistan-y1yg.vercel.app
+
+## Xususiyatlari
+
+- **Katalog**: tarixiy, tabiat, dam olish, ovqat, bozorlar va muzeylar — 13 ta hudud bo'ylab
+- **Qidiruv**: matn, viloyat va kategoriya bo'yicha filtrlash (viloyat/kategoriya nomi ham qidiriladi)
+- **Xarita**: Leaflet + custom markerlar, Yandex Go / Google Maps yo'nalishlari
+- **Sharhlar va reytinglar**: foydalanuvchi izohlari moderatsiyadan keyin chiqadi (PENDING), HTML sanitizatsiya, 1000 belgi limiti
+- **Ro'yxatdan o'tish**: email validatsiya, scrypt parol hashing, rate-limit
+- **Xavfsizlik**: alohida `USER_SECRET`/`ADMIN_SECRET`, HSTS, Permissions-Policy, rate-limit barcha yozuv endpointlarida (view/review/save)
+- **PWA**: manifest, service worker (faqat static assets cache), offline qo'llab-quvvatlash
+- **Tungi rejim**: qotmasdan instant almashadi
+- **Tasodifiy joy**: navbar CTA sizni kutilmagan maskanga olib boradi
+- **i18n**: uz/ru/en — sahifalar va kontent (heroTitle, aria-label, barcha UI matnlar) tarjima qilingan
+
+## Texnologiyalar
+
+- Next.js 16 App Router (Turbopack), TypeScript, Tailwind CSS 4
+- Prisma 7 + PostgreSQL (Supabase) + `@prisma/adapter-pg`
+- Leaflet / React-Leaflet, next-intl i18n (uz/ru/en)
+- Vercel hosting
+
+## Ishga tushirish
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd ozgezer
+npm install
+cp .env.example .env.local  # DATABASE_URL, DIRECT_URL, ADMIN_*, USER_SECRET
+npx prisma generate
+npx prisma migrate dev      # yoki prisma db push
+npm run prisma:seed         # 29 joy + 13 hudud + 6 kategoriya
+npm run dev                 # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**.env.local** muhim o'zgaruvchilar:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| O'zgaruvchi | Tavsif |
+|---|---|
+| `DATABASE_URL` / `DIRECT_URL` | Supabase PostgreSQL |
+| `ADMIN_EMAIL` / `ADMIN_PASSWORD` / `ADMIN_SECRET` | Admin kirish |
+| `USER_SECRET` | User sessiyalar uchun alohida kalit (bo'lmasa dev'da ADMIN_SECRET ishlatiladi; production'da majburiy) |
+| `NEXT_PUBLIC_SITE_URL` | Deployment URL (metadataBase uchun) |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Endpoint urlari (rate-limited)
 
-## Learn More
+- `POST /api/places/view` — 1 view / 5 daqiqa / IP
+- `POST /api/reviews/submit` — 3 izoh / soat / user
+- `POST /api/places/save` — 20 saqlash / soat / user
 
-To learn more about Next.js, take a look at the following resources:
+## Skriptlar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` — dev server (Turbopack)
+- `npm run build` — `prisma generate && next build`
+- `npm run lint` — ESLint
+- `npm run prisma:seed` — seed ma'lumotlarini DB ga yuklash
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Hissa qo'shish
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. `.env.local` da zarur o'zgaruvchilarni o'rnating
+2. Yangi joy qo'shish: `data/seed-places.json` ga yozing, `public/places/<slug>.jpg` rasm qo'shing, `lib/place-stories.ts` da `PLACE_IMAGES` ni yangilang
+3. `npm run build` va `npm run lint` bilan tekshiring, so'ng commit qiling

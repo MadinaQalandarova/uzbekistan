@@ -11,7 +11,9 @@ Live: https://uzbekistan-y1yg.vercel.app
 - Xarita: Leaflet + Yandex Go / Google Maps yo'nalishlari
 - Tungi rejim: qotmasdan almashadi (html background transition olib tashlandi, toggle instant)
 - Ro'yxatdan o'tish: isValidEmail + rate-limit + xato logi (UNKNOWN endi Vercel logs da ko'rinadi)
-- PWA: manifest, service worker, offline qo'llab-quvvatlash
+- Xavfsizlik: alohida USER_SECRET/ADMIN_SECRET, HSTS, Permissions-Policy, rate-limit view/review/save endpointlarida
+- Sharhlar moderatsiyasi: izohlar PENDING status bilan saqlanadi, HTML sanitizatsiya, 1000 belgi limiti
+- PWA: manifest, service worker (faqat static assets), offline qo'llab-quvvatlash
 - Tasodifiy joy: navbar CTA sizni kutilmagan maskanga olib boradi
 
 ## Texnologiyalar(Tools)
@@ -26,7 +28,7 @@ Live: https://uzbekistan-y1yg.vercel.app
 ```bash
 cd ozgezer
 npm install
-cp .env.example .env.local  # DATABASE_URL, DIRECT_URL, ADMIN_SECRET va boshqalar
+cp .env.example .env.local  # DATABASE_URL, DIRECT_URL, ADMIN_*, USER_SECRET
 npx prisma generate
 npx prisma migrate dev       # yoki prisma db push
 npm run prisma:seed          # 29 joy + 13 hudud + 6 kategoriya
@@ -55,6 +57,6 @@ ozgezer/
 
 ## Hissa qo'shish
 
-1. `.env.local` da `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_SECRET` ni o'rnating
+1. `.env.local` da `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_SECRET`, `USER_SECRET` ni o'rnating
 2. Yangi joy qo'shish: `data/seed-places.json` ga yozing, `public/places/<slug>.jpg` rasm qo'shing, `lib/place-stories.ts` da `PLACE_IMAGES` ni yangilang
 3. `npm run build` va `npm run lint` bilan tekshiring, so'ng commit qiling
