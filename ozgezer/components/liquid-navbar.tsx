@@ -24,8 +24,16 @@ type Props = {
   variant?: "fixed" | "header";
 };
 
+/* A11y label lar — locale bo'yicha */
+const uiLabels: Record<Locale, { theme: string; menu: string; close: string }> = {
+  uz: { theme: "Temani almashtirish", menu: "Menyu", close: "Yopish" },
+  ru: { theme: "Переключить тему", menu: "Меню", close: "Закрыть" },
+  en: { theme: "Toggle theme", menu: "Menu", close: "Close" },
+};
+
 export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" }: Props) {
   const pathname = usePathname();
+  const labels = uiLabels[locale];
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const scrollRef = useRef(0);
@@ -143,14 +151,14 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
         ))}
       </div>
 
-      <button type="button" onClick={toggleTheme} className="nav-btn theme-toggle nav-hide-mobile" aria-label="Temani almashtirish">
+      <button type="button" onClick={toggleTheme} className="nav-btn theme-toggle nav-hide-mobile" aria-label={labels.theme}>
         <svg className="icon-sun" xmlns="http://www.w3.org/2000/svg" width={19} height={19} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /></svg>
         <svg className="icon-moon" xmlns="http://www.w3.org/2000/svg" width={19} height={19} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>
       </button>
 
     </nav>
     {/* Hamburger — alohida, faqat telefonda */}
-    <button type="button" onClick={() => setDrawerOpen(true)} className="lg:hidden ml-1.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-ink)]/10 bg-white/90 text-[var(--color-ink)] shadow-md backdrop-blur-md transition hover:bg-white sm:ml-2 sm:h-10 sm:w-10 md:h-11 md:w-11 dark:border-white/15 dark:bg-[rgba(14,32,24,0.92)] dark:text-white" aria-label="Menyu">
+    <button type="button" onClick={() => setDrawerOpen(true)} className="lg:hidden ml-1.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-ink)]/10 bg-white/90 text-[var(--color-ink)] shadow-md backdrop-blur-md transition hover:bg-white sm:ml-2 sm:h-10 sm:w-10 md:h-11 md:w-11 dark:border-white/15 dark:bg-[rgba(14,32,24,0.92)] dark:text-white" aria-label={labels.menu}>
       <Menu size={16} strokeWidth={2.2} className="sm:hidden" />
       <Menu size={18} strokeWidth={2.2} className="hidden sm:block" />
     </button>
@@ -167,7 +175,7 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
         <aside
           role="dialog"
           aria-modal="true"
-          aria-label="Menyu"
+          aria-label={labels.menu}
           className={`fixed right-0 top-0 z-[9999] flex h-full w-[300px] max-w-[86vw] flex-col bg-[var(--background)] shadow-2xl transition-transform duration-300 ease-out will-change-transform lg:hidden ${drawerOpen ? "translate-x-0" : "translate-x-full"}`}
         >
           <div className="flex flex-shrink-0 items-center justify-between border-b border-[var(--color-ink)]/6 px-5 py-4">
@@ -177,7 +185,7 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
               </div>
               <span className="text-base font-semibold tracking-[0.04em] text-[var(--color-ink)]">O&apos;zGezer</span>
             </div>
-            <button onClick={close} aria-label="Yopish" className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-ink)]/10 text-[var(--color-ink)]/40 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-ink)]">
+            <button onClick={close} aria-label={labels.close} className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-ink)]/10 text-[var(--color-ink)]/40 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-ink)]">
               <X size={15} strokeWidth={2.5} />
             </button>
           </div>

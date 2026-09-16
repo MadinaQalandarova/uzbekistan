@@ -24,6 +24,7 @@ type HomeMessages = {
   titleAccent: string;
   description: string;
   searchPlaceholder: string;
+  popularTag: string;
   categoriesEyebrow: string;
   categoriesTitle: string;
   regionsEyebrow: string;
@@ -125,6 +126,7 @@ const messages: Record<Locale, Messages> = {
       description:
         "O'zGezer turistlar va mahalliy sayohatchilar uchun haqiqiy izohlar, reytinglar va xarita asosida joylarni topishga yordam beradi.",
       searchPlaceholder: "Masalan: Registon, Chimgan, Ichan-Qal'a...",
+      popularTag: "Mashhur:",
       categoriesEyebrow: "Asosiy kategoriyalar",
       categoriesTitle: "Odamlar eng ko'p nimani qidiradi?",
       regionsEyebrow: "Region bo'yicha izlash",
@@ -214,6 +216,7 @@ const messages: Record<Locale, Messages> = {
       description:
         "O'zGezer помогает туристам и местным жителям находить места по отзывам, рейтингам и карте.",
       searchPlaceholder: "Например: Регистан, Чимган, Ичан-Кала...",
+      popularTag: "Популярно:",
       categoriesEyebrow: "Основные категории",
       categoriesTitle: "Что люди ищут чаще всего?",
       regionsEyebrow: "Поиск по регионам",
@@ -303,6 +306,7 @@ const messages: Record<Locale, Messages> = {
       description:
         "O'zGezer helps tourists and locals discover places through trusted reviews, ratings, and map-first browsing.",
       searchPlaceholder: "For example: Registan, Chimgan, Ichan-Kala...",
+      popularTag: "Popular:",
       categoriesEyebrow: "Core categories",
       categoriesTitle: "What are people searching for most?",
       regionsEyebrow: "Browse by region",

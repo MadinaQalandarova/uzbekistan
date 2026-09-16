@@ -11,7 +11,7 @@ import type { PlaceRecord } from "@/lib/data/catalog";
 import type { Locale } from "@/lib/i18n";
 
 /* ── Custom marker icon ─────────────────────────────────────────────────────── */
-function makeIcon(selected: boolean) {
+function makeIcon(selected: boolean, name: string) {
   const color = selected ? "#F59E0B" : "#2D6B6B";
   const glow = selected ? "#F59E0B" : "#2D6B6B";
   const w = selected ? 44 : 36;
@@ -19,7 +19,8 @@ function makeIcon(selected: boolean) {
 
   return L.divIcon({
     html: `
-      <div style="position:relative;width:${w}px;height:${h}px;display:flex;align-items:flex-start;justify-content:center">
+      <div style="position:relative;width:${w}px;height:${h}px;display:flex;align-items:flex-start;justify-content:center"
+        role="button" tabindex="0" aria-label="${name}" title="${name}">
         ${selected ? `
           <div style="
             position:absolute;top:50%;left:50%;
@@ -116,8 +117,15 @@ export default function PlacesMapClient({ places, locale }: Props) {
           <Marker
             key={place.slug}
             position={[place.latitude, place.longitude]}
-            icon={makeIcon(selected?.slug === place.slug)}
-            eventHandlers={{ click: () => handleMarker(place) }}
+            icon={makeIcon(selected?.slug === place.slug, place.name[locale])}
+            eventHandlers={{
+              click: () => handleMarker(place),
+              keydown: (e) => {
+                if (e.originalEvent.key === "Enter" || e.originalEvent.key === " ") {
+                  handleMarker(place);
+                }
+              },
+            }}
           />
         ))}
       </MapContainer>
