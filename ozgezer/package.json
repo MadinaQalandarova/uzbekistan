@@ -12,9 +12,11 @@
     "prisma:seed": "node prisma/seed.js"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^4.0.55",
     "@prisma/adapter-pg": "^7.7.0",
     "@prisma/client": "^7.7.0",
     "@types/leaflet": "^1.9.21",
+    "ai": "^7.0.103",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.11.0",
     "next": "16.2.3",

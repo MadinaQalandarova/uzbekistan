@@ -7,7 +7,6 @@ import { PlaceCard } from "@/components/place-card";
 import {
   getCategories,
   getFilteredPlaces,
-  getPlaces,
   getRegions,
   type PlaceFilters,
 } from "@/lib/data/catalog-service";

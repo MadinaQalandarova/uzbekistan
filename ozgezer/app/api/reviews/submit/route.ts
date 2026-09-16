@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
-import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { checkRateLimit } from "@/lib/rate-limit";
 import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
 
 const MAX_COMMENT_LENGTH = 1000;

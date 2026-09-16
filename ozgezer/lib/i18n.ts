@@ -10,6 +10,7 @@ type NavMessages = {
   regions: string;
   randomPlace: string;
   map: string;
+  aiGuide: string;
   signIn: string;
   signOut: string;
 };
@@ -94,6 +95,31 @@ type PlaceMessages = {
   relatedPlaces: string;
 };
 
+type AiGuideMessages = {
+  title: string;
+  subtitle: string;
+  planTab: string;
+  placeTab: string;
+  planDescription: string;
+  placeDescription: string;
+  destinationLabel: string;
+  destinationPlaceholder: string;
+  daysLabel: string;
+  categoryLabel: string;
+  categoryAny: string;
+  queryLabel: string;
+  queryPlaceholder: string;
+  queryPlacePlaceholder: string;
+  submit: string;
+  generating: string;
+  errorRateLimited: string;
+  errorNotConfigured: string;
+  errorUnknown: string;
+  placeholders: string[];
+};
+
+export type { AiGuideMessages };
+
 type Messages = {
   nav: NavMessages;
   footer: FooterMessages;
@@ -102,6 +128,7 @@ type Messages = {
   admin: AdminMessages;
   explore: ExploreMessages;
   place: PlaceMessages;
+  aiGuide: AiGuideMessages;
 };
 
 const messages: Record<Locale, Messages> = {
@@ -112,6 +139,7 @@ const messages: Record<Locale, Messages> = {
       regions: "Viloyatlar",
       randomPlace: "Tasodifiy joy",
       map: "Xarita",
+      aiGuide: "AI Gid",
       signIn: "Kirish",
       signOut: "Chiqish",
     },
@@ -195,6 +223,33 @@ const messages: Record<Locale, Messages> = {
       coordinatesLabel: "Koordinatalar",
       relatedPlaces: "O'xshash joylar",
     },
+    aiGuide: {
+      title: "AI Gid",
+      subtitle: "Sayohat rejangizni tuzing yoki istalgan joy haqida qiziqarli ma'lumot oling",
+      planTab: "Sayohat rejasi",
+      placeTab: "Joy haqida so'rash",
+      planDescription: "Nishon hudud, davomiylik va kategoriyani tanlang — AI sizga real joylarga asoslangan reja tuzadi.",
+      placeDescription: "Boradigan yoki borgan joyingiz nomini yozing — AI o'sha joy haqida qiziqarli ma'lumot beradi.",
+      destinationLabel: "Hudud",
+      destinationPlaceholder: "Masalan: Samarqand, Xorazm, Farg'ona...",
+      daysLabel: "Kunlar soni",
+      categoryLabel: "Kategoriya",
+      categoryAny: "Barchasi",
+      queryLabel: "So'rov",
+      queryPlaceholder: "Masalan: Samarqandda 2 kun nima ko'rish kerak?",
+      queryPlacePlaceholder: "Masalan: Registon, Ichan-Qal'a, Chimgan...",
+      submit: "So'rash",
+      generating: "AI javob yozmoqda...",
+      errorRateLimited: "Juda ko'p so'rov yubordingiz. 1 soatdan so'ng urinib ko'ring.",
+      errorNotConfigured: "AI hozircha sozlanmagan. Administratorga murojaat qiling.",
+      errorUnknown: "Xatolik yuz berdi. Qayta urinib ko'ring.",
+      placeholders: [
+        "Samarqandda 3 kunlik reja tuz",
+        "Xiva va Buxoroni solishtir",
+        "Oilam bilan Chimgonda dam olish",
+        "Nurota tog'lari hikoyasi",
+      ],
+    },
   },
   ru: {
     nav: {
@@ -203,6 +258,7 @@ const messages: Record<Locale, Messages> = {
       regions: "Регионы",
       randomPlace: "Случайное место",
       map: "Карта",
+      aiGuide: "AI Гид",
       signIn: "Войти",
       signOut: "Выйти",
     },
@@ -285,6 +341,33 @@ const messages: Record<Locale, Messages> = {
       coordinatesLabel: "Координаты",
       relatedPlaces: "Похожие места",
     },
+    aiGuide: {
+      title: "AI Гид",
+      subtitle: "Составьте маршрут путешествия или узнайте интересные факты о любом месте",
+      planTab: "План поездки",
+      placeTab: "Спросить о месте",
+      planDescription: "Выберите регион, длительность и категорию — AI составит план на основе реальных мест.",
+      placeDescription: "Напишите название места (куда едете или где уже были) — AI расскажет интересные факты.",
+      destinationLabel: "Регион",
+      destinationPlaceholder: "Например: Самарканд, Хорезм, Фергана...",
+      daysLabel: "Длительность (дней)",
+      categoryLabel: "Категория",
+      categoryAny: "Все",
+      queryLabel: "Запрос",
+      queryPlaceholder: "Например: что посмотреть в Самарканде за 2 дня?",
+      queryPlacePlaceholder: "Например: Регистан, Ичан-Кала, Чимган...",
+      submit: "Спросить",
+      generating: "AI пишет ответ...",
+      errorRateLimited: "Слишком много запросов. Попробуйте через час.",
+      errorNotConfigured: "AI пока не настроен. Обратитесь к администратору.",
+      errorUnknown: "Произошла ошибка. Попробуйте ещё раз.",
+      placeholders: [
+        "Составь маршрут по Самарканду на 3 дня",
+        "Сравни Хиву и Бухару",
+        "Отдых с семьёй в Чимгане",
+        "История гор Нурата",
+      ],
+    },
   },
   en: {
     nav: {
@@ -293,6 +376,7 @@ const messages: Record<Locale, Messages> = {
       regions: "Regions",
       randomPlace: "Random place",
       map: "Map",
+      aiGuide: "AI Guide",
       signIn: "Sign in",
       signOut: "Sign out",
     },
@@ -373,6 +457,33 @@ const messages: Record<Locale, Messages> = {
       ratingLabel: "Rating",
       coordinatesLabel: "Coordinates",
       relatedPlaces: "Related places",
+    },
+    aiGuide: {
+      title: "AI Guide",
+      subtitle: "Plan your trip or get interesting insights about any place",
+      planTab: "Trip planner",
+      placeTab: "Ask about a place",
+      planDescription: "Pick a region, duration and category — AI builds a plan based on real places.",
+      placeDescription: "Type the name of a place (one you're visiting or already visited) — AI shares interesting facts.",
+      destinationLabel: "Region",
+      destinationPlaceholder: "E.g. Samarkand, Khorezm, Fergana...",
+      daysLabel: "Duration (days)",
+      categoryLabel: "Category",
+      categoryAny: "All",
+      queryLabel: "Prompt",
+      queryPlaceholder: "E.g. what to see in Samarkand in 2 days?",
+      queryPlacePlaceholder: "E.g. Registan, Ichan-Kala, Chimgan...",
+      submit: "Ask",
+      generating: "AI is writing...",
+      errorRateLimited: "Too many requests. Try again in an hour.",
+      errorNotConfigured: "AI is not configured yet. Contact the administrator.",
+      errorUnknown: "Something went wrong. Please try again.",
+      placeholders: [
+        "Plan a 3-day route around Samarkand",
+        "Compare Khiva and Bukhara",
+        "Family trip to Chimgan",
+        "The story of the Nurata mountains",
+      ],
     },
   },
 };

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Compass, Map, MapPin, Shuffle, User, Globe, Menu, X, LogOut } from "lucide-react";
+import { Home, Compass, Map, MapPin, Shuffle, User, Globe, Menu, X, LogOut, Sparkles } from "lucide-react";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { Locale } from "@/lib/i18n";
@@ -16,6 +16,7 @@ type Props = {
     regions: string;
     map: string;
     randomPlace: string;
+    aiGuide: string;
     signIn: string;
     signOut: string;
   };
@@ -98,6 +99,7 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
   const exploreHref = `/${locale}/explore`;
   const regionsHref = `/${locale}/regions`;
   const mapHref = `/${locale}/map`;
+  const aiGuideHref = `/${locale}/ai-guide`;
   const profileHref = user ? `/${locale}/profile` : `/${locale}/login`;
   const randomHref = randomSlug ? `/${locale}/places/${randomSlug}` : exploreHref;
   const localeHref = (l: Locale) => {
@@ -132,6 +134,11 @@ export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" 
       <Link href={mapHref} className={`nav-btn ${isActive(mapHref) ? "active" : ""}`}>
         <MapPin size={19} strokeWidth={2.1} />
         <span>{nav.map}</span>
+      </Link>
+
+      <Link href={aiGuideHref} className={`nav-btn ${isActive(aiGuideHref) ? "active" : ""}`}>
+        <Sparkles size={19} strokeWidth={2.1} />
+        <span>{nav.aiGuide}</span>
       </Link>
 
       <Link href={randomHref} className="nav-btn" aria-label={nav.randomPlace}>
