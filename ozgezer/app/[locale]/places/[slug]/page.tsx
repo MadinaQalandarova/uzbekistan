@@ -106,7 +106,24 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
     notRecommend:    { uz: "Tavsiya etmaydi",      ru: "Не рекомендует",    en: "Doesn't recommend" }[locale],
     anonymous:       { uz: "Anonim",               ru: "Аноним",            en: "Anonymous"         }[locale],
     detailedInfo:    { uz: "Batafsil ma'lumot",    ru: "Подробная информация", en: "Detailed info"  }[locale],
+    errorRateLimited:     { uz: "Juda ko'p so'rov yubordingiz. Birozdan so'ng urinib ko'ring.", ru: "Слишком много запросов. Попробуйте позже.", en: "Too many requests. Please try again later." }[locale],
+    errorInvalidReview:   { uz: "Izoh ma'lumotlari to'liq emas.", ru: "Данные отзыва заполнены не полностью.", en: "Review details are incomplete." }[locale],
+    errorCommentTooLong:  { uz: "Izoh juda uzun (1000 belgidan oshmasin).", ru: "Отзыв слишком длинный (не более 1000 символов).", en: "Review is too long (max 1000 characters)." }[locale],
+    errorDbNotConfigured: { uz: "Ma'lumotlar bazasi hozircha sozlanmagan.", ru: "База данных пока не настроена.", en: "The database is not configured yet." }[locale],
+    errorPlaceNotFound:   { uz: "Joy topilmadi.", ru: "Место не найдено.", en: "Place not found." }[locale],
+    errorUnknown:         { uz: "Kutilmagan xatolik yuz berdi.", ru: "Произошла непредвиденная ошибка.", en: "An unexpected error occurred." }[locale],
   };
+
+  const reviewError = query.error
+    ? {
+        ALREADY_REVIEWED: t.alreadyReviewed,
+        RATE_LIMITED: t.errorRateLimited,
+        INVALID_REVIEW: t.errorInvalidReview,
+        COMMENT_TOO_LONG: t.errorCommentTooLong,
+        DB_NOT_CONFIGURED: t.errorDbNotConfigured,
+        PLACE_NOT_FOUND: t.errorPlaceNotFound,
+      }[query.error] ?? t.errorUnknown
+    : null;
 
   return (
     <div className="py-8">
@@ -156,10 +173,14 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
           </div>
         </section>
       )}
-      {query.error === "ALREADY_REVIEWED" && (
+      {query.error && reviewError && (
         <section className="container-shell pb-2">
-          <div className="rounded-[1.5rem] border border-amber-200 bg-amber-50 p-4 text-sm text-amber-700">
-            {t.alreadyReviewed}
+          <div className={`rounded-[1.5rem] border p-4 text-sm ${
+            query.error === "ALREADY_REVIEWED"
+              ? "border-amber-200 bg-amber-50 text-amber-700"
+              : "border-red-200 bg-red-50 text-red-700"
+          }`}>
+            {reviewError}
           </div>
         </section>
       )}
