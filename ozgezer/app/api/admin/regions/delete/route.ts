@@ -8,7 +8,7 @@ import { normalizeLocale } from "@/lib/i18n";
 export async function POST(request: Request) {
   const formData = await request.formData();
   const locale = normalizeLocale(formData.get("locale"));
-  const slug = String(formData.get("slug") ?? "");
+  const slug = String(formData.get("slug") ?? "").trim();
   const cookieStore = await cookies();
   const session = readAdminSession(cookieStore.get(ADMIN_SESSION_COOKIE)?.value);
 
