@@ -220,6 +220,9 @@ export function LiquidNavbar({ locale, nav, user, randomSlugs, variant = "fixed"
               <Link href={mapHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(mapHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
                 <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><MapPin size={15} strokeWidth={2} /></span>{nav.map}
               </Link>
+              <Link href={aiGuideHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(aiGuideHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><Sparkles size={15} strokeWidth={2} /></span>{nav.aiGuide}
+              </Link>
               <Link href={randomHref} onClick={close} className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-[var(--color-ink)]/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]">
                 <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><Shuffle size={15} strokeWidth={2} /></span>{nav.randomPlace}
               </Link>
