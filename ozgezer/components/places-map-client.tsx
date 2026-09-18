@@ -10,17 +10,28 @@ import { PLACE_IMAGES } from "@/lib/place-stories";
 import type { PlaceRecord } from "@/lib/data/catalog";
 import type { Locale } from "@/lib/i18n";
 
+/* ── HTML escape (divIcon innerHTML ga ishonchsiz nom tushmasligi uchun) ────── */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 /* ── Custom marker icon ─────────────────────────────────────────────────────── */
 function makeIcon(selected: boolean, name: string) {
   const color = selected ? "#F59E0B" : "#2D6B6B";
   const glow = selected ? "#F59E0B" : "#2D6B6B";
   const w = selected ? 44 : 36;
   const h = selected ? 56 : 46;
+  const safeName = escapeHtml(name);
 
   return L.divIcon({
     html: `
       <div style="position:relative;width:${w}px;height:${h}px;display:flex;align-items:flex-start;justify-content:center"
-        role="button" tabindex="0" aria-label="${name}" title="${name}">
+        role="button" tabindex="0" aria-label="${safeName}" title="${safeName}">
         ${selected ? `
           <div style="
             position:absolute;top:50%;left:50%;
