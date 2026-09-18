@@ -8,10 +8,10 @@ type SiteFooterProps = {
   description: string;
 };
 
-const footerT: Record<Locale, { home: string; regions: string; map: string; rights: string }> = {
-  uz: { home: "Bosh sahifa", regions: "Viloyatlar", map: "Xarita", rights: "Barcha huquqlar himoyalangan." },
-  ru: { home: "Главная",     regions: "Регионы",    map: "Карта",  rights: "Все права защищены."         },
-  en: { home: "Home",        regions: "Regions",    map: "Map",    rights: "All rights reserved."        },
+const footerT: Record<Locale, { home: string; explore: string; regions: string; map: string; rights: string }> = {
+  uz: { home: "Bosh sahifa", explore: "Kashfiyot",  regions: "Viloyatlar", map: "Xarita", rights: "Barcha huquqlar himoyalangan." },
+  ru: { home: "Главная",     explore: "Обзор",      regions: "Регионы",    map: "Карта",  rights: "Все права защищены."         },
+  en: { home: "Home",        explore: "Explore",    regions: "Regions",    map: "Map",    rights: "All rights reserved."        },
 };
 
 export function SiteFooter({ locale, description }: SiteFooterProps) {
@@ -46,7 +46,7 @@ export function SiteFooter({ locale, description }: SiteFooterProps) {
               {t.home}
             </FooterLink>
             <FooterLink href={`/${locale}/explore`} icon={<Compass size={13} strokeWidth={2} />}>
-              Explore
+              {t.explore}
             </FooterLink>
             <FooterLink href={`/${locale}/regions`} icon={<Map size={13} strokeWidth={2} />}>
               {t.regions}
