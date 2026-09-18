@@ -21,7 +21,7 @@ type Props = {
     signOut: string;
   };
   user: { name: string | null; email: string } | null;
-  randomSlug?: string | null;
+  randomSlugs?: string[];
   variant?: "fixed" | "header";
 };
 
@@ -32,15 +32,24 @@ const uiLabels: Record<Locale, { theme: string; menu: string; close: string }> =
   en: { theme: "Toggle theme", menu: "Menu", close: "Close" },
 };
 
-export function LiquidNavbar({ locale, nav, user, randomSlug, variant = "fixed" }: Props) {
+export function LiquidNavbar({ locale, nav, user, randomSlugs, variant = "fixed" }: Props) {
   const pathname = usePathname();
   const labels = uiLabels[locale];
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [randomSlug, setRandomSlug] = useState<string | null>(randomSlugs?.[0] ?? null);
   const scrollRef = useRef(0);
 
   // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time portal mount
   useEffect(() => { setMounted(true); }, []);
+
+  // Tasodifiy joy: SSR da birinchi slug (hydration mismatch yo'q), keyin clientda random
+  useEffect(() => {
+    if (!randomSlugs || randomSlugs.length === 0) return;
+    const pick = randomSlugs[Math.floor(Math.random() * randomSlugs.length)] ?? randomSlugs[0];
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- client-only randomization
+    setRandomSlug(pick ?? null);
+  }, [randomSlugs]);
   const close = useCallback(() => setDrawerOpen(false), []);
 
   // Scroll lock iOS-safe
