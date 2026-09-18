@@ -1,15 +1,14 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-import { isLocale } from "@/lib/i18n";
+import { normalizeLocale } from "@/lib/i18n";
 import { prisma } from "@/lib/prisma";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { verifyPassword, createUserSession, USER_SESSION_COOKIE, isValidEmail } from "@/lib/user-auth";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const rawLocale = String(formData.get("locale") ?? "uz");
-  const locale = isLocale(rawLocale) ? rawLocale : "uz";
+  const locale = normalizeLocale(formData.get("locale"));
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   const password = String(formData.get("password") ?? "");
 

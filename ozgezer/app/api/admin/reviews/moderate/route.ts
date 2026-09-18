@@ -3,10 +3,11 @@ import { NextResponse } from "next/server";
 
 import { ADMIN_SESSION_COOKIE, readAdminSession } from "@/lib/auth";
 import { moderateReview } from "@/lib/data/catalog-service";
+import { normalizeLocale } from "@/lib/i18n";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const locale = String(formData.get("locale") ?? "uz");
+  const locale = normalizeLocale(formData.get("locale"));
   const reviewId = String(formData.get("reviewId") ?? "").trim();
   const action = formData.get("action") === "REJECTED" ? "REJECTED" : "APPROVED";
 

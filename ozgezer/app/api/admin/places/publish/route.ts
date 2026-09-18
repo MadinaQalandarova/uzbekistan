@@ -3,10 +3,11 @@ import { NextResponse } from "next/server";
 
 import { ADMIN_SESSION_COOKIE, readAdminSession } from "@/lib/auth";
 import { publishPlace, unpublishPlace } from "@/lib/data/catalog-service";
+import { normalizeLocale } from "@/lib/i18n";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const locale = String(formData.get("locale") ?? "uz");
+  const locale = normalizeLocale(formData.get("locale"));
   const slug = String(formData.get("slug") ?? "").trim();
   const action = String(formData.get("action") ?? "publish");
   const cookieStore = await cookies();

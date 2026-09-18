@@ -1,13 +1,14 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+import { normalizeLocale } from "@/lib/i18n";
 import { prisma } from "@/lib/prisma";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const locale = String(formData.get("locale") ?? "uz");
+  const locale = normalizeLocale(formData.get("locale"));
   const placeSlug = String(formData.get("placeSlug") ?? "").trim();
 
   const back = new URL(`/${locale}/places/${placeSlug}`, request.url);

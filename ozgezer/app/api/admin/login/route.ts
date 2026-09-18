@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-import { isLocale } from "@/lib/i18n";
+import { normalizeLocale } from "@/lib/i18n";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import {
   ADMIN_SESSION_COOKIE,
@@ -11,8 +11,7 @@ import {
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const rawLocale = String(formData.get("locale") ?? "uz");
-  const locale = isLocale(rawLocale) ? rawLocale : "uz";
+  const locale = normalizeLocale(formData.get("locale"));
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
 

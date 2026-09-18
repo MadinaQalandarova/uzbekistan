@@ -1,12 +1,13 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+import { normalizeLocale } from "@/lib/i18n";
 import { prisma } from "@/lib/prisma";
 import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const locale = String(formData.get("locale") ?? "uz");
+  const locale = normalizeLocale(formData.get("locale"));
   const cookieStore = await cookies();
   const session = readUserSession(cookieStore.get(USER_SESSION_COOKIE)?.value);
 

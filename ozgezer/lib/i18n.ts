@@ -492,6 +492,14 @@ export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);
 }
 
+/**
+ * Har qanday (ishonchsiz) qiymatdan xavfsiz locale ajratib oladi.
+ * Redirect path larida ishlatilmasa ochiq redirect (open redirect) xavfi bor.
+ */
+export function normalizeLocale(value: unknown, fallback: Locale = defaultLocale): Locale {
+  return isLocale(String(value ?? "")) ? (value as Locale) : fallback;
+}
+
 export function getMessages(locale: Locale): Messages {
   return messages[locale];
 }

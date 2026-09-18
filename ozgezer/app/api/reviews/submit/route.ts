@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+import { normalizeLocale } from "@/lib/i18n";
 import { prisma } from "@/lib/prisma";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
@@ -9,7 +10,7 @@ const MAX_COMMENT_LENGTH = 1000;
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const locale = String(formData.get("locale") ?? "uz");
+  const locale = normalizeLocale(formData.get("locale"));
   const placeSlug = String(formData.get("placeSlug") ?? "").trim();
   const rating = parseInt(String(formData.get("rating") ?? "0"), 10);
   const comment = String(formData.get("comment") ?? "").trim();
