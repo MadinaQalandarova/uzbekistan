@@ -146,7 +146,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
               <div className="rounded-[1.75rem] border border-[var(--color-ink)]/5 bg-white/75 p-3 shadow-[0_8px_28px_rgba(14,31,31,0.06)] backdrop-blur-md">
                 <p className="mb-2 flex items-center gap-1.5 px-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-ink)]/35">
                   <Search size={11} strokeWidth={2.2} />
-                  Tezkor qidiruv
+                  {messages.home.searchLabel}
                 </p>
                 <GradientSearch
                   locale={locale}
