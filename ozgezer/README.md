@@ -15,13 +15,14 @@ Live: https://uzbekistan-y1yg.vercel.app
 - **PWA**: manifest, service worker (faqat static assets cache), offline qo'llab-quvvatlash
 - **Tungi rejim**: qotmasdan instant almashadi
 - **Tasodifiy joy**: navbar CTA sizni kutilmagan maskanga olib boradi
+- **AI Gid**: Anthropic Claude orqali sayohat rejasi va istalgan joy haqida savol-javob (`ANTHROPIC_API_KEY` kerak)
 - **i18n**: uz/ru/en — sahifalar va kontent (heroTitle, aria-label, barcha UI matnlar) tarjima qilingan
 
 ## Texnologiyalar
 
 - Next.js 16 App Router (Turbopack), TypeScript, Tailwind CSS 4
 - Prisma 7 + PostgreSQL (Supabase) + `@prisma/adapter-pg`
-- Leaflet / React-Leaflet, next-intl i18n (uz/ru/en)
+- Leaflet / React-Leaflet, o'z i18n tizimi (`lib/i18n.ts`, uz/ru/en), Vercel AI SDK + Anthropic Claude
 - Vercel hosting
 
 ## Ishga tushirish
@@ -29,7 +30,7 @@ Live: https://uzbekistan-y1yg.vercel.app
 ```bash
 cd ozgezer
 npm install
-cp .env.example .env.local  # DATABASE_URL, DIRECT_URL, ADMIN_*, USER_SECRET
+cp ../.env.example .env.local  # DATABASE_URL, DIRECT_URL, ADMIN_*, USER_SECRET, ANTHROPIC_API_KEY
 npx prisma generate
 npx prisma migrate dev      # yoki prisma db push
 npm run prisma:seed         # 29 joy + 13 hudud + 6 kategoriya
@@ -44,12 +45,15 @@ npm run dev                 # http://localhost:3000
 | `ADMIN_EMAIL` / `ADMIN_PASSWORD` / `ADMIN_SECRET` | Admin kirish |
 | `USER_SECRET` | User sessiyalar uchun alohida kalit (bo'lmasa dev'da ADMIN_SECRET ishlatiladi; production'da majburiy) |
 | `NEXT_PUBLIC_SITE_URL` | Deployment URL (metadataBase uchun) |
+| `ANTHROPIC_API_KEY` | AI Gid uchun Anthropic Claude kaliti (bo'lmasa AI bo'limi ishlamaydi) |
+| `ANTHROPIC_MODEL` | Claude modeli (ixtiyoriy, default: `claude-haiku-4-5-20251001`) |
 
 ## Endpoint urlari (rate-limited)
 
 - `POST /api/places/view` — 1 view / 5 daqiqa / IP
 - `POST /api/reviews/submit` — 3 izoh / soat / user
 - `POST /api/places/save` — 20 saqlash / soat / user
+- `POST /api/ai/guide` — 10 so'rov / soat / IP
 
 ## Skriptlar
 
