@@ -8,7 +8,8 @@ Live: https://uzbekistan-y1yg.vercel.app
 
 - Katalogda: 29 ta joy (tarixiy, tabiat, dam olish, ovqat, bozorlar, muzeylar) — 13 ta hudud bo'ylab
 - Qidiruv tizimi : matn, viloyat va kategoriya bo'yicha filtrlash (viloyat/kategoriya nomi ham qidiriladi)
-- Xarita: Leaflet + Yandex Go / Google Maps yo'nalishlari
+- Xarita: Leaflet (CARTO Voyager / OSM) + Yandex Go (AppMetrica, 6 xona aniqlik) / Google Maps yo'nalishlari
+- Responsivlik: 320–1440px da horizontal overflow yo'q (scrollbar-gutter: stable, drawer scroll-lock tuzatildi)
 - Tungi rejim: qotmasdan almashadi (html background transition olib tashlandi, toggle instant)
 - Ro'yxatdan o'tish: isValidEmail + rate-limit + xato logi (UNKNOWN endi Vercel logs da ko'rinadi)
 - Xavfsizlik: alohida USER_SECRET/ADMIN_SECRET, HSTS, Permissions-Policy, rate-limit view/review/save endpointlarida

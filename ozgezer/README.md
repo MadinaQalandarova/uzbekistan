@@ -8,11 +8,12 @@ Live: https://uzbekistan-y1yg.vercel.app
 
 - **Katalog**: tarixiy, tabiat, dam olish, ovqat, bozorlar va muzeylar — 13 ta hudud bo'ylab
 - **Qidiruv**: matn, viloyat va kategoriya bo'yicha filtrlash (viloyat/kategoriya nomi ham qidiriladi)
-- **Xarita**: Leaflet + custom markerlar, Yandex Go / Google Maps yo'nalishlari
+- **Xarita**: Leaflet (CARTO Voyager / OSM) + Yandex Go (AppMetrica, 6 xona aniqlik) / Google Maps yo'nalishlari
 - **Sharhlar va reytinglar**: foydalanuvchi izohlari moderatsiyadan keyin chiqadi (PENDING), HTML sanitizatsiya, 1000 belgi limiti
 - **Ro'yxatdan o'tish**: email validatsiya, scrypt parol hashing, rate-limit
 - **Xavfsizlik**: alohida `USER_SECRET`/`ADMIN_SECRET`, HSTS, Permissions-Policy, rate-limit barcha yozuv endpointlarida (view/review/save)
 - **PWA**: manifest, service worker (faqat static assets cache), offline qo'llab-quvvatlash
+- **Responsivlik**: 320–1440px da horizontal overflow yo'q (scrollbar-gutter: stable, drawer scroll-lock tuzatildi)
 - **Tungi rejim**: qotmasdan instant almashadi
 - **Tasodifiy joy**: navbar CTA sizni kutilmagan maskanga olib boradi
 - **AI Gid**: Anthropic Claude orqali sayohat rejasi va istalgan joy haqida savol-javob (`ANTHROPIC_API_KEY` kerak)
