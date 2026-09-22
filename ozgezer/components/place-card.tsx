@@ -32,7 +32,8 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
               decoding="async"
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent" />
+            <div className="absolute inset-0 ring-inset ring-1 ring-white/10" />
           </>
         ) : (
           <div className="h-full bg-[linear-gradient(135deg,rgba(45,107,107,0.9),rgba(91,138,110,0.75),rgba(245,158,11,0.55))]" />
@@ -75,7 +76,7 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
         </div>
         <Link
           href={`/${locale}/places/${place.slug}`}
-          className="mt-auto inline-flex shrink-0 items-center gap-2 rounded-full border border-[var(--color-ink)]/10 bg-transparent px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="mt-auto inline-flex shrink-0 items-center gap-2 rounded-full border border-[var(--color-ink)]/10 bg-transparent px-4 py-2 text-sm font-semibold text-[var(--color-ink)] shadow-sm transition hover:border-[var(--color-sky)] hover:bg-[var(--color-sky)] hover:text-white hover:shadow-md active:scale-[0.98]"
         >
           <span>{ctaLabel}</span>
           <svg
