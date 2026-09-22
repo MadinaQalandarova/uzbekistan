@@ -20,32 +20,37 @@ export function TaxiButton({ latitude, longitude, placeName, locale }: TaxiButto
   /* Yandex Go rasmiy AppMetrica universal havolasi:
      - ilova o'rnatilgan bo'lsa → Yandex Go ilovasi (marshrut oldindan to'ldirilgan)
      - ilova yo'q bo'lsa → Yandex Go veb-sayti (tracking_id: 25395763362139037)
-     Manba: https://yandex.com/support/taxi-distr/en/api/deeplinks */
+     Manba: https://yandex.com/support/taxi-distr/en/api/deeplinks
+     Fix: koordinatalarni 6 xonagacha yaxlitlash + encode, lang fallback */
+  const lat = Number.isFinite(latitude) ? latitude.toFixed(6) : String(latitude);
+  const lon = Number.isFinite(longitude) ? longitude.toFixed(6) : String(longitude);
+  const yandexLang = locale === "uz" || locale === "ru" || locale === "en" ? locale : "ru";
   const yandexLink =
     `https://3.redirect.appmetrica.yandex.com/route` +
-    `?end-lat=${latitude}&end-lon=${longitude}` +
+    `?end-lat=${encodeURIComponent(lat)}&end-lon=${encodeURIComponent(lon)}` +
     `&tariffClass=econom&ref=ozgezer` +
-    `&appmetrica_tracking_id=25395763362139037&lang=${locale}`;
+    `&appmetrica_tracking_id=25395763362139037&lang=${yandexLang}`;
 
   /* Google Maps — har doim ishlaydi */
-  const googleLink = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
+  const googleLink = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${lat},${lon}`)}`;
 
   const t = labels[locale];
 
   return (
     <div className="grid grid-cols-2 gap-2 sm:gap-3">
-      {/* Yandex Go — Yandex tavsiyasiga ko'ra target="_blank" ishlatilmaydi */}
+      {/* Yandex Go — Yandex tavsiyasiga ko'ra target="_blank" ishlatilmaydi, lekin rel qo'shildi */}
       <a
         href={yandexLink}
+        rel="noopener"
         aria-label={`${t.taxi}: ${placeName}`}
-        className="group flex flex-col items-center gap-1.5 rounded-[1.25rem] border border-amber-200 bg-amber-50 px-3 py-3 text-center transition-all hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:bg-amber-100 hover:shadow-lg hover:shadow-amber-900/10 sm:gap-2 sm:px-4 sm:py-4"
+        className="group flex min-w-0 flex-col items-center gap-1.5 rounded-[1.25rem] border border-amber-200 bg-amber-50 px-2 py-3 text-center transition-all hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:bg-amber-100 hover:shadow-lg hover:shadow-amber-900/10 sm:gap-2 sm:px-4 sm:py-4"
       >
         <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-gold)] text-white shadow-md shadow-amber-500/25 transition-transform duration-300 group-hover:scale-110">
           <Car size={19} strokeWidth={1.75} />
         </span>
-        <div>
-          <p className="text-xs font-semibold leading-tight text-[var(--color-ink)]">{t.taxi}</p>
-          <p className="mt-0.5 text-[10px] text-[var(--color-ink)]/45">{t.sub}</p>
+        <div className="min-w-0">
+          <p className="truncate text-xs font-semibold leading-tight text-[var(--color-ink)]">{t.taxi}</p>
+          <p className="truncate text-[10px] text-[var(--color-ink)]/45">{t.sub}</p>
         </div>
       </a>
 
@@ -55,14 +60,14 @@ export function TaxiButton({ latitude, longitude, placeName, locale }: TaxiButto
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`${t.maps}: ${placeName}`}
-        className="group flex flex-col items-center gap-1.5 rounded-[1.25rem] border border-emerald-200 bg-emerald-50 px-3 py-3 text-center transition-all hover:-translate-y-0.5 hover:border-[var(--color-sky)] hover:bg-emerald-100 hover:shadow-lg hover:shadow-emerald-900/10 sm:gap-2 sm:px-4 sm:py-4"
+        className="group flex min-w-0 flex-col items-center gap-1.5 rounded-[1.25rem] border border-emerald-200 bg-emerald-50 px-2 py-3 text-center transition-all hover:-translate-y-0.5 hover:border-[var(--color-sky)] hover:bg-emerald-100 hover:shadow-lg hover:shadow-emerald-900/10 sm:gap-2 sm:px-4 sm:py-4"
       >
         <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-sky)] text-white shadow-md shadow-[var(--color-sky)]/25 transition-transform duration-300 group-hover:scale-110">
           <Map size={19} strokeWidth={1.75} />
         </span>
-        <div>
-          <p className="text-xs font-semibold leading-tight text-[var(--color-ink)]">{t.maps}</p>
-          <p className="mt-0.5 text-[10px] text-[var(--color-ink)]/45">{placeName}</p>
+        <div className="min-w-0">
+          <p className="truncate text-xs font-semibold leading-tight text-[var(--color-ink)]">{t.maps}</p>
+          <p className="truncate text-[10px] text-[var(--color-ink)]/45">{placeName}</p>
         </div>
       </a>
     </div>
