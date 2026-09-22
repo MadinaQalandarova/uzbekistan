@@ -155,41 +155,41 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                 />
                 <div className="mt-3 flex flex-wrap items-center gap-1.5 px-1">
                   <span className="text-xs font-medium text-[var(--color-ink)]/35">{messages.home.popularTag}</span>
-                  {[
-                    { label: "Registon", q: "Registon" },
-                    { label: "Chimgan", q: "Chimgan" },
-                    { label: "Xiva", q: "Xiva" },
-                  ].map((tag) => (
-                    <Link
-                      key={tag.q}
-                      href={`/${locale}/explore?q=${encodeURIComponent(tag.q)}`}
-                      className="rounded-full bg-[var(--color-mist)] px-3 py-1 text-xs font-medium text-[var(--color-ink)]/60 transition hover:bg-[var(--color-sky)] hover:text-white"
-                    >
-                      {tag.label}
-                    </Link>
-                  ))}
+                    {[
+                      { label: "Registon", q: "Registon" },
+                      { label: "Chimgan", q: "Chimgan" },
+                      { label: "Xiva", q: "Xiva" },
+                    ].map((tag) => (
+                      <Link
+                        key={tag.q}
+                        href={`/${locale}/explore?q=${encodeURIComponent(tag.q)}`}
+                        className="rounded-full bg-[var(--color-mist)] px-3 py-1 text-xs font-medium text-[var(--color-ink)]/60 shadow-sm transition hover:bg-[var(--color-sky)] hover:text-white hover:shadow-md active:scale-95"
+                      >
+                        {tag.label}
+                      </Link>
+                    ))}
                 </div>
               </div>
 
               {/* Mobile-only compact stats row — 4 ustun (desktop bilan mos) */}
-              <div className="grid grid-cols-4 gap-2 lg:hidden">
-                <div className="rounded-[1rem] bg-[var(--color-sky)]/10 px-2 py-2.5 text-center">
-                  <p className="text-base font-semibold text-[var(--color-sky)]">{regions.length}</p>
-                  <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsRegions}</p>
+                <div className="grid grid-cols-4 gap-2 lg:hidden">
+                  <div className="rounded-[1rem] border border-[var(--color-sky)]/10 bg-[var(--color-sky)]/10 px-2 py-2.5 text-center">
+                    <p className="text-base font-semibold text-[var(--color-sky)]">{regions.length}</p>
+                    <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsRegions}</p>
+                  </div>
+                  <div className="rounded-[1rem] border border-[var(--color-teal)]/10 bg-[var(--color-teal)]/10 px-2 py-2.5 text-center">
+                    <p className="text-base font-semibold text-[var(--color-teal)]">{allPlaces.length}</p>
+                    <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsPlaces}</p>
+                  </div>
+                  <div className="rounded-[1rem] border border-[var(--color-gold)]/10 bg-[var(--color-gold)]/10 px-2 py-2.5 text-center">
+                    <p className="text-base font-semibold text-[var(--color-gold)]">{categories.length}</p>
+                    <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsCategories}</p>
+                  </div>
+                  <div className="rounded-[1rem] border border-[var(--color-ink)]/5 bg-[var(--color-ink)]/5 px-2 py-2.5 text-center">
+                    <p className="text-base font-semibold text-[var(--color-ink)]">3</p>
+                    <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsLanguages}</p>
+                  </div>
                 </div>
-                <div className="rounded-[1rem] bg-[var(--color-teal)]/10 px-2 py-2.5 text-center">
-                  <p className="text-base font-semibold text-[var(--color-teal)]">{allPlaces.length}</p>
-                  <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsPlaces}</p>
-                </div>
-                <div className="rounded-[1rem] bg-[var(--color-gold)]/10 px-2 py-2.5 text-center">
-                  <p className="text-base font-semibold text-[var(--color-gold)]">{categories.length}</p>
-                  <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsCategories}</p>
-                </div>
-                <div className="rounded-[1rem] bg-[var(--color-ink)]/5 px-2 py-2.5 text-center">
-                  <p className="text-base font-semibold text-[var(--color-ink)]">3</p>
-                  <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsLanguages}</p>
-                </div>
-              </div>
             </div>
 
             {/* Stats card — desktop only — glass premium */}
