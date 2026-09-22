@@ -59,6 +59,7 @@ html[data-theme="dark"] {
 html {
   color-scheme: light;
   overflow-x: hidden;
+  scrollbar-gutter: stable;
   background:
     radial-gradient(circle at top,  rgba(45, 107, 107, 0.14), transparent 32%),
     radial-gradient(circle at 85% 10%, rgba(245, 158, 11, 0.09),  transparent 24%),

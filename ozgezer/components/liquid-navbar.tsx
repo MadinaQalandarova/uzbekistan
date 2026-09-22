@@ -52,21 +52,24 @@ export function LiquidNavbar({ locale, nav, user, randomSlugs, variant = "fixed"
   }, [randomSlugs]);
   const close = useCallback(() => setDrawerOpen(false), []);
 
-  // Scroll lock iOS-safe
+  // Scroll lock iOS-safe — scrollbar-gutter bilan mos
   useEffect(() => {
     if (!mounted) return;
     if (drawerOpen) {
       scrollRef.current = window.scrollY;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollRef.current}px`;
       document.body.style.width = "100%";
-      document.body.style.overflowY = "scroll";
+      document.body.style.overflowY = "hidden";
+      if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
     } else {
       const y = scrollRef.current;
       document.body.style.position = "";
       document.body.style.top = "";
       document.body.style.width = "";
       document.body.style.overflowY = "";
+      document.body.style.paddingRight = "";
       if (y) window.scrollTo(0, y);
     }
     return () => {
@@ -74,6 +77,7 @@ export function LiquidNavbar({ locale, nav, user, randomSlugs, variant = "fixed"
       document.body.style.top = "";
       document.body.style.width = "";
       document.body.style.overflowY = "";
+      document.body.style.paddingRight = "";
     };
   }, [drawerOpen, mounted]);
 
