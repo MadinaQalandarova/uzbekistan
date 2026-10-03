@@ -25,7 +25,7 @@ function renderInline(text: string): React.ReactNode[] {
     }
     if (part.startsWith("`") && part.endsWith("`")) {
       return (
-        <code key={i} className="rounded bg-[var(--color-mist)] px-1.5 py-0.5 text-[0.85em]">
+        <code key={i} className="rounded bg-[#0E1F1F]/10 px-1.5 py-0.5 text-[0.85em]">
           {part.slice(1, -1)}
         </code>
       );
@@ -76,7 +76,7 @@ function renderMarkdown(source: string): React.ReactNode {
     if (line.startsWith("### ")) {
       flushList();
       blocks.push(
-        <h4 key={`h-${blocks.length}`} className="mt-4 mb-1.5 text-sm font-semibold text-[var(--color-ink)]">
+        <h4 key={`h-${blocks.length}`} className="mt-4 mb-1.5 text-sm font-semibold text-[#0E1F1F]">
           {renderInline(line.slice(4))}
         </h4>,
       );
@@ -106,7 +106,7 @@ function renderMarkdown(source: string): React.ReactNode {
 
     flushList();
     blocks.push(
-      <p key={`p-${blocks.length}`} className="my-2 leading-7 text-[var(--color-ink)]/75">
+      <p key={`p-${blocks.length}`} className="my-2 leading-7 text-[#0E1F1F]/80">
         {renderInline(line)}
       </p>,
     );
@@ -335,18 +335,18 @@ export function AiGuideClient({ locale, t, categories, regions }: Props) {
         className="flex min-h-[22rem] flex-col rounded-[1.75rem] border border-[var(--color-ink)]/6 bg-[linear-gradient(160deg,#F8F7F3_0%,#FFFFFF_60%)] p-5 sm:p-6"
       >
         {response ? (
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 text-[#0E1F1F]">
             <div className="flex items-center gap-2">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-[var(--color-sky)] to-[var(--color-teal)]">
                 <Bot size={15} className="text-white" strokeWidth={2} />
               </span>
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]/40">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0E1F1F]/45">
                 O&apos;zGezer AI
               </span>
             </div>
             <div className="text-[0.95rem]">{renderMarkdown(response)}</div>
             {loading && (
-              <p className="text-xs text-[var(--color-ink)]/40">{"▌"}</p>
+              <p className="text-xs text-[#0E1F1F]/40">{"▌"}</p>
             )}
           </div>
         ) : (
@@ -358,7 +358,7 @@ export function AiGuideClient({ locale, t, categories, regions }: Props) {
               height={112}
               className="h-28 w-28 rounded-[1.75rem] object-cover shadow-lg shadow-[var(--color-sky)]/25 ring-1 ring-[var(--color-ink)]/10"
             />
-            <p className="max-w-xs text-sm leading-6 text-[var(--color-ink)]/45">
+            <p className="max-w-xs text-sm leading-6 text-[#0E1F1F]/60">
               {loading ? t.generating : (mode === "plan" ? t.planDescription : t.placeDescription)}
             </p>
           </div>
