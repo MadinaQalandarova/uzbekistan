@@ -294,8 +294,8 @@ export default function PlacesMapClient({ places, locale }: Props) {
                 rel="noopener"
                 aria-label={t.yandex}
                 className="flex w-full items-center justify-center gap-2 rounded-full
-                  border-2 border-[#FC3F1D] py-2.5 text-sm font-semibold text-[#FC3F1D]
-                  transition hover:bg-[#FC3F1D]/10 active:scale-[0.98]"
+                  bg-[#FC3F1D] py-2.5 text-sm font-semibold text-white
+                  shadow-md shadow-[#FC3F1D]/30 transition hover:bg-[#E0331B] active:scale-[0.98]"
               >
                 <Navigation size={14} strokeWidth={2.2} />
                 {t.yandex}
