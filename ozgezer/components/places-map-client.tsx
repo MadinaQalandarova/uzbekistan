@@ -232,7 +232,7 @@ export default function PlacesMapClient({ places, locale }: Props) {
             <div className="px-5 pb-5 pt-3">
               {/* Name + rating */}
               <div className="flex items-start justify-between gap-3">
-                <h3 className="display-title text-lg font-semibold leading-snug text-[var(--color-ink)]">
+                <h3 className="display-title text-lg font-semibold leading-snug text-[#0E1F1F]">
                   {selected.name[locale]}
                 </h3>
                 {selected.averageRating > 0 && (
@@ -247,7 +247,7 @@ export default function PlacesMapClient({ places, locale }: Props) {
               </div>
 
               {/* Meta row */}
-              <div className="mt-2.5 flex flex-wrap items-center gap-3 text-[11px] text-[var(--color-ink)]/50">
+              <div className="mt-2.5 flex flex-wrap items-center gap-3 text-[11px] text-[#0E1F1F]/60">
                 {selected.price && (
                   <span className="flex items-center gap-1">
                     <Banknote size={12} strokeWidth={1.8} />
@@ -278,10 +278,10 @@ export default function PlacesMapClient({ places, locale }: Props) {
               </div>
 
               {/* CTA */}
-              <div className="mt-4 flex gap-2">
+              <div className="mt-4 flex flex-col gap-2">
               <Link
                 href={`/${locale}/places/${selected.slug}`}
-                className="flex flex-1 items-center justify-center gap-2 rounded-full
+                className="flex w-full items-center justify-center gap-2 rounded-full
                   bg-[var(--color-sky)] py-2.5 text-sm font-semibold text-white
                   shadow-md shadow-[var(--color-sky)]/30 transition hover:opacity-90 active:scale-[0.98]"
               >
@@ -293,7 +293,7 @@ export default function PlacesMapClient({ places, locale }: Props) {
                 target="_blank"
                 rel="noopener"
                 aria-label={t.yandex}
-                className="flex flex-1 items-center justify-center gap-2 rounded-full
+                className="flex w-full items-center justify-center gap-2 rounded-full
                   border-2 border-[#FC3F1D] py-2.5 text-sm font-semibold text-[#FC3F1D]
                   transition hover:bg-[#FC3F1D]/10 active:scale-[0.98]"
               >
