@@ -5,7 +5,7 @@ import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Link from "next/link";
-import { Star, X, Clock, Banknote, ArrowRight, MapPin } from "lucide-react";
+import { Star, X, Clock, Banknote, ArrowRight, MapPin, Navigation } from "lucide-react";
 import { PLACE_IMAGES } from "@/lib/place-stories";
 import type { PlaceRecord } from "@/lib/data/catalog";
 import type { Locale } from "@/lib/i18n";
@@ -93,12 +93,17 @@ export default function PlacesMapClient({ places, locale }: Props) {
 
   const imageUrl = selected ? PLACE_IMAGES[selected.slug] ?? null : null;
 
-  const labels: Record<Locale, { all: string; view: string; close: string }> = {
-    uz: { all: "Barchasi", view: "Ko'rish", close: "Yopish" },
-    ru: { all: "Все",      view: "Открыть", close: "Закрыть" },
-    en: { all: "All",      view: "View",    close: "Close" },
+  const labels: Record<Locale, { all: string; view: string; close: string; yandex: string }> = {
+    uz: { all: "Barchasi", view: "Ko'rish", close: "Yopish", yandex: "Yandex'da ochish" },
+    ru: { all: "Все",      view: "Открыть", close: "Закрыть", yandex: "Открыть в Яндексе" },
+    en: { all: "All",      view: "View",    close: "Close",   yandex: "Open in Yandex" },
   };
   const t = labels[locale];
+
+  /* Yandex Maps deep-link: qizil marker bilan aniq nuqta (app o'rnatilgan bo'lsa ilovada ochiladi) */
+  const yandexUrl = selected
+    ? `https://yandex.com/maps/?pt=${selected.longitude},${selected.latitude},pm2rdm&z=16&l=map`
+    : "#";
 
   return (
     <div className="relative h-full w-full overflow-hidden rounded-[2rem]">
@@ -273,15 +278,29 @@ export default function PlacesMapClient({ places, locale }: Props) {
               </div>
 
               {/* CTA */}
+              <div className="mt-4 flex gap-2">
               <Link
                 href={`/${locale}/places/${selected.slug}`}
-                className="mt-4 flex items-center justify-center gap-2 rounded-full
+                className="flex flex-1 items-center justify-center gap-2 rounded-full
                   bg-[var(--color-sky)] py-2.5 text-sm font-semibold text-white
                   shadow-md shadow-[var(--color-sky)]/30 transition hover:opacity-90 active:scale-[0.98]"
               >
                 {t.view}
                 <ArrowRight size={14} strokeWidth={2.2} />
               </Link>
+              <a
+                href={yandexUrl}
+                target="_blank"
+                rel="noopener"
+                aria-label={t.yandex}
+                className="flex flex-1 items-center justify-center gap-2 rounded-full
+                  border-2 border-[#FC3F1D] py-2.5 text-sm font-semibold text-[#FC3F1D]
+                  transition hover:bg-[#FC3F1D]/10 active:scale-[0.98]"
+              >
+                <Navigation size={14} strokeWidth={2.2} />
+                {t.yandex}
+              </a>
+              </div>
             </div>
           </div>
         )}
