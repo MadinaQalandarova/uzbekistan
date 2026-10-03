@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import Image from "next/image";
 import { Bot, CalendarDays, MapPin, Send, Sparkles } from "lucide-react";
 
 import type { Locale } from "@/lib/i18n";
@@ -350,9 +351,13 @@ export function AiGuideClient({ locale, t, categories, regions }: Props) {
           </div>
         ) : (
           <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-sky)]/10">
-              <Sparkles size={24} className="text-[var(--color-sky)]" strokeWidth={2} />
-            </div>
+            <Image
+              src="/AiGidMiniRobot.jpg"
+              alt="AI Gid robot"
+              width={112}
+              height={112}
+              className="h-28 w-28 rounded-[1.75rem] object-cover shadow-lg shadow-[var(--color-sky)]/25 ring-1 ring-[var(--color-ink)]/10"
+            />
             <p className="max-w-xs text-sm leading-6 text-[var(--color-ink)]/45">
               {loading ? t.generating : (mode === "plan" ? t.planDescription : t.placeDescription)}
             </p>
