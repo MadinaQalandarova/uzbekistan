@@ -111,10 +111,10 @@ export default function PlacesMapClient({ places, locale }: Props) {
         attributionControl={false}
         style={{ height: "100%", width: "100%" }}
       >
-        {/* Beautiful CartoDB Voyager tile */}
+        {/* OSM standard tiles (kalitsiz, API key kerak emas) */}
         <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com">CARTO</a>'
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           maxZoom={19}
         />
 
@@ -290,7 +290,7 @@ export default function PlacesMapClient({ places, locale }: Props) {
       {/* ── Attribution ──────────────────────────────────────────── */}
       <div className="pointer-events-none absolute bottom-3 right-4 z-[700]
         rounded-full bg-white/70 px-2 py-0.5 text-[9px] text-[var(--color-ink)]/40 backdrop-blur-sm">
-        © OpenStreetMap · CARTO
+        © OpenStreetMap contributors
       </div>
     </div>
   );
