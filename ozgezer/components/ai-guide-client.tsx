@@ -356,7 +356,7 @@ export function AiGuideClient({ locale, t, categories, regions }: Props) {
               alt="AI Gid robot"
               width={112}
               height={112}
-              className="h-28 w-28 rounded-[1.75rem] object-cover shadow-lg shadow-[var(--color-sky)]/25 ring-1 ring-[var(--color-ink)]/10"
+              className="h-44 w-44 rounded-[2rem] object-cover shadow-lg shadow-[var(--color-sky)]/25 ring-1 ring-[var(--color-ink)]/10"
             />
             <p className="max-w-xs text-sm leading-6 text-[#0E1F1F]/60">
               {loading ? t.generating : (mode === "plan" ? t.planDescription : t.placeDescription)}
