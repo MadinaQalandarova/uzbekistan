@@ -270,8 +270,8 @@ export default function PlacesMapClient({ places, locale }: Props) {
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {selected.categoryTitles.slice(0, 3).map((cat) => (
                   <span key={cat[locale]}
-                    className="rounded-full border border-[var(--color-ink)]/8
-                      bg-[var(--color-mist)] px-2.5 py-0.5 text-[11px] font-medium text-[var(--color-ink)]/70">
+                    className="rounded-full border border-[#0E1F1F]/10
+                      bg-[#DFF0E9] px-2.5 py-0.5 text-[11px] font-medium text-[#0E1F1F]">
                     {cat[locale]}
                   </span>
                 ))}
