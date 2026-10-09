@@ -26,8 +26,9 @@ import {
   isPlaceSavedByUser,
 } from "@/lib/data/catalog-service";
 import { getMessages, isLocale, locales } from "@/lib/i18n";
-import { PLACE_IMAGES, PLACE_GALLERIES, PLACE_STORIES } from "@/lib/place-stories";
+import { PLACE_IMAGES, PLACE_GALLERIES, PLACE_STORIES, PLACE_PANORAMAS } from "@/lib/place-stories";
 import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
+import { VirtualTour } from "@/components/virtual-tour-loader";
 
 type PlaceDetailPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -90,6 +91,10 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
   const story = PLACE_STORIES[slug] ?? null;
   const imageUrl = PLACE_IMAGES[slug] ?? null;
   const galleryImages = PLACE_GALLERIES[slug] ?? (imageUrl ? [imageUrl] : []);
+  const panoramas = (PLACE_PANORAMAS[slug] ?? []).map((p) => ({
+    src: p.src,
+    title: p.label[locale as "uz" | "ru" | "en"] ?? p.label.uz,
+  }));
 
   /* ── Inline translations for strings not yet in i18n.ts ── */
   const t = {
@@ -97,7 +102,9 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
     saved:           { uz: "Saqlangan",             ru: "Сохранено",         en: "Saved"             }[locale],
     reviewedToast:   { uz: "Izohingiz qabul qilindi. Rahmat!", ru: "Ваш отзыв принят. Спасибо!", en: "Your review was submitted. Thank you!" }[locale],
     alreadyReviewed: { uz: "Siz bu joyga allaqachon izoh qo'shgansiz.", ru: "Вы уже оставили отзыв на это место.", en: "You have already reviewed this place." }[locale],
-    mapLabel:        { uz: "Xarita",               ru: "Карта",             en: "Map"               }[locale],
+    mapLabel:        { uz: "Xarita",               ru: "Карта",               en: "Map"               }[locale],
+    virtualTour:     { uz: "Virtual sayohat · 3D",  ru: "Виртуальный тур · 3D",  en: "Virtual tour · 3D"  }[locale],
+    dragHint:        { uz: "Barmoq yoki sichqon bilan aylantiring", ru: "Вращайте пальцем или мышью", en: "Drag to look around" }[locale],
     reviewsLabel:    { uz: "Izohlar",              ru: "Отзывы",            en: "Reviews"           }[locale],
     notRated:        { uz: "Hali baholanmagan",    ru: "Пока нет оценок",   en: "Not yet rated"     }[locale],
     reviews:         { uz: "ta izoh",              ru: "отзывов",           en: "reviews"           }[locale],
@@ -236,6 +243,15 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                   placeName={place.name[locale]}
                 />
               </div>
+
+              {panoramas.length > 0 && (
+                <div className="border-t border-[var(--color-ink)]/6 pt-5">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)]/40">
+                    {t.virtualTour}
+                  </p>
+                  <VirtualTour scenes={panoramas} hint={t.dragHint} />
+                </div>
+              )}
 
               <TaxiButton
                 locale={locale}

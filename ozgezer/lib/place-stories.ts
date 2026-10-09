@@ -87,6 +87,27 @@ export const PLACE_GALLERIES: Record<string, string[]> = {
   "miraki":               ["/places/miraki.webp"],
 };
 
+/**
+ * 360° panoramalar (Virtual sayohat, 3D ko'rinish).
+ * Rasm 2:1 equirectangular formatda /public/panoramas/ ichida bo'lishi kerak.
+ * Yangi panorama qo'shish: faylni public/panoramas/ ga tashlang va ro'yxatga qo'shing:
+ * "muqaddas-qadam": [{ src: "/panoramas/muqaddas-qadam-1.jpg", label: { uz: "Asosiy zal", ru: "Главный зал", en: "Main hall" } }]
+ * Hozircha faqat demo namuna (real 360° suratlar olingach almashtiriladi).
+ */
+export type PlacePanorama = {
+  src: string;
+  label: { uz: string; ru: string; en: string };
+};
+
+export const PLACE_PANORAMAS: Record<string, PlacePanorama[]> = {
+  "savitskiy-muzeyi": [
+    {
+      src: "/panoramas/demo-savitskiy-hall.png",
+      label: { uz: "Demo ko'rinish (namuna)", ru: "Демо-вид (пример)", en: "Demo view (sample)" },
+    },
+  ],
+};
+
 export const PLACE_STORIES: Record<string, PlaceStory> = {
   "itchan-kala": {
     quote: {
