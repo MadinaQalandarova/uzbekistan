@@ -62,6 +62,17 @@ npm run dev                 # http://localhost:3000
 - `npm run build` — `prisma generate && next build`
 - `npm run lint` — ESLint
 - `npm run prisma:seed` — seed ma'lumotlarini DB ga yuklash
+- `node scripts/generate-demo-panorama.mjs` — demo 360° panorama yasash (faqat namuna uchun)
+
+## Virtual 3D sayohat (360° panorama) qo'shish
+
+1. 360° kamerada **2:1 equirectangular** suratga oling (JPG, eni 2048+ px tavsiya etiladi)
+2. Faylni `public/panoramas/<slug>-1.jpg` nomi bilan saqlang
+3. `lib/place-stories.ts` dagi `PLACE_PANORAMAS` ga qo'shing:
+   `"savitskiy-muzeyi": [{ src: "/panoramas/savitskiy-1.jpg", label: { uz: "Asosiy zal", ru: "Главный зал", en: "Main hall" } }]`
+4. Joy sahifasida **"Virtual sayohat · 3D"** bo'limi avtomatik chiqadi (Pannellum viewer, kalitsiz, barmoq/sichqon bilan aylantiriladi)
+
+Demo uchun `public/panoramas/demo-savitskiy-hall.png` qo'yilgan — real suratlar chiqqach uni o'chiring va yozuvni yangilang.
 
 ## Hissa qo'shish
 
