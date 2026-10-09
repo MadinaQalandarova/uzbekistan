@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "pannellum/build/pannellum.css";
 import { SwRegistrar } from "@/components/sw-registrar";
 
 export const metadata: Metadata = {
