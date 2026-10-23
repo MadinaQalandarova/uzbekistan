@@ -330,7 +330,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                         key={i}
                         size={12}
                         strokeWidth={0}
-                        fill={i < review.rating ? "#F59E0B" : "#00000026"}
+                        fill={i < review.rating ? "#FF2D95" : "#00000026"}
                       />
                     ))}
                   </div>

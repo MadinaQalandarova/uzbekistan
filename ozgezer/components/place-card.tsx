@@ -36,7 +36,7 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
             <div className="absolute inset-0 ring-inset ring-1 ring-white/10" />
           </>
         ) : (
-          <div className="h-full bg-[linear-gradient(135deg,rgba(45,107,107,0.9),rgba(91,138,110,0.75),rgba(245,158,11,0.55))]" />
+          <div className="h-full bg-[linear-gradient(135deg,rgba(0,123,167,0.92),rgba(0,95,133,0.78),rgba(255,45,149,0.55))]" />
         )}
       </div>
 
@@ -47,7 +47,7 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
           </p>
           {place.averageRating > 0 && (
             <p className="flex items-center gap-1 text-sm font-semibold text-[var(--color-teal)]">
-              <Star size={13} strokeWidth={0} fill="#F59E0B" className="text-[#F59E0B]" />
+              <Star size={13} strokeWidth={0} fill="#FF2D95" className="text-[#FF2D95]" />
               {place.averageRating.toFixed(1)}
             </p>
           )}

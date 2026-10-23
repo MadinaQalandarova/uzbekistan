@@ -161,7 +161,7 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
                   <Star
                     size={18}
                     strokeWidth={filled ? 0 : 1.5}
-                    fill={filled ? "#F59E0B" : "currentColor"}
+                    fill={filled ? "#FF2D95" : "currentColor"}
                     className={filled ? "" : "text-[var(--color-ink)]/20"}
                   />
                 </button>

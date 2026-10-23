@@ -171,7 +171,7 @@ export function LiquidNavbar({ locale, nav, user, randomSlugs, variant = "fixed"
 
     </nav>
     {/* Hamburger — alohida, faqat telefonda */}
-    <button type="button" onClick={() => setDrawerOpen(true)} className="lg:hidden ml-1.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-ink)]/10 bg-white/90 text-[var(--color-ink)] shadow-md backdrop-blur-md transition hover:bg-white sm:ml-2 sm:h-10 sm:w-10 md:h-11 md:w-11 dark:border-white/15 dark:bg-[rgba(14,32,24,0.92)] dark:text-white" aria-label={labels.menu}>
+    <button type="button" onClick={() => setDrawerOpen(true)} className="lg:hidden ml-1.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-ink)]/10 bg-white/90 text-[var(--color-ink)] shadow-md backdrop-blur-md transition hover:bg-white sm:ml-2 sm:h-10 sm:w-10 md:h-11 md:w-11 dark:border-white/15 dark:bg-[rgba(10,10,10,0.92)] dark:text-white" aria-label={labels.menu}>
       <Menu size={16} strokeWidth={2.2} className="sm:hidden" />
       <Menu size={18} strokeWidth={2.2} className="hidden sm:block" />
     </button>

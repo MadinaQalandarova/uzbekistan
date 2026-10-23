@@ -114,8 +114,8 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
       <section className="container-shell py-3 sm:py-4 md:py-8">
         <div className="uzbek-hero relative overflow-hidden rounded-[1.5rem] border border-[var(--color-ink)]/8 px-4 py-6 sm:rounded-[2rem] sm:px-5 sm:py-8 md:rounded-[2.5rem] md:px-10 md:py-12">
           {/* Milliy girih burchak naqshi — nozik, suzani o'rniga */}
-          <div className="pointer-events-none absolute right-0 top-0 h-28 w-28 opacity-[0.09] md:h-36 md:w-36" aria-hidden style={{ backgroundImage: `repeating-linear-gradient(45deg, rgba(45,107,107,0.18) 0 1px, transparent 1px 12px), repeating-linear-gradient(-45deg, rgba(245,158,11,0.14) 0 1px, transparent 1px 12px), radial-gradient(circle at center, rgba(206,17,38,0.08) 1.5px, transparent 1.7px)`, backgroundSize: "24px 24px, 24px 24px, 24px 24px" }} />
-          <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-24 opacity-[0.07] md:h-32 md:w-32" aria-hidden style={{ backgroundImage: `repeating-linear-gradient(45deg, rgba(45,107,107,0.14) 0 1px, transparent 1px 10px), repeating-linear-gradient(-45deg, rgba(245,158,11,0.12) 0 1px, transparent 1px 10px)`, backgroundSize: "20px 20px, 20px 20px" }} />
+          <div className="pointer-events-none absolute right-0 top-0 h-28 w-28 opacity-[0.09] md:h-36 md:w-36" aria-hidden style={{ backgroundImage: `repeating-linear-gradient(45deg, rgba(0,123,167,0.2) 0 1px, transparent 1px 12px), repeating-linear-gradient(-45deg, rgba(255,45,149,0.16) 0 1px, transparent 1px 12px), radial-gradient(circle at center, rgba(206,17,38,0.08) 1.5px, transparent 1.7px)`, backgroundSize: "24px 24px, 24px 24px, 24px 24px" }} />
+          <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-24 opacity-[0.07] md:h-32 md:w-32" aria-hidden style={{ backgroundImage: `repeating-linear-gradient(45deg, rgba(0,123,167,0.16) 0 1px, transparent 1px 10px), repeating-linear-gradient(-45deg, rgba(255,45,149,0.14) 0 1px, transparent 1px 10px)`, backgroundSize: "20px 20px, 20px 20px" }} />
 
           <div className="fade-up relative grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div className="space-y-6 md:space-y-7">
@@ -227,7 +227,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                     <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsCategories}</p>
                   </div>
                   <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-ink)]/15 hover:bg-[var(--color-sand)] hover:shadow-sm">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#0E1F1F] text-white shadow-sm">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#0A0A0A] text-white shadow-sm">
                       <Globe size={14} strokeWidth={2} />
                     </div>
                     <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">3</p>

@@ -22,8 +22,8 @@ function escapeHtml(value: string): string {
 
 /* ── Custom marker icon ─────────────────────────────────────────────────────── */
 function makeIcon(selected: boolean, name: string) {
-  const color = selected ? "#F59E0B" : "#2D6B6B";
-  const glow = selected ? "#F59E0B" : "#2D6B6B";
+  const color = selected ? "#FF2D95" : "#007BA7";
+  const glow = selected ? "#FF2D95" : "#007BA7";
   const w = selected ? 44 : 36;
   const h = selected ? 56 : 46;
   const safeName = escapeHtml(name);
@@ -232,13 +232,13 @@ export default function PlacesMapClient({ places, locale }: Props) {
             <div className="px-5 pb-5 pt-3">
               {/* Name + rating */}
               <div className="flex items-start justify-between gap-3">
-                <h3 className="display-title text-lg font-semibold leading-snug text-[#0E1F1F]">
+                <h3 className="display-title text-lg font-semibold leading-snug text-[#0A0A0A]">
                   {selected.name[locale]}
                 </h3>
                 {selected.averageRating > 0 && (
                   <div className="flex flex-shrink-0 items-center gap-1 rounded-full
                     bg-amber-50 px-2.5 py-1 ring-1 ring-amber-200">
-                    <Star size={11} strokeWidth={0} fill="#F59E0B" className="text-amber-400" />
+                    <Star size={11} strokeWidth={0} fill="#FF2D95" className="text-amber-400" />
                     <span className="text-xs font-semibold text-amber-600">
                       {selected.averageRating.toFixed(1)}
                     </span>
@@ -247,7 +247,7 @@ export default function PlacesMapClient({ places, locale }: Props) {
               </div>
 
               {/* Meta row */}
-              <div className="mt-2.5 flex flex-wrap items-center gap-3 text-[11px] text-[#0E1F1F]/60">
+              <div className="mt-2.5 flex flex-wrap items-center gap-3 text-[11px] text-[#0A0A0A]/60">
                 {selected.price && (
                   <span className="flex items-center gap-1">
                     <Banknote size={12} strokeWidth={1.8} />
@@ -270,8 +270,8 @@ export default function PlacesMapClient({ places, locale }: Props) {
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {selected.categoryTitles.slice(0, 3).map((cat) => (
                   <span key={cat[locale]}
-                    className="rounded-full border border-[#0E1F1F]/10
-                      bg-[#DFF0E9] px-2.5 py-0.5 text-[11px] font-medium text-[#0E1F1F]">
+                    className="rounded-full border border-[#0A0A0A]/10
+                      bg-[#E3EDF3] px-2.5 py-0.5 text-[11px] font-medium text-[#0A0A0A]">
                     {cat[locale]}
                   </span>
                 ))}
