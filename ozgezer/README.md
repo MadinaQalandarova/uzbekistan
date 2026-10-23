@@ -2,7 +2,7 @@
 
 O'zGezer — O'zbekiston bo'ylab sayohat joylarini kashf etish platformasi. 29+ maskan, 13 ta hudud, 6 ta kategoriya, 3 til (uz/ru/en), sharhlar, reytinglar va interaktiv xarita bilan.
 
-Live: https://uzbekistan-y1yg.vercel.app
+Live: https://ozgezer.vercel.app
 
 ## Xususiyatlari
 
