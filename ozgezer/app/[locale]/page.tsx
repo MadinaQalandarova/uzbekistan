@@ -155,11 +155,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                 />
                 <div className="mt-3 flex flex-wrap items-center gap-1.5 px-1">
                   <span className="text-xs font-medium text-[var(--color-ink)]/35">{messages.home.popularTag}</span>
-                    {[
-                      { label: "Registon", q: "Registon" },
-                      { label: "Chimgan", q: "Chimgan" },
-                      { label: "Xiva", q: "Xiva" },
-                    ].map((tag) => (
+                    {messages.home.tags.map((tag) => (
                       <Link
                         key={tag.q}
                         href={`/${locale}/explore?q=${encodeURIComponent(tag.q)}`}

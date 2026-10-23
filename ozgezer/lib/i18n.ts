@@ -26,6 +26,7 @@ type HomeMessages = {
   searchPlaceholder: string;
   searchLabel: string;
   popularTag: string;
+  tags: { label: string; q: string }[];
   categoriesEyebrow: string;
   categoriesTitle: string;
   regionsEyebrow: string;
@@ -129,6 +130,11 @@ const messages: Record<Locale, Messages> = {
       searchPlaceholder: "Masalan: Registon, Chimgan, Ichan-Qal'a...",
       searchLabel: "Tezkor qidiruv",
       popularTag: "Mashhur:",
+      tags: [
+        { label: "Registon", q: "Registon" },
+        { label: "Chimgan", q: "Chimgan" },
+        { label: "Xiva", q: "Xiva" },
+      ],
       categoriesEyebrow: "Asosiy kategoriyalar",
       categoriesTitle: "Odamlar eng ko'p nimani qidiradi?",
       regionsEyebrow: "Region bo'yicha izlash",
@@ -220,6 +226,11 @@ const messages: Record<Locale, Messages> = {
       searchPlaceholder: "Например: Регистан, Чимган, Ичан-Кала...",
       searchLabel: "Быстрый поиск",
       popularTag: "Популярно:",
+      tags: [
+        { label: "Регистан", q: "Регистан" },
+        { label: "Чимган", q: "Чимган" },
+        { label: "Хива", q: "Хива" },
+      ],
       categoriesEyebrow: "Основные категории",
       categoriesTitle: "Что люди ищут чаще всего?",
       regionsEyebrow: "Поиск по регионам",
@@ -311,6 +322,11 @@ const messages: Record<Locale, Messages> = {
       searchPlaceholder: "For example: Registan, Chimgan, Ichan-Kala...",
       searchLabel: "Quick search",
       popularTag: "Popular:",
+      tags: [
+        { label: "Registan", q: "Registan" },
+        { label: "Chimgan", q: "Chimgan" },
+        { label: "Xiva", q: "Xiva" },
+      ],
       categoriesEyebrow: "Core categories",
       categoriesTitle: "What are people searching for most?",
       regionsEyebrow: "Browse by region",
