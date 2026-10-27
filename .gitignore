@@ -1,3 +1,5 @@
 # Agent worktrees (stale session copies — commit qilinmasin)
 .claude/worktrees/
 .claire/worktrees/
+.vercel
+.env*
