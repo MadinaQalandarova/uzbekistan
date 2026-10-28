@@ -36,7 +36,7 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
             <div className="absolute inset-0 ring-inset ring-1 ring-white/10" />
           </>
         ) : (
-          <div className="h-full bg-[linear-gradient(135deg,rgba(0,123,167,0.92),rgba(0,95,133,0.78),rgba(255,45,149,0.55))]" />
+          <div className="h-full bg-[linear-gradient(135deg,rgba(111,78,55,0.92),rgba(78,54,40,0.78),rgba(110,86,149,0.55))]" />
         )}
       </div>
 
@@ -47,7 +47,7 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
           </p>
           {place.averageRating > 0 && (
             <p className="flex items-center gap-1 text-sm font-semibold text-[var(--color-teal)]">
-              <Star size={13} strokeWidth={0} fill="#FF2D95" className="text-[#FF2D95]" />
+              <Star size={13} strokeWidth={0} fill="currentColor" className="text-[var(--color-gold)]" />
               {place.averageRating.toFixed(1)}
             </p>
           )}
@@ -76,7 +76,7 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
         </div>
         <Link
           href={`/${locale}/places/${place.slug}`}
-          className="mt-auto inline-flex shrink-0 items-center gap-2 rounded-full border border-[var(--color-ink)]/10 bg-transparent px-4 py-2 text-sm font-semibold text-[var(--color-ink)] shadow-sm transition hover:border-[var(--color-sky)] hover:bg-[var(--color-sky)] hover:text-white hover:shadow-md active:scale-[0.98]"
+          className="mt-auto inline-flex shrink-0 items-center gap-2 rounded-full border border-[var(--color-ink)]/10 bg-transparent px-4 py-2 text-sm font-semibold text-[var(--color-ink)] shadow-sm transition hover:border-[var(--color-sky)] hover:bg-[var(--color-sky)] hover:text-[var(--color-on-accent)] hover:shadow-md active:scale-[0.98]"
         >
           <span>{ctaLabel}</span>
           <svg

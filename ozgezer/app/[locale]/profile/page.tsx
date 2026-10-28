@@ -113,7 +113,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
             </div>
             <Link
               href={`/${locale}/explore`}
-              className="mt-1 inline-flex rounded-full bg-[var(--color-sky)] px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+              className="mt-1 inline-flex rounded-full bg-[var(--color-sky)] px-5 py-2.5 text-sm font-semibold text-[var(--color-on-accent)] transition hover:opacity-90"
             >
               {messages.explore.title}
             </Link>

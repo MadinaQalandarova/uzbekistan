@@ -136,7 +136,7 @@ export default async function AdminRegionsPage({
             <button
               type="submit"
               disabled={!canManage}
-              className="h-12 rounded-full bg-[var(--color-sky)] px-5 text-sm font-semibold text-white shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+              className="h-12 rounded-full bg-[var(--color-sky)] px-5 text-sm font-semibold text-[var(--color-on-accent)] shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
             >
               Region qo&apos;shish
             </button>

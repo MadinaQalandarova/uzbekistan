@@ -332,7 +332,8 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                         key={i}
                         size={12}
                         strokeWidth={0}
-                        fill={i < review.rating ? "#FF2D95" : "#00000026"}
+                        fill="currentColor"
+                        className={i < review.rating ? "text-[var(--color-gold)]" : "text-[var(--color-ink)]/15"}
                       />
                     ))}
                   </div>

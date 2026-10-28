@@ -238,7 +238,7 @@ export function LiquidNavbar({ locale, nav, user, randomSlugs, variant = "fixed"
               <p className="mb-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-ink)]/35">Til / Язык / Language</p>
               <div className="flex gap-2">
                 {(["uz", "ru", "en"] as const).map((l) => (
-                  <Link key={l} href={localeHref(l)} onClick={close} className={`flex-1 rounded-xl py-2.5 text-center text-xs font-semibold uppercase tracking-[0.18em] transition ${l === locale ? "bg-[var(--color-sky)] text-white shadow-sm" : "border border-[var(--color-ink)]/10 text-[var(--color-ink)]/50 hover:border-[var(--color-sky)]/50 hover:text-[var(--color-sky)]"}`}>{l}</Link>
+                  <Link key={l} href={localeHref(l)} onClick={close} className={`flex-1 rounded-xl py-2.5 text-center text-xs font-semibold uppercase tracking-[0.18em] transition ${l === locale ? "bg-[var(--color-sky)] text-[var(--color-on-accent)] shadow-sm" : "border border-[var(--color-ink)]/10 text-[var(--color-ink)]/50 hover:border-[var(--color-sky)]/50 hover:text-[var(--color-sky)]"}`}>{l}</Link>
                 ))}
               </div>
             </div>
@@ -258,13 +258,13 @@ export function LiquidNavbar({ locale, nav, user, randomSlugs, variant = "fixed"
             {user ? (
               <div className="space-y-2">
                 <Link href={`/${locale}/profile`} onClick={close} className="flex items-center gap-3 rounded-2xl border border-[var(--color-ink)]/8 bg-[var(--color-mist)] px-4 py-3 transition hover:border-[var(--color-sky)]/40">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-sky)]"><User size={14} className="text-white" strokeWidth={2.5} /></span>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-sky)]"><User size={14} className="text-[var(--color-on-accent)]" strokeWidth={2.5} /></span>
                   <div className="min-w-0"><p className="truncate text-sm font-semibold text-[var(--color-ink)]">{user.name ?? user.email.split("@")[0]}</p><p className="truncate text-[10px] text-[var(--color-ink)]/40">{user.email}</p></div>
                 </Link>
                 <form action="/api/auth/logout" method="post"><input type="hidden" name="locale" value={locale} /><button type="submit" className="flex w-full items-center gap-2 rounded-2xl border border-[var(--color-ink)]/8 px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)]/50 transition hover:border-red-300 hover:text-red-500"><LogOut size={13} strokeWidth={2} />{nav.signOut}</button></form>
               </div>
             ) : (
-              <Link href={`/${locale}/login`} onClick={close} className="flex items-center justify-center rounded-2xl bg-[var(--color-sky)] py-3 text-sm font-semibold text-white shadow-md shadow-[var(--color-sky)]/20 transition hover:opacity-90">{nav.signIn}</Link>
+              <Link href={`/${locale}/login`} onClick={close} className="flex items-center justify-center rounded-2xl bg-[var(--color-sky)] py-3 text-sm font-semibold text-[var(--color-on-accent)] shadow-md shadow-[var(--color-sky)]/20 transition hover:opacity-90">{nav.signIn}</Link>
             )}
           </div>
         </aside>

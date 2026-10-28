@@ -67,7 +67,7 @@ export function SiteFooter({ locale, description }: SiteFooterProps) {
                 href={`/${value}`}
                 className={`rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] transition ${
                   value === locale
-                    ? "bg-[var(--color-sky)] text-white"
+                    ? "bg-[var(--color-sky)] text-[var(--color-on-accent)]"
                     : "text-[var(--color-ink)]/40 hover:text-[var(--color-sky)]"
                 }`}
               >

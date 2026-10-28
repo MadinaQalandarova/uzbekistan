@@ -22,8 +22,8 @@ function escapeHtml(value: string): string {
 
 /* ── Custom marker icon ─────────────────────────────────────────────────────── */
 function makeIcon(selected: boolean, name: string) {
-  const color = selected ? "#FF2D95" : "#007BA7";
-  const glow = selected ? "#FF2D95" : "#007BA7";
+  const color = selected ? "#6E5695" : "#6F4E37";
+  const glow = selected ? "#6E5695" : "#6F4E37";
   const w = selected ? 44 : 36;
   const h = selected ? 56 : 46;
   const safeName = escapeHtml(name);
@@ -154,7 +154,7 @@ export default function PlacesMapClient({ places, locale }: Props) {
             onClick={() => { setActiveCategory("all"); setSelected(null); }}
             className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${
               activeCategory === "all"
-                ? "bg-[var(--color-sky)] text-white shadow-sm"
+                ? "bg-[var(--color-sky)] text-[var(--color-on-accent)] shadow-sm"
                 : "text-[var(--color-ink)]/55 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"
             }`}
           >
@@ -166,7 +166,7 @@ export default function PlacesMapClient({ places, locale }: Props) {
               onClick={() => { setActiveCategory(cat); setSelected(null); }}
               className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${
                 activeCategory === cat
-                  ? "bg-[var(--color-sky)] text-white shadow-sm"
+                  ? "bg-[var(--color-sky)] text-[var(--color-on-accent)] shadow-sm"
                   : "text-[var(--color-ink)]/55 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"
               }`}
             >
@@ -232,14 +232,14 @@ export default function PlacesMapClient({ places, locale }: Props) {
             <div className="px-5 pb-5 pt-3">
               {/* Name + rating */}
               <div className="flex items-start justify-between gap-3">
-                <h3 className="display-title text-lg font-semibold leading-snug text-[#0A0A0A]">
+                <h3 className="display-title text-lg font-semibold leading-snug text-[var(--color-ink)]">
                   {selected.name[locale]}
                 </h3>
                 {selected.averageRating > 0 && (
                   <div className="flex flex-shrink-0 items-center gap-1 rounded-full
-                    bg-amber-50 px-2.5 py-1 ring-1 ring-amber-200">
-                    <Star size={11} strokeWidth={0} fill="#FF2D95" className="text-amber-400" />
-                    <span className="text-xs font-semibold text-amber-600">
+                    bg-[var(--color-mist)] px-2.5 py-1 ring-1 ring-[var(--color-clay)]">
+                    <Star size={11} strokeWidth={0} fill="currentColor" className="text-[var(--color-gold)]" />
+                    <span className="text-xs font-semibold text-[var(--color-gold)]">
                       {selected.averageRating.toFixed(1)}
                     </span>
                   </div>
@@ -247,7 +247,7 @@ export default function PlacesMapClient({ places, locale }: Props) {
               </div>
 
               {/* Meta row */}
-              <div className="mt-2.5 flex flex-wrap items-center gap-3 text-[11px] text-[#0A0A0A]/60">
+              <div className="mt-2.5 flex flex-wrap items-center gap-3 text-[11px] text-[var(--color-ink)]/60">
                 {selected.price && (
                   <span className="flex items-center gap-1">
                     <Banknote size={12} strokeWidth={1.8} />
@@ -270,8 +270,8 @@ export default function PlacesMapClient({ places, locale }: Props) {
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {selected.categoryTitles.slice(0, 3).map((cat) => (
                   <span key={cat[locale]}
-                    className="rounded-full border border-[#0A0A0A]/10
-                      bg-[#E3EDF3] px-2.5 py-0.5 text-[11px] font-medium text-[#0A0A0A]">
+                    className="rounded-full border border-[var(--color-ink)]/10
+                      bg-[var(--color-mist)] px-2.5 py-0.5 text-[11px] font-medium text-[var(--color-ink)]">
                     {cat[locale]}
                   </span>
                 ))}
@@ -282,7 +282,7 @@ export default function PlacesMapClient({ places, locale }: Props) {
               <Link
                 href={`/${locale}/places/${selected.slug}`}
                 className="flex w-full items-center justify-center gap-2 rounded-full
-                  bg-[var(--color-sky)] py-2.5 text-sm font-semibold text-white
+                  bg-[var(--color-sky)] py-2.5 text-sm font-semibold text-[var(--color-on-accent)]
                   shadow-md shadow-[var(--color-sky)]/30 transition hover:opacity-90 active:scale-[0.98]"
               >
                 {t.view}

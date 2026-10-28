@@ -3,8 +3,8 @@
   position: relative;
   border-radius: 50px;
   padding: 3px;
-  /* O'zGezer Fergana Jade — jade → sage → amber */
-  background: linear-gradient(135deg, #007BA7 0%, #005F85 55%, #FF2D95 100%);
+  /* O'zGezer Mocha Atelier — mocha → lavender */
+  background: linear-gradient(135deg, #6F4E37 0%, #4E3628 55%, #6E5695 100%);
   transition:
     background 0.6s ease,
     box-shadow 0.4s ease,
@@ -16,7 +16,7 @@
 .gs-wrapper:hover,
 .gs-wrapper:focus-within {
   width: 280px;
-  box-shadow: 0 0 18px rgba(0, 123, 167, 0.4);
+  box-shadow: 0 0 18px rgba(111, 78, 55, 0.42);
 }
 
 /* Ichki oq blok */
@@ -43,7 +43,7 @@
   background: transparent;
   padding: 0 44px 0 18px;
   font-size: 14px;
-  color: #1e293b;
+  color: #2A211C;
   opacity: 0;
   transition: opacity 0.3s ease 0.1s;
 }
@@ -54,7 +54,7 @@
 }
 
 .gs-input::placeholder {
-  color: #94a3b8;
+  color: #9A8B80;
 }
 
 /* Tugma / ikonka */
@@ -67,7 +67,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #334155;
+  color: #5C4A3E;
   font-size: 16px;
   border: none;
   background: transparent;
@@ -87,18 +87,18 @@
 .gs-wrapper:has(.gs-input:not(:placeholder-shown)) {
   background: linear-gradient(
     135deg,
-    #007BA7 0%,
-    #2E9FC9 25%,
-    #FF2D95 55%,
-    #FF5CA8 75%,
-    #007BA7 100%
+    #6F4E37 0%,
+    #B78E6F 25%,
+    #6E5695 55%,
+    #B49BE0 75%,
+    #6F4E37 100%
   );
-  box-shadow: 0 0 24px rgba(255, 45, 149, 0.5);
+  box-shadow: 0 0 24px rgba(110, 86, 149, 0.5);
 }
 
 .gs-wrapper.gs-has-value .gs-btn,
 .gs-wrapper:has(.gs-input:not(:placeholder-shown)) .gs-btn {
-  color: #FF2D95;
+  color: #6E5695;
 }
 
 /* ── Tugma milliy animatsiyasi — hoverda yaltiroq + puls ── */
@@ -125,16 +125,16 @@
 
 /* Dark mode — ichki blok moslashuvi */
 [data-theme="dark"] .gs-box {
-  background-color: #1e293b;
+  background-color: #241E1A;
 }
 [data-theme="dark"] .gs-input {
-  color: #e2e8f0;
+  color: #EDE7E1;
 }
 [data-theme="dark"] .gs-input::placeholder {
-  color: #64748b;
+  color: #9A8B80;
 }
 [data-theme="dark"] .gs-btn {
-  color: #94a3b8;
+  color: #B9A99C;
 }
 
 /* ── Hero varianti — doim keng, bitta qidiruv ── */
@@ -159,7 +159,7 @@
 .gs-wrapper--hero:focus-within {
   width: 100%;
   max-width: 520px;
-  box-shadow: 0 0 22px rgba(0, 123, 167, 0.3);
+  box-shadow: 0 0 22px rgba(111, 78, 55, 0.35);
 }
 
 /* Kichik ekranlarda kengayish cheklovi */

@@ -151,7 +151,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
             {/* Submit */}
             <button
               type="submit"
-              className="flex h-12 w-full items-center justify-center gap-2 rounded-[1rem] bg-[var(--color-sky)] px-6 text-sm font-semibold text-white transition hover:opacity-90 md:w-auto"
+              className="flex h-12 w-full items-center justify-center gap-2 rounded-[1rem] bg-[var(--color-sky)] px-6 text-sm font-semibold text-[var(--color-on-accent)] transition hover:opacity-90 md:w-auto"
             >
               <SlidersHorizontal size={14} strokeWidth={2.2} />
               {messages.explore.searchButton}
@@ -235,7 +235,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
                 <p className="font-semibold text-[var(--color-ink)]">{messages.explore.noResults}</p>
                 <Link
                   href={`/${locale}/explore`}
-                  className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-sky)] px-5 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+                  className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-sky)] px-5 py-2 text-sm font-semibold text-[var(--color-on-accent)] transition hover:opacity-90"
                 >
                   {messages.explore.resetFilters}
                 </Link>

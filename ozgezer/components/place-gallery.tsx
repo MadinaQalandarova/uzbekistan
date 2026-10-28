@@ -76,7 +76,7 @@ export function PlaceGallery({ images, alt, chips, locale = "uz" }: PlaceGallery
 
   return (
     <div
-      className="relative min-h-[18rem] overflow-hidden bg-[linear-gradient(140deg,#007BA7_0%,#005F85_55%,#FF2D95_100%)] sm:min-h-[22rem]"
+      className="relative min-h-[18rem] overflow-hidden bg-[linear-gradient(140deg,#6F4E37_0%,#4E3628_55%,#6E5695_100%)] sm:min-h-[22rem]"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
       aria-label={t.gallery}

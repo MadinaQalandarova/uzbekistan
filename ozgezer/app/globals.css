@@ -11,36 +11,38 @@
 .leaflet-popup { display: none !important; }
 .leaflet-container { font-family: inherit; }
 
-/* ─── Neon Cerulean — Light mode tokens ─────────────────────────────────────── */
+/* ─── Mocha Atelier — Light mode tokens ─────────────────────────────────────── */
 :root {
-  --background:   #F2F6F9;
-  --foreground:   #0A0A0A;
+  --background:   #E5E4E2;
+  --foreground:   #2A211C;
 
-  /* Brand palette — Jet Black / Cerulean Blue / Neon Rose */
-  --color-sky:    #007BA7;   /* cerulean — primary action / eyebrow */
-  --color-teal:   #005F85;   /* deep cerulean — secondary eyebrow */
-  --color-gold:   #FF2D95;   /* neon rose — accent / CTA */
+  /* Brand palette — Mocha Brown / Platinum Silver / Pale Lavender */
+  --color-sky:    #6F4E37;   /* mocha brown — primary action / eyebrow */
+  --color-teal:   #4E3628;   /* deep mocha — secondary eyebrow */
+  --color-gold:   #6E5695;   /* deep lavender — accent / CTA */
 
   /* Surface tokens */
-  --color-ink:    #0A0A0A;   /* jet black — dark text / headings */
-  --color-mist:   #E3EDF3;   /* input / chip bg */
-  --color-sand:   #D6E8F2;   /* hover tint */
-  --color-clay:   #B4D6E6;   /* muted decorative */
+  --color-ink:    #2A211C;   /* warm ink — dark text / headings */
+  --color-mist:   #E6E0F0;   /* pale lavender — input / chip bg */
+  --color-sand:   #F1EDF7;   /* lavender hover tint */
+  --color-clay:   #CEC3E2;   /* muted lavender — decorative */
+  --color-on-accent: #FFFFFF; /* text/icon on mocha & lavender surfaces */
 }
 
-/* ─── Neon Cerulean — Dark mode tokens ──────────────────────────────────────── */
+/* ─── Mocha Atelier — Dark mode tokens ──────────────────────────────────────── */
 html[data-theme="dark"] {
-  --background:   #0A0A0A;
-  --foreground:   #E9F2F7;
+  --background:   #171310;
+  --foreground:   #EDE7E1;
 
-  --color-sky:    #2E9FC9;   /* cerulean lightened for contrast */
-  --color-teal:   #66C1E0;   /* soft cerulean lightened */
-  --color-gold:   #FF5CA8;   /* neon rose lightened */
+  --color-sky:    #B78E6F;   /* mocha lightened for contrast */
+  --color-teal:   #D9BCA6;   /* soft mocha lightened */
+  --color-gold:   #B49BE0;   /* lavender lightened */
 
-  --color-ink:    #E9F2F7;
-  --color-mist:   #141414;
-  --color-sand:   #101416;
-  --color-clay:   #1C2429;
+  --color-ink:    #EDE7E1;
+  --color-mist:   #241E1A;
+  --color-sand:   #1C1714;
+  --color-clay:   #3A302A;
+  --color-on-accent: #1B1512; /* near-black on lightened accent fills */
 }
 
 /* ─── Tailwind theme bridge ──────────────────────────────────────────────────── */
@@ -61,17 +63,17 @@ html {
   overflow-x: hidden;
   scrollbar-gutter: stable;
   background:
-    radial-gradient(circle at top,  rgba(0, 123, 167, 0.14), transparent 32%),
-    radial-gradient(circle at 85% 10%, rgba(255, 45, 149, 0.09),  transparent 24%),
-    linear-gradient(180deg, #F2F6F9 0%, #E7EEF4 100%);
+    radial-gradient(circle at top,  rgba(111, 78, 55, 0.14), transparent 32%),
+    radial-gradient(circle at 85% 10%, rgba(110, 86, 149, 0.09),  transparent 24%),
+    linear-gradient(180deg, #E5E4E2 0%, #DBD9D5 100%);
   /* background transition olib tashlandi — tundan kunga o'tishda qotishni keltirib chiqardi */
 }
 html[data-theme="dark"] {
   color-scheme: dark;
   background:
-    radial-gradient(circle at top,  rgba(46, 159, 201, 0.14), transparent 32%),
-    radial-gradient(circle at 85% 10%, rgba(255, 92, 168, 0.08),  transparent 24%),
-    linear-gradient(180deg, #0A0A0A 0%, #0D0F11 100%);
+    radial-gradient(circle at top,  rgba(183, 142, 111, 0.14), transparent 32%),
+    radial-gradient(circle at 85% 10%, rgba(180, 155, 224, 0.08),  transparent 24%),
+    linear-gradient(180deg, #171310 0%, #1C1714 100%);
 }
 
 body {
@@ -88,7 +90,7 @@ a {
 }
 
 ::selection {
-  background: rgba(0, 123, 167, 0.22);
+  background: rgba(111, 78, 55, 0.22);
 }
 
 /* ─── Layout utilities ──────────────────────────────────────────────────────── */
@@ -102,16 +104,16 @@ a {
 
 /* ─── Section card ──────────────────────────────────────────────────────────── */
 .section-card {
-  border: 1px solid rgba(0, 123, 167, 0.1);
+  border: 1px solid rgba(111, 78, 55, 0.1);
   background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 18px 50px rgba(10, 10, 10, 0.08);
+  box-shadow: 0 18px 50px rgba(42, 33, 28, 0.08);
   backdrop-filter: blur(12px);
   transition: background 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
 }
 
 html[data-theme="dark"] .section-card {
-  border-color: rgba(46, 159, 201, 0.15);
-  background: rgba(15, 15, 15, 0.85);
+  border-color: rgba(183, 142, 111, 0.15);
+  background: rgba(23, 19, 16, 0.85);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
 }
 @media (prefers-reduced-motion: reduce) {
@@ -126,25 +128,25 @@ html[data-theme="dark"] .section-card {
 /* ─── Decorative patterns ───────────────────────────────────────────────────── */
 .mesh-panel {
   background:
-    radial-gradient(circle at top left,    rgba(0, 123, 167, 0.16), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(255, 45, 149, 0.14), transparent 30%),
-    linear-gradient(135deg, rgba(255,255,255,0.92), rgba(227,237,243,0.92));
+    radial-gradient(circle at top left,    rgba(111, 78, 55, 0.16), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(110, 86, 149, 0.14), transparent 30%),
+    linear-gradient(135deg, rgba(255,255,255,0.92), rgba(230,224,240,0.92));
 }
 
 html[data-theme="dark"] .mesh-panel {
   background:
-    radial-gradient(circle at top left,    rgba(46, 159, 201, 0.16), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(255, 92, 168, 0.12), transparent 30%),
-    linear-gradient(135deg, rgba(15,15,15,0.94), rgba(10,10,10,0.92));
+    radial-gradient(circle at top left,    rgba(183, 142, 111, 0.16), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(180, 155, 224, 0.12), transparent 30%),
+    linear-gradient(135deg, rgba(23,19,16,0.94), rgba(23,19,16,0.92));
 }
 
 .uzbek-hero {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at top left,  rgba(0, 123, 167, 0.16), transparent 28%),
-    radial-gradient(circle at 78% 22%,   rgba(255, 45, 149, 0.12), transparent 20%),
-    linear-gradient(135deg, rgba(255,255,255,0.94), rgba(227,237,243,0.9));
+    radial-gradient(circle at top left,  rgba(111, 78, 55, 0.16), transparent 28%),
+    radial-gradient(circle at 78% 22%,   rgba(110, 86, 149, 0.12), transparent 20%),
+    linear-gradient(135deg, rgba(255,255,255,0.94), rgba(230,224,240,0.9));
 }
 /* Milliy ikat / suzani yengil naqshi — hero ustiga */
 .uzbek-hero::after {
@@ -154,18 +156,18 @@ html[data-theme="dark"] .mesh-panel {
   pointer-events: none;
   opacity: 0.055;
   background-image:
-    radial-gradient(circle at 12px 12px, rgba(255,45,149,0.9) 1.2px, transparent 1.4px),
-    radial-gradient(circle at 36px 36px, rgba(0,123,167,0.85) 1.1px, transparent 1.3px),
-    linear-gradient(45deg, transparent 48%, rgba(0,123,167,0.08) 50%, transparent 52%),
-    linear-gradient(-45deg, transparent 48%, rgba(255,45,149,0.07) 50%, transparent 52%);
+    radial-gradient(circle at 12px 12px, rgba(110,86,149,0.9) 1.2px, transparent 1.4px),
+    radial-gradient(circle at 36px 36px, rgba(111,78,55,0.85) 1.1px, transparent 1.3px),
+    linear-gradient(45deg, transparent 48%, rgba(111,78,55,0.08) 50%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(110,86,149,0.07) 50%, transparent 52%);
   background-size: 48px 48px, 48px 48px, 24px 24px, 24px 24px;
 }
 
 html[data-theme="dark"] .uzbek-hero {
   background:
-    radial-gradient(circle at top left,  rgba(46, 159, 201, 0.16), transparent 28%),
-    radial-gradient(circle at 78% 22%,   rgba(255, 92, 168, 0.10), transparent 20%),
-    linear-gradient(135deg, rgba(15,15,15,0.95), rgba(10,10,10,0.92));
+    radial-gradient(circle at top left,  rgba(183, 142, 111, 0.16), transparent 28%),
+    radial-gradient(circle at 78% 22%,   rgba(180, 155, 224, 0.10), transparent 20%),
+    linear-gradient(135deg, rgba(23,19,16,0.95), rgba(23,19,16,0.92));
 }
 html[data-theme="dark"] .uzbek-hero::after {
   opacity: 0.08;
@@ -173,19 +175,19 @@ html[data-theme="dark"] .uzbek-hero::after {
 
 .national-band {
   background:
-    linear-gradient(90deg, rgba(0,123,167,0.9),  rgba(0,123,167,0.9))  top/100%    22% no-repeat,
+    linear-gradient(90deg, rgba(111,78,55,0.9),  rgba(111,78,55,0.9))  top/100%    22% no-repeat,
     linear-gradient(90deg, rgba(255,255,255,0.85), rgba(255,255,255,0.85)) center/100% 24% no-repeat,
-    linear-gradient(90deg, rgba(255,45,149,0.85),  rgba(255,45,149,0.85))  bottom/100% 22% no-repeat;
-  border: 1px solid rgba(10, 10, 10, 0.08);
-  box-shadow: 0 14px 40px rgba(10, 10, 10, 0.12);
+    linear-gradient(90deg, rgba(110,86,149,0.85),  rgba(110,86,149,0.85))  bottom/100% 22% no-repeat;
+  border: 1px solid rgba(42, 33, 28, 0.08);
+  box-shadow: 0 14px 40px rgba(42, 33, 28, 0.12);
 }
 
 html[data-theme="dark"] .national-band {
   background:
-    linear-gradient(90deg, rgba(46,159,201,0.85),  rgba(46,159,201,0.85))  top/100%    22% no-repeat,
-    linear-gradient(90deg, rgba(24,24,24,0.85),     rgba(24,24,24,0.85))    center/100% 24% no-repeat,
-    linear-gradient(90deg, rgba(255,92,168,0.8), rgba(255,92,168,0.8)) bottom/100% 22% no-repeat;
-  border-color: rgba(46,159,201,0.2);
+    linear-gradient(90deg, rgba(183,142,111,0.85),  rgba(183,142,111,0.85))  top/100%    22% no-repeat,
+    linear-gradient(90deg, rgba(26,22,19,0.85),     rgba(26,22,19,0.85))    center/100% 24% no-repeat,
+    linear-gradient(90deg, rgba(180,155,224,0.8), rgba(180,155,224,0.8)) bottom/100% 22% no-repeat;
+  border-color: rgba(183,142,111,0.2);
 }
 
 .suzani-orb {
@@ -196,10 +198,10 @@ html[data-theme="dark"] .national-band {
     radial-gradient(circle, rgba(255,255,255,0.12) 0 24%, transparent 25%),
     conic-gradient(
       from 0deg,
-      rgba(0,   123, 167, 0.95),
-      rgba(0,   95, 133, 0.85),
-      rgba(255, 45, 149, 0.90),
-      rgba(0,   123, 167, 0.95)
+      rgba(111, 78, 55, 0.95),
+      rgba(78, 54, 40, 0.85),
+      rgba(110, 86, 149, 0.90),
+      rgba(111, 78, 55, 0.95)
     );
   mask: radial-gradient(circle, transparent 0 18%, black 20% 100%);
   filter: blur(0.2px);
@@ -207,31 +209,31 @@ html[data-theme="dark"] .national-band {
 
 .suzani-grid {
   background-image:
-    radial-gradient(circle at center, rgba(255,45,149,0.14) 0 10%, transparent 11%),
-    linear-gradient(rgba(0,123,167,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,123,167,0.07) 1px, transparent 1px);
+    radial-gradient(circle at center, rgba(110,86,149,0.14) 0 10%, transparent 11%),
+    linear-gradient(rgba(111,78,55,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(111,78,55,0.07) 1px, transparent 1px);
   background-size: 48px 48px, 24px 24px, 24px 24px;
 }
 
 html[data-theme="dark"] .suzani-grid {
   background-image:
-    radial-gradient(circle at center, rgba(255,92,168,0.10) 0 10%, transparent 11%),
-    linear-gradient(rgba(46,159,201,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(46,159,201,0.08) 1px, transparent 1px);
+    radial-gradient(circle at center, rgba(180,155,224,0.10) 0 10%, transparent 11%),
+    linear-gradient(rgba(183,142,111,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(183,142,111,0.08) 1px, transparent 1px);
   background-size: 48px 48px, 24px 24px, 24px 24px;
 }
 
 .fine-grid {
   background-image:
-    linear-gradient(rgba(10,10,10,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(10,10,10,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(42,33,28,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42,33,28,0.06) 1px, transparent 1px);
   background-size: 26px 26px;
 }
 
 html[data-theme="dark"] .fine-grid {
   background-image:
-    linear-gradient(rgba(233,242,247,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(233,242,247,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(237,231,225,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(237,231,225,0.05) 1px, transparent 1px);
   background-size: 26px 26px;
 }
 
@@ -246,20 +248,20 @@ html[data-theme="dark"] .fine-grid {
 
 .card-rise:hover {
   transform: translateY(-6px);
-  box-shadow: 0 22px 45px rgba(10, 10, 10, 0.12);
-  border-color: rgba(0, 123, 167, 0.28);
+  box-shadow: 0 22px 45px rgba(42, 33, 28, 0.12);
+  border-color: rgba(111, 78, 55, 0.28);
 }
 
 html[data-theme="dark"] .card-rise:hover {
   box-shadow: 0 22px 45px rgba(0, 0, 0, 0.4);
-  border-color: rgba(46, 159, 201, 0.35);
+  border-color: rgba(183, 142, 111, 0.35);
 }
 
 /* ─── Milliy tugma animatsiyasi — CTA + header ─────────────────────────────── */
 @keyframes milliyPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(255, 45, 149, 0.42); }
-  70%  { box-shadow: 0 0 0 9px rgba(255, 45, 149, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 45, 149, 0); }
+  0%   { box-shadow: 0 0 0 0 rgba(110, 86, 149, 0.42); }
+  70%  { box-shadow: 0 0 0 9px rgba(110, 86, 149, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(110, 86, 149, 0); }
 }
 @keyframes shimmerSweep {
   0%   { transform: translateX(-110%); }
@@ -274,7 +276,7 @@ header a.bg-\[var\(--color-gold\)\] {
 }
 header a.bg-\[var\(--color-gold\)\]:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(255, 45, 149, 0.38) !important;
+  box-shadow: 0 10px 28px rgba(110, 86, 149, 0.38) !important;
   animation: none;
 }
 header a.bg-\[var\(--color-gold\)\]::after {
@@ -331,89 +333,89 @@ button.bg-\[var\(--color-sky\)\]:hover::after {
 
 /* ─── Footer surface ────────────────────────────────────────────────────────── */
 .footer-surface {
-  background: rgba(225, 238, 234, 0.55);
+  background: rgba(230, 224, 240, 0.55);
 }
 
 html[data-theme="dark"] .footer-surface {
-  background: rgba(10, 26, 21, 0.80);
+  background: rgba(23, 19, 16, 0.80);
 }
 
 /* ─── Dark mode: header surface ─────────────────────────────────────────────── */
 html[data-theme="dark"] header {
-  background: rgba(10, 26, 21, 0.88) !important;
-  border-color: rgba(46, 159, 201, 0.12) !important;
+  background: rgba(23, 19, 16, 0.88) !important;
+  border-color: rgba(183, 142, 111, 0.12) !important;
 }
 
 /* ─── Dark mode: mobile drawer aside ────────────────────────────────────────── */
 html[data-theme="dark"] aside[role="dialog"] {
-  background: #0A0A0A !important;
+  background: #171310 !important;
   box-shadow: -4px 0 40px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Locale pill container — ensure dark surface in dark mode */
 html[data-theme="dark"] .locale-pill-wrap {
-  background: rgba(20, 20, 20, 0.92) !important;
-  border-color: rgba(46, 159, 201, 0.16) !important;
+  background: rgba(36, 30, 26, 0.92) !important;
+  border-color: rgba(183, 142, 111, 0.16) !important;
 }
 
 /* ─── Dark mode: input / select surfaces ───────────────────────────────────── */
 html[data-theme="dark"] input,
 html[data-theme="dark"] select,
 html[data-theme="dark"] textarea {
-  background: rgba(25, 25, 25, 0.92) !important;
+  background: rgba(35, 29, 25, 0.92) !important;
   color: var(--foreground) !important;
-  border-color: rgba(46, 159, 201, 0.28) !important;
+  border-color: rgba(183, 142, 111, 0.28) !important;
   color-scheme: dark;
 }
 
 /* ─── Dark mode: opacity-based text overrides ──────────────────────────────── */
-html[data-theme="dark"] [class~="text-black/70"]  { color: rgb(232 244 239 / 0.70) !important; }
-html[data-theme="dark"] [class~="text-black/65"]  { color: rgb(232 244 239 / 0.65) !important; }
-html[data-theme="dark"] [class~="text-black/60"]  { color: rgb(232 244 239 / 0.60) !important; }
-html[data-theme="dark"] [class~="text-black/55"]  { color: rgb(232 244 239 / 0.55) !important; }
-html[data-theme="dark"] [class~="text-black/50"]  { color: rgb(232 244 239 / 0.50) !important; }
-html[data-theme="dark"] [class~="text-black/45"]  { color: rgb(232 244 239 / 0.45) !important; }
-html[data-theme="dark"] [class~="text-black/40"]  { color: rgb(232 244 239 / 0.40) !important; }
-html[data-theme="dark"] [class~="text-black/35"]  { color: rgb(232 244 239 / 0.35) !important; }
-html[data-theme="dark"] [class~="text-black/30"]  { color: rgb(232 244 239 / 0.30) !important; }
-html[data-theme="dark"] [class~="text-black/25"]  { color: rgb(232 244 239 / 0.25) !important; }
-html[data-theme="dark"] [class~="text-black/15"]  { color: rgb(232 244 239 / 0.15) !important; }
-html[data-theme="dark"] [class~="text-black/8"]   { color: rgb(232 244 239 / 0.08) !important; }
+html[data-theme="dark"] [class~="text-black/70"]  { color: rgb(237 231 225 / 0.70) !important; }
+html[data-theme="dark"] [class~="text-black/65"]  { color: rgb(237 231 225 / 0.65) !important; }
+html[data-theme="dark"] [class~="text-black/60"]  { color: rgb(237 231 225 / 0.60) !important; }
+html[data-theme="dark"] [class~="text-black/55"]  { color: rgb(237 231 225 / 0.55) !important; }
+html[data-theme="dark"] [class~="text-black/50"]  { color: rgb(237 231 225 / 0.50) !important; }
+html[data-theme="dark"] [class~="text-black/45"]  { color: rgb(237 231 225 / 0.45) !important; }
+html[data-theme="dark"] [class~="text-black/40"]  { color: rgb(237 231 225 / 0.40) !important; }
+html[data-theme="dark"] [class~="text-black/35"]  { color: rgb(237 231 225 / 0.35) !important; }
+html[data-theme="dark"] [class~="text-black/30"]  { color: rgb(237 231 225 / 0.30) !important; }
+html[data-theme="dark"] [class~="text-black/25"]  { color: rgb(237 231 225 / 0.25) !important; }
+html[data-theme="dark"] [class~="text-black/15"]  { color: rgb(237 231 225 / 0.15) !important; }
+html[data-theme="dark"] [class~="text-black/8"]   { color: rgb(237 231 225 / 0.08) !important; }
 
 /* ─── Dark mode: opacity-based border overrides ────────────────────────────── */
-html[data-theme="dark"] [class~="border-black/10"] { border-color: rgb(232 244 239 / 0.10) !important; }
-html[data-theme="dark"] [class~="border-black/8"]  { border-color: rgb(232 244 239 / 0.08) !important; }
-html[data-theme="dark"] [class~="border-black/6"]  { border-color: rgb(232 244 239 / 0.06) !important; }
-html[data-theme="dark"] [class~="border-black/5"]  { border-color: rgb(232 244 239 / 0.05) !important; }
+html[data-theme="dark"] [class~="border-black/10"] { border-color: rgb(237 231 225 / 0.10) !important; }
+html[data-theme="dark"] [class~="border-black/8"]  { border-color: rgb(237 231 225 / 0.08) !important; }
+html[data-theme="dark"] [class~="border-black/6"]  { border-color: rgb(237 231 225 / 0.06) !important; }
+html[data-theme="dark"] [class~="border-black/5"]  { border-color: rgb(237 231 225 / 0.05) !important; }
 
 /* ─── Placeholder text — dark mode (pseudoclass must be targeted separately) ── */
 html[data-theme="dark"] input::placeholder,
 html[data-theme="dark"] textarea::placeholder {
-  color: rgb(232 244 239 / 0.35) !important;
+  color: rgb(237 231 225 / 0.35) !important;
 }
 
 /* ─── Dark mode: form section-card inside explore/hero ─────────────────────── */
 html[data-theme="dark"] .filter-card {
-  background: rgba(25, 25, 25, 0.96) !important;
-  border-color: rgba(46, 159, 201, 0.22) !important;
+  background: rgba(35, 29, 25, 0.96) !important;
+  border-color: rgba(183, 142, 111, 0.22) !important;
 }
 
 /* ─── Dark mode: white / light surfaces ────────────────────────────────────── */
-html[data-theme="dark"] [class~="bg-white"]    { background-color: #141414 !important; }
-html[data-theme="dark"] [class~="bg-white/70"] { background-color: rgba(20, 20, 20,0.70) !important; }
-html[data-theme="dark"] [class~="bg-white/75"] { background-color: rgba(20, 20, 20,0.75) !important; }
-html[data-theme="dark"] [class~="bg-white/80"] { background-color: rgba(20, 20, 20,0.80) !important; }
-html[data-theme="dark"] [class~="bg-white/85"] { background-color: rgba(20, 20, 20,0.85) !important; }
-html[data-theme="dark"] [class~="bg-white/15"] { background-color: rgba(232,244,239,0.15) !important; }
+html[data-theme="dark"] [class~="bg-white"]    { background-color: #241E1A !important; }
+html[data-theme="dark"] [class~="bg-white/70"] { background-color: rgba(36, 30, 26,0.70) !important; }
+html[data-theme="dark"] [class~="bg-white/75"] { background-color: rgba(36, 30, 26,0.75) !important; }
+html[data-theme="dark"] [class~="bg-white/80"] { background-color: rgba(36, 30, 26,0.80) !important; }
+html[data-theme="dark"] [class~="bg-white/85"] { background-color: rgba(36, 30, 26,0.85) !important; }
+html[data-theme="dark"] [class~="bg-white/15"] { background-color: rgba(237,231,225,0.15) !important; }
 html[data-theme="dark"] [class~="shadow-slate-900\/5"] { box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; }
 
 /* ─── Dark mode: semantic color surfaces (alerts, badges) ───────────────────── */
 /* Amber / gold */
-html[data-theme="dark"] [class~="bg-amber-50"]  { background-color: rgba(120, 80, 0, 0.25) !important; }
-html[data-theme="dark"] [class~="bg-amber-100"] { background-color: rgba(120, 80, 0, 0.35) !important; }
-html[data-theme="dark"] [class~="border-amber-200"] { border-color: rgba(255,45,149,0.28) !important; }
-html[data-theme="dark"] [class~="text-amber-700"]   { color: #FF5CA8 !important; }
-html[data-theme="dark"] [class~="text-amber-600"]   { color: rgba(255,92,168,0.9) !important; }
+html[data-theme="dark"] [class~="bg-amber-50"]  { background-color: rgba(110, 86, 149, 0.25) !important; }
+html[data-theme="dark"] [class~="bg-amber-100"] { background-color: rgba(110, 86, 149, 0.35) !important; }
+html[data-theme="dark"] [class~="border-amber-200"] { border-color: rgba(110,86,149,0.28) !important; }
+html[data-theme="dark"] [class~="text-amber-700"]   { color: #B49BE0 !important; }
+html[data-theme="dark"] [class~="text-amber-600"]   { color: rgba(180,155,224,0.9) !important; }
 
 /* Emerald / green */
 html[data-theme="dark"] [class~="bg-emerald-50"]  { background-color: rgba(5, 60, 35, 0.45) !important; }
@@ -431,8 +433,8 @@ html[data-theme="dark"] [class~="text-red-500"]   { color: #F87171 !important; }
 html[data-theme="dark"] [class~="ring-red-200"]   { --tw-ring-color: rgba(252,165,165,0.20) !important; }
 
 /* Ring overrides for badges */
-html[data-theme="dark"] [class~="ring-white\/15"]   { --tw-ring-color: rgba(232,244,239,0.15) !important; }
-html[data-theme="dark"] [class~="ring-white\/20"]   { --tw-ring-color: rgba(232,244,239,0.20) !important; }
+html[data-theme="dark"] [class~="ring-white\/15"]   { --tw-ring-color: rgba(237,231,225,0.15) !important; }
+html[data-theme="dark"] [class~="ring-white\/20"]   { --tw-ring-color: rgba(237,231,225,0.20) !important; }
 html[data-theme="dark"] [class~="ring-emerald-200"] { box-shadow: 0 0 0 1px rgba(52,211,153,0.20) !important; }
 html[data-theme="dark"] [class~="ring-red-200"]     { box-shadow: 0 0 0 1px rgba(252,165,165,0.20) !important; }
 html[data-theme="dark"] [class~="ring-1"]           { /* ring color already overridden per class above */ }
@@ -452,7 +454,7 @@ html[data-theme="dark"] [class~="ring-1"]           { /* ring color already over
 }
 /* Hoverda yengil milliy yaltiroq */
 .milliy-card:hover {
-  border-color: rgba(255, 45, 149, 0.3) !important;
+  border-color: rgba(110, 86, 149, 0.3) !important;
 }
 
 /* ─── Animations ────────────────────────────────────────────────────────────── */

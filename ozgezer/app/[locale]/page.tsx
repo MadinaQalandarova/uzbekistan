@@ -121,7 +121,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
             <div className="space-y-6 md:space-y-7">
 
               {/* Eyebrow — milliy nuqta bilan */}
-              <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-sky)] px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-white shadow-sm md:px-4 md:text-xs">
+              <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-sky)] px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--color-on-accent)] shadow-sm md:px-4 md:text-xs">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
                 {messages.home.eyebrow}
               </span>
@@ -159,7 +159,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                       <Link
                         key={tag.q}
                         href={`/${locale}/explore?q=${encodeURIComponent(tag.q)}`}
-                        className="rounded-full bg-[var(--color-mist)] px-3 py-1 text-xs font-medium text-[var(--color-ink)]/60 shadow-sm transition hover:bg-[var(--color-sky)] hover:text-white hover:shadow-md active:scale-95"
+                        className="rounded-full bg-[var(--color-mist)] px-3 py-1 text-xs font-medium text-[var(--color-ink)]/60 shadow-sm transition hover:bg-[var(--color-sky)] hover:text-[var(--color-on-accent)] hover:shadow-md active:scale-95"
                       >
                         {tag.label}
                       </Link>
@@ -202,28 +202,28 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                 </h2>
                 <div className="mt-5 grid grid-cols-2 gap-3">
                   <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-sky)]/20 hover:bg-[var(--color-sand)] hover:shadow-sm">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-sky)] text-white shadow-sm">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-sky)] text-[var(--color-on-accent)] shadow-sm">
                       <MapPin size={14} strokeWidth={2} />
                     </div>
                     <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">{regions.length}</p>
                     <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsRegions}</p>
                   </div>
                   <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-teal)]/20 hover:bg-[var(--color-sand)] hover:shadow-sm">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-teal)] text-white shadow-sm">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-teal)] text-[var(--color-on-accent)] shadow-sm">
                       <Compass size={14} strokeWidth={2} />
                     </div>
                     <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">{allPlaces.length}</p>
                     <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsPlaces}</p>
                   </div>
                   <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-gold)]/20 hover:bg-[var(--color-sand)] hover:shadow-sm">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-gold)] text-white shadow-sm">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-gold)] text-[var(--color-on-accent)] shadow-sm">
                       <Layers size={14} strokeWidth={2} />
                     </div>
                     <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">{categories.length}</p>
                     <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsCategories}</p>
                   </div>
                   <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-ink)]/15 hover:bg-[var(--color-sand)] hover:shadow-sm">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#0A0A0A] text-white shadow-sm">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-ink)] text-[var(--color-on-accent)] shadow-sm">
                       <Globe size={14} strokeWidth={2} />
                     </div>
                     <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">3</p>

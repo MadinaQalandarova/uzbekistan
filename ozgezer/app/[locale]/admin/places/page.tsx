@@ -77,7 +77,7 @@ export default async function AdminPlacesPage({
           {canManage && (
             <Link
               href={`/${locale}/admin/places/new`}
-              className="rounded-full bg-[var(--color-sky)] px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90"
+              className="rounded-full bg-[var(--color-sky)] px-4 py-2 text-sm font-semibold text-[var(--color-on-accent)] shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90"
             >
               + Yangi joy
             </Link>

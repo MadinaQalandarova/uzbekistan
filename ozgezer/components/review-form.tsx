@@ -87,7 +87,7 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, reviewStatus = null 
         <p className="mt-3 text-sm text-[var(--color-ink)]/55">{t.loginRequired}</p>
         <a
           href={`/${locale}/login?next=/places/${placeSlug}`}
-          className="mt-4 inline-flex h-11 items-center rounded-full bg-[var(--color-sky)] px-5 text-sm font-semibold text-white shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90"
+          className="mt-4 inline-flex h-11 items-center rounded-full bg-[var(--color-sky)] px-5 text-sm font-semibold text-[var(--color-on-accent)] shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90"
         >
           {t.loginBtn}
         </a>
@@ -146,7 +146,7 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, reviewStatus = null 
             onClick={() => setRecommend(true)}
             className={`flex flex-1 items-center justify-center gap-2 rounded-[1.2rem] border py-3 text-sm font-semibold transition-all ${
               recommend === true
-                ? "border-[var(--color-teal)] bg-[var(--color-teal)] text-white shadow-md"
+                ? "border-[var(--color-teal)] bg-[var(--color-teal)] text-[var(--color-on-accent)] shadow-md"
                 : "border-[var(--color-ink)]/10 bg-[var(--color-mist)] text-[var(--color-ink)]/60 hover:border-[var(--color-teal)] hover:text-[var(--color-teal)]"
             }`}
           >
@@ -191,8 +191,8 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, reviewStatus = null 
                   <Star
                     size={18}
                     strokeWidth={filled ? 0 : 1.5}
-                    fill={filled ? "#FF2D95" : "currentColor"}
-                    className={filled ? "" : "text-[var(--color-ink)]/20"}
+                    fill="currentColor"
+                    className={filled ? "text-[var(--color-gold)]" : "text-[var(--color-ink)]/20"}
                   />
                 </button>
               );
@@ -212,7 +212,7 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, reviewStatus = null 
         <button
           type="submit"
           disabled={rating === 0}
-          className="h-12 w-full rounded-full bg-[var(--color-sky)] text-sm font-semibold text-white shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+          className="h-12 w-full rounded-full bg-[var(--color-sky)] text-sm font-semibold text-[var(--color-on-accent)] shadow-sm shadow-[var(--color-sky)]/20 transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
         >
           {t.submit}
         </button>

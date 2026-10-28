@@ -77,7 +77,7 @@ export function AuthSubmit({ label }: { label: string }) {
   return (
     <button
       type="submit"
-      className="mt-2 h-12 w-full rounded-full bg-[var(--color-sky)] text-sm font-semibold text-white shadow-md shadow-[var(--color-sky)]/25 transition hover:opacity-90"
+      className="mt-2 h-12 w-full rounded-full bg-[var(--color-sky)] text-sm font-semibold text-[var(--color-on-accent)] shadow-md shadow-[var(--color-sky)]/25 transition hover:opacity-90"
     >
       {label}
     </button>

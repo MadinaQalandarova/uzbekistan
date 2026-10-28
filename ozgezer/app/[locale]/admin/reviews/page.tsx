@@ -85,8 +85,8 @@ export default async function AdminReviewsPage({ params, searchParams }: AdminRe
                           key={i}
                           size={13}
                           strokeWidth={0}
-                          fill={i < review.rating ? "#FF2D95" : "currentColor"}
-                          className={i < review.rating ? "" : "text-[var(--color-ink)]/20"}
+                          fill="currentColor"
+                          className={i < review.rating ? "text-[var(--color-gold)]" : "text-[var(--color-ink)]/20"}
                         />
                       ))}
                     </div>
