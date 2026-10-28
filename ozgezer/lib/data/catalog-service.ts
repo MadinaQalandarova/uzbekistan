@@ -570,8 +570,46 @@ export type ReviewRecord = {
   createdAt: string;
 };
 
-export async function getPlaceReviews(placeSlug: string): Promise<ReviewRecord[]> {
-  if (!hasDatabaseConfig()) return [];
+export type UserPlaceReview = {
+  status: "PENDING" | "APPROVED" | "REJECTED";
+  rating: number;
+  createdAt: string;
+};
+
+/**
+ * Foydalanuvchining shu joyga qoldirgan izohi (istalgan statusda).
+ * Formani qayta ko'rsatmaslik uchun kerak — moderatsiyadagi izoh ham hisobga olinadi.
+ */
+export async function getUserPlaceReview(
+  placeSlug: string,
+  userId: string,
+): Promise<UserPlaceReview | null> {
+  if (!hasDatabaseConfig()) return null;
+
+  try {
+    const place = await prisma.place.findUnique({
+      where: { slug: placeSlug },
+      select: { id: true },
+    });
+    if (!place) return null;
+
+    const review = await prisma.review.findUnique({
+      where: { userId_placeId: { userId, placeId: place.id } },
+      select: { status: true, rating: true, createdAt: true },
+    });
+    if (!review) return null;
+
+    return {
+      status: review.status as UserPlaceReview["status"],
+      rating: review.rating,
+      createdAt: review.createdAt.toISOString(),
+    };
+  } catch {
+    return null;
+  }
+}
+
+export async function getPlaceReviews(placeSlug: string): Promise<ReviewRecord[]> {  if (!hasDatabaseConfig()) return [];
 
   try {
     const place = await prisma.place.findUnique({

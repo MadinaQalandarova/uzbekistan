@@ -26,12 +26,6 @@ export async function POST(request: Request) {
     return redirect(`/${locale}/login?next=/places/${placeSlug}`);
   }
 
-  // Rate limit: 3 ta izoh / soat / foydalanuvchi
-  const reviewKey = `review:${session.userId}`;
-  if (!checkRateLimit(reviewKey, 3, 60 * 60 * 1000)) {
-    return redirect(`/${locale}/places/${placeSlug}?error=RATE_LIMITED`);
-  }
-
   if (!placeSlug || rating < 1 || rating > 5 || !comment) {
     return redirect(`/${locale}/places/${placeSlug}?error=INVALID_REVIEW`);
   }
@@ -61,6 +55,17 @@ export async function POST(request: Request) {
 
     if (existing) {
       return redirect(`/${locale}/places/${placeSlug}?error=ALREADY_REVIEWED`);
+    }
+
+    /*
+     * Anti-spam: limit faqat yaroqli so'rovdan keyin tekshiriladi.
+     * Ilgari har bir xato urinish (masalan "allaqachon izoh qoldirilgan")
+     * ham limitni yeb qo'yardi va foydalanuvchi hech narsa yozmasdan bloklanardi.
+     * Endi bir foydalanuvchi bir soatda 20 tagacha joyga izoh yozishi mumkin —
+     * har bir joyga faqat bitta izoh (unique) bo'lgani uchun bu amalda cheklov emas.
+     */
+    if (!checkRateLimit(`review:${session.userId}`, 20, 60 * 60 * 1000)) {
+      return redirect(`/${locale}/places/${placeSlug}?error=RATE_LIMITED`);
     }
 
     // Izoh qo'sh — moderatsiya uchun PENDING

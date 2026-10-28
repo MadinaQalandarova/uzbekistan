@@ -7,7 +7,7 @@ type ReviewFormProps = {
   locale: string;
   placeSlug: string;
   isLoggedIn: boolean;
-  alreadyReviewed: boolean;
+  reviewStatus?: "PENDING" | "APPROVED" | "REJECTED" | null;
 };
 
 const texts = {
@@ -22,6 +22,9 @@ const texts = {
     loginRequired: "Fikr qoldirish uchun tizimga kiring.",
     loginBtn: "Kirish",
     alreadyReviewed: "Siz bu joyga allaqachon baho qo'shdingiz.",
+    pendingTitle: "Izohingiz moderatsiyada",
+    pendingDesc: "Rahmat! Izohingiz tekshirilgach saytda ko'rinadi.",
+    rejectedDesc: "Bu joyga qoldirilgan izoh qabul qilinmagan. Boshqa joylar haqida fikr qoldirishingiz mumkin.",
     errors: {
       INVALID_REVIEW: "Iltimos, baho va izohni to'ldiring.",
       ALREADY_REVIEWED: "Siz bu joyga allaqachon baho qo'shdingiz.",
@@ -39,6 +42,9 @@ const texts = {
     loginRequired: "Войдите, чтобы оставить отзыв.",
     loginBtn: "Войти",
     alreadyReviewed: "Вы уже оставили отзыв на это место.",
+    pendingTitle: "Ваш отзыв на модерации",
+    pendingDesc: "Спасибо! Отзыв появится на сайте после проверки.",
+    rejectedDesc: "Отзыв на это место не был принят. Вы можете оставить отзыв о других местах.",
     errors: {
       INVALID_REVIEW: "Пожалуйста, заполните оценку и комментарий.",
       ALREADY_REVIEWED: "Вы уже оставили отзыв.",
@@ -56,6 +62,9 @@ const texts = {
     loginRequired: "Sign in to leave a review.",
     loginBtn: "Sign in",
     alreadyReviewed: "You have already reviewed this place.",
+    pendingTitle: "Your review is under moderation",
+    pendingDesc: "Thank you! Your review will appear on the site after it is checked.",
+    rejectedDesc: "The review for this place was not accepted. You can still review other places.",
     errors: {
       INVALID_REVIEW: "Please fill in the rating and comment.",
       ALREADY_REVIEWED: "You have already reviewed this place.",
@@ -64,7 +73,7 @@ const texts = {
   },
 };
 
-export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: ReviewFormProps) {
+export function ReviewForm({ locale, placeSlug, isLoggedIn, reviewStatus = null }: ReviewFormProps) {
   const [rating, setRating] = useState(0);
   const [hovered, setHovered] = useState(0);
   const [recommend, setRecommend] = useState<boolean | null>(true);
@@ -86,7 +95,19 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
     );
   }
 
-  if (alreadyReviewed) {
+  if (reviewStatus === "PENDING") {
+    return (
+      <div className="section-card rounded-[1.75rem] p-6">
+        <h3 className="display-title text-xl font-semibold text-[var(--color-ink)]">{t.pendingTitle}</h3>
+        <div className="mt-3 flex items-start gap-2 text-sm text-[var(--color-teal)]">
+          <CheckCircle size={16} strokeWidth={2} className="mt-0.5 flex-shrink-0" />
+          <span>{t.pendingDesc}</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (reviewStatus === "APPROVED") {
     return (
       <div className="section-card rounded-[1.75rem] p-6">
         <h3 className="display-title text-xl font-semibold text-[var(--color-ink)]">{t.title}</h3>
@@ -94,6 +115,15 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, alreadyReviewed }: R
           <CheckCircle size={16} strokeWidth={2} />
           {t.alreadyReviewed}
         </div>
+      </div>
+    );
+  }
+
+  if (reviewStatus === "REJECTED") {
+    return (
+      <div className="section-card rounded-[1.75rem] p-6">
+        <h3 className="display-title text-xl font-semibold text-[var(--color-ink)]">{t.title}</h3>
+        <p className="mt-3 text-sm leading-6 text-[var(--color-ink)]/55">{t.rejectedDesc}</p>
       </div>
     );
   }

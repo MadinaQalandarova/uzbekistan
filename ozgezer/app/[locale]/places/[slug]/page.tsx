@@ -23,6 +23,7 @@ import {
   getPlace,
   getPlaceReviews,
   getRelatedPlaces,
+  getUserPlaceReview,
   isPlaceSavedByUser,
 } from "@/lib/data/catalog-service";
 import { getMessages, isLocale, locales } from "@/lib/i18n";
@@ -73,15 +74,16 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
   const cookieStore = await cookies();
   const session = readUserSession(cookieStore.get(USER_SESSION_COOKIE)?.value);
 
-  const [relatedPlaces, reviews, isSaved] = await Promise.all([
+  const [relatedPlaces, reviews, isSaved, userReview] = await Promise.all([
     getRelatedPlaces(place),
     getPlaceReviews(slug),
     session ? isPlaceSavedByUser(slug, session.userId) : Promise.resolve(false),
+    session ? getUserPlaceReview(slug, session.userId) : Promise.resolve(null),
   ]);
 
-  const alreadyReviewed = session
-    ? reviews.some((r) => r.userId === session.userId)
-    : false;
+  /* Moderatsiyadagi izoh ham "yozilgan" hisoblanadi — forma qayta ko'rinmaydi */
+  const reviewStatus =
+    userReview?.status ?? (query.reviewed ? ("PENDING" as const) : null);
 
   const messages = getMessages(locale);
 
@@ -100,7 +102,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
   const t = {
     save:            { uz: "Saqlash",              ru: "Сохранить",         en: "Save"              }[locale],
     saved:           { uz: "Saqlangan",             ru: "Сохранено",         en: "Saved"             }[locale],
-    reviewedToast:   { uz: "Izohingiz qabul qilindi. Rahmat!", ru: "Ваш отзыв принят. Спасибо!", en: "Your review was submitted. Thank you!" }[locale],
+    reviewedToast:   { uz: "Izohingiz moderatsiyaga yuborildi. Rahmat!", ru: "Ваш отзыв отправлен на модерацию. Спасибо!", en: "Your review was sent for moderation. Thank you!" }[locale],
     alreadyReviewed: { uz: "Siz bu joyga allaqachon izoh qo'shgansiz.", ru: "Вы уже оставили отзыв на это место.", en: "You have already reviewed this place." }[locale],
     mapLabel:        { uz: "Xarita",               ru: "Карта",               en: "Map"               }[locale],
     virtualTour:     { uz: "Virtual sayohat · 3D",  ru: "Виртуальный тур · 3D",  en: "Virtual tour · 3D"  }[locale],
@@ -113,7 +115,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
     notRecommend:    { uz: "Tavsiya etmaydi",      ru: "Не рекомендует",    en: "Doesn't recommend" }[locale],
     anonymous:       { uz: "Anonim",               ru: "Аноним",            en: "Anonymous"         }[locale],
     detailedInfo:    { uz: "Batafsil ma'lumot",    ru: "Подробная информация", en: "Detailed info"  }[locale],
-    errorRateLimited:     { uz: "Juda ko'p so'rov yubordingiz. Birozdan so'ng urinib ko'ring.", ru: "Слишком много запросов. Попробуйте позже.", en: "Too many requests. Please try again later." }[locale],
+    errorRateLimited:     { uz: "Bir soatda juda ko'p izoh yozdingiz. Iltimos, birozdan so'ng qayta urinib ko'ring.", ru: "Вы написали слишком много отзывов за час. Попробуйте позже.", en: "You have posted too many reviews in an hour. Please try again later." }[locale],
     errorInvalidReview:   { uz: "Izoh ma'lumotlari to'liq emas.", ru: "Данные отзыва заполнены не полностью.", en: "Review details are incomplete." }[locale],
     errorCommentTooLong:  { uz: "Izoh juda uzun (1000 belgidan oshmasin).", ru: "Отзыв слишком длинный (не более 1000 символов).", en: "Review is too long (max 1000 characters)." }[locale],
     errorDbNotConfigured: { uz: "Ma'lumotlar bazasi hozircha sozlanmagan.", ru: "База данных пока не настроена.", en: "The database is not configured yet." }[locale],
@@ -299,7 +301,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
               locale={locale}
               placeSlug={slug}
               isLoggedIn={!!session}
-              alreadyReviewed={alreadyReviewed || query.error === "ALREADY_REVIEWED"}
+              reviewStatus={reviewStatus}
             />
           </div>
         </div>
