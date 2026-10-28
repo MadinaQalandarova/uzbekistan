@@ -81,6 +81,8 @@ type ExploreMessages = {
   resetFilters: string;
   resultCount: string;
   openDetails: string;
+  similarTitle: string;
+  similarDescription: string;
 };
 
 type PlaceMessages = {
@@ -190,6 +192,9 @@ const messages: Record<Locale, Messages> = {
       resetFilters: "Filterni tozalash",
       resultCount: "ta natija",
       openDetails: "Batafsil ko'rish",
+      similarTitle: "Bunga o'xshash joylar",
+      similarDescription:
+        "Aniq moslik topilmadi, lekin siz izlagan yo'nalishga yaqin joylarni taklif qilamiz.",
     },
     place: {
       backToExplore: "Qidiruv sahifasiga qaytish",
@@ -286,6 +291,9 @@ const messages: Record<Locale, Messages> = {
       resetFilters: "Сбросить фильтры",
       resultCount: "результатов",
       openDetails: "Открыть подробнее",
+      similarTitle: "Похожие места рядом",
+      similarDescription:
+        "Точного совпадения нет, но вот места, близкие к тому, что вы искали.",
     },
     place: {
       backToExplore: "Назад к поиску",
@@ -381,6 +389,9 @@ const messages: Record<Locale, Messages> = {
       resetFilters: "Reset filters",
       resultCount: "results",
       openDetails: "Open details",
+      similarTitle: "Similar places nearby",
+      similarDescription:
+        "No exact match, but here are places close to what you were looking for.",
     },
     place: {
       backToExplore: "Back to explore",

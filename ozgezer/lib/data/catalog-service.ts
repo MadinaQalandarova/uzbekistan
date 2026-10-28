@@ -262,6 +262,28 @@ export async function getRelatedPlaces(place: PlaceRecord): Promise<PlaceRecord[
   return items.filter((item) => item.slug !== place.slug).slice(0, 3);
 }
 
+/**
+ * Qidiruv hech narsa topmasa — "bunday joy yo'q" o'rniga yaqin/o'xshash joylarni taklif qilamiz.
+ * Yaqinlik mezoni: avval shu viloyat, keyin umumiy kategoriyalar, oxirida reyting.
+ */
+export async function getSimilarPlaces(
+  filters: PlaceFilters,
+  limit = 6,
+): Promise<PlaceRecord[]> {
+  const all = await getPlaces();
+
+  const scored = all
+    .map((place) => {
+      let score = place.averageRating;
+      if (filters.region && place.regionSlug === filters.region) score += 10;
+      if (filters.category && place.categorySlugs.includes(filters.category)) score += 6;
+      return { place, score };
+    })
+    .sort((a, b) => b.score - a.score);
+
+  return scored.slice(0, limit).map((item) => item.place);
+}
+
 export async function createRegion(input: {
   slug: string;
   nameUz: string;

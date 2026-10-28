@@ -8,6 +8,7 @@ import {
   getCategories,
   getFilteredPlaces,
   getRegions,
+  getSimilarPlaces,
   type PlaceFilters,
 } from "@/lib/data/catalog-service";
 import { getMessages, isLocale } from "@/lib/i18n";
@@ -63,6 +64,10 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
   const activeRegion = regions.find((r) => r.slug === filters.region);
   const activeCategory = categories.find((c) => c.slug === filters.category);
   const hasFilters = !!(filters.q || filters.region || filters.category);
+
+  /* Hech narsa topilmasa — bo'sh sahifa o'rniga yaqin/o'xshash joylarni ko'rsatamiz */
+  const suggestions =
+    places.length === 0 && hasFilters ? await getSimilarPlaces(filters, 6) : [];
 
   return (
     <div className="py-8">
@@ -196,19 +201,44 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
             ))}
           </div>
         ) : (
-          <div className="section-card flex flex-col items-center gap-4 rounded-[1.75rem] px-8 py-16 text-center">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-mist)]">
-              <Search size={28} strokeWidth={1.5} className="text-[var(--color-ink)]/30" />
+          <div className="space-y-8">
+            <div className="section-card flex flex-col items-center gap-4 rounded-[1.75rem] px-8 py-10 text-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-mist)]">
+                <Search size={28} strokeWidth={1.5} className="text-[var(--color-ink)]/30" />
+              </div>
+              <div>
+                <p className="font-semibold text-[var(--color-ink)]">{messages.explore.noResults}</p>
+                <Link
+                  href={`/${locale}/explore`}
+                  className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-sky)] px-5 py-2 text-sm font-semibold text-white transition hover:opacity-90"
+                >
+                  {messages.explore.resetFilters}
+                </Link>
+              </div>
             </div>
-            <div>
-              <p className="font-semibold text-[var(--color-ink)]">{messages.explore.noResults}</p>
-              <Link
-                href={`/${locale}/explore`}
-                className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-sky)] px-5 py-2 text-sm font-semibold text-white transition hover:opacity-90"
-              >
-                {messages.explore.resetFilters}
-              </Link>
-            </div>
+
+            {suggestions.length > 0 && (
+              <div>
+                <div className="mb-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-sky)]">
+                    {messages.explore.similarTitle}
+                  </p>
+                  <p className="mt-1.5 max-w-2xl text-sm leading-6 text-[var(--color-ink)]/55">
+                    {messages.explore.similarDescription}
+                  </p>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {suggestions.map((place) => (
+                    <PlaceCard
+                      key={place.slug}
+                      locale={locale}
+                      place={place}
+                      ctaLabel={messages.explore.openDetails}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </section>
