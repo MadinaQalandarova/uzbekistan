@@ -89,7 +89,7 @@ function RankedPlaces({
                 {index + 1}
               </span>
 
-              <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-[0.9rem] bg-[linear-gradient(135deg,rgba(0,123,167,0.9),rgba(255,45,149,0.6))]">
+              <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-[0.9rem] bg-[linear-gradient(135deg,rgba(111,78,55,0.9),rgba(110,86,149,0.6))]">
                 {imageUrl && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
