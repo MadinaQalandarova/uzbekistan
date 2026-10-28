@@ -372,9 +372,12 @@ async function _getDashboardData(): Promise<DashboardData> {
   const byViews = [...items].sort(
     (a, b) => b.viewCount - a.viewCount || b.averageRating - a.averageRating,
   );
-  const byReviews = [...items].sort(
-    (a, b) => b.reviewCount - a.reviewCount || b.averageRating - a.averageRating,
-  );
+  /* Sharhi yo'q joylar "eng yaxshi sharh olgan" ro'yxatiga tushmasligi kerak */
+  const byReviews = items
+    .filter((place) => place.reviewCount > 0)
+    .sort(
+      (a, b) => b.reviewCount - a.reviewCount || b.averageRating - a.averageRating,
+    );
 
   return {
     totalPlaces: items.length,
