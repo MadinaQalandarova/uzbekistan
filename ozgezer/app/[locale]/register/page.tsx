@@ -6,6 +6,7 @@ import { notFound, redirect } from "next/navigation";
 import { isLocale } from "@/lib/i18n";
 import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
 import { AuthBrand, AuthError, AuthField, AuthSubmit } from "@/components/auth-shell";
+import { PasswordField } from "@/components/password-field";
 
 type RegisterPageProps = {
   params: Promise<{ locale: string }>;
@@ -22,6 +23,8 @@ const t = {
     emailPlaceholder: "ali@example.com",
     password: "Parol (kamida 6 ta belgi)",
     passwordPlaceholder: "••••••••",
+    showPassword: "Parolni ko'rsatish",
+    hidePassword: "Parolni yashirish",
     submit: "Hisob yaratish",
     haveAccount: "Hisobingiz bormi?",
     login: "Kirish",
@@ -42,6 +45,8 @@ const t = {
     emailPlaceholder: "ali@example.com",
     password: "Пароль (минимум 6 символов)",
     passwordPlaceholder: "••••••••",
+    showPassword: "Показать пароль",
+    hidePassword: "Скрыть пароль",
     submit: "Создать аккаунт",
     haveAccount: "Уже есть аккаунт?",
     login: "Войти",
@@ -62,6 +67,8 @@ const t = {
     emailPlaceholder: "ali@example.com",
     password: "Password (min 6 characters)",
     passwordPlaceholder: "••••••••",
+    showPassword: "Show password",
+    hidePassword: "Hide password",
     submit: "Create account",
     haveAccount: "Already have an account?",
     login: "Sign in",
@@ -105,14 +112,15 @@ export default async function RegisterPage({ params, searchParams }: RegisterPag
 
             <AuthField label={texts.name} name="name" autoComplete="name" placeholder={texts.namePlaceholder} />
             <AuthField label={texts.email} type="email" name="email" required autoComplete="email" placeholder={texts.emailPlaceholder} />
-            <AuthField
+            <PasswordField
               label={texts.password}
-              type="password"
               name="password"
               required
               minLength={6}
               autoComplete="new-password"
               placeholder={texts.passwordPlaceholder}
+              showLabel={texts.showPassword}
+              hideLabel={texts.hidePassword}
             />
 
             <AuthSubmit label={texts.submit} />

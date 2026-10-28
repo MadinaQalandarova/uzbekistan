@@ -6,6 +6,7 @@ import { notFound, redirect } from "next/navigation";
 import { isLocale } from "@/lib/i18n";
 import { USER_SESSION_COOKIE, readUserSession } from "@/lib/user-auth";
 import { AuthBrand, AuthError, AuthField, AuthSubmit } from "@/components/auth-shell";
+import { PasswordField } from "@/components/password-field";
 
 type LoginPageProps = {
   params: Promise<{ locale: string }>;
@@ -20,6 +21,8 @@ const t = {
     emailPlaceholder: "ali@example.com",
     password: "Parol",
     passwordPlaceholder: "••••••••",
+    showPassword: "Parolni ko'rsatish",
+    hidePassword: "Parolni yashirish",
     submit: "Kirish",
     noAccount: "Hisob yo'qmi?",
     register: "Ro'yxatdan o'ting",
@@ -38,6 +41,8 @@ const t = {
     emailPlaceholder: "ali@example.com",
     password: "Пароль",
     passwordPlaceholder: "••••••••",
+    showPassword: "Показать пароль",
+    hidePassword: "Скрыть пароль",
     submit: "Войти",
     noAccount: "Нет аккаунта?",
     register: "Зарегистрироваться",
@@ -56,6 +61,8 @@ const t = {
     emailPlaceholder: "ali@example.com",
     password: "Password",
     passwordPlaceholder: "••••••••",
+    showPassword: "Show password",
+    hidePassword: "Hide password",
     submit: "Sign in",
     noAccount: "No account?",
     register: "Register",
@@ -99,13 +106,14 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
             {query.next && <input type="hidden" name="next" value={query.next} />}
 
             <AuthField label={texts.email} type="email" name="email" required autoComplete="email" placeholder={texts.emailPlaceholder} />
-            <AuthField
+            <PasswordField
               label={texts.password}
-              type="password"
               name="password"
               required
               autoComplete="current-password"
               placeholder={texts.passwordPlaceholder}
+              showLabel={texts.showPassword}
+              hideLabel={texts.hidePassword}
             />
 
             <AuthSubmit label={texts.submit} />
