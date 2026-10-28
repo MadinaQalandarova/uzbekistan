@@ -7,6 +7,7 @@ import {
   regions as staticRegions,
 } from "@/lib/data/catalog";
 import { prisma } from "@/lib/prisma";
+import { scorePlace, suggestCorrection } from "@/lib/search";
 
 export type AdminPlaceRecord = PlaceRecord & {
   id: string;
@@ -139,47 +140,20 @@ export async function getRegion(slug: string): Promise<RegionRecord | null> {
 }
 
 async function _getPlaces(filters: PlaceFilters = {}): Promise<PlaceRecord[]> {
-  const normalizedQuery = filters.q?.trim().toLowerCase();
+  const hasQuery = Boolean(filters.q?.trim());
 
   if (!hasDatabaseConfig()) {
-    return staticPlaces.filter((place) => filterPlace(place, filters, normalizedQuery));
+    const filtered = staticPlaces.filter((place) => filterPlace(place, filters));
+    return hasQuery ? rankPlaces(filtered, filters.q!) : filtered;
   }
 
   try {
+    /* Matn qidiruvi Prisma `contains` bilan emas, JS'da bajariladi —
+       shunda imlo xatolari (buhoro → Buxoro) ham topiladi. */
     const records = await prisma.place.findMany({
       where: {
         published: true,
         ...(filters.region ? { region: { slug: filters.region } } : {}),
-        ...(normalizedQuery
-          ? {
-              OR: [
-                { nameUz: { contains: normalizedQuery, mode: "insensitive" } },
-                { nameRu: { contains: normalizedQuery, mode: "insensitive" } },
-                { nameEn: { contains: normalizedQuery, mode: "insensitive" } },
-                { descriptionUz: { contains: normalizedQuery, mode: "insensitive" } },
-                { descriptionRu: { contains: normalizedQuery, mode: "insensitive" } },
-                { descriptionEn: { contains: normalizedQuery, mode: "insensitive" } },
-                /* Viloyat nomlari bo'yicha qidiruv */
-                { region: { nameUz: { contains: normalizedQuery, mode: "insensitive" } } },
-                { region: { nameRu: { contains: normalizedQuery, mode: "insensitive" } } },
-                { region: { nameEn: { contains: normalizedQuery, mode: "insensitive" } } },
-                /* Kategoriya nomlari bo'yicha qidiruv */
-                {
-                  categories: {
-                    some: {
-                      category: {
-                        OR: [
-                          { nameUz: { contains: normalizedQuery, mode: "insensitive" } },
-                          { nameRu: { contains: normalizedQuery, mode: "insensitive" } },
-                          { nameEn: { contains: normalizedQuery, mode: "insensitive" } },
-                        ],
-                      },
-                    },
-                  },
-                },
-              ],
-            }
-          : {}),
         ...(filters.category
           ? {
               categories: {
@@ -203,7 +177,7 @@ async function _getPlaces(filters: PlaceFilters = {}): Promise<PlaceRecord[]> {
       orderBy: [{ averageRating: "desc" }, { nameUz: "asc" }],
     });
 
-    return records.map((place) => ({
+    const mapped = records.map((place) => ({
       slug: place.slug,
       regionSlug: place.region.slug,
       regionName: {
@@ -233,9 +207,37 @@ async function _getPlaces(filters: PlaceFilters = {}): Promise<PlaceRecord[]> {
       workingHours: place.workingHours ?? "",
       averageRating: Number(place.averageRating ?? 0),
     }));
+
+    if (!hasQuery) return mapped;
+
+    return rankPlaces(mapped, filters.q!);
   } catch {
-    return staticPlaces.filter((place) => filterPlace(place, filters, normalizedQuery));
+    const filtered = staticPlaces.filter((place) => filterPlace(place, filters));
+    return hasQuery ? rankPlaces(filtered, filters.q!) : filtered;
   }
+}
+
+/**
+ * Moslik balli bo'yicha saralash. Juda zaif (tasodifiy) mosliklar tashlab yuboriladi —
+ * "buhoro" qidiruvida Buxoro joylari birinchi turadi, aloqasi yo'q joylar chiqmaydi.
+ */
+function rankPlaces(places: PlaceRecord[], query: string): PlaceRecord[] {
+  const scored = places
+    .map((place) => ({ place, score: scorePlace(place, query) }))
+    .filter((item) => item.score > 0);
+
+  if (scored.length === 0) return [];
+
+  const maxScore = Math.max(...scored.map((item) => item.score));
+  const threshold = maxScore >= 0.75 ? maxScore * 0.75 : 0.5;
+
+  return scored
+    .filter((item) => item.score >= threshold)
+    .sort(
+      (a, b) =>
+        b.score - a.score || b.place.averageRating - a.place.averageRating,
+    )
+    .map((item) => item.place);
 }
 
 export const getPlaces = unstable_cache(
@@ -798,29 +800,39 @@ export async function moderateReview(reviewId: string, action: "APPROVED" | "REJ
   }
 }
 
-function filterPlace(place: PlaceRecord, filters: PlaceFilters, normalizedQuery?: string) {
+function filterPlace(place: PlaceRecord, filters: PlaceFilters) {
   const matchesRegion = !filters.region || place.regionSlug === filters.region;
   const matchesCategory =
     !filters.category || place.categorySlugs.includes(filters.category);
 
   /* Viloyat yoki kategoriya nomi ham qidiruvda ishtirok etadi —
-     masalan "Xiva" yoki "bozor" so'zlari joy topib beradi */
-  const haystacks: string[] = [
-    place.name.uz,
-    place.name.ru,
-    place.name.en,
-    place.description.uz,
-    place.description.ru,
-    place.description.en,
-    place.regionName.uz,
-    place.regionName.ru,
-    place.regionName.en,
-    ...place.categoryTitles.flatMap((title) => [title.uz, title.ru, title.en]),
-  ];
-
-  const matchesQuery =
-    !normalizedQuery ||
-    haystacks.some((text) => text.toLowerCase().includes(normalizedQuery));
+     masalan "Xiva" yoki "bozor" so'zlari joy topib beradi.
+     scorePlace imlo xatolarini ham hisobga oladi (buhoro → Buxoro). */
+  const matchesQuery = !filters.q?.trim() || scorePlace(place, filters.q) > 0;
 
   return matchesRegion && matchesCategory && matchesQuery;
+}
+
+/**
+ * "Balki shuni izlagansiz?" taklifi uchun nomlar ro'yxati.
+ * Aniq moslik bo'lsa null qaytadi.
+ */
+export function getQueryCorrection(
+  locale: "uz" | "ru" | "en",
+  query: string | undefined,
+  places: PlaceRecord[],
+  regionNames: string[],
+  categoryNames: string[],
+): string | null {
+  if (!query?.trim()) return null;
+
+  const labels = [
+    ...new Set([
+      ...places.map((place) => place.name[locale]),
+      ...regionNames,
+      ...categoryNames,
+    ]),
+  ];
+
+  return suggestCorrection(labels, query);
 }

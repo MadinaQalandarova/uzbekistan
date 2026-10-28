@@ -7,6 +7,7 @@ import { PlaceCard } from "@/components/place-card";
 import {
   getCategories,
   getFilteredPlaces,
+  getQueryCorrection,
   getRegions,
   getSimilarPlaces,
   type PlaceFilters,
@@ -68,6 +69,19 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
   /* Hech narsa topilmasa — bo'sh sahifa o'rniga yaqin/o'xshash joylarni ko'rsatamiz */
   const suggestions =
     places.length === 0 && hasFilters ? await getSimilarPlaces(filters, 6) : [];
+
+  /* Imlo xatosi bo'lsa — "buhoro" → "Buxoro" taklifi */
+  const correction = getQueryCorrection(
+    locale,
+    filters.q,
+    places.length > 0 ? places : suggestions,
+    regions.map((region) => region.name[locale]),
+    categories.map((category) => category.title[locale]),
+  );
+
+  const correctedHref = correction
+    ? buildSearchUrl(locale, { ...filters, q: correction })
+    : null;
 
   return (
     <div className="py-8">
@@ -153,6 +167,17 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
           <span className="rounded-full bg-[var(--color-sky)]/10 px-3.5 py-1.5 text-xs font-semibold text-[var(--color-sky)]">
             {places.length} {messages.explore.resultCount}
           </span>
+
+          {/* Imlo taklifi */}
+          {correction && correctedHref && (
+            <Link
+              href={correctedHref}
+              className="flex items-center gap-1.5 rounded-full border border-[var(--color-gold)]/40 bg-[var(--color-gold)]/10 px-3.5 py-1.5 text-xs font-semibold text-[var(--color-ink)]/70 transition hover:border-[var(--color-gold)] hover:text-[var(--color-ink)]"
+            >
+              {messages.explore.didYouMean}
+              <span className="text-[var(--color-gold)]">{correction}</span>
+            </Link>
+          )}
 
           {/* Active filter chips */}
           {filters.q && (
@@ -258,6 +283,18 @@ function ActiveChip({ label, href }: { label: string; href: string }) {
       <X size={11} strokeWidth={2.5} />
     </Link>
   );
+}
+
+function buildSearchUrl(
+  locale: string,
+  filters: { q?: string; region?: string; category?: string },
+): string {
+  const params = new URLSearchParams();
+  if (filters.q) params.set("q", filters.q);
+  if (filters.region) params.set("region", filters.region);
+  if (filters.category) params.set("category", filters.category);
+  const qs = params.toString();
+  return `/${locale}/explore${qs ? `?${qs}` : ""}`;
 }
 
 function buildResetUrl(

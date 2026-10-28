@@ -83,6 +83,7 @@ type ExploreMessages = {
   openDetails: string;
   similarTitle: string;
   similarDescription: string;
+  didYouMean: string;
 };
 
 type PlaceMessages = {
@@ -195,6 +196,7 @@ const messages: Record<Locale, Messages> = {
       similarTitle: "Bunga o'xshash joylar",
       similarDescription:
         "Aniq moslik topilmadi, lekin siz izlagan yo'nalishga yaqin joylarni taklif qilamiz.",
+      didYouMean: "Balki shuni izlagansiz:",
     },
     place: {
       backToExplore: "Qidiruv sahifasiga qaytish",
@@ -294,6 +296,7 @@ const messages: Record<Locale, Messages> = {
       similarTitle: "Похожие места рядом",
       similarDescription:
         "Точного совпадения нет, но вот места, близкие к тому, что вы искали.",
+      didYouMean: "Возможно, вы искали:",
     },
     place: {
       backToExplore: "Назад к поиску",
@@ -392,6 +395,7 @@ const messages: Record<Locale, Messages> = {
       similarTitle: "Similar places nearby",
       similarDescription:
         "No exact match, but here are places close to what you were looking for.",
+      didYouMean: "Did you mean:",
     },
     place: {
       backToExplore: "Back to explore",
