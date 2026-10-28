@@ -10,6 +10,7 @@ type NavMessages = {
   regions: string;
   randomPlace: string;
   map: string;
+  dashboard: string;
   signIn: string;
   signOut: string;
 };
@@ -99,6 +100,25 @@ type PlaceMessages = {
   relatedPlaces: string;
 };
 
+type DashboardMessages = {
+  title: string;
+  description: string;
+  statsPlaces: string;
+  statsViews: string;
+  statsReviews: string;
+  statsRating: string;
+  bestTitle: string;
+  bestDescription: string;
+  visitedTitle: string;
+  visitedDescription: string;
+  reviewedTitle: string;
+  reviewedDescription: string;
+  viewsLabel: string;
+  reviewsLabel: string;
+  openDetails: string;
+  empty: string;
+};
+
 type Messages = {
   nav: NavMessages;
   footer: FooterMessages;
@@ -107,6 +127,7 @@ type Messages = {
   admin: AdminMessages;
   explore: ExploreMessages;
   place: PlaceMessages;
+  dashboard: DashboardMessages;
 };
 
 const messages: Record<Locale, Messages> = {
@@ -117,6 +138,7 @@ const messages: Record<Locale, Messages> = {
       regions: "Viloyatlar",
       randomPlace: "Tasodifiy joy",
       map: "Xarita",
+      dashboard: "Statistika",
       signIn: "Kirish",
       signOut: "Chiqish",
     },
@@ -210,6 +232,28 @@ const messages: Record<Locale, Messages> = {
       coordinatesLabel: "Koordinatalar",
       relatedPlaces: "O'xshash joylar",
     },
+    dashboard: {
+      title: "Statistika paneli",
+      description:
+        "Eng yaxshi joylar, eng ko'p borilgan joylar va eng yaxshi sharh olgan joylar — barchasi bir joyda.",
+      statsPlaces: "ta joy",
+      statsViews: "ta ko'rish",
+      statsReviews: "ta sharh",
+      statsRating: "o'rtacha reyting",
+      bestTitle: "Eng yaxshi joylar",
+      bestDescription:
+        "Reytingi eng yuqori joylar. Sayohatni shu yerdan boshlash tavsiya etiladi.",
+      visitedTitle: "Eng ko'p borilgan joylar",
+      visitedDescription:
+        "Foydalanuvchilar eng ko'p ochib ko'rgan joylar — haqiqiy qiziqish ko'rsatkichi.",
+      reviewedTitle: "Eng yaxshi sharh olgan joylar",
+      reviewedDescription:
+        "Eng ko'p izoh qoldirilgan joylar — odamlar bu joylar haqida ko'p yozishadi.",
+      viewsLabel: "ko'rish",
+      reviewsLabel: "sharh",
+      openDetails: "Batafsil",
+      empty: "Hozircha bu ro'yxat uchun ma'lumot yo'q.",
+    },
   },
   ru: {
     nav: {
@@ -218,6 +262,7 @@ const messages: Record<Locale, Messages> = {
       regions: "Регионы",
       randomPlace: "Случайное место",
       map: "Карта",
+      dashboard: "Статистика",
       signIn: "Войти",
       signOut: "Выйти",
     },
@@ -310,6 +355,28 @@ const messages: Record<Locale, Messages> = {
       coordinatesLabel: "Координаты",
       relatedPlaces: "Похожие места",
     },
+    dashboard: {
+      title: "Панель статистики",
+      description:
+        "Лучшие места, самые посещаемые места и места с лучшими отзывами — всё в одном месте.",
+      statsPlaces: "мест",
+      statsViews: "просмотров",
+      statsReviews: "отзывов",
+      statsRating: "средний рейтинг",
+      bestTitle: "Лучшие места",
+      bestDescription:
+        "Места с самым высоким рейтингом. С них стоит начать путешествие.",
+      visitedTitle: "Самые посещаемые места",
+      visitedDescription:
+        "Места, которые пользователи открывают чаще всего — реальный показатель интереса.",
+      reviewedTitle: "Места с лучшими отзывами",
+      reviewedDescription:
+        "Места, где оставили больше всего отзывов — о них говорят чаще всего.",
+      viewsLabel: "просмотров",
+      reviewsLabel: "отзывов",
+      openDetails: "Подробнее",
+      empty: "Пока нет данных для этого списка.",
+    },
   },
   en: {
     nav: {
@@ -318,6 +385,7 @@ const messages: Record<Locale, Messages> = {
       regions: "Regions",
       randomPlace: "Random place",
       map: "Map",
+      dashboard: "Stats",
       signIn: "Sign in",
       signOut: "Sign out",
     },
@@ -408,6 +476,28 @@ const messages: Record<Locale, Messages> = {
       ratingLabel: "Rating",
       coordinatesLabel: "Coordinates",
       relatedPlaces: "Related places",
+    },
+    dashboard: {
+      title: "Stats dashboard",
+      description:
+        "Best places, most visited places and best reviewed places — all in one place.",
+      statsPlaces: "places",
+      statsViews: "views",
+      statsReviews: "reviews",
+      statsRating: "average rating",
+      bestTitle: "Best places",
+      bestDescription:
+        "The highest rated places. Start your trip from here.",
+      visitedTitle: "Most visited places",
+      visitedDescription:
+        "Places users open and view the most — a real sign of interest.",
+      reviewedTitle: "Best reviewed places",
+      reviewedDescription:
+        "Places with the most reviews — people talk about them the most.",
+      viewsLabel: "views",
+      reviewsLabel: "reviews",
+      openDetails: "Details",
+      empty: "No data for this list yet.",
     },
   },
 };

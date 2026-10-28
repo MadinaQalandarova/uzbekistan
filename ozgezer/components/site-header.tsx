@@ -10,6 +10,7 @@ type SiteHeaderProps = {
     regions: string;
     randomPlace: string;
     map: string;
+    dashboard: string;
     signIn: string;
     signOut: string;
   };

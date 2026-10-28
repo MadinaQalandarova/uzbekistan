@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Compass, Map, MapPin, Shuffle, User, Globe, Menu, X, LogOut } from "lucide-react";
+import { Home, Compass, Map, MapPin, Shuffle, User, Globe, Menu, X, LogOut, BarChart3 } from "lucide-react";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { Locale } from "@/lib/i18n";
@@ -15,6 +15,7 @@ type Props = {
     explore: string;
     regions: string;
     map: string;
+    dashboard: string;
     randomPlace: string;
     signIn: string;
     signOut: string;
@@ -111,6 +112,7 @@ export function LiquidNavbar({ locale, nav, user, randomSlugs, variant = "fixed"
   const exploreHref = `/${locale}/explore`;
   const regionsHref = `/${locale}/regions`;
   const mapHref = `/${locale}/map`;
+  const dashboardHref = `/${locale}/dashboard`;
   const profileHref = user ? `/${locale}/profile` : `/${locale}/login`;
   const randomHref = randomSlug ? `/${locale}/places/${randomSlug}` : exploreHref;
   const localeHref = (l: Locale) => {
@@ -145,6 +147,11 @@ export function LiquidNavbar({ locale, nav, user, randomSlugs, variant = "fixed"
       <Link href={mapHref} className={`nav-btn ${isActive(mapHref) ? "active" : ""}`}>
         <MapPin size={19} strokeWidth={2.1} />
         <span>{nav.map}</span>
+      </Link>
+
+      <Link href={dashboardHref} className={`nav-btn nav-hide-mobile ${isActive(dashboardHref) ? "active" : ""}`}>
+        <BarChart3 size={19} strokeWidth={2.1} />
+        <span>{nav.dashboard}</span>
       </Link>
 
       <Link href={randomHref} className="nav-btn" aria-label={nav.randomPlace}>
@@ -216,6 +223,9 @@ export function LiquidNavbar({ locale, nav, user, randomSlugs, variant = "fixed"
               </Link>
               <Link href={mapHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(mapHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
                 <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><MapPin size={15} strokeWidth={2} /></span>{nav.map}
+              </Link>
+              <Link href={dashboardHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(dashboardHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><BarChart3 size={15} strokeWidth={2} /></span>{nav.dashboard}
               </Link>
               <Link href={randomHref} onClick={close} className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-[var(--color-ink)]/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]">
                 <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><Shuffle size={15} strokeWidth={2} /></span>{nav.randomPlace}
