@@ -49,6 +49,34 @@ html[data-theme="dark"] {
   --color-rating: var(--color-gold);
 }
 
+/* ─── Palette: Neon Cerulean (asl brend) ────────────────────────────────────── */
+[data-palette="cerulean"] {
+  --background: #F2F6F9;
+  --foreground: #0A0A0A;
+  --color-sky: #007BA7;
+  --color-teal: #005F85;
+  --color-gold: #FF2D95;
+  --color-ink: #0A0A0A;
+  --color-mist: #E3EDF3;
+  --color-sand: #D6E8F2;
+  --color-clay: #B4D6E6;
+  --color-on-accent: #FFFFFF;
+  --color-rating: var(--color-gold);
+}
+html[data-theme="dark"][data-palette="cerulean"] {
+  --background: #0A0A0A;
+  --foreground: #E9F2F7;
+  --color-sky: #2E9FC9;
+  --color-teal: #66C1E0;
+  --color-gold: #FF5CA8;
+  --color-ink: #E9F2F7;
+  --color-mist: #141414;
+  --color-sand: #101416;
+  --color-clay: #1C2429;
+  --color-on-accent: #FFFFFF;
+  --color-rating: var(--color-gold);
+}
+
 /* ─── Tailwind theme bridge ──────────────────────────────────────────────────── */
 @theme inline {
   --color-background: var(--background);

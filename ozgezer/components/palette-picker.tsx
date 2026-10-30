@@ -14,6 +14,7 @@ type Palette = {
 
 export const PALETTES: Palette[] = [
   { id: "mocha", name: "Mocha Atelier", swatches: ["#E5E4E2", "#6F4E37", "#6E5695"] },
+  { id: "cerulean", name: "Neon Cerulean", swatches: ["#F2F6F9", "#007BA7", "#FF2D95"] },
 ];
 
 const STORAGE_KEY = "ozgezer-palette";
