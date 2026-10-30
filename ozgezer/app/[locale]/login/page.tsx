@@ -123,7 +123,7 @@ export default async function LoginPage({ params, searchParams }: LoginPageProps
             {texts.noAccount}{" "}
             <Link
               href={`/${locale}/register`}
-              className="font-semibold text-[var(--color-sky)] transition hover:underline"
+              className="font-semibold text-[var(--color-sky-text)] transition hover:underline"
             >
               {texts.register}
             </Link>

@@ -164,7 +164,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
       <section className="container-shell pb-4">
         <div className="flex flex-wrap items-center gap-3">
           {/* Count */}
-          <span className="rounded-full bg-[var(--color-sky)]/10 px-3.5 py-1.5 text-xs font-semibold text-[var(--color-sky)]">
+          <span className="rounded-full bg-[var(--color-sky)]/10 px-3.5 py-1.5 text-xs font-semibold text-[var(--color-sky-text)]">
             {places.length} {messages.explore.resultCount}
           </span>
 
@@ -175,7 +175,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
               className="flex items-center gap-1.5 rounded-full border border-[var(--color-gold)]/40 bg-[var(--color-gold)]/10 px-3.5 py-1.5 text-xs font-semibold text-[var(--color-ink)]/70 transition hover:border-[var(--color-gold)] hover:text-[var(--color-ink)]"
             >
               {messages.explore.didYouMean}
-              <span className="text-[var(--color-gold)]">{correction}</span>
+              <span className="text-[var(--color-gold-text)]">{correction}</span>
             </Link>
           )}
 
@@ -245,7 +245,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
             {suggestions.length > 0 && (
               <div>
                 <div className="mb-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-sky)]">
+                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-sky-text)]">
                     {messages.explore.similarTitle}
                   </p>
                   <p className="mt-1.5 max-w-2xl text-sm leading-6 text-[var(--color-ink)]/55">
@@ -277,7 +277,7 @@ function ActiveChip({ label, href }: { label: string; href: string }) {
   return (
     <Link
       href={href}
-      className="flex items-center gap-1.5 rounded-full border border-[var(--color-sky)]/30 bg-[var(--color-sky)]/8 px-3 py-1.5 text-xs font-semibold text-[var(--color-sky)] transition hover:bg-[var(--color-sky)]/15"
+      className="flex items-center gap-1.5 rounded-full border border-[var(--color-sky)]/30 bg-[var(--color-sky)]/8 px-3 py-1.5 text-xs font-semibold text-[var(--color-sky-text)] transition hover:bg-[var(--color-sky)]/15"
     >
       {label}
       <X size={11} strokeWidth={2.5} />

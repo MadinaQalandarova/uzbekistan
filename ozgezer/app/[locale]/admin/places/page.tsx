@@ -70,7 +70,7 @@ export default async function AdminPlacesPage({
         <div className="flex gap-3">
           <Link
             href={`/${locale}/admin`}
-            className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+            className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)]"
           >
             Dashboard
           </Link>
@@ -117,7 +117,7 @@ export default async function AdminPlacesPage({
 
       <div className="section-card rounded-[1.75rem] overflow-hidden">
         <div className="p-6 border-b border-[var(--color-ink)]/6">
-          <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky)]">
+          <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky-text)]">
             Joylar ro&apos;yxati
           </p>
           <p className="mt-1 text-sm text-[var(--color-ink)]/60">
@@ -129,7 +129,7 @@ export default async function AdminPlacesPage({
           <div className="p-10 text-center text-sm text-[var(--color-ink)]/50">
             Hali hech qanday joy qo&apos;shilmagan.{" "}
             {canManage && (
-              <Link href={`/${locale}/admin/places/new`} className="text-[var(--color-sky)] underline">
+              <Link href={`/${locale}/admin/places/new`} className="text-[var(--color-sky-text)] underline">
                 Birinchi joyni qo&apos;shing
               </Link>
             )}
@@ -163,7 +163,7 @@ export default async function AdminPlacesPage({
                 <div className="flex flex-wrap gap-2">
                   <Link
                     href={`/${locale}/admin/places/${place.slug}`}
-                    className="rounded-full border border-[var(--color-ink)]/10 px-3 py-1.5 text-xs font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+                    className="rounded-full border border-[var(--color-ink)]/10 px-3 py-1.5 text-xs font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)]"
                   >
                     Tahrirlash
                   </Link>

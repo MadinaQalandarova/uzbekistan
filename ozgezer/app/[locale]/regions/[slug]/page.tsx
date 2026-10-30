@@ -44,7 +44,7 @@ export default async function RegionDetailPage({ params }: RegionDetailPageProps
       <section className="container-shell pb-6">
         <Link
           href={`/${locale}/regions`}
-          className="inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)]"
         >
           <ArrowLeft size={14} strokeWidth={2.2} />
           {messages.regions.backToRegions}
@@ -54,7 +54,7 @@ export default async function RegionDetailPage({ params }: RegionDetailPageProps
       {/* ── Hero banner ── */}
       <section className="container-shell pb-6">
         <div className="uzbek-hero relative overflow-hidden rounded-[2rem] border border-[var(--color-ink)]/8 p-8 md:p-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
             {messages.regions.title}
           </p>
           <h1 className="display-title mt-3 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
@@ -89,7 +89,7 @@ export default async function RegionDetailPage({ params }: RegionDetailPageProps
 
           {/* Stats */}
           <article className="section-card rounded-[1.75rem] p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-sky)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-sky-text)]">
               {messages.regions.practicalInfo}
             </p>
             <div className="mt-4 grid gap-3">
@@ -118,7 +118,7 @@ export default async function RegionDetailPage({ params }: RegionDetailPageProps
       {region.featuredPlaces.length > 0 && (
         <section className="container-shell pb-14">
           <div className="section-card rounded-[1.75rem] p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
               {messages.regions.highlights}
             </p>
             <div className="mt-5 grid gap-3 md:grid-cols-2">
@@ -137,7 +137,7 @@ export default async function RegionDetailPage({ params }: RegionDetailPageProps
                   <ArrowRight
                     size={16}
                     strokeWidth={2}
-                    className="flex-shrink-0 text-[var(--color-sky)] opacity-0 transition-opacity group-hover:opacity-100"
+                    className="flex-shrink-0 text-[var(--color-sky-text)] opacity-0 transition-opacity group-hover:opacity-100"
                   />
                 </Link>
               ))}

@@ -60,7 +60,7 @@ export function VirtualTour({ scenes, hint }: Props) {
                 className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                   i === active
                     ? "bg-[var(--color-sky)] text-[var(--color-on-accent)] shadow-sm"
-                    : "border border-[var(--color-ink)]/10 text-[var(--color-ink)]/60 hover:border-[var(--color-sky)]/50 hover:text-[var(--color-sky)]"
+                    : "border border-[var(--color-ink)]/10 text-[var(--color-ink)]/60 hover:border-[var(--color-sky)]/50 hover:text-[var(--color-sky-text)]"
                 }`}
               >
                 {s.title}

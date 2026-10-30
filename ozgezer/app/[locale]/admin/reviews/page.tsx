@@ -39,7 +39,7 @@ export default async function AdminReviewsPage({ params, searchParams }: AdminRe
         </div>
         <Link
           href={`/${locale}/admin`}
-          className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)]"
         >
           ← Dashboard
         </Link>
@@ -86,7 +86,7 @@ export default async function AdminReviewsPage({ params, searchParams }: AdminRe
                           size={13}
                           strokeWidth={0}
                           fill="currentColor"
-                          className={i < review.rating ? "text-[var(--color-gold)]" : "text-[var(--color-ink)]/20"}
+                          className={i < review.rating ? "text-[var(--color-rating)]" : "text-[var(--color-ink)]/20"}
                         />
                       ))}
                     </div>

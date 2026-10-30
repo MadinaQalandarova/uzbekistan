@@ -51,7 +51,7 @@ export function PasswordField({
           aria-label={visible ? hideLabel : showLabel}
           title={visible ? hideLabel : showLabel}
           aria-pressed={visible}
-          className="absolute right-1.5 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-[0.75rem] text-[var(--color-ink)]/40 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-sky)]/30"
+          className="absolute right-1.5 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-[0.75rem] text-[var(--color-ink)]/40 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-sky)]/30"
         >
           {visible ? <EyeOff size={17} strokeWidth={2} /> : <Eye size={17} strokeWidth={2} />}
         </button>

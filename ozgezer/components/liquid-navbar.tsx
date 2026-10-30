@@ -6,6 +6,7 @@ import { Home, Compass, Map, MapPin, Shuffle, User, Globe, Menu, X, LogOut, BarC
 import { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { Locale } from "@/lib/i18n";
+import { PalettePicker } from "./palette-picker";
 import "./liquid-navbar.css";
 
 type Props = {
@@ -212,23 +213,23 @@ export function LiquidNavbar({ locale, nav, user, randomSlugs, variant = "fixed"
 
           <div className="flex flex-1 flex-col overflow-y-auto overscroll-contain">
             <nav className="flex flex-col gap-1 px-3 py-4">
-              <Link href={homeHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(homeHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><Home size={15} strokeWidth={2} /></span>{nav.home}
+              <Link href={homeHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(homeHref) ? "bg-[var(--color-mist)] text-[var(--color-sky-text)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky-text)]"}`}>
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky-text)]"><Home size={15} strokeWidth={2} /></span>{nav.home}
               </Link>
-              <Link href={exploreHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(exploreHref) && !isActive(regionsHref) && !isActive(mapHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><Compass size={15} strokeWidth={2} /></span>{nav.explore}
+              <Link href={exploreHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(exploreHref) && !isActive(regionsHref) && !isActive(mapHref) ? "bg-[var(--color-mist)] text-[var(--color-sky-text)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky-text)]"}`}>
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky-text)]"><Compass size={15} strokeWidth={2} /></span>{nav.explore}
               </Link>
-              <Link href={regionsHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(regionsHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><Map size={15} strokeWidth={2} /></span>{nav.regions}
+              <Link href={regionsHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(regionsHref) ? "bg-[var(--color-mist)] text-[var(--color-sky-text)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky-text)]"}`}>
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky-text)]"><Map size={15} strokeWidth={2} /></span>{nav.regions}
               </Link>
-              <Link href={mapHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(mapHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><MapPin size={15} strokeWidth={2} /></span>{nav.map}
+              <Link href={mapHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(mapHref) ? "bg-[var(--color-mist)] text-[var(--color-sky-text)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky-text)]"}`}>
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky-text)]"><MapPin size={15} strokeWidth={2} /></span>{nav.map}
               </Link>
-              <Link href={dashboardHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(dashboardHref) ? "bg-[var(--color-mist)] text-[var(--color-sky)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"}`}>
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><BarChart3 size={15} strokeWidth={2} /></span>{nav.dashboard}
+              <Link href={dashboardHref} onClick={close} className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium transition ${isActive(dashboardHref) ? "bg-[var(--color-mist)] text-[var(--color-sky-text)]" : "text-[var(--color-ink)]/60 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky-text)]"}`}>
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky-text)]"><BarChart3 size={15} strokeWidth={2} /></span>{nav.dashboard}
               </Link>
-              <Link href={randomHref} onClick={close} className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-[var(--color-ink)]/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]">
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]"><Shuffle size={15} strokeWidth={2} /></span>{nav.randomPlace}
+              <Link href={randomHref} onClick={close} className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-medium text-[var(--color-ink)]/60 transition hover:bg-[var(--color-mist)] hover:text-[var(--color-sky-text)]">
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky-text)]"><Shuffle size={15} strokeWidth={2} /></span>{nav.randomPlace}
               </Link>
             </nav>
 
@@ -238,20 +239,24 @@ export function LiquidNavbar({ locale, nav, user, randomSlugs, variant = "fixed"
               <p className="mb-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-ink)]/35">Til / Язык / Language</p>
               <div className="flex gap-2">
                 {(["uz", "ru", "en"] as const).map((l) => (
-                  <Link key={l} href={localeHref(l)} onClick={close} className={`flex-1 rounded-xl py-2.5 text-center text-xs font-semibold uppercase tracking-[0.18em] transition ${l === locale ? "bg-[var(--color-sky)] text-[var(--color-on-accent)] shadow-sm" : "border border-[var(--color-ink)]/10 text-[var(--color-ink)]/50 hover:border-[var(--color-sky)]/50 hover:text-[var(--color-sky)]"}`}>{l}</Link>
+                  <Link key={l} href={localeHref(l)} onClick={close} className={`flex-1 rounded-xl py-2.5 text-center text-xs font-semibold uppercase tracking-[0.18em] transition ${l === locale ? "bg-[var(--color-sky)] text-[var(--color-on-accent)] shadow-sm" : "border border-[var(--color-ink)]/10 text-[var(--color-ink)]/50 hover:border-[var(--color-sky)]/50 hover:text-[var(--color-sky-text)]"}`}>{l}</Link>
                 ))}
               </div>
             </div>
 
             <div className="px-5 pb-4">
               <p className="mb-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--color-ink)]/35">{locale === "ru" ? "Тема" : locale === "en" ? "Theme" : "Mavzu"}</p>
-              <button onClick={() => { toggleTheme(); close(); }} className="flex w-full items-center gap-3 rounded-2xl border border-[var(--color-ink)]/10 px-4 py-3 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)]/30 hover:text-[var(--color-sky)]">
-                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky)]">
+              <button onClick={() => { toggleTheme(); close(); }} className="flex w-full items-center gap-3 rounded-2xl border border-[var(--color-ink)]/10 px-4 py-3 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)]/30 hover:text-[var(--color-sky-text)]">
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-mist)] text-[var(--color-sky-text)]">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /></svg>
                 </span>
                 {locale === "uz" ? "Tungi rejim" : locale === "ru" ? "Ночной режим" : "Dark mode"}
               </button>
             </div>
+
+            <PalettePicker
+              title={locale === "uz" ? "Ranglar" : locale === "ru" ? "Цвета" : "Colors"}
+            />
           </div>
 
           <div className="flex-shrink-0 border-t border-[var(--color-ink)]/6 px-4 py-4">

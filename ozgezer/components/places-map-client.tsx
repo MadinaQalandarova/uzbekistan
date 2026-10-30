@@ -22,8 +22,8 @@ function escapeHtml(value: string): string {
 
 /* ── Custom marker icon ─────────────────────────────────────────────────────── */
 function makeIcon(selected: boolean, name: string) {
-  const color = selected ? "#6E5695" : "#6F4E37";
-  const glow = selected ? "#6E5695" : "#6F4E37";
+  const color = selected ? "var(--color-gold)" : "var(--color-sky)";
+  const glow = selected ? "var(--color-gold)" : "var(--color-sky)";
   const w = selected ? 44 : 36;
   const h = selected ? 56 : 46;
   const safeName = escapeHtml(name);
@@ -37,16 +37,16 @@ function makeIcon(selected: boolean, name: string) {
             position:absolute;top:50%;left:50%;
             transform:translate(-50%,-65%);
             width:66px;height:66px;border-radius:50%;
-            background:${glow}33;
+            background:color-mix(in srgb, ${glow} 20%, transparent);
             animation:mapPulse 1.6s ease-out infinite;
           "></div>
         ` : ""}
         <svg width="${w}" height="${h}" viewBox="0 0 44 56" xmlns="http://www.w3.org/2000/svg"
-          style="filter:drop-shadow(0 6px 16px ${color}66);transition:all .25s">
+          style="filter:drop-shadow(0 6px 16px color-mix(in srgb, ${color} 40%, transparent));transition:all .25s">
           <path d="M22 0C9.85 0 0 9.85 0 22c0 5.6 2.1 10.7 5.56 14.6L22 56l16.44-19.4A21.93 21.93 0 0044 22C44 9.85 34.15 0 22 0z"
-            fill="${color}"/>
+            style="fill:${color}"/>
           <circle cx="22" cy="22" r="11" fill="white" opacity="0.97"/>
-          <circle cx="22" cy="22" r="5" fill="${color}"/>
+          <circle cx="22" cy="22" r="5" style="fill:${color}"/>
         </svg>
       </div>`,
     className: "",
@@ -155,7 +155,7 @@ export default function PlacesMapClient({ places, locale }: Props) {
             className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${
               activeCategory === "all"
                 ? "bg-[var(--color-sky)] text-[var(--color-on-accent)] shadow-sm"
-                : "text-[var(--color-ink)]/55 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"
+                : "text-[var(--color-ink)]/55 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky-text)]"
             }`}
           >
             {t.all} ({places.length})
@@ -167,7 +167,7 @@ export default function PlacesMapClient({ places, locale }: Props) {
               className={`rounded-full px-4 py-1.5 text-xs font-semibold transition ${
                 activeCategory === cat
                   ? "bg-[var(--color-sky)] text-[var(--color-on-accent)] shadow-sm"
-                  : "text-[var(--color-ink)]/55 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky)]"
+                  : "text-[var(--color-ink)]/55 hover:bg-[var(--color-mist)] hover:text-[var(--color-sky-text)]"
               }`}
             >
               {cat}
@@ -238,8 +238,8 @@ export default function PlacesMapClient({ places, locale }: Props) {
                 {selected.averageRating > 0 && (
                   <div className="flex flex-shrink-0 items-center gap-1 rounded-full
                     bg-[var(--color-mist)] px-2.5 py-1 ring-1 ring-[var(--color-clay)]">
-                    <Star size={11} strokeWidth={0} fill="currentColor" className="text-[var(--color-gold)]" />
-                    <span className="text-xs font-semibold text-[var(--color-gold)]">
+                    <Star size={11} strokeWidth={0} fill="currentColor" className="text-[var(--color-rating)]" />
+                    <span className="text-xs font-semibold text-[var(--color-rating)]">
                       {selected.averageRating.toFixed(1)}
                     </span>
                   </div>

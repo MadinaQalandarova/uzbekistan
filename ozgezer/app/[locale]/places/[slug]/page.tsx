@@ -143,7 +143,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
         <div className="flex items-center justify-between gap-4">
           <Link
             href={`/${locale}/explore`}
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)]"
           >
             <ArrowLeft size={14} strokeWidth={2.2} />
             {messages.place.backToExplore}
@@ -158,8 +158,8 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                 aria-label={isSaved ? t.saved : t.save}
                 className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition ${
                   isSaved
-                    ? "border-[var(--color-gold)] bg-amber-50 text-[var(--color-gold)]"
-                    : "border-[var(--color-ink)]/10 text-[var(--color-ink)]/60 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+                    ? "border-[var(--color-gold)] bg-amber-50 text-[var(--color-gold-text)]"
+                    : "border-[var(--color-ink)]/10 text-[var(--color-ink)]/60 hover:border-[var(--color-gold)] hover:text-[var(--color-gold-text)]"
                 }`}
               >
                 {isSaved ? (
@@ -267,7 +267,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
           {/* Right column: info + review form */}
           <div className="space-y-4">
             <article className="section-card rounded-[1.75rem] p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
                 {messages.place.practicalInfo}
               </p>
               <div className="mt-4 grid gap-3">
@@ -310,7 +310,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
       {/* ── Reviews ── */}
       {reviews.length > 0 && (
         <section className="container-shell pb-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-sky)]">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-sky-text)]">
             {t.reviewsLabel} ({reviews.length})
           </p>
           <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -333,7 +333,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                         size={12}
                         strokeWidth={0}
                         fill="currentColor"
-                        className={i < review.rating ? "text-[var(--color-gold)]" : "text-[var(--color-ink)]/15"}
+                        className={i < review.rating ? "text-[var(--color-rating)]" : "text-[var(--color-ink)]/15"}
                       />
                     ))}
                   </div>
@@ -367,7 +367,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
           <div className="section-card rounded-[2rem] overflow-hidden">
             {/* Section header */}
             <div className="border-b border-[var(--color-ink)]/6 px-6 py-5 md:px-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
                 {t.detailedInfo}
               </p>
               <h2 className="display-title mt-1 text-xl font-semibold text-[var(--color-ink)] md:text-2xl">
@@ -378,7 +378,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
             <div className="divide-y divide-black/5">
               {story.sections.map((section) => (
                 <div key={section.heading} className="px-6 py-6 md:px-8">
-                  <h3 className="mb-5 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-sky)]">
+                  <h3 className="mb-5 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-sky-text)]">
                     <span>{section.emoji}</span>
                     <span>{section.heading}</span>
                   </h3>
@@ -408,7 +408,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
       {/* ── Related places ── */}
       {relatedPlaces.length > 0 && (
         <section className="container-shell pb-14">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-sky)]">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-sky-text)]">
             {messages.place.relatedPlaces}
           </p>
           <div className="mt-4 grid gap-4 lg:grid-cols-3">

@@ -53,7 +53,7 @@ export default async function AdminRegionsPage({
         </div>
         <Link
           href={`/${locale}/admin`}
-          className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)]"
         >
           Dashboard
         </Link>
@@ -86,7 +86,7 @@ export default async function AdminRegionsPage({
 
       <div className="grid gap-6 lg:grid-cols-[1fr_0.95fr]">
         <article className="section-card rounded-[1.75rem] p-6">
-          <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">
+          <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
             Joriy regionlar
           </p>
           <div className="mt-5 grid gap-3">
@@ -118,7 +118,7 @@ export default async function AdminRegionsPage({
         </article>
 
         <article className="section-card rounded-[1.75rem] p-6">
-          <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky)]">
+          <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky-text)]">
             Yangi region qo&apos;shish
           </p>
           <form action="/api/admin/regions/create" method="post" className="mt-5 space-y-4">

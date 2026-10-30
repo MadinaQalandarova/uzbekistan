@@ -114,8 +114,8 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
       <section className="container-shell py-3 sm:py-4 md:py-8">
         <div className="uzbek-hero relative overflow-hidden rounded-[1.5rem] border border-[var(--color-ink)]/8 px-4 py-6 sm:rounded-[2rem] sm:px-5 sm:py-8 md:rounded-[2.5rem] md:px-10 md:py-12">
           {/* Milliy girih burchak naqshi — nozik, suzani o'rniga */}
-          <div className="pointer-events-none absolute right-0 top-0 h-28 w-28 opacity-[0.09] md:h-36 md:w-36" aria-hidden style={{ backgroundImage: `repeating-linear-gradient(45deg, rgba(111,78,55,0.2) 0 1px, transparent 1px 12px), repeating-linear-gradient(-45deg, rgba(110,86,149,0.16) 0 1px, transparent 1px 12px), radial-gradient(circle at center, rgba(110,86,149,0.10) 1.5px, transparent 1.7px)`, backgroundSize: "24px 24px, 24px 24px, 24px 24px" }} />
-          <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-24 opacity-[0.07] md:h-32 md:w-32" aria-hidden style={{ backgroundImage: `repeating-linear-gradient(45deg, rgba(111,78,55,0.16) 0 1px, transparent 1px 10px), repeating-linear-gradient(-45deg, rgba(110,86,149,0.14) 0 1px, transparent 1px 10px)`, backgroundSize: "20px 20px, 20px 20px" }} />
+          <div className="pointer-events-none absolute right-0 top-0 h-28 w-28 opacity-[0.09] md:h-36 md:w-36" aria-hidden style={{ backgroundImage: `repeating-linear-gradient(45deg, color-mix(in srgb, var(--color-sky) 20%, transparent) 0 1px, transparent 1px 12px), repeating-linear-gradient(-45deg, color-mix(in srgb, var(--color-gold) 16%, transparent) 0 1px, transparent 1px 12px), radial-gradient(circle at center, color-mix(in srgb, var(--color-gold) 10%, transparent) 1.5px, transparent 1.7px)`, backgroundSize: "24px 24px, 24px 24px, 24px 24px" }} />
+          <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-24 opacity-[0.07] md:h-32 md:w-32" aria-hidden style={{ backgroundImage: `repeating-linear-gradient(45deg, color-mix(in srgb, var(--color-sky) 16%, transparent) 0 1px, transparent 1px 10px), repeating-linear-gradient(-45deg, color-mix(in srgb, var(--color-gold) 14%, transparent) 0 1px, transparent 1px 10px)`, backgroundSize: "20px 20px, 20px 20px" }} />
 
           <div className="fade-up relative grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div className="space-y-6 md:space-y-7">
@@ -170,7 +170,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
               {/* Mobile-only compact stats row — 4 ustun (desktop bilan mos) */}
                 <div className="grid grid-cols-4 gap-2 lg:hidden">
                   <div className="rounded-[1rem] border border-[var(--color-sky)]/10 bg-[var(--color-sky)]/10 px-2 py-2.5 text-center">
-                    <p className="text-base font-semibold text-[var(--color-sky)]">{regions.length}</p>
+                    <p className="text-base font-semibold text-[var(--color-sky-text)]">{regions.length}</p>
                     <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsRegions}</p>
                   </div>
                   <div className="rounded-[1rem] border border-[var(--color-teal)]/10 bg-[var(--color-teal)]/10 px-2 py-2.5 text-center">
@@ -178,7 +178,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                     <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsPlaces}</p>
                   </div>
                   <div className="rounded-[1rem] border border-[var(--color-gold)]/10 bg-[var(--color-gold)]/10 px-2 py-2.5 text-center">
-                    <p className="text-base font-semibold text-[var(--color-gold)]">{categories.length}</p>
+                    <p className="text-base font-semibold text-[var(--color-gold-text)]">{categories.length}</p>
                     <p className="text-[9px] leading-tight text-[var(--color-ink)]/50">{messages.home.statsCategories}</p>
                   </div>
                   <div className="rounded-[1rem] border border-[var(--color-ink)]/5 bg-[var(--color-ink)]/5 px-2 py-2.5 text-center">
@@ -193,7 +193,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
               <div className="relative overflow-hidden rounded-[2rem] border border-[var(--color-ink)]/5 bg-white/80 p-6 shadow-[0_16px_40px_rgba(14,31,31,0.08)] backdrop-blur-xl">
                 <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-gradient-to-br from-[var(--color-sky)]/12 to-[var(--color-gold)]/14 blur-2xl" aria-hidden />
                 <div className="pointer-events-none absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-gradient-to-tr from-[var(--color-teal)]/10 to-transparent blur-2xl" aria-hidden />
-                <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[var(--color-sky)]">
+                <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.24em] text-[var(--color-sky-text)]">
                   <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-gold)]" />
                   O&apos;zGezer
                 </p>
@@ -223,7 +223,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
                     <p className="mt-1 text-xs font-medium text-[var(--color-ink)]/50">{messages.home.statsCategories}</p>
                   </div>
                   <div className="group rounded-2xl border border-[var(--color-ink)]/5 bg-[var(--color-mist)]/60 p-4 transition hover:border-[var(--color-ink)]/15 hover:bg-[var(--color-sand)] hover:shadow-sm">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-ink)] text-[var(--color-on-accent)] shadow-sm">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[var(--color-ink)] text-[var(--background)] shadow-sm">
                       <Globe size={14} strokeWidth={2} />
                     </div>
                     <p className="mt-3 text-2xl font-bold leading-none text-[var(--color-ink)]">3</p>
@@ -248,7 +248,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
           </div>
           <Link
             href={`/${locale}/explore`}
-            className="hidden shrink-0 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] md:block"
+            className="hidden shrink-0 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)] md:block"
           >
             {messages.home.seeAllPlaces}
           </Link>
@@ -311,7 +311,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
       <section className="container-shell py-8">
         <div className="mb-6 flex items-end justify-between gap-6">
           <div>
-            <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky)]">
+            <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky-text)]">
               {messages.home.featuredEyebrow}
             </p>
             <h2 className="display-title text-2xl font-semibold text-[var(--color-ink)] md:text-3xl lg:text-4xl">
@@ -320,7 +320,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
           </div>
           <Link
             href={`/${locale}/explore`}
-            className="hidden shrink-0 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] md:block"
+            className="hidden shrink-0 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)] md:block"
           >
             {messages.home.seeAllPlaces}
           </Link>
@@ -343,7 +343,7 @@ export default async function LocaleHomePage({ params }: LocalePageProps) {
         <div className="section-card rounded-[2rem] p-6 md:p-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">
+              <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
                 {messages.home.regionsEyebrow}
               </p>
               <h2 className="display-title text-2xl font-semibold text-[var(--color-ink)] md:text-3xl lg:text-4xl">

@@ -46,7 +46,7 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
         </div>
         <Link
           href={`/${locale}/admin/places`}
-          className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+          className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)]"
         >
           ← Joylar ro&apos;yxati
         </Link>
@@ -62,7 +62,7 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
         <input type="hidden" name="locale" value={locale} />
 
         <fieldset className="section-card rounded-[1.75rem] p-6 space-y-4">
-          <legend className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">
+          <legend className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
             Asosiy ma&apos;lumot
           </legend>
 
@@ -105,7 +105,7 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
         </fieldset>
 
         <fieldset className="section-card rounded-[1.75rem] p-6 space-y-4">
-          <legend className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky)]">
+          <legend className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky-text)]">
             Nomi (3 tilda)
           </legend>
           <TextField label="Nomi (UZ)" name="nameUz" placeholder="Registon maydoni" required />
@@ -138,7 +138,7 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
         </fieldset>
 
         <fieldset className="section-card rounded-[1.75rem] p-6 space-y-4">
-          <legend className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">
+          <legend className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
             Joylashuv
           </legend>
           <div className="grid gap-4 md:grid-cols-2">
@@ -158,7 +158,7 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
         </fieldset>
 
         <fieldset className="section-card rounded-[1.75rem] p-6 space-y-4">
-          <legend className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky)]">
+          <legend className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky-text)]">
             Qo&apos;shimcha ma&apos;lumotlar (ixtiyoriy)
           </legend>
           <div className="grid gap-4 md:grid-cols-2">
@@ -179,7 +179,7 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
         </fieldset>
 
         <fieldset className="section-card rounded-[1.75rem] p-6 space-y-4">
-          <legend className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">
+          <legend className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
             Qanday borish (ixtiyoriy)
           </legend>
           <TextareaField label="Yo'nalish (UZ)" name="howToGetUz" placeholder="Samarqand shahar markazidan..." />
@@ -197,7 +197,7 @@ export default async function NewPlacePage({ params, searchParams }: NewPlacePag
           </button>
           <Link
             href={`/${locale}/admin/places`}
-            className="h-12 rounded-full border border-[var(--color-ink)]/10 px-6 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] inline-flex items-center"
+            className="h-12 rounded-full border border-[var(--color-ink)]/10 px-6 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)] inline-flex items-center"
           >
             Bekor qilish
           </Link>

@@ -89,7 +89,7 @@ function RankedPlaces({
                 {index + 1}
               </span>
 
-              <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-[0.9rem] bg-[linear-gradient(135deg,rgba(111,78,55,0.9),rgba(110,86,149,0.6))]">
+              <span className="relative h-12 w-12 shrink-0 overflow-hidden rounded-[0.9rem] bg-[linear-gradient(135deg,var(--color-sky),var(--color-gold))]">
                 {imageUrl && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
@@ -115,7 +115,7 @@ function RankedPlaces({
               </span>
 
               <span className="shrink-0 text-right">
-                <span className="block text-sm font-semibold text-[var(--color-sky)]">
+                <span className="block text-sm font-semibold text-[var(--color-sky-text)]">
                   {formatNumber(value, locale)}
                 </span>
                 <span className="block text-[10px] uppercase tracking-[0.14em] text-[var(--color-ink)]/40">
@@ -189,7 +189,7 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
                 key={label}
                 className="rounded-[1.25rem] border border-[var(--color-ink)]/8 bg-[var(--color-mist)] px-4 py-4"
               >
-                <div className="flex items-center gap-2 text-[var(--color-sky)]">
+                <div className="flex items-center gap-2 text-[var(--color-sky-text)]">
                   <Icon size={14} strokeWidth={2} />
                   <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-ink)]/40">
                     {label}
@@ -208,7 +208,7 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
       <section className="container-shell pb-10">
         <div className="mb-5 flex items-end justify-between gap-6">
           <div>
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
               <Trophy size={14} strokeWidth={2} />
               {t.bestTitle}
             </p>
@@ -218,7 +218,7 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
           </div>
           <Link
             href={`/${locale}/explore`}
-            className="hidden shrink-0 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)] md:block"
+            className="hidden shrink-0 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)] md:block"
           >
             {t.openDetails}
           </Link>
@@ -246,7 +246,7 @@ export default async function DashboardPage({ params }: DashboardPageProps) {
       <section className="container-shell pb-14">
         <div className="grid gap-8 lg:grid-cols-2">
           <div>
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-sky)]">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-sky-text)]">
               <TrendingUp size={14} strokeWidth={2} />
               {t.visitedTitle}
             </p>

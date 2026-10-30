@@ -192,7 +192,7 @@ export function ReviewForm({ locale, placeSlug, isLoggedIn, reviewStatus = null 
                     size={18}
                     strokeWidth={filled ? 0 : 1.5}
                     fill="currentColor"
-                    className={filled ? "text-[var(--color-gold)]" : "text-[var(--color-ink)]/20"}
+                    className={filled ? "text-[var(--color-rating)]" : "text-[var(--color-ink)]/20"}
                   />
                 </button>
               );

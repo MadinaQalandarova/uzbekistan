@@ -49,7 +49,7 @@ export default async function AdminPage({ params }: AdminPageProps) {
           <input type="hidden" name="locale" value={locale} />
           <button
             type="submit"
-            className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+            className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)]"
           >
             {messages.admin.signOut}
           </button>
@@ -58,7 +58,7 @@ export default async function AdminPage({ params }: AdminPageProps) {
 
       <div className="grid gap-4 lg:grid-cols-[1fr_0.95fr]">
         <article className="section-card rounded-[1.75rem] p-6">
-          <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">
+          <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
             {messages.admin.policyTitle}
           </p>
           <p className="mt-4 text-sm leading-7 text-[var(--color-ink)]/70">
@@ -106,7 +106,7 @@ export default async function AdminPage({ params }: AdminPageProps) {
       <article className="section-card mt-8 rounded-[1.75rem] p-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky)]">
+            <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-sky-text)]">
               Region dataset
             </p>
             <h2 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)]">
@@ -115,7 +115,7 @@ export default async function AdminPage({ params }: AdminPageProps) {
           </div>
           <Link
             href={`/${locale}/regions`}
-            className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+            className="rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)]"
           >
             Public ko&apos;rinishni ochish
           </Link>

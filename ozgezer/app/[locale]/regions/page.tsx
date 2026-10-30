@@ -43,7 +43,7 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
     <div className="py-8">
       {/* ── Hero ── */}
       <section className="container-shell pb-8">
-        <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold)]">
+        <p className="text-sm uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
           {messages.regions.title}
         </p>
         <h1 className="display-title mt-2 text-3xl font-semibold text-[var(--color-ink)] md:text-4xl">
@@ -70,13 +70,13 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
                     {region.name[locale]}
                   </h2>
                 </div>
-                <span className="shrink-0 rounded-full bg-[var(--color-sky)]/10 px-3.5 py-1.5 text-xs font-semibold text-[var(--color-sky)]">
+                <span className="shrink-0 rounded-full bg-[var(--color-sky)]/10 px-3.5 py-1.5 text-xs font-semibold text-[var(--color-sky-text)]">
                   {region.samplePlaces} {messages.regions.statsPlaces}
                 </span>
               </div>
 
               {/* Focus tag */}
-              <p className="mt-3 text-xs font-semibold text-[var(--color-sky)]">
+              <p className="mt-3 text-xs font-semibold text-[var(--color-sky-text)]">
                 {region.focus[locale]}
               </p>
 
@@ -101,7 +101,7 @@ export default async function RegionsPage({ params }: RegionsPageProps) {
               {/* CTA */}
               <Link
                 href={`/${locale}/regions/${region.slug}`}
-                className="mt-5 inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky)]"
+                className="mt-5 inline-flex items-center gap-2 rounded-full border border-[var(--color-ink)]/10 px-4 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-sky)] hover:text-[var(--color-sky-text)]"
               >
                 {messages.regions.exploreRegion}
                 <ArrowRight size={13} strokeWidth={2.2} />

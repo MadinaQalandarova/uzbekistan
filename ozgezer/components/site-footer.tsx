@@ -68,7 +68,7 @@ export function SiteFooter({ locale, description }: SiteFooterProps) {
                 className={`rounded-full px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] transition ${
                   value === locale
                     ? "bg-[var(--color-sky)] text-[var(--color-on-accent)]"
-                    : "text-[var(--color-ink)]/40 hover:text-[var(--color-sky)]"
+                    : "text-[var(--color-ink)]/40 hover:text-[var(--color-sky-text)]"
                 }`}
               >
                 {value.toUpperCase()}
@@ -93,9 +93,9 @@ function FooterLink({
   return (
     <Link
       href={href}
-      className="flex items-center gap-2 text-sm text-[var(--color-ink)]/55 transition hover:text-[var(--color-sky)]"
+      className="flex items-center gap-2 text-sm text-[var(--color-ink)]/55 transition hover:text-[var(--color-sky-text)]"
     >
-      <span className="text-[var(--color-sky)]/60">{icon}</span>
+      <span className="text-[var(--color-sky-text)]/60">{icon}</span>
       {children}
     </Link>
   );

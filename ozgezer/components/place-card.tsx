@@ -36,18 +36,18 @@ export function PlaceCard({ locale, place, ctaLabel }: PlaceCardProps) {
             <div className="absolute inset-0 ring-inset ring-1 ring-white/10" />
           </>
         ) : (
-          <div className="h-full bg-[linear-gradient(135deg,rgba(111,78,55,0.92),rgba(78,54,40,0.78),rgba(110,86,149,0.55))]" />
+          <div className="h-full bg-[linear-gradient(135deg,var(--color-sky),var(--color-teal),var(--color-gold))]" />
         )}
       </div>
 
       <div className="flex flex-1 flex-col space-y-3 p-5">
         <div className="flex items-center justify-between gap-4">
-          <p className="rounded-full bg-[var(--color-sky)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-sky)]">
+          <p className="rounded-full bg-[var(--color-sky)]/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-sky-text)]">
             {place.regionName[locale]}
           </p>
           {place.averageRating > 0 && (
             <p className="flex items-center gap-1 text-sm font-semibold text-[var(--color-teal)]">
-              <Star size={13} strokeWidth={0} fill="currentColor" className="text-[var(--color-gold)]" />
+              <Star size={13} strokeWidth={0} fill="currentColor" className="text-[var(--color-rating)]" />
               {place.averageRating.toFixed(1)}
             </p>
           )}

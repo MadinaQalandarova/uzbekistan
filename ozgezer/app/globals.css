@@ -27,6 +27,9 @@
   --color-sand:   #F1EDF7;   /* lavender hover tint */
   --color-clay:   #CEC3E2;   /* muted lavender — decorative */
   --color-on-accent: #FFFFFF; /* text/icon on mocha & lavender surfaces */
+  --color-rating: var(--color-gold); /* stars / rating numbers */
+  --color-sky-text:  var(--color-sky);  /* readable variant for text/icons */
+  --color-gold-text: var(--color-gold); /* readable variant for text/icons */
 }
 
 /* ─── Mocha Atelier — Dark mode tokens ──────────────────────────────────────── */
@@ -43,6 +46,7 @@ html[data-theme="dark"] {
   --color-sand:   #1C1714;
   --color-clay:   #3A302A;
   --color-on-accent: #1B1512; /* near-black on lightened accent fills */
+  --color-rating: var(--color-gold);
 }
 
 /* ─── Tailwind theme bridge ──────────────────────────────────────────────────── */
@@ -63,17 +67,17 @@ html {
   overflow-x: hidden;
   scrollbar-gutter: stable;
   background:
-    radial-gradient(circle at top,  rgba(111, 78, 55, 0.14), transparent 32%),
-    radial-gradient(circle at 85% 10%, rgba(110, 86, 149, 0.09),  transparent 24%),
-    linear-gradient(180deg, #E5E4E2 0%, #DBD9D5 100%);
+    radial-gradient(circle at top,  color-mix(in oklab, var(--color-sky) 14%, transparent), transparent 32%),
+    radial-gradient(circle at 85% 10%, color-mix(in oklab, var(--color-gold) 9%, transparent),  transparent 24%),
+    linear-gradient(180deg, var(--background) 0%, color-mix(in oklab, var(--background) 90%, #000) 100%);
   /* background transition olib tashlandi — tundan kunga o'tishda qotishni keltirib chiqardi */
 }
 html[data-theme="dark"] {
   color-scheme: dark;
   background:
-    radial-gradient(circle at top,  rgba(183, 142, 111, 0.14), transparent 32%),
-    radial-gradient(circle at 85% 10%, rgba(180, 155, 224, 0.08),  transparent 24%),
-    linear-gradient(180deg, #171310 0%, #1C1714 100%);
+    radial-gradient(circle at top,  color-mix(in oklab, var(--color-sky) 14%, transparent), transparent 32%),
+    radial-gradient(circle at 85% 10%, color-mix(in oklab, var(--color-gold) 8%, transparent),  transparent 24%),
+    linear-gradient(180deg, var(--background) 0%, var(--color-sand) 100%);
 }
 
 body {
@@ -90,7 +94,7 @@ a {
 }
 
 ::selection {
-  background: rgba(111, 78, 55, 0.22);
+  background: color-mix(in oklab, var(--color-sky) 22%, transparent);
 }
 
 /* ─── Layout utilities ──────────────────────────────────────────────────────── */
@@ -104,16 +108,16 @@ a {
 
 /* ─── Section card ──────────────────────────────────────────────────────────── */
 .section-card {
-  border: 1px solid rgba(111, 78, 55, 0.1);
+  border: 1px solid color-mix(in oklab, var(--color-sky) 10%, transparent);
   background: rgba(255, 255, 255, 0.72);
-  box-shadow: 0 18px 50px rgba(42, 33, 28, 0.08);
+  box-shadow: 0 18px 50px color-mix(in oklab, var(--color-ink) 8%, transparent);
   backdrop-filter: blur(12px);
   transition: background 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
 }
 
 html[data-theme="dark"] .section-card {
-  border-color: rgba(183, 142, 111, 0.15);
-  background: rgba(23, 19, 16, 0.85);
+  border-color: color-mix(in oklab, var(--color-sky) 15%, transparent);
+  background: color-mix(in oklab, var(--background) 85%, transparent);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
 }
 @media (prefers-reduced-motion: reduce) {
@@ -128,25 +132,25 @@ html[data-theme="dark"] .section-card {
 /* ─── Decorative patterns ───────────────────────────────────────────────────── */
 .mesh-panel {
   background:
-    radial-gradient(circle at top left,    rgba(111, 78, 55, 0.16), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(110, 86, 149, 0.14), transparent 30%),
-    linear-gradient(135deg, rgba(255,255,255,0.92), rgba(230,224,240,0.92));
+    radial-gradient(circle at top left,    color-mix(in oklab, var(--color-sky) 16%, transparent), transparent 28%),
+    radial-gradient(circle at bottom right, color-mix(in oklab, var(--color-gold) 14%, transparent), transparent 30%),
+    linear-gradient(135deg, rgba(255,255,255,0.92), color-mix(in oklab, var(--color-mist) 92%, transparent));
 }
 
 html[data-theme="dark"] .mesh-panel {
   background:
-    radial-gradient(circle at top left,    rgba(183, 142, 111, 0.16), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(180, 155, 224, 0.12), transparent 30%),
-    linear-gradient(135deg, rgba(23,19,16,0.94), rgba(23,19,16,0.92));
+    radial-gradient(circle at top left,    color-mix(in oklab, var(--color-sky) 16%, transparent), transparent 28%),
+    radial-gradient(circle at bottom right, color-mix(in oklab, var(--color-gold) 12%, transparent), transparent 30%),
+    linear-gradient(135deg, color-mix(in oklab, var(--background) 94%, transparent), color-mix(in oklab, var(--background) 92%, transparent));
 }
 
 .uzbek-hero {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at top left,  rgba(111, 78, 55, 0.16), transparent 28%),
-    radial-gradient(circle at 78% 22%,   rgba(110, 86, 149, 0.12), transparent 20%),
-    linear-gradient(135deg, rgba(255,255,255,0.94), rgba(230,224,240,0.9));
+    radial-gradient(circle at top left,  color-mix(in oklab, var(--color-sky) 16%, transparent), transparent 28%),
+    radial-gradient(circle at 78% 22%,   color-mix(in oklab, var(--color-gold) 12%, transparent), transparent 20%),
+    linear-gradient(135deg, rgba(255,255,255,0.94), color-mix(in oklab, var(--color-mist) 90%, transparent));
 }
 /* Milliy ikat / suzani yengil naqshi — hero ustiga */
 .uzbek-hero::after {
@@ -156,18 +160,18 @@ html[data-theme="dark"] .mesh-panel {
   pointer-events: none;
   opacity: 0.055;
   background-image:
-    radial-gradient(circle at 12px 12px, rgba(110,86,149,0.9) 1.2px, transparent 1.4px),
-    radial-gradient(circle at 36px 36px, rgba(111,78,55,0.85) 1.1px, transparent 1.3px),
-    linear-gradient(45deg, transparent 48%, rgba(111,78,55,0.08) 50%, transparent 52%),
-    linear-gradient(-45deg, transparent 48%, rgba(110,86,149,0.07) 50%, transparent 52%);
+    radial-gradient(circle at 12px 12px, color-mix(in oklab, var(--color-gold) 90%, transparent) 1.2px, transparent 1.4px),
+    radial-gradient(circle at 36px 36px, color-mix(in oklab, var(--color-sky) 85%, transparent) 1.1px, transparent 1.3px),
+    linear-gradient(45deg, transparent 48%, color-mix(in oklab, var(--color-sky) 8%, transparent) 50%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, color-mix(in oklab, var(--color-gold) 7%, transparent) 50%, transparent 52%);
   background-size: 48px 48px, 48px 48px, 24px 24px, 24px 24px;
 }
 
 html[data-theme="dark"] .uzbek-hero {
   background:
-    radial-gradient(circle at top left,  rgba(183, 142, 111, 0.16), transparent 28%),
-    radial-gradient(circle at 78% 22%,   rgba(180, 155, 224, 0.10), transparent 20%),
-    linear-gradient(135deg, rgba(23,19,16,0.95), rgba(23,19,16,0.92));
+    radial-gradient(circle at top left,  color-mix(in oklab, var(--color-sky) 16%, transparent), transparent 28%),
+    radial-gradient(circle at 78% 22%,   color-mix(in oklab, var(--color-gold) 10%, transparent), transparent 20%),
+    linear-gradient(135deg, color-mix(in oklab, var(--background) 95%, transparent), color-mix(in oklab, var(--background) 92%, transparent));
 }
 html[data-theme="dark"] .uzbek-hero::after {
   opacity: 0.08;
@@ -175,19 +179,19 @@ html[data-theme="dark"] .uzbek-hero::after {
 
 .national-band {
   background:
-    linear-gradient(90deg, rgba(111,78,55,0.9),  rgba(111,78,55,0.9))  top/100%    22% no-repeat,
+    linear-gradient(90deg, color-mix(in oklab, var(--color-sky) 90%, transparent),  color-mix(in oklab, var(--color-sky) 90%, transparent))  top/100%    22% no-repeat,
     linear-gradient(90deg, rgba(255,255,255,0.85), rgba(255,255,255,0.85)) center/100% 24% no-repeat,
-    linear-gradient(90deg, rgba(110,86,149,0.85),  rgba(110,86,149,0.85))  bottom/100% 22% no-repeat;
-  border: 1px solid rgba(42, 33, 28, 0.08);
-  box-shadow: 0 14px 40px rgba(42, 33, 28, 0.12);
+    linear-gradient(90deg, color-mix(in oklab, var(--color-gold) 85%, transparent),  color-mix(in oklab, var(--color-gold) 85%, transparent))  bottom/100% 22% no-repeat;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 8%, transparent);
+  box-shadow: 0 14px 40px color-mix(in oklab, var(--color-ink) 12%, transparent);
 }
 
 html[data-theme="dark"] .national-band {
   background:
-    linear-gradient(90deg, rgba(183,142,111,0.85),  rgba(183,142,111,0.85))  top/100%    22% no-repeat,
-    linear-gradient(90deg, rgba(26,22,19,0.85),     rgba(26,22,19,0.85))    center/100% 24% no-repeat,
-    linear-gradient(90deg, rgba(180,155,224,0.8), rgba(180,155,224,0.8)) bottom/100% 22% no-repeat;
-  border-color: rgba(183,142,111,0.2);
+    linear-gradient(90deg, color-mix(in oklab, var(--color-sky) 85%, transparent),  color-mix(in oklab, var(--color-sky) 85%, transparent))  top/100%    22% no-repeat,
+    linear-gradient(90deg, color-mix(in oklab, var(--background) 85%, transparent), color-mix(in oklab, var(--background) 85%, transparent)) center/100% 24% no-repeat,
+    linear-gradient(90deg, color-mix(in oklab, var(--color-gold) 80%, transparent), color-mix(in oklab, var(--color-gold) 80%, transparent)) bottom/100% 22% no-repeat;
+  border-color: color-mix(in oklab, var(--color-sky) 20%, transparent);
 }
 
 .suzani-orb {
@@ -198,10 +202,10 @@ html[data-theme="dark"] .national-band {
     radial-gradient(circle, rgba(255,255,255,0.12) 0 24%, transparent 25%),
     conic-gradient(
       from 0deg,
-      rgba(111, 78, 55, 0.95),
-      rgba(78, 54, 40, 0.85),
-      rgba(110, 86, 149, 0.90),
-      rgba(111, 78, 55, 0.95)
+      color-mix(in oklab, var(--color-sky) 95%, transparent),
+      color-mix(in oklab, var(--color-teal) 85%, transparent),
+      color-mix(in oklab, var(--color-gold) 90%, transparent),
+      color-mix(in oklab, var(--color-sky) 95%, transparent)
     );
   mask: radial-gradient(circle, transparent 0 18%, black 20% 100%);
   filter: blur(0.2px);
@@ -209,31 +213,31 @@ html[data-theme="dark"] .national-band {
 
 .suzani-grid {
   background-image:
-    radial-gradient(circle at center, rgba(110,86,149,0.14) 0 10%, transparent 11%),
-    linear-gradient(rgba(111,78,55,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(111,78,55,0.07) 1px, transparent 1px);
+    radial-gradient(circle at center, color-mix(in oklab, var(--color-gold) 14%, transparent) 0 10%, transparent 11%),
+    linear-gradient(color-mix(in oklab, var(--color-sky) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--color-sky) 7%, transparent) 1px, transparent 1px);
   background-size: 48px 48px, 24px 24px, 24px 24px;
 }
 
 html[data-theme="dark"] .suzani-grid {
   background-image:
-    radial-gradient(circle at center, rgba(180,155,224,0.10) 0 10%, transparent 11%),
-    linear-gradient(rgba(183,142,111,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(183,142,111,0.08) 1px, transparent 1px);
+    radial-gradient(circle at center, color-mix(in oklab, var(--color-gold) 10%, transparent) 0 10%, transparent 11%),
+    linear-gradient(color-mix(in oklab, var(--color-sky) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--color-sky) 8%, transparent) 1px, transparent 1px);
   background-size: 48px 48px, 24px 24px, 24px 24px;
 }
 
 .fine-grid {
   background-image:
-    linear-gradient(rgba(42,33,28,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42,33,28,0.06) 1px, transparent 1px);
+    linear-gradient(color-mix(in oklab, var(--color-ink) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--color-ink) 6%, transparent) 1px, transparent 1px);
   background-size: 26px 26px;
 }
 
 html[data-theme="dark"] .fine-grid {
   background-image:
-    linear-gradient(rgba(237,231,225,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(237,231,225,0.05) 1px, transparent 1px);
+    linear-gradient(color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px);
   background-size: 26px 26px;
 }
 
@@ -248,20 +252,20 @@ html[data-theme="dark"] .fine-grid {
 
 .card-rise:hover {
   transform: translateY(-6px);
-  box-shadow: 0 22px 45px rgba(42, 33, 28, 0.12);
-  border-color: rgba(111, 78, 55, 0.28);
+  box-shadow: 0 22px 45px color-mix(in oklab, var(--color-ink) 12%, transparent);
+  border-color: color-mix(in oklab, var(--color-sky) 28%, transparent);
 }
 
 html[data-theme="dark"] .card-rise:hover {
   box-shadow: 0 22px 45px rgba(0, 0, 0, 0.4);
-  border-color: rgba(183, 142, 111, 0.35);
+  border-color: color-mix(in oklab, var(--color-sky) 35%, transparent);
 }
 
 /* ─── Milliy tugma animatsiyasi — CTA + header ─────────────────────────────── */
 @keyframes milliyPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(110, 86, 149, 0.42); }
-  70%  { box-shadow: 0 0 0 9px rgba(110, 86, 149, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(110, 86, 149, 0); }
+  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-gold) 42%, transparent); }
+  70%  { box-shadow: 0 0 0 9px color-mix(in oklab, var(--color-gold) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-gold) 0%, transparent); }
 }
 @keyframes shimmerSweep {
   0%   { transform: translateX(-110%); }
@@ -276,7 +280,7 @@ header a.bg-\[var\(--color-gold\)\] {
 }
 header a.bg-\[var\(--color-gold\)\]:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(110, 86, 149, 0.38) !important;
+  box-shadow: 0 10px 28px color-mix(in oklab, var(--color-gold) 38%, transparent) !important;
   animation: none;
 }
 header a.bg-\[var\(--color-gold\)\]::after {
@@ -333,89 +337,89 @@ button.bg-\[var\(--color-sky\)\]:hover::after {
 
 /* ─── Footer surface ────────────────────────────────────────────────────────── */
 .footer-surface {
-  background: rgba(230, 224, 240, 0.55);
+  background: color-mix(in oklab, var(--color-mist) 55%, transparent);
 }
 
 html[data-theme="dark"] .footer-surface {
-  background: rgba(23, 19, 16, 0.80);
+  background: color-mix(in oklab, var(--background) 80%, transparent);
 }
 
 /* ─── Dark mode: header surface ─────────────────────────────────────────────── */
 html[data-theme="dark"] header {
-  background: rgba(23, 19, 16, 0.88) !important;
-  border-color: rgba(183, 142, 111, 0.12) !important;
+  background: color-mix(in oklab, var(--background) 88%, transparent) !important;
+  border-color: color-mix(in oklab, var(--color-sky) 12%, transparent) !important;
 }
 
 /* ─── Dark mode: mobile drawer aside ────────────────────────────────────────── */
 html[data-theme="dark"] aside[role="dialog"] {
-  background: #171310 !important;
+  background: var(--background) !important;
   box-shadow: -4px 0 40px rgba(0, 0, 0, 0.5) !important;
 }
 
 /* Locale pill container — ensure dark surface in dark mode */
 html[data-theme="dark"] .locale-pill-wrap {
-  background: rgba(36, 30, 26, 0.92) !important;
-  border-color: rgba(183, 142, 111, 0.16) !important;
+  background: color-mix(in oklab, var(--color-mist) 92%, transparent) !important;
+  border-color: color-mix(in oklab, var(--color-sky) 16%, transparent) !important;
 }
 
 /* ─── Dark mode: input / select surfaces ───────────────────────────────────── */
 html[data-theme="dark"] input,
 html[data-theme="dark"] select,
 html[data-theme="dark"] textarea {
-  background: rgba(35, 29, 25, 0.92) !important;
+  background: color-mix(in oklab, var(--color-mist) 92%, transparent) !important;
   color: var(--foreground) !important;
-  border-color: rgba(183, 142, 111, 0.28) !important;
+  border-color: color-mix(in oklab, var(--color-sky) 28%, transparent) !important;
   color-scheme: dark;
 }
 
 /* ─── Dark mode: opacity-based text overrides ──────────────────────────────── */
-html[data-theme="dark"] [class~="text-black/70"]  { color: rgb(237 231 225 / 0.70) !important; }
-html[data-theme="dark"] [class~="text-black/65"]  { color: rgb(237 231 225 / 0.65) !important; }
-html[data-theme="dark"] [class~="text-black/60"]  { color: rgb(237 231 225 / 0.60) !important; }
-html[data-theme="dark"] [class~="text-black/55"]  { color: rgb(237 231 225 / 0.55) !important; }
-html[data-theme="dark"] [class~="text-black/50"]  { color: rgb(237 231 225 / 0.50) !important; }
-html[data-theme="dark"] [class~="text-black/45"]  { color: rgb(237 231 225 / 0.45) !important; }
-html[data-theme="dark"] [class~="text-black/40"]  { color: rgb(237 231 225 / 0.40) !important; }
-html[data-theme="dark"] [class~="text-black/35"]  { color: rgb(237 231 225 / 0.35) !important; }
-html[data-theme="dark"] [class~="text-black/30"]  { color: rgb(237 231 225 / 0.30) !important; }
-html[data-theme="dark"] [class~="text-black/25"]  { color: rgb(237 231 225 / 0.25) !important; }
-html[data-theme="dark"] [class~="text-black/15"]  { color: rgb(237 231 225 / 0.15) !important; }
-html[data-theme="dark"] [class~="text-black/8"]   { color: rgb(237 231 225 / 0.08) !important; }
+html[data-theme="dark"] [class~="text-black/70"]  { color: color-mix(in oklab, var(--foreground) 70%, transparent) !important; }
+html[data-theme="dark"] [class~="text-black/65"]  { color: color-mix(in oklab, var(--foreground) 65%, transparent) !important; }
+html[data-theme="dark"] [class~="text-black/60"]  { color: color-mix(in oklab, var(--foreground) 60%, transparent) !important; }
+html[data-theme="dark"] [class~="text-black/55"]  { color: color-mix(in oklab, var(--foreground) 55%, transparent) !important; }
+html[data-theme="dark"] [class~="text-black/50"]  { color: color-mix(in oklab, var(--foreground) 50%, transparent) !important; }
+html[data-theme="dark"] [class~="text-black/45"]  { color: color-mix(in oklab, var(--foreground) 45%, transparent) !important; }
+html[data-theme="dark"] [class~="text-black/40"]  { color: color-mix(in oklab, var(--foreground) 40%, transparent) !important; }
+html[data-theme="dark"] [class~="text-black/35"]  { color: color-mix(in oklab, var(--foreground) 35%, transparent) !important; }
+html[data-theme="dark"] [class~="text-black/30"]  { color: color-mix(in oklab, var(--foreground) 30%, transparent) !important; }
+html[data-theme="dark"] [class~="text-black/25"]  { color: color-mix(in oklab, var(--foreground) 25%, transparent) !important; }
+html[data-theme="dark"] [class~="text-black/15"]  { color: color-mix(in oklab, var(--foreground) 15%, transparent) !important; }
+html[data-theme="dark"] [class~="text-black/8"]   { color: color-mix(in oklab, var(--foreground) 8%, transparent) !important; }
 
 /* ─── Dark mode: opacity-based border overrides ────────────────────────────── */
-html[data-theme="dark"] [class~="border-black/10"] { border-color: rgb(237 231 225 / 0.10) !important; }
-html[data-theme="dark"] [class~="border-black/8"]  { border-color: rgb(237 231 225 / 0.08) !important; }
-html[data-theme="dark"] [class~="border-black/6"]  { border-color: rgb(237 231 225 / 0.06) !important; }
-html[data-theme="dark"] [class~="border-black/5"]  { border-color: rgb(237 231 225 / 0.05) !important; }
+html[data-theme="dark"] [class~="border-black/10"] { border-color: color-mix(in oklab, var(--foreground) 10%, transparent) !important; }
+html[data-theme="dark"] [class~="border-black/8"]  { border-color: color-mix(in oklab, var(--foreground) 8%, transparent) !important; }
+html[data-theme="dark"] [class~="border-black/6"]  { border-color: color-mix(in oklab, var(--foreground) 6%, transparent) !important; }
+html[data-theme="dark"] [class~="border-black/5"]  { border-color: color-mix(in oklab, var(--foreground) 5%, transparent) !important; }
 
 /* ─── Placeholder text — dark mode (pseudoclass must be targeted separately) ── */
 html[data-theme="dark"] input::placeholder,
 html[data-theme="dark"] textarea::placeholder {
-  color: rgb(237 231 225 / 0.35) !important;
+  color: color-mix(in oklab, var(--foreground) 35%, transparent) !important;
 }
 
 /* ─── Dark mode: form section-card inside explore/hero ─────────────────────── */
 html[data-theme="dark"] .filter-card {
-  background: rgba(35, 29, 25, 0.96) !important;
-  border-color: rgba(183, 142, 111, 0.22) !important;
+  background: color-mix(in oklab, var(--color-mist) 96%, transparent) !important;
+  border-color: color-mix(in oklab, var(--color-sky) 22%, transparent) !important;
 }
 
 /* ─── Dark mode: white / light surfaces ────────────────────────────────────── */
-html[data-theme="dark"] [class~="bg-white"]    { background-color: #241E1A !important; }
-html[data-theme="dark"] [class~="bg-white/70"] { background-color: rgba(36, 30, 26,0.70) !important; }
-html[data-theme="dark"] [class~="bg-white/75"] { background-color: rgba(36, 30, 26,0.75) !important; }
-html[data-theme="dark"] [class~="bg-white/80"] { background-color: rgba(36, 30, 26,0.80) !important; }
-html[data-theme="dark"] [class~="bg-white/85"] { background-color: rgba(36, 30, 26,0.85) !important; }
-html[data-theme="dark"] [class~="bg-white/15"] { background-color: rgba(237,231,225,0.15) !important; }
+html[data-theme="dark"] [class~="bg-white"]    { background-color: var(--color-mist) !important; }
+html[data-theme="dark"] [class~="bg-white/70"] { background-color: color-mix(in oklab, var(--color-mist) 70%, transparent) !important; }
+html[data-theme="dark"] [class~="bg-white/75"] { background-color: color-mix(in oklab, var(--color-mist) 75%, transparent) !important; }
+html[data-theme="dark"] [class~="bg-white/80"] { background-color: color-mix(in oklab, var(--color-mist) 80%, transparent) !important; }
+html[data-theme="dark"] [class~="bg-white/85"] { background-color: color-mix(in oklab, var(--color-mist) 85%, transparent) !important; }
+html[data-theme="dark"] [class~="bg-white/15"] { background-color: color-mix(in oklab, var(--foreground) 15%, transparent) !important; }
 html[data-theme="dark"] [class~="shadow-slate-900\/5"] { box-shadow: 0 1px 3px rgba(0,0,0,0.3) !important; }
 
 /* ─── Dark mode: semantic color surfaces (alerts, badges) ───────────────────── */
 /* Amber / gold */
-html[data-theme="dark"] [class~="bg-amber-50"]  { background-color: rgba(110, 86, 149, 0.25) !important; }
-html[data-theme="dark"] [class~="bg-amber-100"] { background-color: rgba(110, 86, 149, 0.35) !important; }
-html[data-theme="dark"] [class~="border-amber-200"] { border-color: rgba(110,86,149,0.28) !important; }
-html[data-theme="dark"] [class~="text-amber-700"]   { color: #B49BE0 !important; }
-html[data-theme="dark"] [class~="text-amber-600"]   { color: rgba(180,155,224,0.9) !important; }
+html[data-theme="dark"] [class~="bg-amber-50"]  { background-color: color-mix(in oklab, var(--color-gold) 25%, transparent) !important; }
+html[data-theme="dark"] [class~="bg-amber-100"] { background-color: color-mix(in oklab, var(--color-gold) 35%, transparent) !important; }
+html[data-theme="dark"] [class~="border-amber-200"] { border-color: color-mix(in oklab, var(--color-gold) 28%, transparent) !important; }
+html[data-theme="dark"] [class~="text-amber-700"]   { color: var(--color-gold) !important; }
+html[data-theme="dark"] [class~="text-amber-600"]   { color: color-mix(in oklab, var(--color-gold) 90%, transparent) !important; }
 
 /* Emerald / green */
 html[data-theme="dark"] [class~="bg-emerald-50"]  { background-color: rgba(5, 60, 35, 0.45) !important; }
@@ -433,8 +437,8 @@ html[data-theme="dark"] [class~="text-red-500"]   { color: #F87171 !important; }
 html[data-theme="dark"] [class~="ring-red-200"]   { --tw-ring-color: rgba(252,165,165,0.20) !important; }
 
 /* Ring overrides for badges */
-html[data-theme="dark"] [class~="ring-white\/15"]   { --tw-ring-color: rgba(237,231,225,0.15) !important; }
-html[data-theme="dark"] [class~="ring-white\/20"]   { --tw-ring-color: rgba(237,231,225,0.20) !important; }
+html[data-theme="dark"] [class~="ring-white\/15"]   { --tw-ring-color: color-mix(in oklab, var(--foreground) 15%, transparent) !important; }
+html[data-theme="dark"] [class~="ring-white\/20"]   { --tw-ring-color: color-mix(in oklab, var(--foreground) 20%, transparent) !important; }
 html[data-theme="dark"] [class~="ring-emerald-200"] { box-shadow: 0 0 0 1px rgba(52,211,153,0.20) !important; }
 html[data-theme="dark"] [class~="ring-red-200"]     { box-shadow: 0 0 0 1px rgba(252,165,165,0.20) !important; }
 html[data-theme="dark"] [class~="ring-1"]           { /* ring color already overridden per class above */ }
@@ -454,7 +458,7 @@ html[data-theme="dark"] [class~="ring-1"]           { /* ring color already over
 }
 /* Hoverda yengil milliy yaltiroq */
 .milliy-card:hover {
-  border-color: rgba(110, 86, 149, 0.3) !important;
+  border-color: color-mix(in oklab, var(--color-gold) 30%, transparent) !important;
 }
 
 /* ─── Animations ────────────────────────────────────────────────────────────── */

@@ -69,7 +69,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
 
             <div className="flex items-center gap-3">
               <div className="rounded-[1.2rem] bg-[var(--color-sky)]/10 px-4 py-3 text-center">
-                <p className="text-xl font-semibold text-[var(--color-sky)]">{savedPlaces.length}</p>
+                <p className="text-xl font-semibold text-[var(--color-sky-text)]">{savedPlaces.length}</p>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-[var(--color-ink)]/45">
                   {t.savedCount}
                 </p>
@@ -92,8 +92,8 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
       {/* Saved places */}
       <section className="container-shell pb-14">
         <div className="mb-5 flex items-center gap-2">
-          <Bookmark size={15} strokeWidth={2} className="text-[var(--color-gold)]" />
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
+          <Bookmark size={15} strokeWidth={2} className="text-[var(--color-gold-text)]" />
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold-text)]">
             {t.savedPlaces}
           </p>
         </div>

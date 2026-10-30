@@ -3,8 +3,8 @@
   position: relative;
   border-radius: 50px;
   padding: 3px;
-  /* O'zGezer Mocha Atelier — mocha → lavender */
-  background: linear-gradient(135deg, #6F4E37 0%, #4E3628 55%, #6E5695 100%);
+  /* O'zGezer — joriy palitradan olinadi */
+  background: linear-gradient(135deg, var(--color-sky) 0%, var(--color-teal) 55%, var(--color-gold) 100%);
   transition:
     background 0.6s ease,
     box-shadow 0.4s ease,
@@ -16,7 +16,7 @@
 .gs-wrapper:hover,
 .gs-wrapper:focus-within {
   width: 280px;
-  box-shadow: 0 0 18px rgba(111, 78, 55, 0.42);
+  box-shadow: 0 0 18px color-mix(in oklab, var(--color-sky) 42%, transparent);
 }
 
 /* Ichki oq blok */
@@ -43,7 +43,7 @@
   background: transparent;
   padding: 0 44px 0 18px;
   font-size: 14px;
-  color: #2A211C;
+  color: var(--color-ink);
   opacity: 0;
   transition: opacity 0.3s ease 0.1s;
 }
@@ -54,7 +54,7 @@
 }
 
 .gs-input::placeholder {
-  color: #9A8B80;
+  color: color-mix(in oklab, var(--color-ink) 55%, transparent);
 }
 
 /* Tugma / ikonka */
@@ -67,7 +67,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #5C4A3E;
+  color: color-mix(in oklab, var(--color-ink) 75%, transparent);
   font-size: 16px;
   border: none;
   background: transparent;
@@ -87,18 +87,18 @@
 .gs-wrapper:has(.gs-input:not(:placeholder-shown)) {
   background: linear-gradient(
     135deg,
-    #6F4E37 0%,
-    #B78E6F 25%,
-    #6E5695 55%,
-    #B49BE0 75%,
-    #6F4E37 100%
+    var(--color-sky) 0%,
+    var(--color-clay) 25%,
+    var(--color-gold) 55%,
+    var(--color-mist) 75%,
+    var(--color-sky) 100%
   );
-  box-shadow: 0 0 24px rgba(110, 86, 149, 0.5);
+  box-shadow: 0 0 24px color-mix(in oklab, var(--color-gold) 50%, transparent);
 }
 
 .gs-wrapper.gs-has-value .gs-btn,
 .gs-wrapper:has(.gs-input:not(:placeholder-shown)) .gs-btn {
-  color: #6E5695;
+  color: var(--color-gold-text);
 }
 
 /* ── Tugma milliy animatsiyasi — hoverda yaltiroq + puls ── */
@@ -125,16 +125,16 @@
 
 /* Dark mode — ichki blok moslashuvi */
 [data-theme="dark"] .gs-box {
-  background-color: #241E1A;
+  background-color: var(--color-mist);
 }
 [data-theme="dark"] .gs-input {
-  color: #EDE7E1;
+  color: var(--foreground);
 }
 [data-theme="dark"] .gs-input::placeholder {
-  color: #9A8B80;
+  color: color-mix(in oklab, var(--foreground) 45%, transparent);
 }
 [data-theme="dark"] .gs-btn {
-  color: #B9A99C;
+  color: color-mix(in oklab, var(--foreground) 70%, transparent);
 }
 
 /* ── Hero varianti — doim keng, bitta qidiruv ── */
@@ -159,7 +159,7 @@
 .gs-wrapper--hero:focus-within {
   width: 100%;
   max-width: 520px;
-  box-shadow: 0 0 22px rgba(111, 78, 55, 0.35);
+  box-shadow: 0 0 22px color-mix(in oklab, var(--color-sky) 35%, transparent);
 }
 
 /* Kichik ekranlarda kengayish cheklovi */
