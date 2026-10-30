@@ -77,6 +77,34 @@ html[data-theme="dark"][data-palette="cerulean"] {
   --color-rating: var(--color-gold);
 }
 
+/* ─── Palette: Glacier Blue ─────────────────────────────────────────────────── */
+[data-palette="glacier"] {
+  --background: #BFE9FF;
+  --foreground: #0C1B2A;
+  --color-sky: #6F3DFF;
+  --color-teal: #3B2A86;
+  --color-gold: #0E6E8C;
+  --color-ink: #0C1B2A;
+  --color-mist: #D8EFFB;
+  --color-sand: #EAF8FE;
+  --color-clay: #B7B7B7;
+  --color-on-accent: #FFFFFF;
+  --color-rating: #0E6E8C;
+}
+html[data-theme="dark"][data-palette="glacier"] {
+  --background: #08131C;
+  --foreground: #E3F2FB;
+  --color-sky: #A78BFF;
+  --color-teal: #9CC7FF;
+  --color-gold: #5BC8E8;
+  --color-ink: #E3F2FB;
+  --color-mist: #101C26;
+  --color-sand: #0C1720;
+  --color-clay: #2A3A48;
+  --color-on-accent: #061018;
+  --color-rating: #5BC8E8;
+}
+
 /* ─── Tailwind theme bridge ──────────────────────────────────────────────────── */
 @theme inline {
   --color-background: var(--background);
