@@ -209,7 +209,7 @@ export default async function PlaceDetailPage({ params, searchParams }: PlaceDet
                   {place.categoryTitles.map((category) => (
                     <span
                       key={`${place.slug}-${category[locale]}`}
-                      className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/20 backdrop-blur-sm"
+                      className="rounded-full bg-black/40 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/25 backdrop-blur-sm"
                     >
                       {category[locale]}
                     </span>
