@@ -16,6 +16,7 @@ export const PALETTES: Palette[] = [
   { id: "mocha", name: "Mocha Atelier", swatches: ["#E5E4E2", "#6F4E37", "#6E5695"] },
   { id: "cerulean", name: "Neon Cerulean", swatches: ["#F2F6F9", "#007BA7", "#FF2D95"] },
   { id: "glacier", name: "Glacier Blue", swatches: ["#BFE9FF", "#6F3DFF", "#B7B7B7"] },
+  { id: "porcelain", name: "Porcelain Beige", swatches: ["#F3E6D7", "#9B7ED6", "#E4FF3B"] },
 ];
 
 const STORAGE_KEY = "ozgezer-palette";

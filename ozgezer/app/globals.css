@@ -105,6 +105,39 @@ html[data-theme="dark"][data-palette="glacier"] {
   --color-rating: #5BC8E8;
 }
 
+/* ─── Palette: Porcelain Beige ──────────────────────────────────────────────── */
+[data-palette="porcelain"] {
+  --background: #F3E6D7;
+  --foreground: #2A2118;
+  --color-sky: #9B7ED6;
+  --color-teal: #6B4FA8;
+  --color-gold: #E4FF3B;
+  --color-ink: #2A2118;
+  --color-mist: #F0E4D5;
+  --color-sand: #F8F0E5;
+  --color-clay: #D8C7B2;
+  --color-on-accent: #2A2118;
+  --color-rating: #5F6B00;
+  /* Heather Purple / Electric Lemon juda och, matnda o'qilmaydi — quyuqroq variant */
+  --color-sky-text: #6F4FAE;
+  --color-gold-text: #5F6B00;
+}
+html[data-theme="dark"][data-palette="porcelain"] {
+  --background: #1A1512;
+  --foreground: #F3E9DC;
+  --color-sky: #C0A8EE;
+  --color-teal: #DCC9F5;
+  --color-gold: #E4FF3B;
+  --color-ink: #F3E9DC;
+  --color-mist: #241D17;
+  --color-sand: #201A14;
+  --color-clay: #3A3029;
+  --color-on-accent: #221A0F;
+  --color-rating: #E4FF3B;
+  --color-sky-text: #C0A8EE;
+  --color-gold-text: #E4FF3B;
+}
+
 /* ─── Tailwind theme bridge ──────────────────────────────────────────────────── */
 @theme inline {
   --color-background: var(--background);
